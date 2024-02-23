@@ -27,6 +27,7 @@ import { DiscussionPostsService } from 'src/app/services/discussion-posts.servic
     SocialMediaDiscussionComponent,
   ],
   providers: [provideMarkdown()],
+  host: {ngSkipHydration: 'true'},
 })
 export class BlogPostComponent {
   public post: BlogPost;
