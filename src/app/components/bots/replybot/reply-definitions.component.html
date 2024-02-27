@@ -1,5 +1,5 @@
 <div class="guild-reply-definitions-list-container">
-  <mat-spinner *ngIf="isLoading"></mat-spinner>
+  <app-loading-indicator *ngIf="isLoading"></app-loading-indicator>
   <div class="guild-reply-definitions-container" *ngIf="!isLoading && isAuthorizedToAdministrate">
     <app-page-title>Custom Reply Definitions for {{ guildName }}</app-page-title>
     <div class="navigation-button-section">

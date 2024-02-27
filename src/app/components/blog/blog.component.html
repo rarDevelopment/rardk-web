@@ -3,7 +3,7 @@
     <app-page-title [titleSize]="1">{{ pageTitle }}</app-page-title>
   </div>
 </div>
-<mat-spinner *ngIf="isLoading"></mat-spinner>
+<app-loading-indicator *ngIf="isLoading"></app-loading-indicator>
 <ng-container *ngIf="!isLoading">
   <div class="repeating-post" *ngFor="let post of blogPosts">
     <div class="repeating-post-summary">

@@ -14,7 +14,7 @@
     </p>
   </div>
 </div>
-<mat-spinner *ngIf="isLoadingWishlist || isLoadingOwnedList"></mat-spinner>
+<app-loading-indicator *ngIf="isLoadingWishlist || isLoadingOwnedList"></app-loading-indicator>
 <div
   class="disclaimer-container"
   *ngIf="(isLoadingWishlist || isLoadingOwnedList) && showLoadingDisclaimer">

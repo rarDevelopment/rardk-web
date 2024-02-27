@@ -18,8 +18,8 @@ import { MatButtonToggleModule } from '@angular/material/button-toggle';
 import { PageTitleComponent } from '../../shared/page-title/page-title.component';
 import { NgIf, NgFor, NgClass, DatePipe } from '@angular/common';
 import { RouterLink } from '@angular/router';
-import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { CheckOrXComponent } from '../../shared/check-or-x/check-or-x.component';
+import { LoadingIndicatorComponent } from '../../shared/loading-indicator/loading-indicator.component';
 
 @Component({
   selector: 'app-reply-definitions',
@@ -40,7 +40,7 @@ import { CheckOrXComponent } from '../../shared/check-or-x/check-or-x.component'
     CheckOrXComponent,
     DatePipe,
     RouterLink,
-    MatProgressSpinnerModule,
+    LoadingIndicatorComponent,
   ],
 })
 export class ReplyDefinitionsComponent

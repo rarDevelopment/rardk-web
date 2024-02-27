@@ -4,7 +4,7 @@
     <p>Various links I found interesting enough to share.</p>
   </div>
 </div>
-<mat-spinner *ngIf="isLoading"></mat-spinner>
+<app-loading-indicator *ngIf="isLoading"></app-loading-indicator>
 <ng-container *ngIf="!isLoading">
   <div class="repeating-post" *ngFor="let link of links">
     <div class="repeating-post-summary">

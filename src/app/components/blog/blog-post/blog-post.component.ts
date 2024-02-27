@@ -6,11 +6,11 @@ import { take, switchMap } from 'rxjs/operators';
 import { Meta } from '@angular/platform-browser';
 import { HtmlDirective } from '../../../directives/html.directive';
 import { DateDisplayComponent } from '../../shared/date-display/date-display.component';
-import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { NgIf } from '@angular/common';
 import { MarkdownModule, provideMarkdown, MarkdownService } from 'ngx-markdown';
 import { SocialMediaDiscussionComponent } from '../../shared/social-media-discussion/social-media-discussion.component';
 import { DiscussionPostsService } from 'src/app/services/discussion-posts.service';
+import { LoadingIndicatorComponent } from '../../shared/loading-indicator/loading-indicator.component';
 
 @Component({
   selector: 'app-blog-post',
@@ -19,7 +19,7 @@ import { DiscussionPostsService } from 'src/app/services/discussion-posts.servic
   standalone: true,
   imports: [
     NgIf,
-    MatProgressSpinnerModule,
+    LoadingIndicatorComponent,
     DateDisplayComponent,
     HtmlDirective,
     MarkdownModule,
