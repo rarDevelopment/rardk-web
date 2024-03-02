@@ -1,0 +1,21 @@
+.spin {
+  animation: 1.2s cubic-bezier(0.26, 1.36, 0.74, -0.29) infinite spinner;
+  // animation: 1.2s linear infinite spinner;
+  animation-play-state: inherit;
+  border: solid 10px #ffffff;
+  border-bottom-color: #f28834;
+  border-radius: 50%;
+  content: "";
+  will-change: transform;
+  margin: 0 auto;
+  height: 80px;
+  width: 80px;
+}
+@keyframes spinner {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
