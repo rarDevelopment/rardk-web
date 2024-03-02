@@ -10,7 +10,7 @@ import { MatSelectModule } from '@angular/material/select';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { NgFor, NgIf } from '@angular/common';
 import { PageTitleComponent } from '../../shared/page-title/page-title.component';
-import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
+import { LoadingIndicatorComponent } from '../../shared/loading-indicator/loading-indicator.component';
 
 @Component({
   selector: 'app-lego-sets',
@@ -27,7 +27,7 @@ import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
     MatRadioModule,
     CheckOrXComponent,
     NgIf,
-    MatProgressSpinnerModule,
+    LoadingIndicatorComponent,
   ],
 })
 export class LegoSetsComponent {
@@ -57,13 +57,9 @@ export class LegoSetsComponent {
         this.ownedSets = this.filteredOwnedSets = sets
           .sort((a, b) => (a.name > b.name ? 1 : -1))
           .filter((l) => l.owned);
-        this.wantedSets = sets
-          .sort((a, b) => (a.name > b.name ? 1 : -1))
-          .filter((l) => !l.owned);
+        this.wantedSets = sets.sort((a, b) => (a.name > b.name ? 1 : -1)).filter((l) => !l.owned);
 
-        this.ownedSeriesOptions = Array.from(
-          new Set(this.ownedSets.map((s) => s.series))
-        ).sort();
+        this.ownedSeriesOptions = Array.from(new Set(this.ownedSets.map((s) => s.series))).sort();
 
         this.isLoading = false;
       });

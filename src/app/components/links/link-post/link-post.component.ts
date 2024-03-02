@@ -5,10 +5,10 @@ import { Link } from 'src/app/models/link';
 import { LinksService } from 'src/app/services/links.service';
 import { PageTitleComponent } from '../../shared/page-title/page-title.component';
 import { NgIf } from '@angular/common';
-import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { DateDisplayComponent } from '../../shared/date-display/date-display.component';
 import { SocialMediaDiscussionComponent } from '../../shared/social-media-discussion/social-media-discussion.component';
 import { DiscussionPostsService } from 'src/app/services/discussion-posts.service';
+import { LoadingIndicatorComponent } from '../../shared/loading-indicator/loading-indicator.component';
 
 @Component({
   selector: 'app-link-post',
@@ -16,7 +16,7 @@ import { DiscussionPostsService } from 'src/app/services/discussion-posts.servic
   imports: [
     PageTitleComponent,
     NgIf,
-    MatProgressSpinnerModule,
+    LoadingIndicatorComponent,
     DateDisplayComponent,
     RouterLink,
     SocialMediaDiscussionComponent,

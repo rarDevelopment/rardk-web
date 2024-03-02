@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { take } from 'rxjs';
-import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { NgIf, NgFor, KeyValuePipe, NgClass } from '@angular/common';
 import { PageTitleComponent } from '../../shared/page-title/page-title.component';
 import { GameCollectionService } from '../../../services/video-games.service';
@@ -9,6 +8,7 @@ import { MatSelectModule } from '@angular/material/select';
 import { FormsModule } from '@angular/forms';
 import { MatOptionModule } from '@angular/material/core';
 import { GamePlatform } from 'src/app/models/game-platform';
+import { LoadingIndicatorComponent } from '../../shared/loading-indicator/loading-indicator.component';
 
 @Component({
   selector: 'app-video-games',
@@ -18,7 +18,7 @@ import { GamePlatform } from 'src/app/models/game-platform';
   imports: [
     PageTitleComponent,
     NgIf,
-    MatProgressSpinnerModule,
+    LoadingIndicatorComponent,
     NgFor,
     KeyValuePipe,
     NgClass,

@@ -3,7 +3,7 @@
     <app-page-title *ngIf="link" [titleSize]="2">🔗 {{ link.title }}</app-page-title>
   </div>
 </div>
-<mat-spinner *ngIf="isLoading"></mat-spinner>
+<app-loading-indicator *ngIf="isLoading"></app-loading-indicator>
 <ng-container *ngIf="!isLoading && link">
   <div class="post">
     <div class="post-summary">

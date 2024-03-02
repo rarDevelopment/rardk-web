@@ -6,7 +6,7 @@ import { map } from 'rxjs/operators';
 import { GuildConfiguration } from 'src/app/models/bots/replybot/guild-configuration';
 import { NgIf, NgFor } from '@angular/common';
 import { PageTitleComponent } from '../../../shared/page-title/page-title.component';
-import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
+import { LoadingIndicatorComponent } from 'src/app/components/shared/loading-indicator/loading-indicator.component';
 
 @Component({
   selector: 'app-guild-selector',
@@ -17,7 +17,7 @@ import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
     PageTitleComponent,
     NgIf,
     NgFor,
-    MatProgressSpinnerModule,
+    LoadingIndicatorComponent,
   ],
 })
 export class ReplybotServerSelectorComponent

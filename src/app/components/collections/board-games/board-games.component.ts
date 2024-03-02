@@ -3,17 +3,17 @@ import { BoardGamesService } from '../../../services/board-games.service';
 import { BoardGame } from 'src/app/models/board-game';
 import { take } from 'rxjs';
 import { micromark } from 'micromark';
-import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { NgIf, NgFor } from '@angular/common';
 import { PageTitleComponent } from '../../shared/page-title/page-title.component';
 import { Router } from '@angular/router';
+import { LoadingIndicatorComponent } from '../../shared/loading-indicator/loading-indicator.component';
 
 @Component({
   selector: 'app-board-games',
   templateUrl: './board-games.component.html',
   styleUrls: ['./board-games.component.scss'],
   standalone: true,
-  imports: [PageTitleComponent, NgIf, MatProgressSpinnerModule, NgFor],
+  imports: [PageTitleComponent, NgIf, LoadingIndicatorComponent, NgFor],
 })
 export class BoardGamesComponent implements OnInit {
   constructor(private boardGamesService: BoardGamesService, private router: Router) {}

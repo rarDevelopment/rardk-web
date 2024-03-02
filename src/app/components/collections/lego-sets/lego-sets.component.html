@@ -3,7 +3,7 @@
     <app-page-title [titleSize]="1">Lego Sets</app-page-title>
   </div>
 </div>
-<mat-spinner *ngIf="isLoading"></mat-spinner>
+<app-loading-indicator *ngIf="isLoading"></app-loading-indicator>
 <div class="content-container" *ngIf="!isLoading">
   <div class="content-container-card">
     <section class="wanted-section">

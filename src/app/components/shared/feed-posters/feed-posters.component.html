@@ -6,7 +6,7 @@
     [name]="profileName!"></app-see-more-link>
 </h2>
 <ng-container *ngIf="isLoading && !isError">
-  <mat-spinner></mat-spinner>
+  <app-loading-indicator></app-loading-indicator>
 </ng-container>
 <ng-container *ngIf="!isLoading && !isError">
   <ng-container *ngIf="feedItems && feedItems.length > 0; else no_content">

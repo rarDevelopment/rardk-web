@@ -5,9 +5,9 @@ import { BlogPostAttributes } from 'src/app/models/blog-post-attributes';
 import { BlogService } from 'src/app/services/blog.service';
 import { PageTitleComponent } from '../shared/page-title/page-title.component';
 import { NgFor, NgIf } from '@angular/common';
-import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { DateDisplayComponent } from '../shared/date-display/date-display.component';
 import { HtmlDirective } from 'src/app/directives/html.directive';
+import { LoadingIndicatorComponent } from '../shared/loading-indicator/loading-indicator.component';
 
 @Component({
   selector: 'app-blog',
@@ -15,7 +15,7 @@ import { HtmlDirective } from 'src/app/directives/html.directive';
   imports: [
     PageTitleComponent,
     NgIf,
-    MatProgressSpinnerModule,
+    LoadingIndicatorComponent,
     NgFor,
     DateDisplayComponent,
     HtmlDirective,

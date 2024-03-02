@@ -2,11 +2,11 @@ import { NgFor, NgIf } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { HtmlDirective } from 'src/app/directives/html.directive';
 import { PageTitleComponent } from '../shared/page-title/page-title.component';
-import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { LinksService } from 'src/app/services/links.service';
 import { take } from 'rxjs';
 import { Link } from 'src/app/models/link';
 import { DateDisplayComponent } from '../shared/date-display/date-display.component';
+import { LoadingIndicatorComponent } from '../shared/loading-indicator/loading-indicator.component';
 
 @Component({
   selector: 'app-links',
@@ -16,7 +16,7 @@ import { DateDisplayComponent } from '../shared/date-display/date-display.compon
     HtmlDirective,
     PageTitleComponent,
     NgIf,
-    MatProgressSpinnerModule,
+    LoadingIndicatorComponent,
     DateDisplayComponent,
   ],
   templateUrl: './links.component.html',
