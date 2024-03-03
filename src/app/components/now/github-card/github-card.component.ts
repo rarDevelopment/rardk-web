@@ -3,7 +3,7 @@ import { take } from 'rxjs';
 import { FeedItem } from 'src/app/models/feed-item';
 import { GithubSearchResult } from 'src/app/models/github/github-search-result';
 import { GithubService } from './github.service';
-import { FeedPostersComponent } from '../../shared/feed-posters/feed-posters.component';
+import { FeedPostersComponent } from '../feed-posters/feed-posters.component';
 
 @Component({
   selector: 'app-github-card',

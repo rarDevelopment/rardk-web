@@ -3,7 +3,7 @@ import { take } from 'rxjs';
 import { BackloggdItem } from 'src/app/models/backloggd-item';
 import { FeedItem } from 'src/app/models/feed-item';
 import { BackloggdService } from './backloggd.service';
-import { FeedPostersComponent } from '../../shared/feed-posters/feed-posters.component';
+import { FeedPostersComponent } from '../feed-posters/feed-posters.component';
 
 @Component({
   selector: 'app-backloggd-card',

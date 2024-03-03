@@ -1,8 +1,8 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { FeedItem } from 'src/app/models/feed-item';
-import { ProfileLinkComponent } from '../profile-link/profile-link.component';
+import { ProfileLinkComponent } from '../../shared/profile-link/profile-link.component';
 import { NgIf, NgFor } from '@angular/common';
-import { LoadingIndicatorComponent } from '../loading-indicator/loading-indicator.component';
+import { LoadingIndicatorComponent } from '../../shared/loading-indicator/loading-indicator.component';
 
 @Component({
   selector: 'app-feed-posters',

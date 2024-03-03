@@ -3,7 +3,7 @@ import { FeedItem } from 'src/app/models/feed-item';
 import { GoodreadsItem } from 'src/app/models/goodreads-item';
 import { GoodreadsService } from './goodreads.service';
 import { take } from 'rxjs';
-import { FeedPostersComponent } from '../../shared/feed-posters/feed-posters.component';
+import { FeedPostersComponent } from '../feed-posters/feed-posters.component';
 
 @Component({
   selector: 'app-goodreads-card',
