@@ -1,6 +1,9 @@
 <div class="page-description-container">
   <div class="page-description-content">
-    <app-page-title [titleSize]="1">{{ pageTitle }}</app-page-title>
+    <app-page-title [titleSize]="1">
+      <i class="fa-solid fa-newspaper"></i>
+      {{ pageTitle }}
+    </app-page-title>
   </div>
 </div>
 <app-loading-indicator *ngIf="isLoading"></app-loading-indicator>
