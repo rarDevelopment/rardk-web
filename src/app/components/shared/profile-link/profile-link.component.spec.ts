@@ -1,16 +1,16 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { SeeMoreLinkComponent } from './see-more-link.component';
+import { ProfileLinkComponent } from './profile-link.component';
 
 describe('SeeMoreLinkComponent', () => {
-  let component: SeeMoreLinkComponent;
-  let fixture: ComponentFixture<SeeMoreLinkComponent>;
+  let component: ProfileLinkComponent;
+  let fixture: ComponentFixture<ProfileLinkComponent>;
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-    imports: [SeeMoreLinkComponent]
+    imports: [ProfileLinkComponent]
 });
-    fixture = TestBed.createComponent(SeeMoreLinkComponent);
+    fixture = TestBed.createComponent(ProfileLinkComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

@@ -3,16 +3,16 @@ a {
   text-decoration: none;
 }
 
-.see-more-link {
+.profile-link {
   display: inline-block;
   transition: all 0.5s ease-in-out;
 }
 
-.see-more-link:hover {
+.profile-link:hover {
   transform: rotate(360deg);
 }
 
-.see-more-link:active {
+.profile-link:active {
   opacity: 0;
   transition: 0.1s linear;
   transform: scale(3) rotate(10deg);
