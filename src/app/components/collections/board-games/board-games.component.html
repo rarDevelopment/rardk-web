@@ -15,16 +15,14 @@
   </div>
 </div>
 <app-loading-indicator *ngIf="isLoadingWishlist || isLoadingOwnedList"></app-loading-indicator>
-<div
-  class="disclaimer-container"
-  *ngIf="(isLoadingWishlist || isLoadingOwnedList) && showLoadingDisclaimer">
-  If it's not loading, try refreshing the page...
-</div>
 <div class="content-container" *ngIf="!isLoadingWishlist && !isLoadingOwnedList">
   <div class="content-container-card">
     <section class="wanted-section">
       <h2>Board Games I Want</h2>
-      <table class="set-table">
+      <div class="error-message" *ngIf="!isLoadingWishlist && isErrorWishlist">
+        There was an error loading this list. Please try again or come back later!
+      </div>
+      <table class="set-table" *ngIf="!isLoadingWishlist && !isErrorWishlist">
         <th></th>
         <th>Name</th>
         <th>Notes</th>
@@ -41,7 +39,10 @@
     </section>
     <section class="owned-section">
       <h2>Board Games I Own</h2>
-      <table class="set-table">
+      <div class="error-message" *ngIf="!isLoadingWishlist && isErrorWishlist">
+        There was an error loading this list. Please try again or come back later!
+      </div>
+      <table class="set-table" *ngIf="!isLoadingOwnedList && !isErrorOwnedList">
         <th></th>
         <th>Name</th>
         <th>My Rating</th>

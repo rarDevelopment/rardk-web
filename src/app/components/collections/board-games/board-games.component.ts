@@ -22,16 +22,14 @@ export class BoardGamesComponent implements OnInit {
   public ownedGames: BoardGame[];
   public isLoadingWishlist: boolean;
   public isLoadingOwnedList: boolean;
-  public showLoadingDisclaimer: boolean;
+  public isErrorWishlist: boolean;
+  public isErrorOwnedList: boolean;
 
   ngOnInit() {
     this.isLoadingWishlist = true;
     this.isLoadingOwnedList = true;
     this.populateWishlist();
     this.populateOwnedList();
-    setTimeout(() => {
-      this.showLoadingDisclaimer = true;
-    }, 5000);
   }
 
   public async populateWishlist() {
@@ -46,10 +44,9 @@ export class BoardGamesComponent implements OnInit {
           this.isLoadingWishlist = false;
         },
         error: (error) => {
+          this.isLoadingWishlist = false;
+          this.isErrorWishlist = true;
           console.error('Error loading wishlist', error);
-          setTimeout(() => {
-            this.router.navigate([this.router.url]);
-          }, 2000);
         },
       });
   }
@@ -64,10 +61,9 @@ export class BoardGamesComponent implements OnInit {
           this.isLoadingOwnedList = false;
         },
         error: (error) => {
+          this.isLoadingOwnedList = false;
+          this.isErrorOwnedList = true;
           console.error('Error loading owned list', error);
-          setTimeout(() => {
-            this.router.navigate([this.router.url]);
-          }, 2000);
         },
       });
   }
