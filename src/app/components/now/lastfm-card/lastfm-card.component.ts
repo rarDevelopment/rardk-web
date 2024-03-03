@@ -18,8 +18,8 @@ export class LastfmCardComponent {
   public isTopArtistsLoading: boolean;
   public topAlbumFeedItems: FeedItem[];
   public topArtistFeedItems: FeedItem[];
-  private numberOfAlbumsToShow = 5;
-  private numberOfArtistsToShow = 5;
+  private numberOfAlbumsToShow = 4;
+  private numberOfArtistsToShow = 4;
   isTopAlbumsError: boolean;
   isTopArtistsError: boolean;
 

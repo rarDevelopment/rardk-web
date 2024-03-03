@@ -15,7 +15,7 @@ import { FeedPostersComponent } from '../../shared/feed-posters/feed-posters.com
 export class SerializdCardComponent {
   public isLoading: boolean;
   public feedItems: FeedItem[];
-  private numberOfShowsToDisplay = 10;
+  private numberOfShowsToDisplay = 4;
   public isCurrentTvError: boolean;
 
   constructor(private serializdService: SerializdService) {}

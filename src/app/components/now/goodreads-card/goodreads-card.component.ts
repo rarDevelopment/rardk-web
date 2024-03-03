@@ -17,7 +17,7 @@ export class GoodreadsCardComponent {
   public isCurrentlyReadingLoading: boolean;
   public finishedBooksFeedItems: FeedItem[];
   public currentlyReadingBooksFeedItems: FeedItem[];
-  private numberOfBooksToList = 5;
+  private numberOfBooksToList = 4;
 
   constructor(private goodreadsService: GoodreadsService) {}
 
