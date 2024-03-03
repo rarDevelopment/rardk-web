@@ -4,9 +4,9 @@ import { Router, ActivatedRoute } from '@angular/router';
 import { HttpClient } from '@angular/common/http';
 import { MatDialog } from '@angular/material/dialog';
 import { DiscordService } from 'src/app/services/discord.service';
-import { ReplybotService } from 'src/app/services/replybot.service';
+import { ReplybotService } from 'src/app/components/bots/replybot/replybot.service';
 import { MatSnackBar, MatSnackBarConfig } from '@angular/material/snack-bar';
-import { TimezonebotService } from 'src/app/services/timezonebot.service';
+import { TimezonebotService } from 'src/app/components/bots/timezonebot/timezonebot.service';
 import { Clipboard } from '@angular/cdk/clipboard';
 
 @Component({

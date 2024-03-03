@@ -12,13 +12,13 @@ export class BoardGamesService {
 
   public getWishlistGames(): Observable<BoardGame[]> {
     return this.http.get<BoardGame[]>(
-      `${environment.apiUrl}now/boardgamegeek/wishlist`
+      `${environment.apiUrl}now/json/collections-board-games-wishlist`
     );
   }
 
   public getOwnedGames(): Observable<BoardGame[]> {
     return this.http.get<BoardGame[]>(
-      `${environment.apiUrl}now/boardgamegeek/owned`
+      `${environment.apiUrl}now/json/collections-board-games-owned`
     );
   }
 }

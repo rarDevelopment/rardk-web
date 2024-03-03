@@ -1,19 +1,18 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { LegoSet } from '../models/lego-set';
 import { Observable } from 'rxjs';
+import { Link } from '../../models/link';
 import { environment } from 'src/environments/environment';
 
 @Injectable({
   providedIn: 'root',
 })
-export class LegoSetsService {
-  private setsUrl: string =
-    `${environment.apiUrl}now/json/lego-sets`;
+export class LinksService {
+  private linksUrl: string = `${environment.apiUrl}now/json/links`;
 
   constructor(private http: HttpClient) {}
 
-  public getLegoSets(): Observable<LegoSet[]> {
-    return this.http.get<LegoSet[]>(this.setsUrl);
+  public getLinks(): Observable<Link[]> {
+    return this.http.get<Link[]>(this.linksUrl);
   }
 }

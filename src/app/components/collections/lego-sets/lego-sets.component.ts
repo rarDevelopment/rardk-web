@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { take } from 'rxjs';
 import { LegoSet } from 'src/app/models/lego-set';
-import { LegoSetsService } from '../../../services/lego-sets.service';
+import { LegoSetsService } from './lego-sets.service';
 import { CheckOrXComponent } from '../../shared/check-or-x/check-or-x.component';
 import { MatRadioModule } from '@angular/material/radio';
 import { MatOptionModule } from '@angular/material/core';

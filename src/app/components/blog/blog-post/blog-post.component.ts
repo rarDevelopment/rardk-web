@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { BlogPost } from 'src/app/models/blog-post';
-import { BlogService } from '../../../services/blog.service';
+import { BlogService } from '../blog.service';
 import { ActivatedRoute, ParamMap, Router, RouterLink } from '@angular/router';
 import { take, switchMap } from 'rxjs/operators';
 import { Meta } from '@angular/platform-browser';
