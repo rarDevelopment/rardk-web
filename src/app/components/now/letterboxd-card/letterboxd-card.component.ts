@@ -3,7 +3,7 @@ import { take } from 'rxjs';
 import { FeedItem } from 'src/app/models/feed-item';
 import { LetterboxdItem } from 'src/app/models/letterboxd-item';
 import { LetterboxdService } from './letterboxd.service';
-import { FeedPostersComponent } from '../../shared/feed-posters/feed-posters.component';
+import { FeedPostersComponent } from '../feed-posters/feed-posters.component';
 
 @Component({
   selector: 'app-letterboxd-card',
@@ -15,7 +15,7 @@ import { FeedPostersComponent } from '../../shared/feed-posters/feed-posters.com
 export class LetterboxdCardComponent {
   public isLoading: boolean;
   public feedItems: FeedItem[];
-  private numberOfMoviesToList = 5;
+  private numberOfMoviesToList = 4;
   isRecentMoviesError: boolean;
 
   constructor(private letterboxdService: LetterboxdService) {}

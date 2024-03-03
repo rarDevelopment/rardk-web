@@ -3,7 +3,7 @@ import { take } from 'rxjs';
 import { FeedItem } from 'src/app/models/feed-item';
 import { SerializdCurrentlyWatchingItem } from 'src/app/models/serializd-currently-watching-item';
 import { SerializdService } from './serializd.service';
-import { FeedPostersComponent } from '../../shared/feed-posters/feed-posters.component';
+import { FeedPostersComponent } from '../feed-posters/feed-posters.component';
 
 @Component({
   selector: 'app-serializd-card',
@@ -15,7 +15,7 @@ import { FeedPostersComponent } from '../../shared/feed-posters/feed-posters.com
 export class SerializdCardComponent {
   public isLoading: boolean;
   public feedItems: FeedItem[];
-  private numberOfShowsToDisplay = 10;
+  private numberOfShowsToDisplay = 4;
   public isCurrentTvError: boolean;
 
   constructor(private serializdService: SerializdService) {}

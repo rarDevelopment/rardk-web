@@ -1,9 +1,9 @@
 <h2 class="feed-section-title">
   {{ sectionTitle }}
-  <app-see-more-link
+  <app-profile-link
     *ngIf="profileUrl && profileName"
     [url]="profileUrl!"
-    [name]="profileName!"></app-see-more-link>
+    [name]="profileName!"></app-profile-link>
 </h2>
 <ng-container *ngIf="isLoading && !isError">
   <app-loading-indicator></app-loading-indicator>

@@ -4,7 +4,7 @@ import { FeedItem } from 'src/app/models/feed-item';
 import { LastfmAlbum } from 'src/app/models/lastfm/lastfm-album';
 import { LastfmArtist } from 'src/app/models/lastfm/lastfm-artist';
 import { LastfmService } from './lastfm.service';
-import { FeedPostersComponent } from '../../shared/feed-posters/feed-posters.component';
+import { FeedPostersComponent } from '../feed-posters/feed-posters.component';
 
 @Component({
   selector: 'app-lastfm-card',
@@ -18,8 +18,8 @@ export class LastfmCardComponent {
   public isTopArtistsLoading: boolean;
   public topAlbumFeedItems: FeedItem[];
   public topArtistFeedItems: FeedItem[];
-  private numberOfAlbumsToShow = 5;
-  private numberOfArtistsToShow = 5;
+  private numberOfAlbumsToShow = 4;
+  private numberOfArtistsToShow = 4;
   isTopAlbumsError: boolean;
   isTopArtistsError: boolean;
 

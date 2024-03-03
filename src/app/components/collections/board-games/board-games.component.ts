@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { BoardGamesService } from '../../../services/board-games.service';
+import { BoardGamesService } from './board-games.service';
 import { BoardGame } from 'src/app/models/board-game';
 import { take } from 'rxjs';
 import { micromark } from 'micromark';

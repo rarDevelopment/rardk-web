@@ -2,7 +2,7 @@ import { Component, Input } from '@angular/core';
 import { Router, RouterLink } from '@angular/router';
 import { BlogPost } from 'src/app/models/blog-post';
 import { BlogPostAttributes } from 'src/app/models/blog-post-attributes';
-import { BlogService } from 'src/app/services/blog.service';
+import { BlogService } from 'src/app/components/blog/blog.service';
 import { PageTitleComponent } from '../shared/page-title/page-title.component';
 import { NgFor, NgIf } from '@angular/common';
 import { DateDisplayComponent } from '../shared/date-display/date-display.component';
