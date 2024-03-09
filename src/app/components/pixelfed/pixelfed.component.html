@@ -1,0 +1,21 @@
+<div>
+  <!-- <p *ngFor="let post of pixelfedPosts">
+    <img [src]="post.media_attachments[0].url" alt="{{ post.media_attachments[0].description }}" />
+    {{ post.media_attachments[0].description }}
+  </p> -->
+
+  <div class="grid">
+    <div *ngFor="let post of pixelfedPosts">
+      <p>
+        <a [href]="post.url" target="_blank">
+          <img
+            [src]="post.media_attachments[0].url"
+            alt="{{ post.media_attachments[0].description }}" />
+        </a>
+      </p>
+      <p>
+        <span [innerHTML]="post.content">{{ post.content }}</span>
+      </p>
+    </div>
+  </div>
+</div>
