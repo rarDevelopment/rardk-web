@@ -7,20 +7,31 @@
     <p></p>
   </div>
 </div>
-
-<div>
+<app-loading-indicator *ngIf="isLoading"></app-loading-indicator>
+<div *ngIf="!isLoading">
   <div class="grid">
-    <div *ngFor="let post of pixelfedPosts">
-      <p>
-        <a [href]="post.url" target="_blank">
+    <div class="grid-square" *ngFor="let post of pixelfedPosts; let i = index">
+      <div (click)="toggleModal(i, true)">
+        <img
+          class="gallery-thumbnail"
+          [src]="post.media_attachments[0].url"
+          alt="{{ post.media_attachments[0].description }}" />
+      </div>
+      <app-modal [isVisible]="modalVisibilities[i]" (onClose)="toggleModal(i, false)">
+        <div class="image-container">
           <img
+            class="gallery-image"
             [src]="post.media_attachments[0].url"
             alt="{{ post.media_attachments[0].description }}" />
-        </a>
-      </p>
-      <p>
-        <span [innerHTML]="post.content">{{ post.content }}</span>
-      </p>
+        </div>
+        <div class="image-description" [innerHTML]="post.content">{{ post.content }}</div>
+        <div class="image-footer">
+          <a target="_blank" [href]="post.url">
+            View on PixelFed
+            <i class="fa-solid fa-arrow-up-right-from-square"></i>
+          </a>
+        </div>
+      </app-modal>
     </div>
   </div>
 </div>

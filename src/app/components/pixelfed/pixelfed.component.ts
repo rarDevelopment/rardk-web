@@ -2,19 +2,22 @@ import { Component, OnInit } from '@angular/core';
 import { PixelfedPost } from 'src/app/models/pixelfed/pixelfed-post';
 import { PixelfedService } from './pixelfed.service';
 import { take } from 'rxjs';
-import { NgFor } from '@angular/common';
+import { NgFor, NgIf } from '@angular/common';
 import { PageTitleComponent } from '../shared/page-title/page-title.component';
+import { ModalComponent } from '../shared/modal/modal.component';
+import { LoadingIndicatorComponent } from '../shared/loading-indicator/loading-indicator.component';
 
 @Component({
   selector: 'app-pixelfed',
   standalone: true,
-  imports: [NgFor, PageTitleComponent],
+  imports: [NgFor, NgIf, PageTitleComponent, ModalComponent, LoadingIndicatorComponent],
   templateUrl: './pixelfed.component.html',
   styleUrl: './pixelfed.component.scss',
 })
 export class PixelfedComponent implements OnInit {
   public pixelfedPosts: PixelfedPost[];
   public isLoading: boolean;
+  public modalVisibilities: boolean[];
 
   constructor(private pixelfedService: PixelfedService) {}
 
@@ -30,7 +33,7 @@ export class PixelfedComponent implements OnInit {
       .subscribe({
         next: (posts: PixelfedPost[]) => {
           this.pixelfedPosts = posts;
-          console.log(posts);
+          this.modalVisibilities = posts.map((p) => false);
           this.isLoading = false;
         },
         error: (error: any) => {
@@ -38,5 +41,9 @@ export class PixelfedComponent implements OnInit {
           this.isLoading = false;
         },
       });
+  }
+
+  toggleModal(index: number, isVisible: boolean) {
+    this.modalVisibilities[index] = isVisible;
   }
 }
