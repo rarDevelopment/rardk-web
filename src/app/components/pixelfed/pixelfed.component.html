@@ -1,9 +1,14 @@
-<div>
-  <!-- <p *ngFor="let post of pixelfedPosts">
-    <img [src]="post.media_attachments[0].url" alt="{{ post.media_attachments[0].description }}" />
-    {{ post.media_attachments[0].description }}
-  </p> -->
+<div class="page-description-container">
+  <div class="page-description-content">
+    <app-page-title [titleSize]="1">
+      <i class="fa-solid fa-image"></i>
+      Gallery
+    </app-page-title>
+    <p></p>
+  </div>
+</div>
 
+<div>
   <div class="grid">
     <div *ngFor="let post of pixelfedPosts">
       <p>
