@@ -1,18 +1,18 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { PixelfedComponent } from './pixelfed.component';
+import { GalleryComponent } from './gallery.component';
 
 describe('PixelfedComponent', () => {
-  let component: PixelfedComponent;
-  let fixture: ComponentFixture<PixelfedComponent>;
+  let component: GalleryComponent;
+  let fixture: ComponentFixture<GalleryComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [PixelfedComponent]
+      imports: [GalleryComponent]
     })
     .compileComponents();
     
-    fixture = TestBed.createComponent(PixelfedComponent);
+    fixture = TestBed.createComponent(GalleryComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

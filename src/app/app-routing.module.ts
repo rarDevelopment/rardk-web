@@ -17,7 +17,7 @@ import { BlogPostComponent } from './components/blog/blog-post/blog-post.compone
 import { BlogComponent } from './components/blog/blog.component';
 import { FeedsComponent } from './components/feeds/feeds.component';
 import { LinkPostComponent } from './components/links/link-post/link-post.component';
-import { PixelfedComponent } from './components/pixelfed/pixelfed.component';
+import { GalleryComponent } from './components/gallery/gallery.component';
 
 const routes: Routes = [
   { path: 'blog/:postId', pathMatch: 'full', component: BlogPostComponent },
@@ -41,7 +41,7 @@ const routes: Routes = [
   { path: 'now', component: NowComponent },
   { path: 'feeds', component: FeedsComponent },
   { path: 'collections', component: CollectionsComponent },
-  { path: 'gallery', component: PixelfedComponent },
+  { path: 'gallery', component: GalleryComponent },
   {
     path: 'bots/timezonebot',
     component: TimezonesComponent,
