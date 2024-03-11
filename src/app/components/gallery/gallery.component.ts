@@ -1,20 +1,28 @@
 import { Component, OnInit } from '@angular/core';
 import { PixelfedPost } from 'src/app/models/pixelfed/pixelfed-post';
-import { PixelfedService } from './pixelfed.service';
+import { PixelfedService } from './gallery.service';
 import { take } from 'rxjs';
 import { NgFor, NgIf } from '@angular/common';
 import { PageTitleComponent } from '../shared/page-title/page-title.component';
 import { ModalComponent } from '../shared/modal/modal.component';
 import { LoadingIndicatorComponent } from '../shared/loading-indicator/loading-indicator.component';
+import { DateDisplayComponent } from '../shared/date-display/date-display.component';
 
 @Component({
-  selector: 'app-pixelfed',
+  selector: 'app-gallery',
   standalone: true,
-  imports: [NgFor, NgIf, PageTitleComponent, ModalComponent, LoadingIndicatorComponent],
-  templateUrl: './pixelfed.component.html',
-  styleUrl: './pixelfed.component.scss',
+  imports: [
+    NgFor,
+    NgIf,
+    DateDisplayComponent,
+    PageTitleComponent,
+    ModalComponent,
+    LoadingIndicatorComponent,
+  ],
+  templateUrl: './gallery.component.html',
+  styleUrl: './gallery.component.scss',
 })
-export class PixelfedComponent implements OnInit {
+export class GalleryComponent implements OnInit {
   public pixelfedPosts: PixelfedPost[];
   public isLoading: boolean;
   public modalVisibilities: boolean[];

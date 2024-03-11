@@ -8,15 +8,14 @@
   </div>
 </div>
 <app-loading-indicator *ngIf="isLoading"></app-loading-indicator>
-<div *ngIf="!isLoading">
+<ng-container *ngIf="!isLoading">
   <div class="grid">
     <div class="grid-square" *ngFor="let post of pixelfedPosts; let i = index">
-      <div (click)="toggleModal(i, true)">
-        <img
-          class="gallery-thumbnail"
-          [src]="post.media_attachments[0].url"
-          alt="{{ post.media_attachments[0].description }}" />
-      </div>
+      <img
+        (click)="toggleModal(i, true)"
+        class="gallery-thumbnail"
+        [src]="post.media_attachments[0].url"
+        alt="" />
       <app-modal [isVisible]="modalVisibilities[i]" (onClose)="toggleModal(i, false)">
         <div class="image-container">
           <img
@@ -26,6 +25,7 @@
         </div>
         <div class="image-description" [innerHTML]="post.content">{{ post.content }}</div>
         <div class="image-footer">
+          <app-date-display [dateToDisplay]="post.created_at"></app-date-display>
           <a target="_blank" [href]="post.url">
             View on PixelFed
             <i class="fa-solid fa-arrow-up-right-from-square"></i>
@@ -34,4 +34,4 @@
       </app-modal>
     </div>
   </div>
-</div>
+</ng-container>
