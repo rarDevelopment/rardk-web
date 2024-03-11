@@ -1,6 +1,8 @@
 <div class="modal" *ngIf="isVisible" (click)="close($event)">
-  <span class="close" (click)="close($event)"><i class="fa-solid fa-x closing-x"></i></span>
   <div class="modal-content">
+    <div class="modal-header">
+      <span class="close" (click)="close($event)"><i class="fa-solid fa-x closing-x"></i></span>
+    </div>
     <ng-content></ng-content>
   </div>
 </div>

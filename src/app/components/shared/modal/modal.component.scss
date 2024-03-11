@@ -8,25 +8,28 @@
   height: 100%; /* Full height */
   overflow: auto; /* Enable scroll if needed */
   background-color: rgb(0, 0, 0); /* Fallback color */
-  background-color: rgba(0, 0, 0, 0.4); /* Black w/ opacity */
+  background-color: rgba(0, 0, 0, 0.9); /* Black w/ opacity */
 }
 
 /* Modal Content/Box */
 .modal-content {
-  margin: 5% auto; /* 15% from the top and centered */
+  margin: 1% auto; /* % from the top and centered */
   background-color: #000000;
   color: #ffffff;
   padding: 30px;
   border-radius: 20px;
   border: 2px dotted #797979;
-  width: 80%; /* Could be more or less, depending on screen size */
+  width: 60%; /* Could be more or less, depending on screen size */
   text-align: center;
 }
 
-/* The Close Button */
+.modal-header {
+  display: flex;
+  justify-content: flex-end;
+}
+
 .close {
   color: rgb(224, 224, 224);
-  float: right;
   font-size: 28px;
   font-weight: bold;
 }
@@ -40,6 +43,6 @@
 
 @media screen and (min-width: 0px) and (max-width: 767px) {
   .modal-content {
-    margin: 20% auto; /* 15% from the top and centered */
+    margin: 50% auto;
   }
 }
