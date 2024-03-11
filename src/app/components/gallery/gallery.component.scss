@@ -1,7 +1,7 @@
 //courtesy of https://css-tricks.com/a-grid-of-logos-in-squares/
 .grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
   grid-gap: 1rem;
   max-width: 750px;
   text-align: center;
@@ -25,6 +25,10 @@
   width: 100%;
   height: 100%;
   object-fit: contain;
+}
+
+.grid::after {
+  display: none;
 }
 
 .grid-square {
