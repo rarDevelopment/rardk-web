@@ -7,11 +7,11 @@
 }
 
 .grid-square {
-  flex: 1 0 200px; // This will create grid items that are at least 160px wide
-  margin: 0.5rem; // This will create a gap of 1rem between the grid items
-  display: flex; // This will make the div a flex container
-  align-items: center; // This will center the image vertically within the div
-  justify-content: center; // This will center the image horizontally within the div
+  flex: 1 0 200px;
+  margin: 0.5rem;
+  display: flex;
+  align-items: center; // vertical
+  justify-content: center; // horizontal
 
   background-color: #000000;
 
@@ -24,7 +24,7 @@
   left: 0;
   width: 100%;
   height: 100%;
-  object-fit: cover;
+  object-fit: cover; //fill the div, cropping if necessary
   transition: transform 0.3s;
 }
 
