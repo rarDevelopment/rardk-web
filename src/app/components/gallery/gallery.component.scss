@@ -14,12 +14,22 @@
   justify-content: center; // This will center the image horizontally within the div
 
   background-color: #000000;
+
+  position: relative;
 }
 
 .gallery-thumbnail {
   cursor: pointer;
+  top: 0;
+  left: 0;
   width: 100%;
-  height: auto;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.3s;
+}
+
+.gallery-thumbnail:hover {
+  transform: scale(1.1);
 }
 
 .gallery-image {
