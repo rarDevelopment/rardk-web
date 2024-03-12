@@ -1,3 +1,7 @@
+.grid-container {
+  display: grid;
+}
+
 //courtesy of https://css-tricks.com/a-grid-of-logos-in-squares/
 .grid {
   display: grid;
@@ -55,6 +59,12 @@
 }
 
 @media screen and (min-width: 0px) and (max-width: 767px) {
+  .grid {
+    display: block;
+  }
+  .grid-square {
+    margin-bottom: 20px;
+  }
   .gallery-image {
     width: 100%;
     border-radius: 2px;
