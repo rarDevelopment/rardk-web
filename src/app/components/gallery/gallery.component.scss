@@ -1,40 +1,40 @@
-//courtesy of https://css-tricks.com/a-grid-of-logos-in-squares/
-
 .grid {
-  display: grid;
-  // grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
-  grid-template-columns: 1fr 1fr 1fr; // 100px for the first column, remaining space is divided into 3, 2 parts for the second column and 1 part for the third
-  grid-gap: 1rem;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
   max-width: 750px;
-  text-align: center;
   margin: 0 auto;
 }
 
-.grid > div {
-  background: black;
-  padding: 1rem;
-  display: grid;
-}
-
-.grid > div::before,
-.grid > div > img {
-  grid-area: 1 / 1 / 2 / 2;
-  content: "";
-  display: block;
-}
-
-.grid > div > img {
-  width: 100%;
-  height: 100%;
-  object-fit: contain;
-}
-
 .grid-square {
-  background-color: white;
+  flex: 1 0 200px;
+  margin: 12px;
+  display: flex;
+  align-items: center; // vertical
+  justify-content: center; // horizontal
+
+  background-color: #000000;
+
+  position: relative;
 }
 
 .gallery-thumbnail {
   cursor: pointer;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover; //fill the div, cropping if necessary
+  transition: transform 0.3s;
+  border: 3px solid #ffffff;
+}
+
+.gallery-thumbnail:hover {
+  transform: scale(1.1);
+}
+
+.gallery-thumbnail:active {
+  transform: scale(1.3);
 }
 
 .gallery-image {
@@ -50,19 +50,4 @@
 .image-footer {
   padding-top: 20px;
   font-size: 14px;
-}
-
-@media screen and (min-width: 0px) and (max-width: 767px) {
-  .grid {
-    // display: block;
-    grid-template-columns: 1fr 1fr;
-    // width: 90%;
-  }
-  .grid-square {
-    margin-bottom: 20px;
-  }
-  .gallery-image {
-    width: 100%;
-    border-radius: 2px;
-  }
 }
