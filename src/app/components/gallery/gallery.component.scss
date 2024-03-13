@@ -60,14 +60,6 @@
 @media screen and (min-width: 0px) and (max-width: 767px) {
   .grid-square {
     flex: 1 0 150px;
-    margin: 12px;
-    display: flex;
-    align-items: center; // vertical
-    justify-content: center; // horizontal
-
-    background-color: #000000;
-
-    position: relative;
   }
   .gallery-thumbnail:hover,
   .gallery-thumbnail:active {
