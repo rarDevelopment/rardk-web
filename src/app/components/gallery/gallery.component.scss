@@ -30,11 +30,11 @@
 }
 
 .gallery-thumbnail:hover {
-  transform: scale(1.1);
+  transform: scale(1.05);
 }
 
 .gallery-thumbnail:active {
-  transform: scale(1.3);
+  transform: scale(1.1);
 }
 
 .gallery-image {
@@ -50,4 +50,26 @@
 .image-footer {
   padding-top: 20px;
   font-size: 14px;
+}
+
+.gallery-footer {
+  margin: 0 auto;
+  padding-top: 20px;
+}
+
+@media screen and (min-width: 0px) and (max-width: 767px) {
+  .grid-square {
+    flex: 1 0 150px;
+  }
+  .gallery-thumbnail:hover,
+  .gallery-thumbnail:active {
+    transform: none;
+  }
+  .gallery-image {
+    width: 100%;
+    border-radius: 2px;
+  }
+  .image-description {
+    font-size: 14px;
+  }
 }

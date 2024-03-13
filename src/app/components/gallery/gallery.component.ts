@@ -7,6 +7,7 @@ import { PageTitleComponent } from '../shared/page-title/page-title.component';
 import { ModalComponent } from '../shared/modal/modal.component';
 import { LoadingIndicatorComponent } from '../shared/loading-indicator/loading-indicator.component';
 import { DateDisplayComponent } from '../shared/date-display/date-display.component';
+import { environment } from 'src/environments/environment';
 
 @Component({
   selector: 'app-gallery',
@@ -26,6 +27,7 @@ export class GalleryComponent implements OnInit {
   public pixelfedPosts: PixelfedPost[];
   public isLoading: boolean;
   public modalVisibilities: boolean[];
+  public pixelfedUrl = environment.pixelfedUrl;
 
   constructor(private pixelfedService: PixelfedService) {}
 
