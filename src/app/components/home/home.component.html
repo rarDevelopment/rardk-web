@@ -8,4 +8,10 @@
   </div>
 </div>
 
-<app-blog pageTitle="Recent Posts from my Blog" [itemCount]="2"></app-blog>
+<div class="page-section-container">
+  <app-blog pageTitle="Latest Blog Posts" [itemCount]="2" [showPageLink]="true"></app-blog>
+</div>
+
+<div class="page-section-container">
+  <app-gallery pageTitle="Latest Gallery Posts" [itemCount]="3" [showPageLink]="true"></app-gallery>
+</div>

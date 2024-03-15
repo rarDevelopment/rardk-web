@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { PixelfedPost } from 'src/app/models/pixelfed/pixelfed-post';
 import { PixelfedService } from './gallery.service';
 import { take } from 'rxjs';
@@ -8,6 +8,7 @@ import { ModalComponent } from '../shared/modal/modal.component';
 import { LoadingIndicatorComponent } from '../shared/loading-indicator/loading-indicator.component';
 import { DateDisplayComponent } from '../shared/date-display/date-display.component';
 import { environment } from 'src/environments/environment';
+import { RouterLink } from '@angular/router';
 
 @Component({
   selector: 'app-gallery',
@@ -19,6 +20,7 @@ import { environment } from 'src/environments/environment';
     PageTitleComponent,
     ModalComponent,
     LoadingIndicatorComponent,
+    RouterLink,
   ],
   templateUrl: './gallery.component.html',
   styleUrl: './gallery.component.scss',
@@ -28,6 +30,9 @@ export class GalleryComponent implements OnInit {
   public isLoading: boolean;
   public modalVisibilities: boolean[];
   public pixelfedUrl = environment.pixelfedUrl;
+  @Input() itemCount: number = 0;
+  @Input() pageTitle = 'Blog';
+  @Input() showPageLink = false;
 
   constructor(private pixelfedService: PixelfedService) {}
 
@@ -42,8 +47,10 @@ export class GalleryComponent implements OnInit {
       .pipe(take(1))
       .subscribe({
         next: (posts: PixelfedPost[]) => {
-          this.pixelfedPosts = posts;
-          this.modalVisibilities = posts.map((p) => false);
+          this.itemCount > 0
+            ? (this.pixelfedPosts = posts.slice(0, this.itemCount))
+            : (this.pixelfedPosts = posts);
+          this.modalVisibilities = posts.map((_) => false);
           this.isLoading = false;
         },
         error: (error: any) => {
