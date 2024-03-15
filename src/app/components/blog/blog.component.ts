@@ -29,6 +29,7 @@ export class BlogComponent {
   public blogPosts: BlogPost[];
   @Input() itemCount: number = 0;
   @Input() pageTitle = 'Blog';
+  @Input() showPageLink = false;
 
   constructor(private blogService: BlogService, private router: Router) {}
 

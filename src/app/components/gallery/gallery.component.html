@@ -2,7 +2,7 @@
   <div class="page-description-content">
     <app-page-title [titleSize]="1">
       <i class="fa-solid fa-image"></i>
-      Gallery
+      {{ pageTitle }}
     </app-page-title>
   </div>
 </div>
@@ -32,11 +32,15 @@
         </div>
       </app-modal>
     </div>
-    <div class="gallery-footer">
-      <a target="_blank" [href]="pixelfedUrl">
-        See More on PixelFed
-        <i class="fa-solid fa-arrow-up-right-from-square"></i>
-      </a>
-    </div>
+  </div>
+  <div class="gallery-footer">
+    @if(showPageLink) {
+    <a [routerLink]="['/gallery']">See more in the Gallery</a>
+    } @else{
+    <a target="_blank" [href]="pixelfedUrl">
+      See More on PixelFed
+      <i class="fa-solid fa-arrow-up-right-from-square"></i>
+    </a>
+    }
   </div>
 </ng-container>
