@@ -31,7 +31,7 @@ export class GalleryComponent implements OnInit {
   public modalVisibilities: boolean[];
   public pixelfedUrl = environment.pixelfedUrl;
   @Input() itemCount: number = 0;
-  @Input() pageTitle = 'Blog';
+  @Input() pageTitle = 'Gallery';
   @Input() showPageLink = false;
 
   constructor(private pixelfedService: PixelfedService) {}
