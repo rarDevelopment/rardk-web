@@ -13,7 +13,15 @@
     <div class="feed-item-posters-wrapper" *ngIf="isPoster">
       <div class="feed-item-poster" *ngFor="let feedItem of feedItems">
         <a [href]="feedItem.url" target="_blank">
-          <img [alt]="feedItem.title" class="feed-item-poster-img" [src]="feedItem.imageUrl" />
+          <img
+            *ngIf="feedItem.imageUrl"
+            [alt]="feedItem.title"
+            class="feed-item-poster-img"
+            [src]="feedItem.imageUrl" />
+          <div class="feed-item-poster-img no-img" *ngIf="!feedItem.imageUrl">
+            <div class="no-poster-thumbnail"><i class="fa-solid fa-music"></i></div>
+            {{ feedItem.title }}
+          </div>
         </a>
         <div *ngIf="feedItem.rating">
           <a class="feed-item-rating" [href]="feedItem.url" target="_blank">
