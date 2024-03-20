@@ -13,12 +13,23 @@ export class TooltipDirective {
 
   constructor(private el: ElementRef) {}
 
-  @HostListener('mouseenter') onMouseEnter() {
+  @HostListener('mouseenter', ['$event'])
+  @HostListener('touchstart')
+  onMouseEnter(event?: MouseEvent) {
+    if (event && 'ontouchstart' in window) {
+      return;
+    }
     if (!this.tooltip) {
       this.show();
     }
   }
-  @HostListener('mouseleave') onMouseLeave() {
+
+  @HostListener('mouseleave', ['$event'])
+  @HostListener('touchend')
+  onMouseLeave(event?: MouseEvent) {
+    if (event && 'ontouchstart' in window) {
+      return;
+    }
     if (this.tooltip) {
       this.hide();
     }
