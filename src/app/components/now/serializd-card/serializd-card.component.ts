@@ -34,7 +34,7 @@ export class SerializdCardComponent {
           let items = result
             .map((m) => {
               return {
-                title: m.bannerImage,
+                title: m.showName,
                 date: m.dateAdded,
                 imageUrl: m.bannerImage,
                 url: m.showUrl,
