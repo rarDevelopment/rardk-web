@@ -75,7 +75,7 @@
               <div
                 class="filter-chip"
                 [ngClass]="{ disabled: !filterType.filter(replyDefinition) }"
-                [matTooltip]="filterType.valueDisplayText(replyDefinition)">
+                [tooltip]="filterType.valueDisplayText(replyDefinition)">
                 {{ filterType.displayName }}
               </div>
             </ng-container>
@@ -84,7 +84,7 @@
         <div class="priority-buttons" *ngIf="!hasFilters()">
           <button
             class="priority-button primary action button"
-            matTooltip="Move up in priority"
+            tooltip="Move up in priority"
             color="primary"
             [disabled]="indexOfReplies == 0"
             (click)="movePriority('up', replyDefinition)">
@@ -92,7 +92,7 @@
           </button>
           <button
             class="priority-button primary action button"
-            matTooltip="Move down in priority"
+            tooltip="Move down in priority"
             color="primary"
             [disabled]="indexOfReplies == filteredReplyDefinitions.length - 1"
             (click)="movePriority('down', replyDefinition)">
@@ -180,7 +180,7 @@
             <span
               class="edit-date"
               *ngIf="replyDefinition.createdDate"
-              [matTooltip]="replyDefinition.createdDate">
+              [tooltip]="replyDefinition.createdDate">
               {{ replyDefinition.createdDate | date }}
             </span>
             <span class="edit-date" *ngIf="!replyDefinition.createdDate">Unknown Date</span>
@@ -188,7 +188,7 @@
             <span
               class="edit-user"
               *ngIf="replyDefinition.createdById"
-              [matTooltip]="replyDefinition.createdById">
+              [tooltip]="replyDefinition.createdById">
               {{ replyDefinition.createdByUsername }}
             </span>
             <span class="edit-user" *ngIf="!replyDefinition.createdById">Unknown User</span>
@@ -198,7 +198,7 @@
             <span
               class="edit-date"
               *ngIf="replyDefinition.updatedDate"
-              [matTooltip]="replyDefinition.updatedDate">
+              [tooltip]="replyDefinition.updatedDate">
               {{ replyDefinition.updatedDate | date }}
             </span>
             <span class="edit-date" *ngIf="!replyDefinition.updatedDate">Unknown Date</span>
@@ -206,7 +206,7 @@
             <span
               class="edit-user"
               *ngIf="replyDefinition.updatedById"
-              [matTooltip]="replyDefinition.updatedById">
+              [tooltip]="replyDefinition.updatedById">
               {{ replyDefinition.updatedByUsername }}
             </span>
             <span class="edit-user" *ngIf="!replyDefinition.updatedById">Unknown</span>

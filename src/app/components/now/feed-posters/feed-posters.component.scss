@@ -13,16 +13,24 @@
 .feed-item-posters-wrapper {
   display: flex;
   flex-wrap: wrap;
+  align-items: stretch;
+  justify-content: space-around;
 }
 
 .feed-item-poster {
-  display: inline-block;
-  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
   align-items: center;
-  text-align: center;
+  justify-content: center;
   padding-bottom: 10px;
-  padding-left: 8px;
-  padding-right: 8px;
+}
+
+.feed-item-poster a {
+  display: flex;
+  flex-grow: 1;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 }
 
 .feed-item-poster-img {
@@ -42,6 +50,7 @@
   height: 150px;
   margin: auto;
   overflow: hidden;
+  text-align: center;
 }
 
 .no-poster-thumbnail {
@@ -51,6 +60,7 @@
 
 .feed-item-rating {
   text-decoration: none;
+  align-self: flex-end;
 }
 
 .feed-item-rating:hover {

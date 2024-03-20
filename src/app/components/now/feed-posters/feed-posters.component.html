@@ -12,10 +12,10 @@
   <ng-container *ngIf="feedItems && feedItems.length > 0; else no_content">
     <div class="feed-item-posters-wrapper" *ngIf="isPoster">
       <div class="feed-item-poster" *ngFor="let feedItem of feedItems">
-        <a [href]="feedItem.url" target="_blank">
+        <a [href]="feedItem.url" target="_blank" [title]="feedItem.title">
           <img
             *ngIf="feedItem.imageUrl"
-            [alt]="feedItem.title"
+            [tooltip]="feedItem.title"
             class="feed-item-poster-img"
             [src]="feedItem.imageUrl" />
           <div class="feed-item-poster-img no-img" *ngIf="!feedItem.imageUrl">

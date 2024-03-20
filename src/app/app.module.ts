@@ -6,9 +6,9 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HttpClientModule, provideHttpClient, withFetch } from '@angular/common/http';
 import { NavbarComponent } from './components/navbar/navbar.component';
 import { MAT_DIALOG_DEFAULT_OPTIONS } from '@angular/material/dialog';
-import { MatTooltipModule } from '@angular/material/tooltip';
 import { MarkdownModule } from 'ngx-markdown';
 import { ServiceWorkerModule } from '@angular/service-worker';
+import { TooltipDirective } from './directives/tooltip.directive';
 
 @NgModule({
   declarations: [AppComponent],
@@ -18,7 +18,7 @@ import { ServiceWorkerModule } from '@angular/service-worker';
     AppRoutingModule,
     NavbarComponent,
     HttpClientModule,
-    MatTooltipModule,
+    TooltipDirective,
     MarkdownModule.forRoot(),
     ServiceWorkerModule.register('ngsw-worker.js', {
       enabled: !isDevMode(),

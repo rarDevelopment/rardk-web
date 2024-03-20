@@ -5,8 +5,8 @@ import { take } from 'rxjs';
 import { NgFor, NgIf } from '@angular/common';
 import { LoginActionsComponent } from './login-actions/login-actions.component';
 import { PageTitleComponent } from '../shared/page-title/page-title.component';
-import { MatTooltipModule } from '@angular/material/tooltip';
 import { RouterLink } from '@angular/router';
+import { TooltipDirective } from 'src/app/directives/tooltip.directive';
 
 @Component({
   selector: 'app-bots',
@@ -18,7 +18,7 @@ import { RouterLink } from '@angular/router';
     LoginActionsComponent,
     NgFor,
     NgIf,
-    MatTooltipModule,
+    TooltipDirective,
     RouterLink,
   ],
 })

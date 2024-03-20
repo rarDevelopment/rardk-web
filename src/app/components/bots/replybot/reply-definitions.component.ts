@@ -11,7 +11,6 @@ import { ReplyDefinitionAttributeType } from 'src/app/models/bots/replybot/reply
 import { DiscordUser } from 'src/app/models/bots/discord-user';
 import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
-import { MatTooltipModule } from '@angular/material/tooltip';
 import { MatExpansionModule } from '@angular/material/expansion';
 import { FormsModule } from '@angular/forms';
 import { MatButtonToggleModule } from '@angular/material/button-toggle';
@@ -20,6 +19,7 @@ import { NgIf, NgFor, NgClass, DatePipe } from '@angular/common';
 import { RouterLink } from '@angular/router';
 import { CheckOrXComponent } from '../../shared/check-or-x/check-or-x.component';
 import { LoadingIndicatorComponent } from '../../shared/loading-indicator/loading-indicator.component';
+import { TooltipDirective } from 'src/app/directives/tooltip.directive';
 
 @Component({
   selector: 'app-reply-definitions',
@@ -34,7 +34,7 @@ import { LoadingIndicatorComponent } from '../../shared/loading-indicator/loadin
     NgFor,
     MatExpansionModule,
     NgClass,
-    MatTooltipModule,
+    TooltipDirective,
     MatButtonModule,
     MatIconModule,
     CheckOrXComponent,
@@ -43,10 +43,7 @@ import { LoadingIndicatorComponent } from '../../shared/loading-indicator/loadin
     LoadingIndicatorComponent,
   ],
 })
-export class ReplyDefinitionsComponent
-  extends BotPageComponent
-  implements OnInit
-{
+export class ReplyDefinitionsComponent extends BotPageComponent implements OnInit {
   isLoading: boolean;
   replyDefinitions: ReplyDefinition[] = [];
   filteredReplyDefinitions: ReplyDefinition[] = [];
@@ -171,15 +168,9 @@ export class ReplyDefinitionsComponent
           this.guildId = params['guildId'];
           const accessToken = this.getLoginToken();
           return forkJoin([
-            this.replybotService.getReplybotReplyDefinitions(
-              accessToken!,
-              this.guildId
-            ),
+            this.replybotService.getReplybotReplyDefinitions(accessToken!, this.guildId),
             this.discordService.getDiscordGuilds(accessToken!),
-            this.replybotService.getReplybotGuildConfiguration(
-              accessToken!,
-              this.guildId
-            ),
+            this.replybotService.getReplybotGuildConfiguration(accessToken!, this.guildId),
             this.discordService.getDiscordUser(accessToken!),
           ]).pipe(
             timeout({
@@ -187,26 +178,17 @@ export class ReplyDefinitionsComponent
               with: () =>
                 throwError(
                   () =>
-                    new Error(
-                      'Timed out waiting for response, logging out to renew access token.'
-                    )
+                    new Error('Timed out waiting for response, logging out to renew access token.')
                 ),
             }),
-            map(
-              ([
+            map(([replyDefinitions, discordGuilds, guildConfiguration, discordUser]) => {
+              return {
                 replyDefinitions,
                 discordGuilds,
                 guildConfiguration,
                 discordUser,
-              ]) => {
-                return {
-                  replyDefinitions,
-                  discordGuilds,
-                  guildConfiguration,
-                  discordUser,
-                };
-              }
-            )
+              };
+            })
           );
         })
       )
@@ -217,13 +199,10 @@ export class ReplyDefinitionsComponent
           guildConfiguration: GuildConfiguration;
           discordUser: DiscordUser;
         }) => {
-          const currentGuild = result.discordGuilds.find(
-            (g) => g.id === this.guildId
-          );
+          const currentGuild = result.discordGuilds.find((g) => g.id === this.guildId);
           if (currentGuild) {
             this.guildName = currentGuild.name;
-            this.isAuthorizedToAdministrate =
-              currentGuild.permissions.administrator;
+            this.isAuthorizedToAdministrate = currentGuild.permissions.administrator;
           }
           result.guildConfiguration.adminUserIds.forEach((adminUserId) => {
             if (result.discordUser.id === adminUserId) {
@@ -268,9 +247,7 @@ export class ReplyDefinitionsComponent
 
   populateReplyDefinitions(replyDefinitions: ReplyDefinition[]) {
     if (replyDefinitions) {
-      const sortedreplyDefinitions = replyDefinitions.sort(
-        (g1, g2) => g1.priority - g2.priority
-      );
+      const sortedreplyDefinitions = replyDefinitions.sort((g1, g2) => g1.priority - g2.priority);
       this.replyDefinitions = sortedreplyDefinitions;
       this.filteredReplyDefinitions = sortedreplyDefinitions;
     }
@@ -333,10 +310,7 @@ export class ReplyDefinitionsComponent
       this.openEditDialog(dialogData);
     } catch (err) {
       console.error(err);
-      this.showSnackBar(
-        'Your clipboard data is not a valid reply definition!',
-        true
-      );
+      this.showSnackBar('Your clipboard data is not a valid reply definition!', true);
     }
   }
 
