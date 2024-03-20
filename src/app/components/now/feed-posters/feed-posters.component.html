@@ -15,7 +15,7 @@
         <a [href]="feedItem.url" target="_blank" [title]="feedItem.title">
           <img
             *ngIf="feedItem.imageUrl"
-            [matTooltip]="feedItem.title"
+            [tooltip]="feedItem.title"
             class="feed-item-poster-img"
             [src]="feedItem.imageUrl" />
           <div class="feed-item-poster-img no-img" *ngIf="!feedItem.imageUrl">

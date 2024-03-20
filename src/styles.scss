@@ -376,6 +376,21 @@ a:visited {
   margin-bottom: 10px;
 }
 
+/* tooltip */
+.ng-tooltip {
+  position: fixed;
+  border-radius: 5px;
+  padding: 10px;
+  color: #ffffff;
+  background-color: #504f4f;
+  opacity: 0;
+  transition: opacity 0.3s;
+  font-size: 14px;
+}
+.ng-tooltip-show {
+  opacity: 1;
+}
+
 @media screen and (min-width: 0px) and (max-width: 767px) {
   .below-avatar-text {
     display: block;

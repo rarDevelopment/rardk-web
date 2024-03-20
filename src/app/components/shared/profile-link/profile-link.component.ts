@@ -1,12 +1,12 @@
 import { Component, Input } from '@angular/core';
-import { MatTooltipModule } from '@angular/material/tooltip';
+import { TooltipDirective } from 'src/app/directives/tooltip.directive';
 
 @Component({
   selector: 'app-profile-link',
   templateUrl: './profile-link.component.html',
   styleUrls: ['./profile-link.component.scss'],
   standalone: true,
-  imports: [MatTooltipModule],
+  imports: [TooltipDirective],
 })
 export class ProfileLinkComponent {
   @Input() url: string;

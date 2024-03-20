@@ -15,8 +15,8 @@ import { NgFor, NgIf } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 import { MatIconModule } from '@angular/material/icon';
-import { MatTooltipModule } from '@angular/material/tooltip';
 import { MatButtonModule } from '@angular/material/button';
+import { TooltipDirective } from 'src/app/directives/tooltip.directive';
 
 @Component({
   selector: 'app-reply-definition-editor-dialog',
@@ -25,7 +25,7 @@ import { MatButtonModule } from '@angular/material/button';
   standalone: true,
   imports: [
     MatButtonModule,
-    MatTooltipModule,
+    TooltipDirective,
     MatIconModule,
     MatSlideToggleModule,
     FormsModule,
