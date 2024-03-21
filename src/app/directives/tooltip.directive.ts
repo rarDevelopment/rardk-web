@@ -7,7 +7,7 @@ import { Directive, ElementRef, HostListener, Input } from '@angular/core';
 export class TooltipDirective {
   @Input('tooltip') tooltipText: string = '';
   @Input() placement?: string = 'bottom';
-  @Input() delay?: number = 100;
+  @Input() delay?: number = 5;
   tooltip?: HTMLElement;
   offset = 10;
 
