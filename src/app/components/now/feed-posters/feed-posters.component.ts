@@ -10,7 +10,14 @@ import { TooltipDirective } from 'src/app/directives/tooltip.directive';
   templateUrl: './feed-posters.component.html',
   styleUrls: ['./feed-posters.component.scss'],
   standalone: true,
-  imports: [NgIf, ProfileLinkComponent, LoadingIndicatorComponent, NgFor, TooltipDirective, TooltipDirective],
+  imports: [
+    NgIf,
+    ProfileLinkComponent,
+    LoadingIndicatorComponent,
+    NgFor,
+    TooltipDirective,
+    TooltipDirective,
+  ],
 })
 export class FeedPostersComponent implements OnInit {
   @Input() sectionTitle: string;
@@ -21,6 +28,7 @@ export class FeedPostersComponent implements OnInit {
   @Input() profileUrl?: string;
   @Input() profileName?: string;
   @Input() isError: boolean = false;
+  @Input() showRatings: boolean = false;
 
   public isList: boolean;
   public isPoster: boolean;

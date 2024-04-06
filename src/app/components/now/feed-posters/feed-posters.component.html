@@ -23,9 +23,11 @@
             {{ feedItem.title }}
           </div>
         </a>
-        <div *ngIf="feedItem.rating">
+        <div *ngIf="showRatings">
           <a class="feed-item-rating" [href]="feedItem.url" target="_blank">
+            @if(feedItem.rating) {
             {{ feedItem.rating }} / {{ ratingMax }}
+            } @else{ (no rating) }
           </a>
         </div>
       </div>
