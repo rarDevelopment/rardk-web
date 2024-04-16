@@ -12,6 +12,7 @@
   <ng-container *ngIf="feedItems && feedItems.length > 0; else no_content">
     <div class="feed-item-posters-wrapper" *ngIf="isPoster">
       <div class="feed-item-poster" *ngFor="let feedItem of feedItems">
+        @if(feedItem.url) {
         <a [href]="feedItem.url" target="_blank" [title]="feedItem.title">
           <img
             *ngIf="feedItem.imageUrl"
@@ -23,6 +24,19 @@
             {{ feedItem.title }}
           </div>
         </a>
+        } @else{
+        <span [title]="feedItem.title">
+          <img
+            *ngIf="feedItem.imageUrl"
+            [tooltip]="feedItem.title"
+            class="feed-item-poster-img"
+            [src]="feedItem.imageUrl" />
+          <div class="feed-item-poster-img no-img" *ngIf="!feedItem.imageUrl">
+            <div class="no-poster-thumbnail"><i class="fa-solid fa-music"></i></div>
+            {{ feedItem.title }}
+          </div>
+        </span>
+        }
         <div *ngIf="showRatings">
           <a class="feed-item-rating" [href]="feedItem.url" target="_blank">
             @if(feedItem.rating) {
@@ -35,7 +49,11 @@
     <div *ngIf="isList">
       <ul class="feed-list-item-name">
         <li class="feed-list-item" *ngFor="let feedItem of feedItems">
+          @if(feedItem.url) {
           <a [href]="feedItem.url" target="_blank">{{ feedItem.title }}</a>
+          } @else{
+          {{ feedItem.title }}
+          }
           {{ feedItem.summary ? " - " + feedItem.summary : "" }}
         </li>
       </ul>
