@@ -17,7 +17,7 @@ export class BackloggdCardComponent {
   public isReviewsFeedLoading: boolean;
   public reviewsFeedItems: FeedItem[];
   public currentGamesFeedItems: FeedItem[];
-  private numberOfCurrentGamesToList = 10;
+  private numberOfCurrentGamesToList = 0;
   private numberOfFinishedGamesToList = 5;
   isRecentlyFinishedGamesError: boolean;
   isCurrentGamesError: boolean;
@@ -73,7 +73,7 @@ export class BackloggdCardComponent {
             } as FeedItem;
           });
           if (this.numberOfCurrentGamesToList > 0) {
-            items = items.slice(0, this.numberOfFinishedGamesToList);
+            items = items.slice(0, this.numberOfCurrentGamesToList);
           }
           this.currentGamesFeedItems = items;
           this.isCurrentGamesFeedLoading = false;
