@@ -25,6 +25,44 @@
   justify-content: flex-end;
 }
 
+.gallery-image {
+  width: 80%;
+  border-radius: 2px;
+}
+
+.image-description {
+  color: #ffffff;
+  font-size: 16px;
+}
+
+.image-footer {
+  padding-top: 20px;
+  font-size: 14px;
+}
+
+.image-container {
+  position: relative;
+}
+
+.arrow-button {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background-color: rgba(0, 0, 0, 0.3);
+  color: white;
+  border: none;
+  padding: 10px;
+  cursor: pointer;
+}
+
+.arrow-button.left {
+  left: 5px;
+}
+
+.arrow-button.right {
+  right: 5px;
+}
+
 .close {
   color: rgb(224, 224, 224);
   font-size: 28px;
@@ -43,5 +81,12 @@
     margin: 50% auto;
     width: 80%;
     padding: 10px;
+  }
+  .gallery-image {
+    width: 100%;
+    border-radius: 2px;
+  }
+  .image-description {
+    font-size: 14px;
   }
 }

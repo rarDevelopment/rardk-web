@@ -38,21 +38,6 @@
   transform: scale(1.1);
 }
 
-.gallery-image {
-  width: 80%;
-  border-radius: 2px;
-}
-
-.image-description {
-  color: #ffffff;
-  font-size: 16px;
-}
-
-.image-footer {
-  padding-top: 20px;
-  font-size: 14px;
-}
-
 .gallery-footer {
   padding-top: 20px;
   text-align: center;
@@ -65,12 +50,5 @@
   .gallery-thumbnail:hover,
   .gallery-thumbnail:active {
     transform: none;
-  }
-  .gallery-image {
-    width: 100%;
-    border-radius: 2px;
-  }
-  .image-description {
-    font-size: 14px;
   }
 }
