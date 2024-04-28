@@ -15,22 +15,10 @@
         class="gallery-thumbnail"
         [src]="post.media_attachments[0].url"
         alt="" />
-      <app-modal [isVisible]="modalVisibilities[i]" (onClose)="toggleModal(i, false)">
-        <div class="image-container">
-          <img
-            class="gallery-image"
-            [src]="post.media_attachments[0].url"
-            alt="{{ post.media_attachments[0].description }}" />
-        </div>
-        <div class="image-description" [innerHTML]="post.content">{{ post.content }}</div>
-        <div class="image-footer">
-          <app-date-display [dateToDisplay]="post.created_at"></app-date-display>
-          <a target="_blank" [href]="post.url">
-            View on PixelFed
-            <i class="fa-solid fa-arrow-up-right-from-square"></i>
-          </a>
-        </div>
-      </app-modal>
+      <app-modal
+        [post]="post"
+        [isVisible]="modalVisibilities[i]"
+        (onClose)="toggleModal(i, false)"></app-modal>
     </div>
   </div>
   <div class="gallery-footer">

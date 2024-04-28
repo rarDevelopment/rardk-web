@@ -34,6 +34,8 @@ export class GalleryComponent implements OnInit {
   @Input() pageTitle = 'Gallery';
   @Input() showPageLink = false;
 
+  public imgIndex = 0;
+
   constructor(private pixelfedService: PixelfedService) {}
 
   ngOnInit() {

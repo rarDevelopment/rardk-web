@@ -3,6 +3,25 @@
     <div class="modal-header">
       <span class="close" (click)="close($event)"><i class="fa-solid fa-x closing-x"></i></span>
     </div>
-    <ng-content></ng-content>
+    <div class="image-container">
+      <img
+        class="gallery-image"
+        [src]="post.media_attachments[imgIndex].url"
+        alt="{{ post.media_attachments[imgIndex].description }}" />
+      <button class="arrow-button left" *ngIf="isDirectionEnabled(-1)" (click)="changeImage(-1)">
+        <i class="fa-solid fa-arrow-left"></i>
+      </button>
+      <button class="arrow-button right" *ngIf="isDirectionEnabled(1)" (click)="changeImage(1)">
+        <i class="fa-solid fa-arrow-right"></i>
+      </button>
+    </div>
+    <div class="image-description" [innerHTML]="post.content">{{ post.content }}</div>
+    <div class="image-footer">
+      <app-date-display [dateToDisplay]="post.created_at"></app-date-display>
+      <a target="_blank" [href]="post.url">
+        View on PixelFed
+        <i class="fa-solid fa-arrow-up-right-from-square"></i>
+      </a>
+    </div>
   </div>
 </div>
