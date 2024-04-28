@@ -46,7 +46,7 @@
 
 .arrow-button {
   position: absolute;
-  top: 50%;
+  top: 40%;
   transform: translateY(-50%);
   background-color: rgba(0, 0, 0, 0.2);
   color: white;
@@ -62,6 +62,18 @@
 
 .arrow-button.right {
   right: 5px;
+}
+
+.image-position-circle {
+  stroke: #ffffff;
+}
+
+.image-position-circle.current {
+  fill: #ffffff;
+}
+
+.image-count {
+  font-size: 14px;
 }
 
 .close {

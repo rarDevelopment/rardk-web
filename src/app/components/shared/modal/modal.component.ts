@@ -1,4 +1,4 @@
-import { NgIf } from '@angular/common';
+import { CommonModule, NgIf } from '@angular/common';
 import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { PixelfedPost } from 'src/app/models/pixelfed/pixelfed-post';
 import { DateDisplayComponent } from '../date-display/date-display.component';
@@ -6,7 +6,7 @@ import { DateDisplayComponent } from '../date-display/date-display.component';
 @Component({
   selector: 'app-modal',
   standalone: true,
-  imports: [NgIf, DateDisplayComponent],
+  imports: [CommonModule, DateDisplayComponent],
   templateUrl: './modal.component.html',
   styleUrl: './modal.component.scss',
 })
