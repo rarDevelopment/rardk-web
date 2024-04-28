@@ -8,18 +8,25 @@
         class="gallery-image"
         [src]="post.media_attachments[imgIndex].url"
         alt="{{ post.media_attachments[imgIndex].description }}" />
-      <button class="arrow-button left" *ngIf="isDirectionEnabled(-1)" (click)="changeImage(-1)">
+      <button
+        class="arrow-button left"
+        *ngIf="isDirectionEnabled(imgIndex - 1)"
+        (click)="changeImage(imgIndex - 1)">
         <i class="fa-solid fa-arrow-left"></i>
       </button>
-      <button class="arrow-button right" *ngIf="isDirectionEnabled(1)" (click)="changeImage(1)">
+      <button
+        class="arrow-button right"
+        *ngIf="isDirectionEnabled(imgIndex + 1)"
+        (click)="changeImage(imgIndex + 1)">
         <i class="fa-solid fa-arrow-right"></i>
       </button>
       <!-- <div class="image-count">{{ imgIndex + 1 }} / {{ post.media_attachments.length }}</div> -->
       <div class="image-position-indicators">
         <svg
-          height="50"
-          width="50"
-          *ngFor="let circle of post.media_attachments; let circleIndex = index">
+          height="30"
+          width="30"
+          *ngFor="let circle of post.media_attachments; let circleIndex = index"
+          (click)="changeImage(circleIndex)">
           <circle
             class="image-position-circle"
             [attr.class]="

@@ -18,13 +18,13 @@ export class ModalComponent {
 
   public allowedClassesForClosing = ['modal', 'close', 'closing-x'];
 
-  public isDirectionEnabled(direction: number): boolean {
-    return typeof this.post.media_attachments[this.imgIndex + direction] !== 'undefined';
+  public isDirectionEnabled(newIndex: number): boolean {
+    return typeof this.post.media_attachments[newIndex] !== 'undefined';
   }
 
-  public changeImage(direction: number) {
-    if (this.isDirectionEnabled(direction)) {
-      this.imgIndex += direction;
+  public changeImage(newIndex: number) {
+    if (this.isDirectionEnabled(newIndex)) {
+      this.imgIndex = newIndex;
     }
   }
 
