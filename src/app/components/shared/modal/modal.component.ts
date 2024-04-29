@@ -1,7 +1,7 @@
-import { CommonModule, NgIf } from '@angular/common';
-import { Component, EventEmitter, Input, Output } from '@angular/core';
-import { PixelfedPost } from 'src/app/models/pixelfed/pixelfed-post';
+import { CommonModule } from '@angular/common';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { DateDisplayComponent } from '../date-display/date-display.component';
+import { ModalImage } from 'src/app/models/modal-image';
 
 @Component({
   selector: 'app-modal',
@@ -12,14 +12,15 @@ import { DateDisplayComponent } from '../date-display/date-display.component';
 })
 export class ModalComponent {
   @Input() isVisible: boolean;
-  @Output() onClose = new EventEmitter<string>();
-  @Input() post: PixelfedPost;
-  public imgIndex: number = 0;
+  @Input() post: ModalImage;
 
+  @Output() onClose = new EventEmitter<string>();
+
+  public imgIndex: number = 0;
   public allowedClassesForClosing = ['modal', 'close', 'closing-x'];
 
   public isDirectionEnabled(newIndex: number): boolean {
-    return typeof this.post.media_attachments[newIndex] !== 'undefined';
+    return typeof this.post.images[newIndex] !== 'undefined';
   }
 
   public changeImage(newIndex: number) {

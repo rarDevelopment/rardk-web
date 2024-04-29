@@ -9,6 +9,7 @@ import { LoadingIndicatorComponent } from '../shared/loading-indicator/loading-i
 import { DateDisplayComponent } from '../shared/date-display/date-display.component';
 import { environment } from 'src/environments/environment';
 import { RouterLink } from '@angular/router';
+import { ModalImage, ModalImageItem } from 'src/app/models/modal-image';
 
 @Component({
   selector: 'app-gallery',
@@ -26,7 +27,7 @@ import { RouterLink } from '@angular/router';
   styleUrl: './gallery.component.scss',
 })
 export class GalleryComponent implements OnInit {
-  public pixelfedPosts: PixelfedPost[];
+  public pixelfedPosts: ModalImage[];
   public isLoading: boolean;
   public modalVisibilities: boolean[];
   public pixelfedUrl = environment.pixelfedUrl;
@@ -49,10 +50,20 @@ export class GalleryComponent implements OnInit {
       .pipe(take(1))
       .subscribe({
         next: (posts: PixelfedPost[]) => {
+          const modalImages = posts.map((post) => {
+            return {
+              content: post.content,
+              date: post.created_at,
+              url: post.url,
+              images: post.media_attachments.map((media) => {
+                return { url: media.url, description: media.description } as ModalImageItem;
+              }),
+            } as ModalImage;
+          });
           this.itemCount > 0
-            ? (this.pixelfedPosts = posts.slice(0, this.itemCount))
-            : (this.pixelfedPosts = posts);
-          this.modalVisibilities = posts.map((_) => false);
+            ? (this.pixelfedPosts = modalImages.slice(0, this.itemCount))
+            : (this.pixelfedPosts = modalImages);
+          this.modalVisibilities = modalImages.map((_) => false);
           this.isLoading = false;
         },
         error: (error: any) => {

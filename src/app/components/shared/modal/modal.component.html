@@ -1,4 +1,4 @@
-<div class="modal" *ngIf="isVisible" (click)="close($event)">
+<div class="modal" *ngIf="isVisible && post" (click)="close($event)">
   <div class="modal-content">
     <div class="modal-header">
       <span class="close" (click)="close($event)"><i class="fa-solid fa-x closing-x"></i></span>
@@ -6,8 +6,8 @@
     <div class="image-container">
       <img
         class="gallery-image"
-        [src]="post.media_attachments[imgIndex].url"
-        alt="{{ post.media_attachments[imgIndex].description }}" />
+        [src]="post.images[imgIndex].url"
+        alt="{{ post.images[imgIndex].description }}" />
       <button
         class="arrow-button left"
         *ngIf="isDirectionEnabled(imgIndex - 1)"
@@ -20,12 +20,11 @@
         (click)="changeImage(imgIndex + 1)">
         <i class="fa-solid fa-arrow-right"></i>
       </button>
-      <!-- <div class="image-count">{{ imgIndex + 1 }} / {{ post.media_attachments.length }}</div> -->
       <div class="image-position-indicators">
         <svg
           height="30"
           width="30"
-          *ngFor="let circle of post.media_attachments; let circleIndex = index"
+          *ngFor="let circle of post.images; let circleIndex = index"
           (click)="changeImage(circleIndex)">
           <circle
             class="image-position-circle"
@@ -42,7 +41,7 @@
     </div>
     <div class="image-description" [innerHTML]="post.content">{{ post.content }}</div>
     <div class="image-footer">
-      <app-date-display [dateToDisplay]="post.created_at"></app-date-display>
+      <app-date-display [dateToDisplay]="post.date"></app-date-display>
       <a target="_blank" [href]="post.url">
         View on PixelFed
         <i class="fa-solid fa-arrow-up-right-from-square"></i>
