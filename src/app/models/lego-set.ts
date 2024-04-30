@@ -5,4 +5,5 @@ export class LegoSet {
   public series: string;
   public url: string;
   public imageUrl: string;
+  public previewUrl: string;
 }
