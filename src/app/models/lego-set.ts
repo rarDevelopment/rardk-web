@@ -4,4 +4,5 @@ export class LegoSet {
   public built: boolean;
   public series: string;
   public url: string;
+  public imageUrl: string;
 }

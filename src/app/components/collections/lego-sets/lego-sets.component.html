@@ -9,13 +9,18 @@
     <section class="wanted-section">
       <h2>Sets I Want</h2>
       <table class="set-table">
+        <th>Preview</th>
         <th>Set Name</th>
         <th>Series</th>
         <tr *ngFor="let set of wantedSets">
+          <td class="img-cell">
+            <a [href]="set.imageUrl" target="_blank">
+              <img [src]="set.imageUrl" alt="{{ set.name }}" />
+            </a>
+          </td>
           <td>
             <a [href]="set.url" target="_blank" title="Open on LEGO.com">{{ set.name }}</a>
           </td>
-
           <td>{{ set.series }}</td>
         </tr>
       </table>
@@ -47,11 +52,17 @@
       </div>
 
       <table class="set-table">
+        <th>Preview</th>
         <th>Set Name</th>
         <th>Series</th>
         <th>Built</th>
 
         <tr *ngFor="let set of filteredOwnedSets">
+          <td class="img-cell">
+            <a [href]="set.imageUrl" target="_blank">
+              <img [src]="set.imageUrl" alt="{{ set.name }}" />
+            </a>
+          </td>
           <td>
             <a [href]="set.url" target="_blank" title="Open on LEGO.com">{{ set.name }}</a>
           </td>
