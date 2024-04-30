@@ -8,8 +8,7 @@ import { environment } from 'src/environments/environment';
   providedIn: 'root',
 })
 export class LegoSetsService {
-  private setsUrl: string =
-    `${environment.apiUrl}now/json/lego-sets`;
+  private setsUrl: string = `${environment.apiUrl}now/json/lego-sets-with-images`;
 
   constructor(private http: HttpClient) {}
 
