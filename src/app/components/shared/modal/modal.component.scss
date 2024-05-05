@@ -20,6 +20,11 @@
   text-align: center;
 }
 
+a,
+a:visited {
+  color: #0285ff; /* need it here because card component overrides */
+}
+
 .modal-header {
   display: flex;
   justify-content: flex-end;
@@ -37,7 +42,7 @@
 
 .image-footer {
   padding-top: 20px;
-  font-size: 14px;
+  font-size: 15px;
 }
 
 .image-container {
