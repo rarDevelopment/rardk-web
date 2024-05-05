@@ -55,6 +55,7 @@ export class GalleryComponent implements OnInit {
               content: post.content,
               date: post.created_at,
               url: post.url,
+              sourceSiteName: 'PixelFed',
               images: post.media_attachments.map((media) => {
                 return { url: media.url, description: media.description } as ModalImageItem;
               }),

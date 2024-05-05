@@ -14,9 +14,15 @@
         <th>Series</th>
         <tr *ngFor="let set of wantedSets">
           <td class="img-cell">
-            <a [href]="set.imageUrl" target="_blank">
-              <img [src]="set.previewUrl" alt="{{ set.name }}" />
-            </a>
+            <img
+              (click)="toggleModal(set, true)"
+              class="lego-set-thumbnail"
+              [src]="set.previewUrl"
+              alt="{{ set.name }}" />
+            <app-modal
+              [post]="set.modalImage"
+              [isVisible]="set.isModalVisible"
+              (onClose)="toggleModal(set, false)"></app-modal>
           </td>
           <td>
             <a [href]="set.url" target="_blank" title="Open on LEGO.com">{{ set.name }}</a>
@@ -59,9 +65,15 @@
 
         <tr *ngFor="let set of filteredOwnedSets">
           <td class="img-cell">
-            <a [href]="set.imageUrl" target="_blank">
-              <img [src]="set.previewUrl" alt="{{ set.name }}" />
-            </a>
+            <img
+              (click)="toggleModal(set, true)"
+              class="lego-set-thumbnail"
+              [src]="set.previewUrl"
+              alt="{{ set.name }}" />
+            <app-modal
+              [post]="set.modalImage"
+              [isVisible]="set.isModalVisible"
+              (onClose)="toggleModal(set, false)"></app-modal>
           </td>
           <td>
             <a [href]="set.url" target="_blank" title="Open on LEGO.com">{{ set.name }}</a>

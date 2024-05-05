@@ -3,6 +3,7 @@
     <div class="modal-header">
       <span class="close" (click)="close($event)"><i class="fa-solid fa-x closing-x"></i></span>
     </div>
+    <h2>{{ post.title }}</h2>
     <div class="image-container">
       <img
         class="gallery-image"
@@ -43,7 +44,7 @@
     <div class="image-footer">
       <app-date-display [dateToDisplay]="post.date"></app-date-display>
       <a target="_blank" [href]="post.url">
-        View on PixelFed
+        View on {{ post.sourceSiteName }}
         <i class="fa-solid fa-arrow-up-right-from-square"></i>
       </a>
     </div>
