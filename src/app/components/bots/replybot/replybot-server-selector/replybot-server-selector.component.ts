@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import { DiscordGuild } from 'src/app/models/bots/discord-guild';
+import { DiscordGuild } from 'src/app/components/bots/models/discord-guild';
 import { BotPageComponent } from '../../bot-page/bot-page.component';
 import { forkJoin } from 'rxjs';
 import { map } from 'rxjs/operators';
-import { GuildConfiguration } from 'src/app/models/bots/replybot/guild-configuration';
+import { GuildConfiguration } from 'src/app/components/bots/models/replybot/guild-configuration';
 import { NgIf, NgFor } from '@angular/common';
 import { PageTitleComponent } from '../../../shared/page-title/page-title.component';
 import { LoadingIndicatorComponent } from 'src/app/components/shared/loading-indicator/loading-indicator.component';

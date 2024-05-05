@@ -2,7 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { environment } from 'src/environments/environment';
-import { DiscussionPostsResponse } from '../models/discussion-posts-response';
+import { DiscussionPostsResponse } from '../components/shared/social-media-discussion/models/discussion-posts-response';
 
 @Injectable({
   providedIn: 'root',

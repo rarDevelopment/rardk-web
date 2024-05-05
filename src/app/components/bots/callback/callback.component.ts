@@ -2,8 +2,8 @@ import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { take } from 'rxjs';
-import { DiscordAuthResponse } from 'src/app/models/bots/discord-auth-response';
-import { DiscordRedirectState } from 'src/app/models/bots/discord-redirect-state';
+import { DiscordAuthResponse } from 'src/app/components/bots/models/discord-auth-response';
+import { DiscordRedirectState } from 'src/app/components/bots/models/discord-redirect-state';
 import { AuthenticationService } from 'src/app/services/authentication.service';
 import { DiscordService } from 'src/app/services/discord.service';
 

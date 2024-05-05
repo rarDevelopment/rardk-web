@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { GithubSearchResult } from 'src/app/models/github/github-search-result';
+import { GithubSearchResult } from 'src/app/components/now/github-card/models/github-search-result';
 import { environment } from 'src/environments/environment';
 
 @Injectable({

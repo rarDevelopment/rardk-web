@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { BlogPost } from 'src/app/models/blog-post';
+import { BlogPost } from 'src/app/components/blog/models/blog-post';
 import { BlogService } from '../blog.service';
 import { ActivatedRoute, ParamMap, Router, RouterLink } from '@angular/router';
 import { take, switchMap } from 'rxjs/operators';

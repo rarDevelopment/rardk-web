@@ -1,4 +1,4 @@
-import { ModalImage } from 'src/app/models/modal-image';
+import { ModalImage } from 'src/app/components/shared/modal/models/modal-image';
 
 export class LegoSetDisplay {
   public name: string;

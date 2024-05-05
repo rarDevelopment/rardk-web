@@ -1,8 +1,8 @@
 import { Injectable } from '@angular/core';
 import { ApiService } from '../../../services/api.service';
 import { Observable } from 'rxjs';
-import { TimeZoneItem } from '../../../models/bots/timezonebot/time-zone-item';
-import { SetTimeZoneRequest } from '../../../models/bots/timezonebot/set-time-zone-request';
+import { TimeZoneItem } from '../models/timezonebot/time-zone-item';
+import { SetTimeZoneRequest } from '../models/timezonebot/set-time-zone-request';
 
 @Injectable({
   providedIn: 'root',

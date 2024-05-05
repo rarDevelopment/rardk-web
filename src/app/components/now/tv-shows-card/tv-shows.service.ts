@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { TvShow } from 'src/app/models/tv-show';
+import { TvShow } from 'src/app/components/now/tv-shows-card/models/tv-show';
 import { environment } from 'src/environments/environment';
 
 @Injectable({

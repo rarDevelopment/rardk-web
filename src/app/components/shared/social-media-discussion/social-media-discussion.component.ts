@@ -3,10 +3,10 @@ import { Component, Input, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { Observable } from 'rxjs';
 import { HtmlDirective } from 'src/app/directives/html.directive';
-import { BlueskyPostFull } from 'src/app/models/bluesky-post-full';
-import { DiscussionPostsResponse } from 'src/app/models/discussion-posts-response';
-import { MastodonStatusFull } from 'src/app/models/mastodon/mastodon-status-full';
-import { PostToDisplay } from 'src/app/models/post-to-display';
+import { BlueskyPostFull } from 'src/app/components/shared/social-media-discussion/models/bluesky-post-full';
+import { DiscussionPostsResponse } from 'src/app/components/shared/social-media-discussion/models/discussion-posts-response';
+import { MastodonStatusFull } from 'src/app/components/shared/social-media-discussion/models/mastodon-status-full';
+import { PostToDisplay } from 'src/app/components/shared/social-media-discussion/models/post-to-display';
 import { SafeHtmlPipe } from 'src/app/pipes/safe-html.pipe';
 import { environment } from 'src/environments/environment';
 

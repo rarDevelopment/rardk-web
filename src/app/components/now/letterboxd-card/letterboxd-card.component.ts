@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { take } from 'rxjs';
-import { FeedItem } from 'src/app/models/feed-item';
-import { LetterboxdItem } from 'src/app/models/letterboxd-item';
+import { FeedItem } from 'src/app/components/now/feed-posters/models/feed-item';
+import { LetterboxdItem } from 'src/app/components/now/letterboxd-card/models/letterboxd-item';
 import { LetterboxdService } from './letterboxd.service';
 import { FeedPostersComponent } from '../feed-posters/feed-posters.component';
 

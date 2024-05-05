@@ -1,10 +1,10 @@
 import { Injectable } from '@angular/core';
-import { DiscordGuild } from '../models/bots/discord-guild';
+import { DiscordGuild } from '../components/bots/models/discord-guild';
 import { ApiService } from './api.service';
-import { GuildMember } from '../models/bots/replybot/guild-member';
+import { GuildMember } from '../components/bots/models/replybot/guild-member';
 import { Observable } from 'rxjs';
-import { DiscordAuthResponse } from '../models/bots/discord-auth-response';
-import { DiscordUser } from '../models/bots/discord-user';
+import { DiscordAuthResponse } from '../components/bots/models/discord-auth-response';
+import { DiscordUser } from '../components/bots/models/discord-user';
 
 @Injectable({
   providedIn: 'root',

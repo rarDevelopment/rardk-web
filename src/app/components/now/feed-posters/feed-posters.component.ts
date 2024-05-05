@@ -1,5 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { FeedItem } from 'src/app/models/feed-item';
+import { FeedItem } from 'src/app/components/now/feed-posters/models/feed-item';
 import { ProfileLinkComponent } from '../../shared/profile-link/profile-link.component';
 import { NgIf, NgFor } from '@angular/common';
 import { LoadingIndicatorComponent } from '../../shared/loading-indicator/loading-indicator.component';

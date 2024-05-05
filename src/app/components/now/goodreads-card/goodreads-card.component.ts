@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
-import { FeedItem } from 'src/app/models/feed-item';
-import { GoodreadsItem } from 'src/app/models/goodreads-item';
+import { FeedItem } from 'src/app/components/now/feed-posters/models/feed-item';
+import { GoodreadsItem } from 'src/app/components/now/goodreads-card/models/goodreads-item';
 import { GoodreadsService } from './goodreads.service';
 import { take } from 'rxjs';
 import { FeedPostersComponent } from '../feed-posters/feed-posters.component';

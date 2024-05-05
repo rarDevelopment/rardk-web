@@ -1,7 +1,7 @@
 import { HttpResponse } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { of, Observable } from 'rxjs';
-import { DiscordAuthResponse } from '../models/bots/discord-auth-response';
+import { DiscordAuthResponse } from '../components/bots/models/discord-auth-response';
 
 @Injectable({
   providedIn: 'root',

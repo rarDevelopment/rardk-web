@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { BoardGamesService } from './board-games.service';
-import { BoardGame } from 'src/app/models/board-game';
+import { BoardGame } from 'src/app/components/collections/board-games/models/board-game';
 import { take } from 'rxjs';
 import { micromark } from 'micromark';
 import { NgIf, NgFor } from '@angular/common';
