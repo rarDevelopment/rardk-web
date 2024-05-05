@@ -3,11 +3,11 @@ import { take } from 'rxjs';
 import { NgIf, NgFor, KeyValuePipe, NgClass } from '@angular/common';
 import { PageTitleComponent } from '../../shared/page-title/page-title.component';
 import { GameCollectionService } from './video-games.service';
-import { GameCollectionEntry } from 'src/app/models/game-collection-entry';
+import { GameCollectionEntry } from './models/game-collection-entry';
 import { MatSelectModule } from '@angular/material/select';
 import { FormsModule } from '@angular/forms';
 import { MatOptionModule } from '@angular/material/core';
-import { GamePlatform } from 'src/app/models/game-platform';
+import { GamePlatform } from './models/game-platform';
 import { LoadingIndicatorComponent } from '../../shared/loading-indicator/loading-indicator.component';
 
 @Component({

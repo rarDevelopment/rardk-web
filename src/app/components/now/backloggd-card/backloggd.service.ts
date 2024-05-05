@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { BackloggdItem } from 'src/app/models/backloggd-item';
+import { BackloggdItem } from 'src/app/components/now/backloggd-card/models/backloggd-item';
 import { environment } from 'src/environments/environment';
 
 @Injectable({

@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, ParamMap, Router, RouterLink } from '@angular/router';
 import { combineLatest, map, take } from 'rxjs';
-import { Link } from 'src/app/models/link';
+import { Link } from 'src/app/components/links/models/link';
 import { LinksService } from 'src/app/components/links/links.service';
 import { PageTitleComponent } from '../../shared/page-title/page-title.component';
 import { NgIf } from '@angular/common';

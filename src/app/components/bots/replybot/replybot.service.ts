@@ -1,8 +1,8 @@
 import { Injectable } from '@angular/core';
 import { ApiService } from '../../../services/api.service';
-import { ReplyDefinition } from '../../../models/bots/replybot/reply-definition';
+import { ReplyDefinition } from '../models/replybot/reply-definition';
 import { Observable } from 'rxjs';
-import { GuildConfiguration } from '../../../models/bots/replybot/guild-configuration';
+import { GuildConfiguration } from '../models/replybot/guild-configuration';
 
 @Injectable({
   providedIn: 'root',

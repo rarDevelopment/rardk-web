@@ -4,7 +4,7 @@ import { HtmlDirective } from 'src/app/directives/html.directive';
 import { PageTitleComponent } from '../shared/page-title/page-title.component';
 import { LinksService } from 'src/app/components/links/links.service';
 import { take } from 'rxjs';
-import { Link } from 'src/app/models/link';
+import { Link } from 'src/app/components/links/models/link';
 import { DateDisplayComponent } from '../shared/date-display/date-display.component';
 import { LoadingIndicatorComponent } from '../shared/loading-indicator/loading-indicator.component';
 

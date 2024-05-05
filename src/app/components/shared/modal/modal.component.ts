@@ -1,7 +1,7 @@
 import { CommonModule } from '@angular/common';
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { DateDisplayComponent } from '../date-display/date-display.component';
-import { ModalImage } from 'src/app/models/modal-image';
+import { ModalImage } from 'src/app/components/shared/modal/models/modal-image';
 
 @Component({
   selector: 'app-modal',

@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { LetterboxdItem } from 'src/app/models/letterboxd-item';
+import { LetterboxdItem } from 'src/app/components/now/letterboxd-card/models/letterboxd-item';
 import { environment } from 'src/environments/environment';
 
 @Injectable({

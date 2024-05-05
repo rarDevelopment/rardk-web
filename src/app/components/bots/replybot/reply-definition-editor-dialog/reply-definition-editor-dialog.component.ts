@@ -4,8 +4,8 @@ import {
   MatDialog,
   MatDialogRef,
 } from '@angular/material/dialog';
-import { ReplyDefinition } from 'src/app/models/bots/replybot/reply-definition';
-import { ReplyDefinitionEditorDialogData as ReplyDefinitionEditorDialogData } from 'src/app/models/bots/replybot/reply-definition-editor-dialog-data';
+import { ReplyDefinition } from 'src/app/components/bots/models/replybot/reply-definition';
+import { ReplyDefinitionEditorDialogData as ReplyDefinitionEditorDialogData } from 'src/app/components/bots/models/replybot/reply-definition-editor-dialog-data';
 import { HelpDialogComponent } from './help-dialog/help-dialog/help-dialog.component';
 import emojiRegex from 'emoji-regex';
 import { MatCheckboxModule } from '@angular/material/checkbox';

@@ -11,7 +11,7 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { NgFor, NgIf } from '@angular/common';
 import { PageTitleComponent } from '../../shared/page-title/page-title.component';
 import { LoadingIndicatorComponent } from '../../shared/loading-indicator/loading-indicator.component';
-import { ModalImage, ModalImageItem } from 'src/app/models/modal-image';
+import { ModalImage, ModalImageItem } from 'src/app/components/shared/modal/models/modal-image';
 import { LegoSetDisplay } from './models/lego-set-display';
 import { ModalComponent } from '../../shared/modal/modal.component';
 

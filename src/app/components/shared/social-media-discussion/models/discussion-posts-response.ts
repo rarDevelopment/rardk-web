@@ -1,5 +1,5 @@
 import { BlueskyPostFull } from './bluesky-post-full';
-import { MastodonStatusFull } from './mastodon/mastodon-status-full';
+import { MastodonStatusFull } from './mastodon-status-full';
 
 export interface DiscussionPostsResponse {
   [key: string]: DiscussionPosts;

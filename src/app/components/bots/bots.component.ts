@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { BotPageComponent } from './bot-page/bot-page.component';
-import { BotDefinition } from 'src/app/models/bots/bot-definition';
+import { BotDefinition } from 'src/app/components/bots/models/bot-definition';
 import { take } from 'rxjs';
 import { NgFor, NgIf } from '@angular/common';
 import { LoginActionsComponent } from './login-actions/login-actions.component';

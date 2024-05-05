@@ -1,10 +1,10 @@
 import { Component } from '@angular/core';
 import { take } from 'rxjs';
-import { FeedItem } from 'src/app/models/feed-item';
-import { LastfmAlbum } from 'src/app/models/lastfm/lastfm-album';
-import { LastfmArtist } from 'src/app/models/lastfm/lastfm-artist';
+import { FeedItem } from 'src/app/components/shared/feed-posters/models/feed-item';
+import { LastfmAlbum } from 'src/app/components/now/lastfm-card/models/lastfm-album';
+import { LastfmArtist } from 'src/app/components/now/lastfm-card/models/lastfm-artist';
 import { LastfmService } from './lastfm.service';
-import { FeedPostersComponent } from '../feed-posters/feed-posters.component';
+import { FeedPostersComponent } from '../../shared/feed-posters/feed-posters.component';
 
 @Component({
   selector: 'app-lastfm-card',

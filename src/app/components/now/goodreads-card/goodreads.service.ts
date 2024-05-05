@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { GoodreadsItem } from 'src/app/models/goodreads-item';
+import { GoodreadsItem } from 'src/app/components/now/goodreads-card/models/goodreads-item';
 import { environment } from 'src/environments/environment';
 
 @Injectable({

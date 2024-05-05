@@ -1,9 +1,9 @@
 import { Component } from '@angular/core';
 import { take } from 'rxjs';
-import { BackloggdItem } from 'src/app/models/backloggd-item';
-import { FeedItem } from 'src/app/models/feed-item';
+import { BackloggdItem } from 'src/app/components/now/backloggd-card/models/backloggd-item';
+import { FeedItem } from 'src/app/components/shared/feed-posters/models/feed-item';
 import { BackloggdService } from './backloggd.service';
-import { FeedPostersComponent } from '../feed-posters/feed-posters.component';
+import { FeedPostersComponent } from '../../shared/feed-posters/feed-posters.component';
 
 @Component({
   selector: 'app-backloggd-card',

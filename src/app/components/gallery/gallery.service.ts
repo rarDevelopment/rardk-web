@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { PixelfedPost } from 'src/app/models/pixelfed/pixelfed-post';
+import { PixelfedPost } from 'src/app/components/gallery/models/pixelfed-post';
 import { environment } from 'src/environments/environment';
 
 @Injectable({

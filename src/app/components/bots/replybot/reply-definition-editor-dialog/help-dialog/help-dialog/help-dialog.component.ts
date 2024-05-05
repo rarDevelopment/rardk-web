@@ -5,7 +5,7 @@ import {
   MatDialogRef,
 } from '@angular/material/dialog';
 import { ReplyDefinitionEditorDialogComponent } from '../../reply-definition-editor-dialog.component';
-import { HelpKeywordDetail } from 'src/app/models/bots/replybot/help-keyword-detail';
+import { HelpKeywordDetail } from 'src/app/components/bots/models/replybot/help-keyword-detail';
 import { MatIconModule } from '@angular/material/icon';
 import { ClipboardModule } from '@angular/cdk/clipboard';
 import { MatButtonModule } from '@angular/material/button';

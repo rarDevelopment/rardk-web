@@ -2,8 +2,8 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { environment } from 'src/environments/environment';
-import { LastfmAlbum } from '../../../models/lastfm/lastfm-album';
-import { LastfmArtist } from '../../../models/lastfm/lastfm-artist';
+import { LastfmAlbum } from './models/lastfm-album';
+import { LastfmArtist } from './models/lastfm-artist';
 
 @Injectable({
   providedIn: 'root',

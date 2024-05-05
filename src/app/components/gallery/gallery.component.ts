@@ -1,5 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { PixelfedPost } from 'src/app/models/pixelfed/pixelfed-post';
+import { PixelfedPost } from 'src/app/components/gallery/models/pixelfed-post';
 import { PixelfedService } from './gallery.service';
 import { take } from 'rxjs';
 import { NgFor, NgIf } from '@angular/common';
@@ -9,7 +9,7 @@ import { LoadingIndicatorComponent } from '../shared/loading-indicator/loading-i
 import { DateDisplayComponent } from '../shared/date-display/date-display.component';
 import { environment } from 'src/environments/environment';
 import { RouterLink } from '@angular/router';
-import { ModalImage, ModalImageItem } from 'src/app/models/modal-image';
+import { ModalImage, ModalImageItem } from 'src/app/components/shared/modal/models/modal-image';
 
 @Component({
   selector: 'app-gallery',

@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { take } from 'rxjs';
-import { FeedItem } from 'src/app/models/feed-item';
-import { GithubSearchResult } from 'src/app/models/github/github-search-result';
+import { FeedItem } from 'src/app/components/shared/feed-posters/models/feed-item';
+import { GithubSearchResult } from 'src/app/components/now/github-card/models/github-search-result';
 import { GithubService } from './github.service';
-import { FeedPostersComponent } from '../feed-posters/feed-posters.component';
+import { FeedPostersComponent } from '../../shared/feed-posters/feed-posters.component';
 
 @Component({
   selector: 'app-github-card',
