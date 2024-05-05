@@ -1,8 +1,8 @@
 import { Component } from '@angular/core';
 import { take } from 'rxjs';
-import { FeedItem } from 'src/app/components/now/feed-posters/models/feed-item';
+import { FeedItem } from 'src/app/components/shared/feed-posters/models/feed-item';
 import { TvShowsService } from './tv-shows.service';
-import { FeedPostersComponent } from '../feed-posters/feed-posters.component';
+import { FeedPostersComponent } from '../../shared/feed-posters/feed-posters.component';
 import { TvShow } from 'src/app/components/now/tv-shows-card/models/tv-show';
 
 @Component({
