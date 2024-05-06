@@ -21,7 +21,7 @@
         (click)="changeImage(imgIndex + 1)">
         <i class="fa-solid fa-arrow-right"></i>
       </button>
-      <div class="image-position-indicators">
+      <div class="image-position-indicators" *ngIf="post.images.length > 1">
         <svg
           height="30"
           width="30"
