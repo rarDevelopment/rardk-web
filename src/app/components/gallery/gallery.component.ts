@@ -1,7 +1,7 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { PixelfedPost } from 'src/app/components/gallery/models/pixelfed-post';
 import { PixelfedService } from './gallery.service';
-import { take } from 'rxjs';
+import { finalize, take } from 'rxjs';
 import { NgFor, NgIf } from '@angular/common';
 import { PageTitleComponent } from '../shared/page-title/page-title.component';
 import { ModalComponent } from '../shared/modal/modal.component';
@@ -47,7 +47,12 @@ export class GalleryComponent implements OnInit {
   populatePixelfedPosts() {
     this.pixelfedService
       .getPixelfedPosts()
-      .pipe(take(1))
+      .pipe(
+        take(1),
+        finalize(() => {
+          this.isLoading = false;
+        })
+      )
       .subscribe({
         next: (posts: PixelfedPost[]) => {
           const modalImages = posts.map((post) => {
@@ -65,11 +70,9 @@ export class GalleryComponent implements OnInit {
             ? (this.pixelfedPosts = modalImages.slice(0, this.itemCount))
             : (this.pixelfedPosts = modalImages);
           this.modalVisibilities = modalImages.map((_) => false);
-          this.isLoading = false;
         },
         error: (error: any) => {
           console.error(error);
-          this.isLoading = false;
         },
       });
   }

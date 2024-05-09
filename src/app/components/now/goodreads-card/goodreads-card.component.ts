@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { FeedItem } from 'src/app/components/shared/feed-posters/models/feed-item';
 import { GoodreadsItem } from 'src/app/components/now/goodreads-card/models/goodreads-item';
 import { GoodreadsService } from './goodreads.service';
-import { take } from 'rxjs';
+import { finalize, take } from 'rxjs';
 import { FeedPostersComponent } from '../../shared/feed-posters/feed-posters.component';
 
 @Component({
@@ -31,14 +31,19 @@ export class GoodreadsCardComponent {
   public async populateFinishedBooksItems() {
     this.goodreadsService
       .getGoodreadsFinishedBooksFeed()
-      .pipe(take(1))
+      .pipe(
+        take(1),
+        finalize(() => {
+          this.isFinishedBooksLoading = false;
+        })
+      )
       .subscribe((result: GoodreadsItem[]) => {
         let items = result.map((m) => {
           return {
             title: m.title,
             summary: m.summary,
             imageUrl: m.imageUrl,
-            rating: m.rating * 2, //goodreads sends this value out of 5, so multiply it to make it out of 10
+            rating: m.rating,
             url: m.url,
           } as FeedItem;
         });
@@ -46,14 +51,18 @@ export class GoodreadsCardComponent {
           items = items.slice(0, this.numberOfBooksToList);
         }
         this.finishedBooksFeedItems = items;
-        this.isFinishedBooksLoading = false;
       });
   }
 
   public async populateCurrentlyReadingBooksItems() {
     this.goodreadsService
       .getGoodreadsCurrentlyReadingBooksFeed()
-      .pipe(take(1))
+      .pipe(
+        take(1),
+        finalize(() => {
+          this.isCurrentlyReadingLoading = false;
+        })
+      )
       .subscribe((result: GoodreadsItem[]) => {
         let items = result.map((m) => {
           return {
@@ -67,7 +76,6 @@ export class GoodreadsCardComponent {
           items = items.slice(0, this.numberOfBooksToList);
         }
         this.currentlyReadingBooksFeedItems = items;
-        this.isCurrentlyReadingLoading = false;
       });
   }
 }

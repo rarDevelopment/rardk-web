@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { BlogPost } from 'src/app/components/blog/models/blog-post';
 import { BlogService } from '../blog.service';
 import { ActivatedRoute, ParamMap, Router, RouterLink } from '@angular/router';
-import { take, switchMap } from 'rxjs/operators';
+import { take, switchMap, finalize } from 'rxjs/operators';
 import { Meta } from '@angular/platform-browser';
 import { HtmlDirective } from '../../../directives/html.directive';
 import { DateDisplayComponent } from '../../shared/date-display/date-display.component';
@@ -69,7 +69,10 @@ export class BlogPostComponent {
         take(1),
         switchMap((routeParams: ParamMap) =>
           this.blogService.getBlogPost(routeParams.get('postId')!)
-        )
+        ),
+        finalize(() => {
+          this.isLoading = false;
+        })
       )
       .subscribe({
         next: (blogPost: BlogPost) => {
@@ -78,11 +81,9 @@ export class BlogPostComponent {
           }
           this.post = blogPost;
           this.setMeta(blogPost);
-          this.isLoading = false;
         },
         error: (error) => {
           console.error(error);
-          this.isLoading = false;
         },
       });
   }

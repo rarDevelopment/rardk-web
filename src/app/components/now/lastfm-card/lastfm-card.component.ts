@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { take } from 'rxjs';
+import { finalize, take } from 'rxjs';
 import { FeedItem } from 'src/app/components/shared/feed-posters/models/feed-item';
 import { LastfmAlbum } from 'src/app/components/now/lastfm-card/models/lastfm-album';
 import { LastfmArtist } from 'src/app/components/now/lastfm-card/models/lastfm-artist';
@@ -35,7 +35,12 @@ export class LastfmCardComponent {
   public async populateTopAlbums() {
     this.lastfmService
       .getTopAlbums()
-      .pipe(take(1))
+      .pipe(
+        take(1),
+        finalize(() => {
+          this.isTopAlbumsLoading = false;
+        })
+      )
       .subscribe({
         next: (result: LastfmAlbum[]) => {
           let items = result.map((album) => {
@@ -50,7 +55,6 @@ export class LastfmCardComponent {
             items = items.slice(0, this.numberOfAlbumsToShow);
           }
           this.topAlbumFeedItems = items;
-          this.isTopAlbumsLoading = false;
         },
         error: (error) => {
           console.error(error);
@@ -62,7 +66,12 @@ export class LastfmCardComponent {
   public async populateTopArtists() {
     this.lastfmService
       .getTopArtists()
-      .pipe(take(1))
+      .pipe(
+        take(1),
+        finalize(() => {
+          this.isTopArtistsLoading = false;
+        })
+      )
       .subscribe({
         next: (result: LastfmArtist[]) => {
           let items = result.map((artist) => {
@@ -75,7 +84,6 @@ export class LastfmCardComponent {
             items = items.slice(0, this.numberOfArtistsToShow);
           }
           this.topArtistFeedItems = items;
-          this.isTopArtistsLoading = false;
         },
         error: (error) => {
           console.error(error);

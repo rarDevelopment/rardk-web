@@ -37,4 +37,9 @@ export class FeedPostersComponent implements OnInit {
     this.isList = this.displayType.toLowerCase() === 'list';
     this.isPoster = this.displayType.toLowerCase() === 'poster';
   }
+
+  formatRating(numberRating: number): string {
+    const rating = Number(numberRating);
+    return Number.isInteger(rating) ? Number(rating).toString() : rating.toFixed(1);
+  }
 }

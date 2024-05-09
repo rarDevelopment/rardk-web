@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, ParamMap, Router, RouterLink } from '@angular/router';
-import { combineLatest, map, take } from 'rxjs';
+import { combineLatest, finalize, map, take } from 'rxjs';
 import { Link } from 'src/app/components/links/models/link';
 import { LinksService } from 'src/app/components/links/links.service';
 import { PageTitleComponent } from '../../shared/page-title/page-title.component';
@@ -53,6 +53,9 @@ export class LinkPostComponent implements OnInit {
               routeParams: routeParams,
             };
           }
+        }),
+        finalize(() => {
+          this.isLoading = false;
         })
       )
       .subscribe({
@@ -71,6 +74,5 @@ export class LinkPostComponent implements OnInit {
       this.router.navigate(['links']);
     }
     this.link = foundLink!;
-    this.isLoading = false;
   }
 }
