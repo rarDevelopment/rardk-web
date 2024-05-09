@@ -8,6 +8,7 @@ import { NgFor, NgIf } from '@angular/common';
 import { DateDisplayComponent } from '../shared/date-display/date-display.component';
 import { HtmlDirective } from 'src/app/directives/html.directive';
 import { LoadingIndicatorComponent } from '../shared/loading-indicator/loading-indicator.component';
+import { finalize, take } from 'rxjs';
 
 @Component({
   selector: 'app-blog',
@@ -35,26 +36,31 @@ export class BlogComponent {
 
   ngOnInit() {
     this.isLoading = true;
-    this.blogService.getBlogPosts().subscribe({
-      next: (blogPostsResponse: BlogPost[]) => {
-        let blogPostsToShow = blogPostsResponse.sort((p1, p2) =>
-          new Date(this.getPublishedDate(p1.attributes)) >
-          new Date(this.getPublishedDate(p2.attributes))
-            ? -1
-            : 1
-        );
+    this.blogService
+      .getBlogPosts()
+      .pipe(
+        take(1),
+        finalize(() => {
+          this.isLoading = false;
+        })
+      )
+      .subscribe({
+        next: (blogPostsResponse: BlogPost[]) => {
+          let blogPostsToShow = blogPostsResponse.sort((p1, p2) =>
+            new Date(this.getPublishedDate(p1.attributes)) >
+            new Date(this.getPublishedDate(p2.attributes))
+              ? -1
+              : 1
+          );
 
-        this.itemCount > 0
-          ? (this.blogPosts = blogPostsToShow.slice(0, this.itemCount))
-          : (this.blogPosts = blogPostsToShow);
-
-        this.isLoading = false;
-      },
-      error: (error) => {
-        this.isLoading = false;
-        console.error(error);
-      },
-    });
+          this.itemCount > 0
+            ? (this.blogPosts = blogPostsToShow.slice(0, this.itemCount))
+            : (this.blogPosts = blogPostsToShow);
+        },
+        error: (error) => {
+          console.error(error);
+        },
+      });
   }
 
   public getPublishedDate(attributes: BlogPostAttributes): string {

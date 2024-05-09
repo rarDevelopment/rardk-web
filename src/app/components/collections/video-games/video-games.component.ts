@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { take } from 'rxjs';
+import { finalize, take } from 'rxjs';
 import { NgIf, NgFor, KeyValuePipe, NgClass } from '@angular/common';
 import { PageTitleComponent } from '../../shared/page-title/page-title.component';
 import { GameCollectionService } from './video-games.service';
@@ -44,7 +44,12 @@ export class VideoGamesComponent implements OnInit {
   public async populateGameCollection() {
     this.gameCollectionService
       .getGameCollection()
-      .pipe(take(1))
+      .pipe(
+        take(1),
+        finalize(() => {
+          this.isLoading = false;
+        })
+      )
       .subscribe({
         next: (gameCollectionItems: GameCollectionEntry[]) => {
           const gameCollectionItemsFiltered = gameCollectionItems
@@ -52,12 +57,8 @@ export class VideoGamesComponent implements OnInit {
             .sort((a, b) => {
               return a > b ? 1 : -1;
             });
-          this.gameCollectionItemsGrouped = this.groupBy(
-            gameCollectionItemsFiltered,
-            'platform'
-          );
+          this.gameCollectionItemsGrouped = this.groupBy(gameCollectionItemsFiltered, 'platform');
           this.setAvailablePlatforms();
-          this.isLoading = false;
         },
         error: (error) => {
           console.error('Error loading game collection', error);

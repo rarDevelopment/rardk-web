@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { take } from 'rxjs';
+import { finalize, take } from 'rxjs';
 import { BackloggdItem } from 'src/app/components/now/backloggd-card/models/backloggd-item';
 import { FeedItem } from 'src/app/components/shared/feed-posters/models/feed-item';
 import { BackloggdService } from './backloggd.service';
@@ -13,28 +13,33 @@ import { FeedPostersComponent } from '../../shared/feed-posters/feed-posters.com
   imports: [FeedPostersComponent],
 })
 export class BackloggdCardComponent {
-  public isCurrentGamesFeedLoading: boolean;
-  public isReviewsFeedLoading: boolean;
-  public reviewsFeedItems: FeedItem[];
-  public currentGamesFeedItems: FeedItem[];
+  public isCurrentGamesLoading: boolean;
+  public isRecentGamesLoading: boolean;
+  public recentGames: FeedItem[];
+  public currentGames: FeedItem[];
   private numberOfCurrentGamesToList = 0;
-  private numberOfFinishedGamesToList = 5;
-  isRecentlyFinishedGamesError: boolean;
+  private numberOfRecentGamesToList = 5;
+  isRecentGamesError: boolean;
   isCurrentGamesError: boolean;
 
   constructor(private backloggdService: BackloggdService) {}
 
   ngOnInit() {
-    this.isCurrentGamesFeedLoading = true;
-    this.isReviewsFeedLoading = true;
-    this.populateBackloggdFeedItems();
-    this.populateBackloggdCurrentGamesFeedItems();
+    this.isCurrentGamesLoading = true;
+    this.isRecentGamesLoading = true;
+    this.populateRecentGames();
+    this.populateCurrentGames();
   }
 
-  public async populateBackloggdFeedItems() {
+  public async populateRecentGames() {
     this.backloggdService
       .getBackloggdFeed()
-      .pipe(take(1))
+      .pipe(
+        take(1),
+        finalize(() => {
+          this.isRecentGamesLoading = false;
+        })
+      )
       .subscribe({
         next: (result: BackloggdItem[]) => {
           let items = result.map((m) => {
@@ -42,27 +47,31 @@ export class BackloggdCardComponent {
               title: m.title,
               summary: m.summary,
               imageUrl: m.imageUrl,
-              rating: m.rating,
+              rating: m.rating / 2, //backloggd ratings are out of 10, so divide by 2 to get the 5-star rating
               url: m.url,
             } as FeedItem;
           });
-          if (this.numberOfFinishedGamesToList > 0) {
-            items = items.slice(0, this.numberOfFinishedGamesToList);
+          if (this.numberOfRecentGamesToList > 0) {
+            items = items.slice(0, this.numberOfRecentGamesToList);
           }
-          this.reviewsFeedItems = items;
-          this.isReviewsFeedLoading = false;
+          this.recentGames = items;
         },
         error: (error) => {
           console.error(error);
-          this.isRecentlyFinishedGamesError = true;
+          this.isRecentGamesError = true;
         },
       });
   }
 
-  public async populateBackloggdCurrentGamesFeedItems() {
+  public async populateCurrentGames() {
     this.backloggdService
       .getBackloggdCurrentGames()
-      .pipe(take(1))
+      .pipe(
+        take(1),
+        finalize(() => {
+          this.isCurrentGamesLoading = false;
+        })
+      )
       .subscribe({
         next: (result: BackloggdItem[]) => {
           let items = result.map((m) => {
@@ -75,8 +84,7 @@ export class BackloggdCardComponent {
           if (this.numberOfCurrentGamesToList > 0) {
             items = items.slice(0, this.numberOfCurrentGamesToList);
           }
-          this.currentGamesFeedItems = items;
-          this.isCurrentGamesFeedLoading = false;
+          this.currentGames = items;
         },
         error: (error) => {
           console.error(error);

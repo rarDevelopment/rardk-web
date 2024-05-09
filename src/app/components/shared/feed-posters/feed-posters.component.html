@@ -40,7 +40,7 @@
         <div *ngIf="showRatings">
           <a class="feed-item-rating" [href]="feedItem.url" target="_blank">
             @if(feedItem.rating) {
-            {{ feedItem.rating }} / {{ ratingMax }}
+            {{ formatRating(feedItem.rating) }} / {{ ratingMax }}
             } @else{ (no rating) }
           </a>
         </div>

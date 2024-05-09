@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { take } from 'rxjs';
+import { finalize, take } from 'rxjs';
 import { FeedItem } from 'src/app/components/shared/feed-posters/models/feed-item';
 import { GithubSearchResult } from 'src/app/components/now/github-card/models/github-search-result';
 import { GithubService } from './github.service';
@@ -28,7 +28,12 @@ export class GithubCardComponent implements OnInit {
   public async populateGithubSearchResults() {
     this.githubService
       .getGithubRecentlyUpdatedRepositories()
-      .pipe(take(1))
+      .pipe(
+        take(1),
+        finalize(() => {
+          this.isLoading = false;
+        })
+      )
       .subscribe({
         next: (result: GithubSearchResult) => {
           const repos = result.items
@@ -42,7 +47,6 @@ export class GithubCardComponent implements OnInit {
               summary: r.description,
             } as FeedItem;
           });
-          this.isLoading = false;
         },
         error: (error) => {
           console.error(error);

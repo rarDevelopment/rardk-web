@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { BotPageComponent } from './bot-page/bot-page.component';
 import { BotDefinition } from 'src/app/components/bots/models/bot-definition';
-import { take } from 'rxjs';
+import { finalize, take } from 'rxjs';
 import { NgFor, NgIf } from '@angular/common';
 import { LoginActionsComponent } from './login-actions/login-actions.component';
 import { PageTitleComponent } from '../shared/page-title/page-title.component';
@@ -13,14 +13,7 @@ import { TooltipDirective } from 'src/app/directives/tooltip.directive';
   templateUrl: './bots.component.html',
   styleUrls: ['./bots.component.scss'],
   standalone: true,
-  imports: [
-    PageTitleComponent,
-    LoginActionsComponent,
-    NgFor,
-    NgIf,
-    TooltipDirective,
-    RouterLink,
-  ],
+  imports: [PageTitleComponent, LoginActionsComponent, NgFor, NgIf, TooltipDirective, RouterLink],
 })
 export class BotsComponent extends BotPageComponent implements OnInit {
   public isLoading: boolean;
@@ -52,8 +45,7 @@ export class BotsComponent extends BotPageComponent implements OnInit {
       imageUrl: 'assets/rolebot.png',
       inviteLink:
         'https://discord.com/api/oauth2/authorize?client_id=740381594669285466&permissions=139855349840&scope=bot%20applications.commands',
-      description:
-        'A Discord Bot for easily creating roles and letting users manage those roles.',
+      description: 'A Discord Bot for easily creating roles and letting users manage those roles.',
       isConfigurable: false,
       gitHubLink: 'https://github.com/rarDevelopment/role-bot-dotnet',
     } as BotDefinition,
@@ -111,26 +103,27 @@ export class BotsComponent extends BotPageComponent implements OnInit {
     const accessToken = this.getLoginToken();
     this.discordService
       .getDiscordUser(accessToken!)
-      .pipe(take(1))
+      .pipe(
+        take(1),
+        finalize(() => {
+          this.isLoading = false;
+        })
+      )
       .subscribe({
         next: (discordUser: any) => {
           if (!discordUser) {
             this.logOut();
           }
-          this.isLoading = false;
         },
         error: (error: any) => {
+          console.error(error);
           this.logOut();
-          this.isLoading = false;
         },
       });
   }
   showMessageIfNotLoggedIn() {
     if (!this.isLoggedIn()) {
-      this.showSnackBar(
-        'You must be logged in with Discord to access the bot settings.',
-        true
-      );
+      this.showSnackBar('You must be logged in with Discord to access the bot settings.', true);
     }
   }
 }

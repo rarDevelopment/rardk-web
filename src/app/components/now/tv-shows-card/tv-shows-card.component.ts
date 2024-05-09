@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { take } from 'rxjs';
+import { finalize, take } from 'rxjs';
 import { FeedItem } from 'src/app/components/shared/feed-posters/models/feed-item';
 import { TvShowsService } from './tv-shows.service';
 import { FeedPostersComponent } from '../../shared/feed-posters/feed-posters.component';
@@ -28,7 +28,12 @@ export class TvShowsCardComponent {
   public async populateCurrentlyWatchingItems() {
     this.tvShowService
       .getLatestEpisodes()
-      .pipe(take(1))
+      .pipe(
+        take(1),
+        finalize(() => {
+          this.isLoading = false;
+        })
+      )
       .subscribe({
         next: (result: TvShow[]) => {
           let items = result
@@ -43,7 +48,6 @@ export class TvShowsCardComponent {
             items = items.slice(0, this.numberOfShowsToDisplay);
           }
           this.feedItems = items;
-          this.isLoading = false;
         },
         error: (error) => {
           console.error(error);

@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { take } from 'rxjs';
+import { finalize, take } from 'rxjs';
 import { FeedItem } from 'src/app/components/shared/feed-posters/models/feed-item';
 import { LetterboxdItem } from 'src/app/components/now/letterboxd-card/models/letterboxd-item';
 import { LetterboxdService } from './letterboxd.service';
@@ -28,7 +28,12 @@ export class LetterboxdCardComponent {
   public async populateLetterboxdItems() {
     this.letterboxdService
       .getLetterboxdFeed()
-      .pipe(take(1))
+      .pipe(
+        take(1),
+        finalize(() => {
+          this.isLoading = false;
+        })
+      )
       .subscribe({
         next: (result: LetterboxdItem[]) => {
           let items = result.map((m) => {
@@ -38,7 +43,7 @@ export class LetterboxdCardComponent {
               date: m.watchedDate,
               imageUrl: m.imageUrl,
               isRepeat: m.isRewatch,
-              rating: m.rating * 2, //letterboxd sends this value out of 5, so multiply it to make it out of 10
+              rating: m.rating,
               url: m.url,
             } as FeedItem;
           });
@@ -46,7 +51,6 @@ export class LetterboxdCardComponent {
             items = items.slice(0, this.numberOfMoviesToList);
           }
           this.feedItems = items;
-          this.isLoading = false;
         },
         error: (error) => {
           console.error(error);

@@ -1,7 +1,7 @@
 import { NgFor, NgIf } from '@angular/common';
 import { Component, Input, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { Observable } from 'rxjs';
+import { Observable, take } from 'rxjs';
 import { HtmlDirective } from 'src/app/directives/html.directive';
 import { BlueskyPostFull } from 'src/app/components/shared/social-media-discussion/models/bluesky-post-full';
 import { DiscussionPostsResponse } from 'src/app/components/shared/social-media-discussion/models/discussion-posts-response';
@@ -29,48 +29,50 @@ export class SocialMediaDiscussionComponent implements OnInit {
   }
 
   getDiscussionForPost() {
-    this.getDiscussionsMethod().subscribe({
-      next: (discussion) => {
-        const postDiscussion = discussion[this.router.url];
-        if (postDiscussion) {
-          if (postDiscussion.mastodon) {
-            postDiscussion.mastodon.forEach((post: MastodonStatusFull) => {
-              const postToDisplay = {
-                likes: post.favourites_count,
-                shares: post.reblogs_count,
-                comments: post.replies_count,
-                content: post.content,
-                url: post.url,
-                commentsUrl: post.url,
-                likesUrl: `${post.url}/favourites`,
-                sharesUrl: `${post.url}/reblogs`,
-              } as PostToDisplay;
-              this.mastodonPosts.push(postToDisplay);
-            });
+    this.getDiscussionsMethod()
+      .pipe(take(1))
+      .subscribe({
+        next: (discussion) => {
+          const postDiscussion = discussion[this.router.url];
+          if (postDiscussion) {
+            if (postDiscussion.mastodon) {
+              postDiscussion.mastodon.forEach((post: MastodonStatusFull) => {
+                const postToDisplay = {
+                  likes: post.favourites_count,
+                  shares: post.reblogs_count,
+                  comments: post.replies_count,
+                  content: post.content,
+                  url: post.url,
+                  commentsUrl: post.url,
+                  likesUrl: `${post.url}/favourites`,
+                  sharesUrl: `${post.url}/reblogs`,
+                } as PostToDisplay;
+                this.mastodonPosts.push(postToDisplay);
+              });
+            }
+            if (postDiscussion.bluesky) {
+              postDiscussion.bluesky.forEach((post: BlueskyPostFull) => {
+                const splitUri = post.uri.split('/');
+                const postId = splitUri[splitUri.length - 1];
+                const bskyUrl = `https://bsky.app/profile/${environment.bskyHandle}/post/${postId}`;
+                const postToDisplay = {
+                  likes: -1,
+                  shares: -1,
+                  comments: -1,
+                  content: post.value.text,
+                  url: bskyUrl,
+                  commentsUrl: bskyUrl,
+                  likesUrl: `${bskyUrl}/liked-by`,
+                  sharesUrl: `${bskyUrl}/reposted-by`,
+                } as PostToDisplay;
+                this.blueskyPosts.push(postToDisplay);
+              });
+            }
           }
-          if (postDiscussion.bluesky) {
-            postDiscussion.bluesky.forEach((post: BlueskyPostFull) => {
-              const splitUri = post.uri.split('/');
-              const postId = splitUri[splitUri.length - 1];
-              const bskyUrl = `https://bsky.app/profile/${environment.bskyHandle}/post/${postId}`;
-              const postToDisplay = {
-                likes: -1,
-                shares: -1,
-                comments: -1,
-                content: post.value.text,
-                url: bskyUrl,
-                commentsUrl: bskyUrl,
-                likesUrl: `${bskyUrl}/liked-by`,
-                sharesUrl: `${bskyUrl}/reposted-by`,
-              } as PostToDisplay;
-              this.blueskyPosts.push(postToDisplay);
-            });
-          }
-        }
-      },
-      error: (error) => {
-        console.error(error);
-      },
-    });
+        },
+        error: (error) => {
+          console.error(error);
+        },
+      });
   }
 }

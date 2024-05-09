@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { BoardGamesService } from './board-games.service';
 import { BoardGame } from 'src/app/components/collections/board-games/models/board-game';
-import { take } from 'rxjs';
+import { finalize, take } from 'rxjs';
 import { micromark } from 'micromark';
 import { NgIf, NgFor } from '@angular/common';
 import { PageTitleComponent } from '../../shared/page-title/page-title.component';
@@ -35,16 +35,19 @@ export class BoardGamesComponent implements OnInit {
   public async populateWishlist() {
     this.boardGamesService
       .getWishlistGames()
-      .pipe(take(1))
+      .pipe(
+        take(1),
+        finalize(() => {
+          this.isLoadingWishlist = false;
+        })
+      )
       .subscribe({
         next: (boardGames: BoardGame[]) => {
           this.wishlistGames = boardGames
             .sort((i) => i.priority)
             .map((g) => this.formatGameProperties(g, true));
-          this.isLoadingWishlist = false;
         },
         error: (error) => {
-          this.isLoadingWishlist = false;
           this.isErrorWishlist = true;
           console.error('Error loading wishlist', error);
         },
@@ -54,14 +57,17 @@ export class BoardGamesComponent implements OnInit {
   public async populateOwnedList() {
     this.boardGamesService
       .getOwnedGames()
-      .pipe(take(1))
+      .pipe(
+        take(1),
+        finalize(() => {
+          this.isLoadingOwnedList = false;
+        })
+      )
       .subscribe({
         next: (boardGames: BoardGame[]) => {
           this.ownedGames = boardGames.map((g) => this.formatGameProperties(g, false));
-          this.isLoadingOwnedList = false;
         },
         error: (error) => {
-          this.isLoadingOwnedList = false;
           this.isErrorOwnedList = true;
           console.error('Error loading owned list', error);
         },

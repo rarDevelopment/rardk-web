@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { take } from 'rxjs';
+import { finalize, take } from 'rxjs';
 import { LegoSet } from 'src/app/components/collections/lego-sets/models/lego-set';
 import { LegoSetsService } from './lego-sets.service';
 import { CheckOrXComponent } from '../../shared/check-or-x/check-or-x.component';
@@ -58,7 +58,12 @@ export class LegoSetsComponent {
     this.isLoading = true;
     this.legoSetsService
       .getLegoSets()
-      .pipe(take(1))
+      .pipe(
+        take(1),
+        finalize(() => {
+          this.isLoading = false;
+        })
+      )
       .subscribe((sets: LegoSet[]) => {
         this.ownedSets = this.filteredOwnedSets = sets
           .sort((a, b) => (a.name > b.name ? 1 : -1))
@@ -70,8 +75,6 @@ export class LegoSetsComponent {
           .map((s) => this.buildLegoSetDisplay(s));
 
         this.ownedSeriesOptions = Array.from(new Set(this.ownedSets.map((s) => s.series))).sort();
-
-        this.isLoading = false;
       });
   }
 
