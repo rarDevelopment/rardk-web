@@ -6,7 +6,7 @@
     </app-page-title>
   </div>
 </div>
-<app-loading-indicator *ngIf="isLoading"></app-loading-indicator>
+<app-loading-indicator [isLoading]="isLoading"></app-loading-indicator>
 <ng-container *ngIf="!isLoading">
   <div class="repeating-post" *ngFor="let post of blogPosts">
     <div class="repeating-post-summary">

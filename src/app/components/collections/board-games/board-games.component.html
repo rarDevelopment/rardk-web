@@ -14,7 +14,7 @@
     </p>
   </div>
 </div>
-<app-loading-indicator *ngIf="isLoadingWishlist || isLoadingOwnedList"></app-loading-indicator>
+<app-loading-indicator [isLoading]="isLoadingWishlist || isLoadingOwnedList"></app-loading-indicator>
 <div class="content-container" *ngIf="!isLoadingWishlist && !isLoadingOwnedList">
   <div class="content-container-card">
     <section class="wanted-section">

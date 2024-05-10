@@ -5,9 +5,7 @@
     [url]="profileUrl!"
     [name]="profileName!"></app-profile-link>
 </h2>
-<ng-container *ngIf="isLoading && !isError">
-  <app-loading-indicator></app-loading-indicator>
-</ng-container>
+<app-loading-indicator [isLoading]="isLoading && !isError"></app-loading-indicator>
 <ng-container *ngIf="!isLoading && !isError">
   <ng-container *ngIf="feedItems && feedItems.length > 0; else no_content">
     <div class="feed-item-posters-wrapper" *ngIf="isPoster">

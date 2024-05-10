@@ -12,7 +12,7 @@
   </div>
 </div>
 
-<app-loading-indicator *ngIf="isLoading"></app-loading-indicator>
+<app-loading-indicator [isLoading]="isLoading"></app-loading-indicator>
 
 <div class="content-container" *ngIf="!isLoading">
   <div class="content-container-card time-zones-container">
