@@ -6,7 +6,7 @@
     </app-page-title>
   </div>
 </div>
-<app-loading-indicator *ngIf="isLoading"></app-loading-indicator>
+<app-loading-indicator [isLoading]="isLoading"></app-loading-indicator>
 <ng-container *ngIf="!isLoading">
   <div class="grid">
     <div class="grid-square" *ngFor="let post of pixelfedPosts; let i = index">

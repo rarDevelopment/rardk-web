@@ -4,7 +4,7 @@
   </div>
 </div>
 <div class="guild-list-container">
-  <app-loading-indicator *ngIf="isLoading"></app-loading-indicator>
+  <app-loading-indicator [isLoading]="isLoading"></app-loading-indicator>
   <div class="guild-items" *ngIf="!isLoading">
     <ng-container *ngIf="isLoggedIn()">
       <a
