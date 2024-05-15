@@ -1,17 +1,27 @@
 <div class="page-description-container">
   <div class="page-description-content">
-    <app-page-title [titleSize]="1">Video Games Collection</app-page-title>
+    <app-page-title [titleSize]="1">Video Game Collection</app-page-title>
     <p>Select a platform below to view the games I have for that platform.</p>
   </div>
 </div>
 <app-loading-indicator [isLoading]="isLoading"></app-loading-indicator>
 <div class="content-container" *ngIf="!isLoading">
   <div class="content-container-card">
-    <div class="search-container">Filters</div>
+    <div class="search-container">Title Search</div>
     <div class="search-container">
       <input type="text" placeholder="Enter a game title" [(ngModel)]="searchTerm" />
     </div>
+    <div class="platform-select-container">Platform</div>
     <div class="platform-select-container">
+      <select [(ngModel)]="selectedPlatform">
+        @for (platform of availablePlatforms; track platform) {
+        <option [value]="platform.name">
+          {{ platform.name }} ({{ platform.gameCount }} games)
+        </option>
+        }
+      </select>
+    </div>
+    <!-- <div class="platform-select-container">
       <mat-form-field>
         <mat-label>Select a Platform</mat-label>
         <mat-select [(ngModel)]="selectedPlatform">
@@ -22,7 +32,7 @@
           }
         </mat-select>
       </mat-form-field>
-    </div>
+    </div> -->
     <section
       class="games-collection-section"
       *ngFor="

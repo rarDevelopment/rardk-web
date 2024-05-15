@@ -1,12 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { finalize, take } from 'rxjs';
-import { NgIf, NgFor, KeyValuePipe, NgClass } from '@angular/common';
+import { KeyValuePipe, NgClass, CommonModule } from '@angular/common';
 import { PageTitleComponent } from '../../shared/page-title/page-title.component';
 import { GameCollectionService } from './video-games.service';
 import { GameCollectionEntry } from './models/game-collection-entry';
-import { MatSelectModule } from '@angular/material/select';
 import { FormsModule } from '@angular/forms';
-import { MatOptionModule } from '@angular/material/core';
 import { GamePlatform } from './models/game-platform';
 import { LoadingIndicatorComponent } from '../../shared/loading-indicator/loading-indicator.component';
 
@@ -17,14 +15,11 @@ import { LoadingIndicatorComponent } from '../../shared/loading-indicator/loadin
   standalone: true,
   imports: [
     PageTitleComponent,
-    NgIf,
+    CommonModule,
     LoadingIndicatorComponent,
-    NgFor,
     KeyValuePipe,
     NgClass,
-    MatSelectModule,
     FormsModule,
-    MatOptionModule,
   ],
 })
 export class VideoGamesComponent implements OnInit {
