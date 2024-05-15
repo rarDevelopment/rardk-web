@@ -1,23 +1,23 @@
-.set-table {
+.game-table {
   border-collapse: collapse;
   width: 100%;
 }
 
-.set-table td,
-.set-table th {
+.game-table td,
+.game-table th {
   border: 1px solid #dddddd;
   padding: 8px;
 }
 
-.set-table tr:nth-child(even) {
+.game-table tr:nth-child(even) {
   background-color: #f2f2f2;
 }
 
-.set-table tr:hover {
+.game-table tr:hover {
   background-color: #dddddd;
 }
 
-.set-table th {
+.game-table th {
   padding-top: 15px;
   padding-bottom: 15px;
   text-align: left;
@@ -25,17 +25,22 @@
   color: white;
 }
 
-img {
-  max-width: 100px;
-  cursor: pointer;
-}
-
-.img-cell {
-  text-align: center;
-}
-
 .platform-select-container {
   display: flex;
   align-items: center;
   justify-content: center;
+}
+
+.search-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.search-container input[type="text"] {
+  width: 80%;
+  padding: 12px 20px;
+  margin: 8px 0;
+  box-sizing: border-box;
+  font-size: 16px;
 }

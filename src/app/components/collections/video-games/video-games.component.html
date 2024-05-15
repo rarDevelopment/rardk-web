@@ -7,6 +7,10 @@
 <app-loading-indicator [isLoading]="isLoading"></app-loading-indicator>
 <div class="content-container" *ngIf="!isLoading">
   <div class="content-container-card">
+    <div class="search-container">Filters</div>
+    <div class="search-container">
+      <input type="text" placeholder="Enter a game title" [(ngModel)]="searchTerm" />
+    </div>
     <div class="platform-select-container">
       <mat-form-field>
         <mat-label>Select a Platform</mat-label>
@@ -25,9 +29,9 @@
         let platformGrouping of gameCollectionItemsGrouped | keyvalue;
         let platformIndex = index
       ">
-      <table class="set-table" *ngIf="platformGrouping.key === selectedPlatform">
+      <table class="game-table" *ngIf="platformGrouping.key === selectedPlatform">
         <th>Game</th>
-        <tr *ngFor="let gameCollectionItem of sortGames(platformGrouping.value)">
+        <tr *ngFor="let gameCollectionItem of filterGames(platformGrouping.value)">
           <td>
             {{ gameCollectionItem.title }}
           </td>

@@ -33,6 +33,7 @@ export class VideoGamesComponent implements OnInit {
   public isLoading: boolean;
   public selectedPlatform: string = 'Nintendo 64';
   public availablePlatforms: GamePlatform[] = [];
+  public searchTerm: string = '';
 
   constructor(private gameCollectionService: GameCollectionService) {}
 
@@ -88,7 +89,10 @@ export class VideoGamesComponent implements OnInit {
     this.availablePlatforms = mapped;
   }
 
-  sortGames(games: GameCollectionEntry[]) {
+  filterGames(games: GameCollectionEntry[]) {
+    if (this.searchTerm.trim() !== '') {
+      return games.filter((g) => g.title.toLowerCase().includes(this.searchTerm.toLowerCase()));
+    }
     return games.sort((g1, g2) => (g1.title > g2.title ? 1 : -1));
   }
 }
