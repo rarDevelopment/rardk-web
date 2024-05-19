@@ -81,7 +81,7 @@ export class VideoGamesComponent implements OnInit {
         gameCount: this.gameCollectionItemsGrouped[key].length,
       } as GamePlatform;
     });
-    this.availablePlatforms = mapped;
+    this.availablePlatforms = mapped.sort((a, b) => (a.name > b.name ? 1 : -1));
   }
 
   filterGames(games: GameCollectionEntry[]) {
