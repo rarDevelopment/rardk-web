@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, ElementRef, ViewChild } from '@angular/core';
 import { finalize, take } from 'rxjs';
 import { LegoSet } from 'src/app/components/collections/lego-sets/models/lego-set';
 import { LegoSetsService } from './lego-sets.service';
@@ -51,6 +51,8 @@ export class LegoSetsComponent {
   public modalVisibilitiesWantedSets: boolean[] = [];
   public modalVisibilitiesOwnedSets: boolean[] = [];
   public isLoading: boolean = false;
+  @ViewChild('wantedSetsSection') wantedSetsSection: ElementRef;
+  @ViewChild('ownedSetsSection') ownedSetsSection: ElementRef;
 
   constructor(private legoSetsService: LegoSetsService) {}
 
@@ -116,5 +118,17 @@ export class LegoSetsComponent {
       }
       return t;
     });
+  }
+
+  public scrollToWantedSets() {
+    this.scrollToSection(this.wantedSetsSection);
+  }
+
+  public scrollToOwnedSets() {
+    this.scrollToSection(this.ownedSetsSection);
+  }
+
+  public scrollToSection(element: ElementRef<any>) {
+    element.nativeElement.scrollIntoView({ behavior: 'smooth' });
   }
 }
