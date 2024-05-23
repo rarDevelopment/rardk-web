@@ -8,27 +8,30 @@
     "build": "ng build",
     "watch": "ng build --watch --configuration development",
     "test": "ng test",
-    "serve:ssr:rardk-web": "node dist/rardk-web/server/server.mjs"
+    "dev:ssr": "ng run rardk-web:serve-ssr",
+    "serve:ssr": "node dist/rardk-web/server/main.js",
+    "build:ssr": "ng build && ng run rardk-web:server",
+    "prerender": "ng run rardk-web:prerender"
   },
   "private": true,
   "engines": {
     "node": ">=18.0.0"
   },
   "dependencies": {
-    "@angular/animations": "^18.0.0",
+    "@angular/animations": "^17.3.3",
     "@angular/cdk": "^17.0.3",
-    "@angular/common": "^18.0.0",
-    "@angular/compiler": "^18.0.0",
-    "@angular/core": "^18.0.0",
-    "@angular/forms": "^18.0.0",
+    "@angular/common": "^17.3.3",
+    "@angular/compiler": "^17.3.3",
+    "@angular/core": "^17.3.3",
+    "@angular/forms": "^17.3.3",
     "@angular/material": "^17.0.3",
-    "@angular/platform-browser": "^18.0.0",
-    "@angular/platform-browser-dynamic": "^18.0.0",
-    "@angular/platform-server": "^18.0.0",
-    "@angular/router": "^18.0.0",
-    "@angular/service-worker": "^18.0.0",
-    "@angular/ssr": "^18.0.0",
-    "express": "^4.18.2",
+    "@angular/platform-browser": "^17.3.3",
+    "@angular/platform-browser-dynamic": "^17.3.3",
+    "@angular/platform-server": "^17.3.3",
+    "@angular/router": "^17.3.3",
+    "@angular/service-worker": "^17.3.3",
+    "@angular/ssr": "^17.3.3",
+    "express": "^4.19.2",
     "luxon": "^3.4.4",
     "marked": "^9.0.0",
     "micromark": "^4.0.0",
@@ -38,9 +41,9 @@
     "zone.js": "^0.14.0"
   },
   "devDependencies": {
-    "@angular-devkit/build-angular": "^18.0.0",
-    "@angular/cli": "^18.0.0",
-    "@angular/compiler-cli": "^18.0.0",
+    "@angular-devkit/build-angular": "^17.3.5",
+    "@angular/cli": "^17.3.3",
+    "@angular/compiler-cli": "^17.3.3",
     "@types/express": "^4.17.17",
     "@types/jasmine": "~4.3.0",
     "@types/luxon": "^3.3.7",
@@ -52,7 +55,7 @@
     "karma-coverage": "~2.2.0",
     "karma-jasmine": "~5.1.0",
     "karma-jasmine-html-reporter": "~2.0.0",
-    "typescript": "~5.4.5"
+    "typescript": "~5.2.0"
   },
   "volta": {
     "node": "20.13.1"
