@@ -33,6 +33,7 @@ export class ModalComponent {
     const clickedElement = $event.target as Element;
     if (clickedElement && this.isAllowedClassForClosing(clickedElement.className)) {
       this.onClose.emit();
+      this.imgIndex = 0;
     }
   }
 
