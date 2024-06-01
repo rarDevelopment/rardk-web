@@ -44,7 +44,12 @@ export class BoardGamesComponent implements OnInit {
       .subscribe({
         next: (boardGames: BoardGame[]) => {
           this.wishlistGames = boardGames
-            .sort((i) => i.priority)
+            .sort((bg1, bg2) => {
+              if (bg1.priority === bg2.priority) {
+                return bg1.name > bg2.name ? 1 : -1;
+              }
+              return bg1.priority > bg2.priority ? 1 : -1;
+            })
             .map((g) => this.formatGameProperties(g, true));
         },
         error: (error) => {
