@@ -33,7 +33,7 @@ export class BotsComponent extends BotPageComponent implements OnInit {
       name: 'Toby the ReplyBot',
       imageUrl: 'assets/replybot.png',
       inviteLink:
-        'https://discord.com/api/oauth2/authorize?client_id=737404113624498347&permissions=1759214243413239&scope=bot%20applications.commands',
+        'https://discord.com/api/oauth2/authorize?client_id=737404113624498347&permissions=1757015219633399&scope=bot%20applications.commands',
       description:
         'A Discord Bot with a personality, including built-in replies, custom replies, and useful features.',
       isConfigurable: true,
