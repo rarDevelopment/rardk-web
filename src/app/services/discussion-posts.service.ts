@@ -10,6 +10,7 @@ import { DiscussionPostsResponse } from '../components/shared/social-media-discu
 export class DiscussionPostsService {
   private discussionBlogPostsUrl: string = `${environment.apiUrl}now/json/discussion-blog-posts`;
   private discussionLinksPostsUrl: string = `${environment.apiUrl}now/json/discussion-links`;
+  private discussionPostsUrl: string = `${environment.apiUrl}now/json/discussion-posts`;
 
   constructor(private http: HttpClient) {}
 
@@ -19,5 +20,9 @@ export class DiscussionPostsService {
 
   public getDiscussionPostsForLinks(): Observable<DiscussionPostsResponse> {
     return this.http.get<DiscussionPostsResponse>(this.discussionLinksPostsUrl);
+  }
+
+  public getDiscussionPostsForPosts(): Observable<DiscussionPostsResponse> {
+    return this.http.get<DiscussionPostsResponse>(this.discussionPostsUrl);
   }
 }
