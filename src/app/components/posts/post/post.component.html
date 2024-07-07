@@ -1,7 +1,5 @@
 <div class="page-description-container">
-  <div class="page-description-content">
-    <app-page-title *ngIf="post" [titleSize]="2">🔗 test</app-page-title>
-  </div>
+  <div class="page-description-content"></div>
 </div>
 <app-loading-indicator [isLoading]="isLoading"></app-loading-indicator>
 <ng-container *ngIf="!isLoading && post">
@@ -20,5 +18,5 @@
 <app-social-media-discussion
   [getDiscussionsMethod]="discussionMethod"></app-social-media-discussion>
 <div class="back-to-posts-link">
-  <a [routerLink]="['/posts']">&#x2190; Back to Links</a>
+  <a [routerLink]="['/posts']">&#x2190; Back to Posts</a>
 </div>
