@@ -18,12 +18,16 @@ import { BlogComponent } from './components/blog/blog.component';
 import { FeedsComponent } from './components/feeds/feeds.component';
 import { LinkPostComponent } from './components/links/link-post/link-post.component';
 import { GalleryComponent } from './components/gallery/gallery.component';
+import { PostComponent } from './components/posts/post/post.component';
+import { PostsComponent } from './components/posts/posts.component';
 
 const routes: Routes = [
   { path: 'blog/:postId', pathMatch: 'full', component: BlogPostComponent },
   { path: 'blog', pathMatch: 'full', component: BlogComponent },
   { path: 'links/:slug', component: LinkPostComponent },
   { path: 'links', component: LinksComponent },
+  { path: 'posts/:slug', component: PostComponent },
+  { path: 'posts', component: PostsComponent },
   {
     path: 'board-games',
     redirectTo: 'collections/board-games',

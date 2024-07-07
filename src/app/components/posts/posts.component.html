@@ -1,0 +1,26 @@
+<div class="page-description-container">
+  <div class="page-description-content">
+    <app-page-title [titleSize]="1">
+      <i class="fa-solid fa-link"></i>
+      Posts
+    </app-page-title>
+    <p>My posts, just like regular social media posts, but on my website instead.</p>
+  </div>
+</div>
+<app-loading-indicator [isLoading]="isLoading"></app-loading-indicator>
+<ng-container *ngIf="!isLoading">
+  <div class="repeating-post" *ngFor="let post of posts">
+    <div class="repeating-post-summary">
+      <p>
+        {{ post.content }}
+      </p>
+      <p *ngIf="post.images_csv">
+        <img [src]="post.images_csv" [alt]="post.content" class="post-image" />
+      </p>
+      <app-date-display
+        [routerLink]="['/posts', post.time_stamp]"
+        [dateToDisplay]="post.posted_at"
+        labelText="Shared on:"></app-date-display>
+    </div>
+  </div>
+</ng-container>
