@@ -21,6 +21,8 @@ export class SocialMediaDiscussionComponent implements OnInit {
   public mastodonPosts: PostToDisplay[] = [];
   public blueskyPosts: PostToDisplay[] = [];
   @Input() getDiscussionsMethod: () => Observable<DiscussionPostsResponse>;
+  @Input() showContent: boolean = true;
+  @Input() discussionId: string;
 
   constructor(private router: Router) {}
 
@@ -33,7 +35,7 @@ export class SocialMediaDiscussionComponent implements OnInit {
       .pipe(take(1))
       .subscribe({
         next: (discussion) => {
-          const postDiscussion = discussion[this.router.url];
+          const postDiscussion = discussion[this.discussionId ?? this.router.url];
           if (postDiscussion) {
             if (postDiscussion.mastodon) {
               postDiscussion.mastodon.forEach((post: MastodonStatusFull) => {

@@ -1,4 +1,4 @@
-<div class="discussion-container">
+<div class="discussion-container" *ngIf="mastodonPosts.length > 0 || blueskyPosts.length > 0">
   <div class="discussion-note">Join the discussion below:</div>
   <div class="mastodon discussion-posts" *ngIf="mastodonPosts.length > 0">
     <div class="discussion-post" *ngFor="let post of mastodonPosts">
@@ -6,7 +6,7 @@
         <i class="fa-brands fa-mastodon mastodon-color mastodon-icon"></i>
         <a [href]="post.url" target="_blank">View on Mastodon</a>
       </div>
-      <div class="discussion-content" [html]="post.content"></div>
+      <div *ngIf="showContent" class="discussion-content" [html]="post.content"></div>
       <div class="discussion-interactions">
         <div class="interaction-button mastodon-color likes">
           <a [href]="post.likesUrl" target="_blank">
@@ -44,7 +44,7 @@
         </svg>
         <a [href]="post.url" target="_blank">View on Bluesky</a>
       </div>
-      <div class="discussion-content">
+      <div *ngIf="showContent" class="discussion-content">
         <p>{{ post.content }}</p>
       </div>
       <div class="discussion-interactions">
