@@ -11,7 +11,7 @@
       <p *ngIf="post.images_csv">
         <img [src]="post.images_csv" [alt]="post.content" class="post-image" />
       </p>
-      <app-date-display [dateToDisplay]="post.posted_at" labelText="Shared on:"></app-date-display>
+      <app-date-display [dateToDisplay]="post.posted_at" labelText="Posted on:"></app-date-display>
     </div>
   </div>
 </ng-container>
