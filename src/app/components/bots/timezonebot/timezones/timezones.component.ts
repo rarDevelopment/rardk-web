@@ -11,7 +11,7 @@ import { MatOptionModule } from '@angular/material/core';
 import { FormsModule } from '@angular/forms';
 import { MatSelectModule } from '@angular/material/select';
 import { MatFormFieldModule } from '@angular/material/form-field';
-import { NgIf, NgFor } from '@angular/common';
+import { CommonModule } from '@angular/common';
 import { MatIconModule } from '@angular/material/icon';
 import { PageTitleComponent } from '../../../shared/page-title/page-title.component';
 import { LoadingIndicatorComponent } from 'src/app/components/shared/loading-indicator/loading-indicator.component';
@@ -24,11 +24,10 @@ import { LoadingIndicatorComponent } from 'src/app/components/shared/loading-ind
   imports: [
     PageTitleComponent,
     MatIconModule,
-    NgIf,
+    CommonModule,
     MatFormFieldModule,
     MatSelectModule,
     FormsModule,
-    NgFor,
     MatOptionModule,
     MatInputModule,
     MatButtonModule,
@@ -47,11 +46,7 @@ export class TimezonesComponent extends BotPageComponent implements OnInit {
   public timeZoneDataSource: TimeZoneDataSource;
   public discordUser: any;
 
-  public displayedColumns: string[] = [
-    'set-button',
-    'copy-button',
-    'timezone-id',
-  ];
+  public displayedColumns: string[] = ['set-button', 'copy-button', 'timezone-id'];
   public dataSource: TimeZoneItem[];
   public currentTimeZone: string;
   public currentTime: string;
@@ -67,8 +62,7 @@ export class TimezonesComponent extends BotPageComponent implements OnInit {
         .pipe(
           timeout({
             each: 10000,
-            with: () =>
-              throwError(() => new Error('Timed out waiting for response.')),
+            with: () => throwError(() => new Error('Timed out waiting for response.')),
           }),
           map(([timeZones, discordUser]) => {
             return {
@@ -179,25 +173,16 @@ export class TimezonesComponent extends BotPageComponent implements OnInit {
         this.timeZoneBotService.setTimeZone(bodyToUse).subscribe({
           next: (success) => {
             if (success) {
-              this.showSnackBar(
-                `Successfully changed your time zone to ${timeZoneId}`,
-                false
-              );
+              this.showSnackBar(`Successfully changed your time zone to ${timeZoneId}`, false);
               this.updateCurrentTimeZone(discordUser.id);
             } else {
               console.error('Error setting TimeZone: API returned false');
-              this.showSnackBar(
-                'There was an error setting your time zone.',
-                true
-              );
+              this.showSnackBar('There was an error setting your time zone.', true);
             }
           },
           error: (error) => {
             console.error('Error setting TimeZone:', error);
-            this.showSnackBar(
-              'There was an error setting your time zone.',
-              true
-            );
+            this.showSnackBar('There was an error setting your time zone.', true);
           },
         });
       },

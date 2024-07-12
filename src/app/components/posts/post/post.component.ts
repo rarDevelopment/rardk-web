@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, ParamMap, Router, RouterLink } from '@angular/router';
 import { combineLatest, finalize, map, take } from 'rxjs';
 import { PageTitleComponent } from '../../shared/page-title/page-title.component';
-import { NgIf } from '@angular/common';
+import { CommonModule } from '@angular/common';
 import { DateDisplayComponent } from '../../shared/date-display/date-display.component';
 import { SocialMediaDiscussionComponent } from '../../shared/social-media-discussion/social-media-discussion.component';
 import { DiscussionPostsService } from 'src/app/services/discussion-posts.service';
@@ -14,8 +14,8 @@ import { Post } from '../models/post';
   selector: 'app-post',
   standalone: true,
   imports: [
+    CommonModule,
     PageTitleComponent,
-    NgIf,
     LoadingIndicatorComponent,
     DateDisplayComponent,
     RouterLink,

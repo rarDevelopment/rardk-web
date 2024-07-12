@@ -4,7 +4,7 @@ import { BotPageComponent } from '../../bot-page/bot-page.component';
 import { forkJoin } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { GuildConfiguration } from 'src/app/components/bots/models/replybot/guild-configuration';
-import { NgIf, NgFor } from '@angular/common';
+import { CommonModule } from '@angular/common';
 import { PageTitleComponent } from '../../../shared/page-title/page-title.component';
 import { LoadingIndicatorComponent } from 'src/app/components/shared/loading-indicator/loading-indicator.component';
 
@@ -13,17 +13,9 @@ import { LoadingIndicatorComponent } from 'src/app/components/shared/loading-ind
   templateUrl: './replybot-server-selector.component.html',
   styleUrls: ['./replybot-server-selector.component.scss'],
   standalone: true,
-  imports: [
-    PageTitleComponent,
-    NgIf,
-    NgFor,
-    LoadingIndicatorComponent,
-  ],
+  imports: [PageTitleComponent, CommonModule, LoadingIndicatorComponent],
 })
-export class ReplybotServerSelectorComponent
-  extends BotPageComponent
-  implements OnInit
-{
+export class ReplybotServerSelectorComponent extends BotPageComponent implements OnInit {
   public isLoading = false;
   public discordGuilds: DiscordGuild[] = [];
 
@@ -46,16 +38,10 @@ export class ReplybotServerSelectorComponent
             userGuilds: DiscordGuild[];
             replybotGuildConfigurations: GuildConfiguration[];
           }) => {
-            if (
-              result &&
-              result.userGuilds &&
-              result.replybotGuildConfigurations
-            ) {
+            if (result && result.userGuilds && result.replybotGuildConfigurations) {
               this.discordGuilds = result.userGuilds
                 .filter((ug) => {
-                  return result.replybotGuildConfigurations.find(
-                    (r) => r.guildId == ug.id
-                  );
+                  return result.replybotGuildConfigurations.find((r) => r.guildId == ug.id);
                 })
                 .sort((g1: DiscordGuild, g2: DiscordGuild) => {
                   return g1.name.toLowerCase() > g2.name.toLowerCase() ? 1 : -1;

@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { NgIf } from '@angular/common';
+import { CommonModule } from '@angular/common';
 import { NavbarButtonComponent } from './navbar-button/navbar-button.component';
 
 @Component({
@@ -7,6 +7,6 @@ import { NavbarButtonComponent } from './navbar-button/navbar-button.component';
   templateUrl: './navbar.component.html',
   styleUrls: ['./navbar.component.scss'],
   standalone: true,
-  imports: [NavbarButtonComponent, NgIf],
+  imports: [NavbarButtonComponent, CommonModule],
 })
 export class NavbarComponent {}

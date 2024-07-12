@@ -8,7 +8,7 @@ import { MatOptionModule } from '@angular/material/core';
 import { FormsModule } from '@angular/forms';
 import { MatSelectModule } from '@angular/material/select';
 import { MatFormFieldModule } from '@angular/material/form-field';
-import { NgFor, NgIf } from '@angular/common';
+import { CommonModule } from '@angular/common';
 import { PageTitleComponent } from '../../shared/page-title/page-title.component';
 import { LoadingIndicatorComponent } from '../../shared/loading-indicator/loading-indicator.component';
 import { ModalImage, ModalImageItem } from 'src/app/components/shared/modal/models/modal-image';
@@ -22,14 +22,13 @@ import { ModalComponent } from '../../shared/modal/modal.component';
   standalone: true,
   imports: [
     PageTitleComponent,
-    NgFor,
+    CommonModule,
     MatFormFieldModule,
     MatSelectModule,
     FormsModule,
     MatOptionModule,
     MatRadioModule,
     CheckOrXComponent,
-    NgIf,
     LoadingIndicatorComponent,
     ModalComponent,
   ],

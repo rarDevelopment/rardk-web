@@ -1,4 +1,4 @@
-import { NgClass, NgIf } from '@angular/common';
+import { CommonModule } from '@angular/common';
 import { Component, Input } from '@angular/core';
 
 @Component({
@@ -6,7 +6,7 @@ import { Component, Input } from '@angular/core';
   templateUrl: './page-title.component.html',
   styleUrl: './page-title.component.scss',
   standalone: true,
-  imports: [NgIf, NgClass],
+  imports: [CommonModule],
 })
 export class PageTitleComponent {
   @Input() titleSize: number;

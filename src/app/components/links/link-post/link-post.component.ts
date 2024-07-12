@@ -4,7 +4,7 @@ import { combineLatest, finalize, map, take } from 'rxjs';
 import { Link } from 'src/app/components/links/models/link';
 import { LinksService } from 'src/app/components/links/links.service';
 import { PageTitleComponent } from '../../shared/page-title/page-title.component';
-import { NgIf } from '@angular/common';
+import { CommonModule } from '@angular/common';
 import { DateDisplayComponent } from '../../shared/date-display/date-display.component';
 import { SocialMediaDiscussionComponent } from '../../shared/social-media-discussion/social-media-discussion.component';
 import { DiscussionPostsService } from 'src/app/services/discussion-posts.service';
@@ -14,8 +14,8 @@ import { LoadingIndicatorComponent } from '../../shared/loading-indicator/loadin
   selector: 'app-link-post',
   standalone: true,
   imports: [
+    CommonModule,
     PageTitleComponent,
-    NgIf,
     LoadingIndicatorComponent,
     DateDisplayComponent,
     RouterLink,

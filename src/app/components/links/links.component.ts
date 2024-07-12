@@ -1,4 +1,4 @@
-import { NgFor, NgIf } from '@angular/common';
+import { CommonModule } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { HtmlDirective } from 'src/app/directives/html.directive';
 import { PageTitleComponent } from '../shared/page-title/page-title.component';
@@ -12,10 +12,9 @@ import { LoadingIndicatorComponent } from '../shared/loading-indicator/loading-i
   selector: 'app-links',
   standalone: true,
   imports: [
-    NgFor,
+    CommonModule,
     HtmlDirective,
     PageTitleComponent,
-    NgIf,
     LoadingIndicatorComponent,
     DateDisplayComponent,
   ],

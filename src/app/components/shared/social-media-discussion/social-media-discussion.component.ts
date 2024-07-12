@@ -1,4 +1,4 @@
-import { NgFor, NgIf } from '@angular/common';
+import { CommonModule } from '@angular/common';
 import { Component, Input, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { Observable, take } from 'rxjs';
@@ -13,7 +13,7 @@ import { environment } from 'src/environments/environment';
 @Component({
   selector: 'app-social-media-discussion',
   standalone: true,
-  imports: [SafeHtmlPipe, HtmlDirective, NgIf, NgFor],
+  imports: [SafeHtmlPipe, HtmlDirective, CommonModule],
   templateUrl: './social-media-discussion.component.html',
   styleUrl: './social-media-discussion.component.scss',
 })

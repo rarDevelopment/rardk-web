@@ -1,7 +1,7 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { FeedItem } from './models/feed-item';
 import { ProfileLinkComponent } from '../profile-link/profile-link.component';
-import { NgIf, NgFor } from '@angular/common';
+import { CommonModule } from '@angular/common';
 import { LoadingIndicatorComponent } from '../loading-indicator/loading-indicator.component';
 import { TooltipDirective } from 'src/app/directives/tooltip.directive';
 
@@ -10,14 +10,7 @@ import { TooltipDirective } from 'src/app/directives/tooltip.directive';
   templateUrl: './feed-posters.component.html',
   styleUrls: ['./feed-posters.component.scss'],
   standalone: true,
-  imports: [
-    NgIf,
-    ProfileLinkComponent,
-    LoadingIndicatorComponent,
-    NgFor,
-    TooltipDirective,
-    TooltipDirective,
-  ],
+  imports: [CommonModule, ProfileLinkComponent, LoadingIndicatorComponent, TooltipDirective],
 })
 export class FeedPostersComponent implements OnInit {
   @Input() sectionTitle: string;

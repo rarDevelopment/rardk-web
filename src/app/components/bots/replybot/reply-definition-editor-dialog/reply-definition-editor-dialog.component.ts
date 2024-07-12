@@ -1,9 +1,5 @@
 import { Component, Inject } from '@angular/core';
-import {
-  MAT_DIALOG_DATA,
-  MatDialog,
-  MatDialogRef,
-} from '@angular/material/dialog';
+import { MAT_DIALOG_DATA, MatDialog, MatDialogRef } from '@angular/material/dialog';
 import { ReplyDefinition } from 'src/app/components/bots/models/replybot/reply-definition';
 import { ReplyDefinitionEditorDialogData as ReplyDefinitionEditorDialogData } from 'src/app/components/bots/models/replybot/reply-definition-editor-dialog-data';
 import { HelpDialogComponent } from './help-dialog/help-dialog/help-dialog.component';
@@ -11,7 +7,7 @@ import emojiRegex from 'emoji-regex';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatInputModule } from '@angular/material/input';
 import { MatFormFieldModule } from '@angular/material/form-field';
-import { NgFor, NgIf } from '@angular/common';
+import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 import { MatIconModule } from '@angular/material/icon';
@@ -29,8 +25,7 @@ import { TooltipDirective } from 'src/app/directives/tooltip.directive';
     MatIconModule,
     MatSlideToggleModule,
     FormsModule,
-    NgFor,
-    NgIf,
+    CommonModule,
     MatFormFieldModule,
     MatInputModule,
     MatCheckboxModule,
@@ -48,18 +43,12 @@ export class ReplyDefinitionEditorDialogComponent {
   public userIds: string[];
   public reactions: string[];
   public maxReplyLength: number = 1800;
-  public forbiddenTermErrorMessage: string =
-    'There is a forbidden term present in this field.';
+  public forbiddenTermErrorMessage: string = 'There is a forbidden term present in this field.';
   public invalidEmojiErrorMessage: string =
     'A reaction must be one (1) valid emoji (custom emoji are not supported yet).';
   public invalidIdErrorMessage: string = 'An ID must be a valid number.';
 
-  public forbiddenTerms: string[] = [
-    'HowLongToBeat',
-    'DefineWord',
-    'FortniteShopInfo',
-    'Poll',
-  ];
+  public forbiddenTerms: string[] = ['HowLongToBeat', 'DefineWord', 'FortniteShopInfo', 'Poll'];
 
   constructor(
     public dialogRef: MatDialogRef<ReplyDefinitionEditorDialogComponent>,
@@ -174,8 +163,7 @@ export class ReplyDefinitionEditorDialogComponent {
   }
 
   cleanReactions(reactions: string[]) {
-    const trimmedReactionsWithoutEmpty =
-      this.removeEmptyStringsAndTrim(reactions);
+    const trimmedReactionsWithoutEmpty = this.removeEmptyStringsAndTrim(reactions);
 
     let reactionsWithoutDuplicates: string[] = [];
 

@@ -6,7 +6,7 @@ import { take, switchMap, finalize } from 'rxjs/operators';
 import { Meta } from '@angular/platform-browser';
 import { HtmlDirective } from '../../../directives/html.directive';
 import { DateDisplayComponent } from '../../shared/date-display/date-display.component';
-import { NgIf } from '@angular/common';
+import { CommonModule } from '@angular/common';
 import { MarkdownModule, provideMarkdown, MarkdownService } from 'ngx-markdown';
 import { SocialMediaDiscussionComponent } from '../../shared/social-media-discussion/social-media-discussion.component';
 import { DiscussionPostsService } from 'src/app/services/discussion-posts.service';
@@ -18,7 +18,7 @@ import { LoadingIndicatorComponent } from '../../shared/loading-indicator/loadin
   styleUrl: './blog-post.component.scss',
   standalone: true,
   imports: [
-    NgIf,
+    CommonModule,
     LoadingIndicatorComponent,
     DateDisplayComponent,
     HtmlDirective,
