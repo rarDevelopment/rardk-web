@@ -44,9 +44,7 @@
         </svg>
         <a [href]="post.url" target="_blank">View on Bluesky</a>
       </div>
-      <div *ngIf="showContent" class="discussion-content">
-        <p>{{ post.content }}</p>
-      </div>
+      <div *ngIf="showContent" class="discussion-content" [html]="post.content"></div>
       <div class="discussion-interactions">
         <div class="interaction-button bluesky-color likes">
           <a [href]="post.likesUrl" target="_blank">
