@@ -15,7 +15,7 @@ import { MatExpansionModule } from '@angular/material/expansion';
 import { FormsModule } from '@angular/forms';
 import { MatButtonToggleModule } from '@angular/material/button-toggle';
 import { PageTitleComponent } from '../../shared/page-title/page-title.component';
-import { NgIf, NgFor, NgClass, DatePipe } from '@angular/common';
+import { CommonModule } from '@angular/common';
 import { RouterLink } from '@angular/router';
 import { CheckOrXComponent } from '../../shared/check-or-x/check-or-x.component';
 import { LoadingIndicatorComponent } from '../../shared/loading-indicator/loading-indicator.component';
@@ -27,18 +27,15 @@ import { TooltipDirective } from 'src/app/directives/tooltip.directive';
   styleUrls: ['./reply-definitions.component.scss'],
   standalone: true,
   imports: [
-    NgIf,
+    CommonModule,
     PageTitleComponent,
     MatButtonToggleModule,
     FormsModule,
-    NgFor,
     MatExpansionModule,
-    NgClass,
     TooltipDirective,
     MatButtonModule,
     MatIconModule,
     CheckOrXComponent,
-    DatePipe,
     RouterLink,
     LoadingIndicatorComponent,
   ],

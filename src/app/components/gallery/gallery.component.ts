@@ -2,7 +2,7 @@ import { Component, Input, OnInit } from '@angular/core';
 import { PixelfedPost } from 'src/app/components/gallery/models/pixelfed-post';
 import { PixelfedService } from './gallery.service';
 import { finalize, take } from 'rxjs';
-import { NgFor, NgIf } from '@angular/common';
+import { CommonModule } from '@angular/common';
 import { PageTitleComponent } from '../shared/page-title/page-title.component';
 import { ModalComponent } from '../shared/modal/modal.component';
 import { LoadingIndicatorComponent } from '../shared/loading-indicator/loading-indicator.component';
@@ -15,8 +15,7 @@ import { ModalImage, ModalImageItem } from 'src/app/components/shared/modal/mode
   selector: 'app-gallery',
   standalone: true,
   imports: [
-    NgFor,
-    NgIf,
+    CommonModule,
     DateDisplayComponent,
     PageTitleComponent,
     ModalComponent,
