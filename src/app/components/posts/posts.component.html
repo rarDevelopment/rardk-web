@@ -2,9 +2,9 @@
   <div class="page-description-content">
     <app-page-title [titleSize]="1">
       <i class="fa-solid fa-comment"></i>
-      Posts
+      {{ pageTitle }}
     </app-page-title>
-    <p>My posts, just like regular social media posts, but on my website instead.</p>
+    <p></p>
   </div>
 </div>
 <app-loading-indicator [isLoading]="isLoading"></app-loading-indicator>
@@ -24,3 +24,8 @@
     </div>
   </div>
 </ng-container>
+@if(showPageLink) {
+<div class="section-footer">
+  <a [routerLink]="['/posts']">See more Posts</a>
+</div>
+}
