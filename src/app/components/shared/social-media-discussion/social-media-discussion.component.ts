@@ -30,6 +30,19 @@ export class SocialMediaDiscussionComponent implements OnInit {
     this.getDiscussionForPost();
   }
 
+  cleanText(text: string, startWithNewLine: boolean = false, endWithNewLine = false): string {
+    const indexToRemoveFrom = text.lastIndexOf('http://rardk.com');
+    let cleanedText = text.substring(0, indexToRemoveFrom);
+    cleanedText = cleanedText.replace(/\n/g, '<br>');
+    if (startWithNewLine) {
+      cleanedText = '<br />' + cleanedText;
+    }
+    if (endWithNewLine) {
+      cleanedText = cleanedText + '<br />';
+    }
+    return cleanedText;
+  }
+
   getDiscussionForPost() {
     this.getDiscussionsMethod()
       .pipe(take(1))
@@ -39,11 +52,12 @@ export class SocialMediaDiscussionComponent implements OnInit {
           if (postDiscussion) {
             if (postDiscussion.mastodon) {
               postDiscussion.mastodon.forEach((post: MastodonStatusFull) => {
+                console.log('post content', post.content);
                 const postToDisplay = {
                   likes: post.favourites_count,
                   shares: post.reblogs_count,
                   comments: post.replies_count,
-                  content: post.content,
+                  content: this.cleanText(post.content, false, true),
                   url: post.url,
                   commentsUrl: post.url,
                   likesUrl: `${post.url}/favourites`,
@@ -61,7 +75,7 @@ export class SocialMediaDiscussionComponent implements OnInit {
                   likes: -1,
                   shares: -1,
                   comments: -1,
-                  content: post.value.text,
+                  content: this.cleanText(post.value.text, true, false),
                   url: bskyUrl,
                   commentsUrl: bskyUrl,
                   likesUrl: `${bskyUrl}/liked-by`,
