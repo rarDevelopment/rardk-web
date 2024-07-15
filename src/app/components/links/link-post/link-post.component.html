@@ -1,22 +1,22 @@
 <div class="page-description-container">
   <div class="page-description-content">
-    <app-page-title *ngIf="link" [titleSize]="2">🔗 {{ link.title }}</app-page-title>
+    <app-page-title *ngIf="post" [titleSize]="2">🔗 {{ post.url_title }}</app-page-title>
   </div>
 </div>
 <app-loading-indicator [isLoading]="isLoading"></app-loading-indicator>
-<ng-container *ngIf="!isLoading && link">
+<ng-container *ngIf="!isLoading && post">
   <div class="post">
     <div class="post-summary">
       <p>
-        {{ link.description }}
+        {{ post.content }}
       </p>
       <p>
-        <a [href]="link.link" target="_blank">
-          {{ link.title }}
+        <a [href]="post.url" target="_blank">
+          {{ post.url_title }}
           <i class="fa-solid fa-arrow-up-right-from-square"></i>
         </a>
       </p>
-      <app-date-display [dateToDisplay]="link.dateShared" labelText="Shared on:"></app-date-display>
+      <app-date-display [dateToDisplay]="post.posted_at" labelText="Shared on:"></app-date-display>
     </div>
   </div>
 </ng-container>
