@@ -38,7 +38,7 @@ export class PostsComponent implements OnInit {
   public populatePosts() {
     this.isLoading = true;
     this.postsService
-      .getPosts()
+      .getPosts('#rardkpost')
       .pipe(
         take(1),
         finalize(() => {

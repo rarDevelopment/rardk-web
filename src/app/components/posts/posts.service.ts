@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Observable } from 'rxjs';
+import { map, Observable } from 'rxjs';
 import { Post } from './models/post';
 import { environment } from 'src/environments/environment';
 
@@ -12,7 +12,16 @@ export class PostsService {
 
   constructor(private http: HttpClient) {}
 
-  public getPosts(): Observable<Post[]> {
-    return this.http.get<Post[]>(this.url);
+  public getPosts(hashtagPrefix: string): Observable<Post[]> {
+    return this.http
+      .get<Post[]>(this.url)
+      .pipe(
+        map((posts: Post[]) =>
+          posts.map((p) => ({
+            ...p,
+            content: p.content.replace(`${hashtagPrefix}${p.time_stamp}`, ''),
+          }))
+        )
+      );
   }
 }

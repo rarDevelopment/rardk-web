@@ -40,7 +40,7 @@ export class PostComponent implements OnInit {
   ) {}
   ngOnInit(): void {
     this.isLoading = true;
-    combineLatest([this.postsService.getPosts(), this.route.paramMap])
+    combineLatest([this.postsService.getPosts('#rardkpost'), this.route.paramMap])
       .pipe(
         take(1),
         map(([posts, routeParams]) => {

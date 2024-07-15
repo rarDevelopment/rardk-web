@@ -34,7 +34,7 @@ export class LinksComponent implements OnInit {
   public populateLinks() {
     this.isLoading = true;
     this.linksService
-      .getPosts()
+      .getPosts('#rardklink')
       .pipe(
         take(1),
         finalize(() => {
