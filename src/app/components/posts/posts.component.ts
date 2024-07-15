@@ -47,9 +47,9 @@ export class PostsComponent implements OnInit {
       )
       .subscribe({
         next: (postsResponse) => {
-          const postsToShow = postsResponse.sort((l1, l2) =>
-            l1.posted_at > l2.posted_at ? -1 : 1
-          );
+          const postsToShow = postsResponse
+            .filter((p) => !p.url || p.url?.trim().length === 0)
+            .sort((p1, p2) => (p1.posted_at > p2.posted_at ? -1 : 1));
           this.itemCount > 0
             ? (this.posts = postsToShow.slice(0, this.itemCount))
             : (this.posts = postsToShow);
