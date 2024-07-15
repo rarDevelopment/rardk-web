@@ -1,14 +1,14 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, ParamMap, Router, RouterLink } from '@angular/router';
 import { combineLatest, finalize, map, take } from 'rxjs';
-import { Link } from 'src/app/components/links/models/link';
-import { LinksService } from 'src/app/components/links/links.service';
 import { PageTitleComponent } from '../../shared/page-title/page-title.component';
 import { CommonModule } from '@angular/common';
 import { DateDisplayComponent } from '../../shared/date-display/date-display.component';
 import { SocialMediaDiscussionComponent } from '../../shared/social-media-discussion/social-media-discussion.component';
 import { DiscussionPostsService } from 'src/app/services/discussion-posts.service';
 import { LoadingIndicatorComponent } from '../../shared/loading-indicator/loading-indicator.component';
+import { PostsService } from '../../posts/posts.service';
+import { Post } from '../../posts/models/post';
 
 @Component({
   selector: 'app-link-post',
@@ -25,25 +25,22 @@ import { LoadingIndicatorComponent } from '../../shared/loading-indicator/loadin
   styleUrl: './link-post.component.scss',
 })
 export class LinkPostComponent implements OnInit {
-  public link: Link;
+  public post: Post;
   public isLoading: boolean;
-  public linksService: LinksService;
   public slug: string;
   public discussionMethod = this.discussionPostsService.getDiscussionPostsForLinks.bind(
     this.discussionPostsService
   );
 
   constructor(
-    linksService: LinksService,
+    private postsService: PostsService,
     private route: ActivatedRoute,
     private router: Router,
     private discussionPostsService: DiscussionPostsService
-  ) {
-    this.linksService = linksService;
-  }
+  ) {}
   ngOnInit(): void {
     this.isLoading = true;
-    combineLatest([this.linksService.getLinks(), this.route.paramMap])
+    combineLatest([this.postsService.getPosts('#rardklink'), this.route.paramMap])
       .pipe(
         take(1),
         map(([links, routeParams]) => {
@@ -59,8 +56,8 @@ export class LinkPostComponent implements OnInit {
         })
       )
       .subscribe({
-        next: (result: { links: Link[]; routeParams: ParamMap }) => {
-          this.findAndSetLink(result.links, result.routeParams);
+        next: (result: { links: Post[]; routeParams: ParamMap }) => {
+          this.findAndSetPost(result.links, result.routeParams);
         },
         error: (error) => {
           console.error(error);
@@ -68,11 +65,11 @@ export class LinkPostComponent implements OnInit {
       });
   }
 
-  public findAndSetLink(links: Link[], routeParams: ParamMap) {
-    const foundLink = links.find((link) => link.slug === routeParams.get('slug')!);
-    if (!foundLink) {
-      this.router.navigate(['links']);
+  public findAndSetPost(posts: Post[], routeParams: ParamMap) {
+    const foundPost = posts.find((post) => post.time_stamp === routeParams.get('slug')!);
+    if (!foundPost) {
+      this.router.navigate(['posts']);
     }
-    this.link = foundLink!;
+    this.post = foundPost!;
   }
 }
