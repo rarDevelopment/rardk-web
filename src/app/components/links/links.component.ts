@@ -8,6 +8,7 @@ import { DateDisplayComponent } from '../shared/date-display/date-display.compon
 import { LoadingIndicatorComponent } from '../shared/loading-indicator/loading-indicator.component';
 import { PostsService } from '../posts/posts.service';
 import { Post } from '../posts/models/post';
+import { PostType } from '../posts/models/post-type';
 
 @Component({
   selector: 'app-links',
@@ -34,7 +35,7 @@ export class LinksComponent implements OnInit {
   public populateLinks() {
     this.isLoading = true;
     this.linksService
-      .getPosts('#rardklink')
+      .getPosts(PostType.Link)
       .pipe(
         take(1),
         finalize(() => {
@@ -44,7 +45,6 @@ export class LinksComponent implements OnInit {
       .subscribe({
         next: (linksResponse) => {
           this.links = linksResponse
-            .filter((p: Post) => p.url?.trim().length > 0)
             .sort((p1, p2) => (p1.posted_at > p2.posted_at ? -1 : 1))
             .map((p: Post) => {
               return {

@@ -9,6 +9,7 @@ import { DiscussionPostsService } from 'src/app/services/discussion-posts.servic
 import { LoadingIndicatorComponent } from '../../shared/loading-indicator/loading-indicator.component';
 import { PostsService } from '../posts.service';
 import { Post } from '../models/post';
+import { PostType } from '../models/post-type';
 
 @Component({
   selector: 'app-post',
@@ -40,7 +41,7 @@ export class PostComponent implements OnInit {
   ) {}
   ngOnInit(): void {
     this.isLoading = true;
-    combineLatest([this.postsService.getPosts('#rardkpost'), this.route.paramMap])
+    combineLatest([this.postsService.getPosts(PostType.Post), this.route.paramMap])
       .pipe(
         take(1),
         map(([posts, routeParams]) => {
