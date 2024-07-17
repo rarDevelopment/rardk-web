@@ -8,6 +8,7 @@ import { LoadingIndicatorComponent } from '../shared/loading-indicator/loading-i
 import { PostsService } from './posts.service';
 import { Post } from './models/post';
 import { RouterLink } from '@angular/router';
+import { PostType } from './models/post-type';
 
 @Component({
   selector: 'app-posts',
@@ -38,7 +39,7 @@ export class PostsComponent implements OnInit {
   public populatePosts() {
     this.isLoading = true;
     this.postsService
-      .getPosts('#rardkpost')
+      .getPosts(PostType.Post)
       .pipe(
         take(1),
         finalize(() => {
@@ -47,9 +48,9 @@ export class PostsComponent implements OnInit {
       )
       .subscribe({
         next: (postsResponse) => {
-          const postsToShow = postsResponse
-            .filter((p) => !p.url || p.url?.trim().length === 0)
-            .sort((p1, p2) => (p1.posted_at > p2.posted_at ? -1 : 1));
+          const postsToShow = postsResponse.sort((p1, p2) =>
+            p1.posted_at > p2.posted_at ? -1 : 1
+          );
           this.itemCount > 0
             ? (this.posts = postsToShow.slice(0, this.itemCount))
             : (this.posts = postsToShow);

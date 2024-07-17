@@ -9,6 +9,7 @@ import { DiscussionPostsService } from 'src/app/services/discussion-posts.servic
 import { LoadingIndicatorComponent } from '../../shared/loading-indicator/loading-indicator.component';
 import { PostsService } from '../../posts/posts.service';
 import { Post } from '../../posts/models/post';
+import { PostType } from '../../posts/models/post-type';
 
 @Component({
   selector: 'app-link-post',
@@ -40,7 +41,7 @@ export class LinkPostComponent implements OnInit {
   ) {}
   ngOnInit(): void {
     this.isLoading = true;
-    combineLatest([this.postsService.getPosts('#rardklink'), this.route.paramMap])
+    combineLatest([this.postsService.getPosts(PostType.Link), this.route.paramMap])
       .pipe(
         take(1),
         map(([links, routeParams]) => {
@@ -68,7 +69,7 @@ export class LinkPostComponent implements OnInit {
   public findAndSetPost(posts: Post[], routeParams: ParamMap) {
     const foundPost = posts.find((post) => post.time_stamp === routeParams.get('slug')!);
     if (!foundPost) {
-      this.router.navigate(['posts']);
+      this.router.navigate(['links']);
     }
     this.post = foundPost!;
   }
