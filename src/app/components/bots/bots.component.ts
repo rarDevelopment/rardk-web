@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { BotPageComponent } from './bot-page/bot-page.component';
 import { BotDefinition } from 'src/app/components/bots/models/bot-definition';
 import { finalize, take } from 'rxjs';
-import { CommonModule } from '@angular/common';
+
 import { LoginActionsComponent } from './login-actions/login-actions.component';
 import { PageTitleComponent } from '../shared/page-title/page-title.component';
 import { RouterLink } from '@angular/router';
@@ -13,7 +13,7 @@ import { TooltipDirective } from 'src/app/directives/tooltip.directive';
   templateUrl: './bots.component.html',
   styleUrls: ['./bots.component.scss'],
   standalone: true,
-  imports: [PageTitleComponent, LoginActionsComponent, CommonModule, TooltipDirective, RouterLink],
+  imports: [PageTitleComponent, LoginActionsComponent, TooltipDirective, RouterLink],
 })
 export class BotsComponent extends BotPageComponent implements OnInit {
   public isLoading: boolean;

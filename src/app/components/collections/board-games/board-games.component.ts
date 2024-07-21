@@ -3,7 +3,7 @@ import { BoardGamesService } from './board-games.service';
 import { BoardGame } from 'src/app/components/collections/board-games/models/board-game';
 import { finalize, take } from 'rxjs';
 import { micromark } from 'micromark';
-import { CommonModule } from '@angular/common';
+
 import { PageTitleComponent } from '../../shared/page-title/page-title.component';
 import { Router } from '@angular/router';
 import { LoadingIndicatorComponent } from '../../shared/loading-indicator/loading-indicator.component';
@@ -13,7 +13,7 @@ import { LoadingIndicatorComponent } from '../../shared/loading-indicator/loadin
   templateUrl: './board-games.component.html',
   styleUrls: ['./board-games.component.scss'],
   standalone: true,
-  imports: [CommonModule, PageTitleComponent, LoadingIndicatorComponent],
+  imports: [PageTitleComponent, LoadingIndicatorComponent],
 })
 export class BoardGamesComponent implements OnInit {
   constructor(private boardGamesService: BoardGamesService, private router: Router) {}

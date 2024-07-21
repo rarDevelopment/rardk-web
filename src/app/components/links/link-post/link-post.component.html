@@ -1,10 +1,12 @@
 <div class="page-description-container">
   <div class="page-description-content">
-    <app-page-title *ngIf="post" [titleSize]="2">🔗 {{ post.url_title }}</app-page-title>
+    @if (post) {
+      <app-page-title [titleSize]="2">🔗 {{ post.url_title }}</app-page-title>
+    }
   </div>
 </div>
 <app-loading-indicator [isLoading]="isLoading"></app-loading-indicator>
-<ng-container *ngIf="!isLoading && post">
+@if (!isLoading && post) {
   <div class="post">
     <div class="post-summary">
       <p>
@@ -19,10 +21,10 @@
       <app-date-display [dateToDisplay]="post.posted_at" labelText="Shared on:"></app-date-display>
     </div>
   </div>
-</ng-container>
+}
 <app-social-media-discussion
   [getDiscussionsMethod]="discussionMethod"
-  [showContent]="false"></app-social-media-discussion>
+[showContent]="false"></app-social-media-discussion>
 <div class="back-to-links-link">
   <a [routerLink]="['/links']">&#x2190; Back to Links</a>
 </div>

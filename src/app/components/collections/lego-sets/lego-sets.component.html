@@ -5,96 +5,98 @@
   </div>
 </div>
 <app-loading-indicator [isLoading]="isLoading"></app-loading-indicator>
-<div class="content-container" *ngIf="!isLoading">
-  <div class="content-container-card">
-    <div class="description">
-      <div class="button-container">
-        <button class="button action secondary" (click)="scrollToWantedSets()">
-          Skip to Sets I Want
-        </button>
-        <button class="button action secondary" (click)="scrollToOwnedSets()">
-          Skip to Sets I Own
-        </button>
+@if (!isLoading) {
+  <div class="content-container">
+    <div class="content-container-card">
+      <div class="description">
+        <div class="button-container">
+          <button class="button action secondary" (click)="scrollToWantedSets()">
+            Skip to Sets I Want
+          </button>
+          <button class="button action secondary" (click)="scrollToOwnedSets()">
+            Skip to Sets I Own
+          </button>
+        </div>
       </div>
-    </div>
-    <section class="wanted-section" #wantedSetsSection>
-      <h2>Sets I Want</h2>
-      <table class="set-table">
-        <th>Preview</th>
-        <th>Set Name</th>
-        <th>Series</th>
-        <tr *ngFor="let set of wantedSets">
-          <td class="img-cell">
-            <img
-              (click)="toggleModal(set, true)"
-              class="lego-set-thumbnail"
-              [src]="set.previewUrl"
-              alt="{{ set.name }}" />
-            <app-modal
-              [post]="set.modalImage"
-              [isVisible]="set.isModalVisible"
-              (onClose)="toggleModal(set, false)"></app-modal>
-          </td>
-          <td>
-            <a [href]="set.url" target="_blank" title="Open on LEGO.com">{{ set.name }}</a>
-          </td>
-          <td>{{ set.series }}</td>
-        </tr>
-      </table>
-    </section>
-    <section class="owned-section" #ownedSetsSection>
-      <h2>Sets I Own</h2>
-
-      <div class="series-filter-container">
-        <mat-form-field>
-          <mat-label>Filter by Series</mat-label>
-          <mat-select [(ngModel)]="seriesOptionSelected" (ngModelChange)="applyFilters()">
-            <mat-option [value]="filterOptionNoSeries">All Series</mat-option>
-            @for (series of ownedSeriesOptions; track series) {
-            <mat-option [value]="series">{{ series }}</mat-option>
+      <section class="wanted-section" #wantedSetsSection>
+        <h2>Sets I Want</h2>
+        <table class="set-table">
+          <th>Preview</th>
+          <th>Set Name</th>
+          <th>Series</th>
+          @for (set of wantedSets; track set) {
+            <tr>
+              <td class="img-cell">
+                <img
+                  (click)="toggleModal(set, true)"
+                  class="lego-set-thumbnail"
+                  [src]="set.previewUrl"
+                  alt="{{ set.name }}" />
+                  <app-modal
+                    [post]="set.modalImage"
+                    [isVisible]="set.isModalVisible"
+                  (onClose)="toggleModal(set, false)"></app-modal>
+                </td>
+                <td>
+                  <a [href]="set.url" target="_blank" title="Open on LEGO.com">{{ set.name }}</a>
+                </td>
+                <td>{{ set.series }}</td>
+              </tr>
             }
-          </mat-select>
-        </mat-form-field>
+          </table>
+        </section>
+        <section class="owned-section" #ownedSetsSection>
+          <h2>Sets I Own</h2>
+          <div class="series-filter-container">
+            <mat-form-field>
+              <mat-label>Filter by Series</mat-label>
+              <mat-select [(ngModel)]="seriesOptionSelected" (ngModelChange)="applyFilters()">
+                <mat-option [value]="filterOptionNoSeries">All Series</mat-option>
+                @for (series of ownedSeriesOptions; track series) {
+                  <mat-option [value]="series">{{ series }}</mat-option>
+                }
+              </mat-select>
+            </mat-form-field>
+          </div>
+          <div class="filters-container">
+            <mat-radio-group
+              class="filters-group"
+              [(ngModel)]="filterOptionSelected"
+              (ngModelChange)="applyFilters()">
+              <mat-radio-button [value]="filterOptionAll">All</mat-radio-button>
+              <mat-radio-button [value]="filterOptionBuilt">Only Built</mat-radio-button>
+              <mat-radio-button [value]="filterOptionUnbuilt">Only Unbuilt</mat-radio-button>
+            </mat-radio-group>
+          </div>
+          <table class="set-table">
+            <th>Preview</th>
+            <th>Set Name</th>
+            <th>Series</th>
+            <th>Built</th>
+            @for (set of filteredOwnedSets; track set) {
+              <tr>
+                <td class="img-cell">
+                  <img
+                    (click)="toggleModal(set, true)"
+                    class="lego-set-thumbnail"
+                    [src]="set.previewUrl"
+                    alt="{{ set.name }}" />
+                    <app-modal
+                      [post]="set.modalImage"
+                      [isVisible]="set.isModalVisible"
+                    (onClose)="toggleModal(set, false)"></app-modal>
+                  </td>
+                  <td>
+                    <a [href]="set.url" target="_blank" title="Open on LEGO.com">{{ set.name }}</a>
+                  </td>
+                  <td>{{ set.series }}</td>
+                  <td>
+                    <app-check-or-x [isCheck]="set.built"></app-check-or-x>
+                  </td>
+                </tr>
+              }
+            </table>
+          </section>
+        </div>
       </div>
-
-      <div class="filters-container">
-        <mat-radio-group
-          class="filters-group"
-          [(ngModel)]="filterOptionSelected"
-          (ngModelChange)="applyFilters()">
-          <mat-radio-button [value]="filterOptionAll">All</mat-radio-button>
-          <mat-radio-button [value]="filterOptionBuilt">Only Built</mat-radio-button>
-          <mat-radio-button [value]="filterOptionUnbuilt">Only Unbuilt</mat-radio-button>
-        </mat-radio-group>
-      </div>
-
-      <table class="set-table">
-        <th>Preview</th>
-        <th>Set Name</th>
-        <th>Series</th>
-        <th>Built</th>
-
-        <tr *ngFor="let set of filteredOwnedSets">
-          <td class="img-cell">
-            <img
-              (click)="toggleModal(set, true)"
-              class="lego-set-thumbnail"
-              [src]="set.previewUrl"
-              alt="{{ set.name }}" />
-            <app-modal
-              [post]="set.modalImage"
-              [isVisible]="set.isModalVisible"
-              (onClose)="toggleModal(set, false)"></app-modal>
-          </td>
-          <td>
-            <a [href]="set.url" target="_blank" title="Open on LEGO.com">{{ set.name }}</a>
-          </td>
-          <td>{{ set.series }}</td>
-          <td>
-            <app-check-or-x [isCheck]="set.built"></app-check-or-x>
-          </td>
-        </tr>
-      </table>
-    </section>
-  </div>
-</div>
+    }

@@ -7,21 +7,23 @@
   </div>
 </div>
 <app-loading-indicator [isLoading]="isLoading"></app-loading-indicator>
-<ng-container *ngIf="!isLoading">
-  <div class="repeating-post" *ngFor="let post of blogPosts">
-    <div class="repeating-post-summary">
-      <a [routerLink]="['/blog', post.attributes.canonicalUrl]" class="">
-        <h1 class="repeating-post-title">{{ post.attributes.title }}</h1>
-      </a>
-      <p>
-        {{ post.attributes.description }}
-      </p>
-      <app-date-display [dateToDisplay]="getPublishedDate(post.attributes)"></app-date-display>
+@if (!isLoading) {
+  @for (post of blogPosts; track post) {
+    <div class="repeating-post">
+      <div class="repeating-post-summary">
+        <a [routerLink]="['/blog', post.attributes.canonicalUrl]" class="">
+          <h1 class="repeating-post-title">{{ post.attributes.title }}</h1>
+        </a>
+        <p>
+          {{ post.attributes.description }}
+        </p>
+        <app-date-display [dateToDisplay]="getPublishedDate(post.attributes)"></app-date-display>
+      </div>
     </div>
-  </div>
-</ng-container>
+  }
+}
 @if(showPageLink) {
-<div class="section-footer">
-  <a [routerLink]="['/blog']">See more Blog Posts</a>
-</div>
+  <div class="section-footer">
+    <a [routerLink]="['/blog']">See more Blog Posts</a>
+  </div>
 }

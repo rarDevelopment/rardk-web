@@ -11,7 +11,7 @@ import { MatOptionModule } from '@angular/material/core';
 import { FormsModule } from '@angular/forms';
 import { MatSelectModule } from '@angular/material/select';
 import { MatFormFieldModule } from '@angular/material/form-field';
-import { CommonModule } from '@angular/common';
+
 import { MatIconModule } from '@angular/material/icon';
 import { PageTitleComponent } from '../../../shared/page-title/page-title.component';
 import { LoadingIndicatorComponent } from 'src/app/components/shared/loading-indicator/loading-indicator.component';
@@ -24,7 +24,6 @@ import { LoadingIndicatorComponent } from 'src/app/components/shared/loading-ind
   imports: [
     PageTitleComponent,
     MatIconModule,
-    CommonModule,
     MatFormFieldModule,
     MatSelectModule,
     FormsModule,
@@ -32,8 +31,8 @@ import { LoadingIndicatorComponent } from 'src/app/components/shared/loading-ind
     MatInputModule,
     MatButtonModule,
     ClipboardModule,
-    LoadingIndicatorComponent,
-  ],
+    LoadingIndicatorComponent
+],
 })
 export class TimezonesComponent extends BotPageComponent implements OnInit {
   public isLoading: boolean;
