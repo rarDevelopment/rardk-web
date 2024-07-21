@@ -7,28 +7,30 @@
   </div>
 </div>
 <app-loading-indicator [isLoading]="isLoading"></app-loading-indicator>
-<ng-container *ngIf="!isLoading">
+@if (!isLoading) {
   <div class="grid">
-    <div class="grid-square" *ngFor="let post of pixelfedPosts; let i = index">
-      <img
-        (click)="toggleModal(i, true)"
-        class="gallery-thumbnail"
-        [src]="post.images[0].url"
-        alt="" />
-      <app-modal
-        [post]="post"
-        [isVisible]="modalVisibilities[i]"
-        (onClose)="toggleModal(i, false)"></app-modal>
+    @for (post of pixelfedPosts; track post; let i = $index) {
+      <div class="grid-square">
+        <img
+          (click)="toggleModal(i, true)"
+          class="gallery-thumbnail"
+          [src]="post.images[0].url"
+          alt="" />
+          <app-modal
+            [post]="post"
+            [isVisible]="modalVisibilities[i]"
+          (onClose)="toggleModal(i, false)"></app-modal>
+        </div>
+      }
     </div>
-  </div>
-  <div class="gallery-footer">
-    @if(showPageLink) {
-    <a [routerLink]="['/gallery']">See more in the Gallery</a>
-    } @else{
-    <a target="_blank" [href]="pixelfedUrl">
-      See More on PixelFed
-      <i class="fa-solid fa-arrow-up-right-from-square"></i>
-    </a>
-    }
-  </div>
-</ng-container>
+    <div class="gallery-footer">
+      @if(showPageLink) {
+        <a [routerLink]="['/gallery']">See more in the Gallery</a>
+      } @else{
+        <a target="_blank" [href]="pixelfedUrl">
+          See More on PixelFed
+          <i class="fa-solid fa-arrow-up-right-from-square"></i>
+        </a>
+      }
+    </div>
+  }

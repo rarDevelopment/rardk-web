@@ -4,7 +4,7 @@ import { BlogPost } from 'src/app/components/blog/models/blog-post';
 import { BlogPostAttributes } from 'src/app/components/blog/models/blog-post-attributes';
 import { BlogService } from 'src/app/components/blog/blog.service';
 import { PageTitleComponent } from '../shared/page-title/page-title.component';
-import { CommonModule } from '@angular/common';
+
 import { DateDisplayComponent } from '../shared/date-display/date-display.component';
 import { HtmlDirective } from 'src/app/directives/html.directive';
 import { LoadingIndicatorComponent } from '../shared/loading-indicator/loading-indicator.component';
@@ -15,12 +15,11 @@ import { finalize, take } from 'rxjs';
   standalone: true,
   imports: [
     PageTitleComponent,
-    CommonModule,
     LoadingIndicatorComponent,
     DateDisplayComponent,
     HtmlDirective,
-    RouterLink,
-  ],
+    RouterLink
+],
   templateUrl: './blog.component.html',
   styleUrl: './blog.component.scss',
 })

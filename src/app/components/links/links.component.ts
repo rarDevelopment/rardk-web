@@ -1,4 +1,4 @@
-import { CommonModule } from '@angular/common';
+
 import { Component, OnInit } from '@angular/core';
 import { HtmlDirective } from 'src/app/directives/html.directive';
 import { PageTitleComponent } from '../shared/page-title/page-title.component';
@@ -14,12 +14,11 @@ import { PostType } from '../posts/models/post-type';
   selector: 'app-links',
   standalone: true,
   imports: [
-    CommonModule,
     HtmlDirective,
     PageTitleComponent,
     LoadingIndicatorComponent,
-    DateDisplayComponent,
-  ],
+    DateDisplayComponent
+],
   templateUrl: './links.component.html',
   styleUrl: './links.component.scss',
 })

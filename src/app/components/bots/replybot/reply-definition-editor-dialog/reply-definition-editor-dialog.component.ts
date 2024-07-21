@@ -7,7 +7,7 @@ import emojiRegex from 'emoji-regex';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatInputModule } from '@angular/material/input';
 import { MatFormFieldModule } from '@angular/material/form-field';
-import { CommonModule } from '@angular/common';
+
 import { FormsModule } from '@angular/forms';
 import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 import { MatIconModule } from '@angular/material/icon';
@@ -25,11 +25,10 @@ import { TooltipDirective } from 'src/app/directives/tooltip.directive';
     MatIconModule,
     MatSlideToggleModule,
     FormsModule,
-    CommonModule,
     MatFormFieldModule,
     MatInputModule,
-    MatCheckboxModule,
-  ],
+    MatCheckboxModule
+],
 })
 export class ReplyDefinitionEditorDialogComponent {
   public dialogData: ReplyDefinitionEditorDialogData;

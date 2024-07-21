@@ -1,13 +1,13 @@
 import { Component } from '@angular/core';
 import { BotPageComponent } from '../bot-page/bot-page.component';
-import { CommonModule } from '@angular/common';
+
 
 @Component({
   selector: 'app-login-actions',
   templateUrl: './login-actions.component.html',
   styleUrls: ['./login-actions.component.scss'],
   standalone: true,
-  imports: [CommonModule],
+  imports: [],
 })
 export class LoginActionsComponent extends BotPageComponent {
   public confirmLogOut() {

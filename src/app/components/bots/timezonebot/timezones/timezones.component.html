@@ -14,62 +14,74 @@
 
 <app-loading-indicator [isLoading]="isLoading"></app-loading-indicator>
 
-<div class="content-container" *ngIf="!isLoading">
-  <div class="content-container-card time-zones-container">
-    <ng-container *ngIf="!isLoading">
-      <div class="filter-options">
-        <div class="filter-explanation">Select a filter below to narrow down the list.</div>
-        <mat-form-field class="filter-field">
-          <mat-label>Select a Filter</mat-label>
-          <mat-select [(ngModel)]="selectedFilter" (selectionChange)="filterTimeZones()">
-            <mat-option *ngFor="let filter of timeZoneFilterOptions" [value]="filter">
-              {{ filter }}
-            </mat-option>
-          </mat-select>
-        </mat-form-field>
-        <mat-form-field class="filter-field">
-          <mat-label>Search Text</mat-label>
-          <input
-            [(ngModel)]="filterText"
-            (input)="filterTimeZones()"
-            matInput
-            placeholder="Ex. Toronto" />
-        </mat-form-field>
-        <div class="clear-filter-button" *ngIf="selectedFilter || filterText">
-          <button class="tertiary action button" (click)="clearFilter()">Clear Filter</button>
-        </div>
+@if (!isLoading) {
+  <div class="content-container">
+    <div class="content-container-card time-zones-container">
+      @if (!isLoading) {
+        <div class="filter-options">
+          <div class="filter-explanation">Select a filter below to narrow down the list.</div>
+          <mat-form-field class="filter-field">
+            <mat-label>Select a Filter</mat-label>
+            <mat-select [(ngModel)]="selectedFilter" (selectionChange)="filterTimeZones()">
+              @for (filter of timeZoneFilterOptions; track filter) {
+                <mat-option [value]="filter">
+                  {{ filter }}
+                </mat-option>
+              }
+            </mat-select>
+          </mat-form-field>
+          <mat-form-field class="filter-field">
+            <mat-label>Search Text</mat-label>
+            <input
+              [(ngModel)]="filterText"
+              (input)="filterTimeZones()"
+              matInput
+              placeholder="Ex. Toronto" />
+            </mat-form-field>
+            @if (selectedFilter || filterText) {
+              <div class="clear-filter-button">
+                <button class="tertiary action button" (click)="clearFilter()">Clear Filter</button>
+              </div>
+            }
+          </div>
+          <h3 class="current-time-zone">
+            Your Current Time Zone:
+            @if (isTimeZoneLoading) {
+              <span>Loading...</span>
+            }
+            @if (!isTimeZoneLoading) {
+              <span class="current-time-zone-highlight">
+                {{ formatCurrentTimeZone() }}
+              </span>
+            }
+            <br />
+            @if (!isTimeZoneLoading && currentTime) {
+              <span class="current-time-zone-highlight">
+                {{ currentTime }}
+              </span>
+            }
+          </h3>
+          <table class="set-table">
+            <th>Time Zone ID (IANA)</th>
+            <th></th>
+            <th></th>
+            @for (timeZone of dataSource; track timeZone) {
+              <tr>
+                <td>{{ timeZone.id }} (UTC {{ formatUtcOffset(timeZone.utcOffsetHours) }})</td>
+                <td>
+                  <button class="icon action button" (click)="copyTimeZone(timeZone.id)">
+                    <i class="fa-solid fa-copy"></i>
+                  </button>
+                </td>
+                <td>
+                  <button class="primary action button set-button" (click)="setTimeZone(timeZone.id)">
+                    Set
+                  </button>
+                </td>
+              </tr>
+            }
+          </table>
+        }
       </div>
-      <h3 class="current-time-zone">
-        Your Current Time Zone:
-        <span *ngIf="isTimeZoneLoading">Loading...</span>
-        <span class="current-time-zone-highlight" *ngIf="!isTimeZoneLoading">
-          {{ formatCurrentTimeZone() }}
-        </span>
-        <br />
-        <span class="current-time-zone-highlight" *ngIf="!isTimeZoneLoading && currentTime">
-          {{ currentTime }}
-        </span>
-      </h3>
-
-      <table class="set-table">
-        <th>Time Zone ID (IANA)</th>
-        <th></th>
-        <th></th>
-
-        <tr *ngFor="let timeZone of dataSource">
-          <td>{{ timeZone.id }} (UTC {{ formatUtcOffset(timeZone.utcOffsetHours) }})</td>
-          <td>
-            <button class="icon action button" (click)="copyTimeZone(timeZone.id)">
-              <i class="fa-solid fa-copy"></i>
-            </button>
-          </td>
-          <td>
-            <button class="primary action button set-button" (click)="setTimeZone(timeZone.id)">
-              Set
-            </button>
-          </td>
-        </tr>
-      </table>
-    </ng-container>
-  </div>
-</div>
+    </div>
+  }

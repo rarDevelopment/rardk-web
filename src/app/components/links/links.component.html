@@ -8,23 +8,25 @@
   </div>
 </div>
 <app-loading-indicator [isLoading]="isLoading"></app-loading-indicator>
-<ng-container *ngIf="!isLoading">
-  <div class="repeating-post" *ngFor="let link of links">
-    <div class="repeating-post-summary">
-      <p>
-        {{ link.description }}
-      </p>
-      <p>
-        <a [href]="link.link" target="_blank">
-          {{ link.title }}
-          <i class="fa-solid fa-arrow-up-right-from-square"></i>
-        </a>
-        &nbsp;
-      </p>
-      <app-date-display
-        [routerLink]="['/links', link.slug]"
-        [dateToDisplay]="link.dateShared"
+@if (!isLoading) {
+  @for (link of links; track link) {
+    <div class="repeating-post">
+      <div class="repeating-post-summary">
+        <p>
+          {{ link.description }}
+        </p>
+        <p>
+          <a [href]="link.link" target="_blank">
+            {{ link.title }}
+            <i class="fa-solid fa-arrow-up-right-from-square"></i>
+          </a>
+          &nbsp;
+        </p>
+        <app-date-display
+          [routerLink]="['/links', link.slug]"
+          [dateToDisplay]="link.dateShared"
         labelText="Shared on:"></app-date-display>
+      </div>
     </div>
-  </div>
-</ng-container>
+  }
+}

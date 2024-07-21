@@ -79,18 +79,19 @@
   <div class="keywords help-section">
     <h2 class="help-section-title">Keywords you can use in Reply Text</h2>
     <div class="keyword-options">
-      <div class="keyword-option" *ngFor="let keyword of keywords">
-        <div class="keyword-name">
-          {{ keyword.keyword }}
-          <button
-            class="copy-button action-button secondary action button"
-            [cdkCopyToClipboard]="keyword.keyword">
-            <i class="fa-solid fa-copy"></i>
-          </button>
+      @for (keyword of keywords; track keyword) {
+        <div class="keyword-option">
+          <div class="keyword-name">
+            {{ keyword.keyword }}
+            <button
+              class="copy-button action-button secondary action button"
+              [cdkCopyToClipboard]="keyword.keyword">
+              <i class="fa-solid fa-copy"></i>
+            </button>
+          </div>
+          <span class="keyword-description">{{ keyword.description }}</span>
         </div>
-
-        <span class="keyword-description">{{ keyword.description }}</span>
-      </div>
+      }
     </div>
   </div>
   <div class="help-dialog-buttons">

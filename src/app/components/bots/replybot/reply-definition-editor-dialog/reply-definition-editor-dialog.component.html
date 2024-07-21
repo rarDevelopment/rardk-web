@@ -19,22 +19,26 @@
 
   <div class="input-section">
     <h2>Triggers</h2>
-    <div *ngFor="let trigger of triggers; let i = index; trackBy: trackByFn">
-      <span class="form-error" *ngIf="hasForbiddenTerm(triggers[i])">
-        {{ forbiddenTermErrorMessage }}
-      </span>
-      <mat-form-field class="input-full-width">
-        <mat-label>Trigger Text</mat-label>
-        <input matInput placeholder="Trigger Text" [(ngModel)]="triggers[i]" />
-        <button
-          class="icon red action button"
-          matSuffix
-          tooltip="Remove this trigger"
-          (click)="removeTrigger(i)">
-          <i class="fa-solid fa-xmark"></i>
-        </button>
-      </mat-form-field>
-    </div>
+    @for (trigger of triggers; track trackByFn(i, trigger); let i = $index) {
+      <div>
+        @if (hasForbiddenTerm(triggers[i])) {
+          <span class="form-error">
+            {{ forbiddenTermErrorMessage }}
+          </span>
+        }
+        <mat-form-field class="input-full-width">
+          <mat-label>Trigger Text</mat-label>
+          <input matInput placeholder="Trigger Text" [(ngModel)]="triggers[i]" />
+          <button
+            class="icon red action button"
+            matSuffix
+            tooltip="Remove this trigger"
+            (click)="removeTrigger(i)">
+            <i class="fa-solid fa-xmark"></i>
+          </button>
+        </mat-form-field>
+      </div>
+    }
     <div class="action-buttons">
       <button class="action-button secondary action button" (click)="addTrigger()">
         <i class="fa-solid fa-plus"></i>
@@ -58,20 +62,24 @@
       </button>
     </h2>
     <div class="channel-ids-description"></div>
-    <div *ngFor="let channelId of channelIds; let i = index; trackBy: trackByFn">
-      <span class="form-error" *ngIf="!isValidId(channelIds[i])">{{ invalidIdErrorMessage }}</span>
-      <mat-form-field class="input-full-width">
-        <mat-label>Channel ID</mat-label>
-        <input matInput placeholder="Channel ID" [(ngModel)]="channelIds[i]" />
-        <button
-          class="icon red action button"
-          matSuffix
-          tooltip="Remove this Channel ID"
-          (click)="removeChannelId(i)">
-          <i class="fa-solid fa-xmark"></i>
-        </button>
-      </mat-form-field>
-    </div>
+    @for (channelId of channelIds; track trackByFn(i, channelId); let i = $index) {
+      <div>
+        @if (!isValidId(channelIds[i])) {
+          <span class="form-error">{{ invalidIdErrorMessage }}</span>
+        }
+        <mat-form-field class="input-full-width">
+          <mat-label>Channel ID</mat-label>
+          <input matInput placeholder="Channel ID" [(ngModel)]="channelIds[i]" />
+          <button
+            class="icon red action button"
+            matSuffix
+            tooltip="Remove this Channel ID"
+            (click)="removeChannelId(i)">
+            <i class="fa-solid fa-xmark"></i>
+          </button>
+        </mat-form-field>
+      </div>
+    }
     <div class="action-buttons">
       <button class="action-button secondary action button" (click)="addChannelId()">
         <i class="fa-solid fa-plus"></i>
@@ -90,20 +98,24 @@
         <i class="fa-solid fa-circle-info"></i>
       </button>
     </h2>
-    <div *ngFor="let userId of userIds; let i = index; trackBy: trackByFn">
-      <span class="form-error" *ngIf="!isValidId(userIds[i])">{{ invalidIdErrorMessage }}</span>
-      <mat-form-field class="input-full-width">
-        <mat-label>User ID</mat-label>
-        <input matInput placeholder="User ID" [(ngModel)]="userIds[i]" />
-        <button
-          class="icon red action button"
-          matSuffix
-          tooltip="Remove this User ID"
-          (click)="removeUserId(i)">
-          <i class="fa-solid fa-xmark"></i>
-        </button>
-      </mat-form-field>
-    </div>
+    @for (userId of userIds; track trackByFn(i, userId); let i = $index) {
+      <div>
+        @if (!isValidId(userIds[i])) {
+          <span class="form-error">{{ invalidIdErrorMessage }}</span>
+        }
+        <mat-form-field class="input-full-width">
+          <mat-label>User ID</mat-label>
+          <input matInput placeholder="User ID" [(ngModel)]="userIds[i]" />
+          <button
+            class="icon red action button"
+            matSuffix
+            tooltip="Remove this User ID"
+            (click)="removeUserId(i)">
+            <i class="fa-solid fa-xmark"></i>
+          </button>
+        </mat-form-field>
+      </div>
+    }
     <div class="action-buttons">
       <button class="action-button secondary action button" (click)="addUserId()">
         <i class="fa-solid fa-plus"></i>
@@ -114,22 +126,26 @@
   <div class="input-section">
     <h2>Replies</h2>
 
-    <div *ngFor="let reply of replies; let i = index; trackBy: trackByFn">
-      <span class="form-error" *ngIf="hasForbiddenTerm(replies[i])">
-        {{ forbiddenTermErrorMessage }}
-      </span>
-      <mat-form-field class="input-full-width">
-        <mat-label>Reply Text</mat-label>
-        <textarea
-          matInput
-          placeholder="Reply Text"
-          [(ngModel)]="replies[i]"
+    @for (reply of replies; track trackByFn(i, reply); let i = $index) {
+      <div>
+        @if (hasForbiddenTerm(replies[i])) {
+          <span class="form-error">
+            {{ forbiddenTermErrorMessage }}
+          </span>
+        }
+        <mat-form-field class="input-full-width">
+          <mat-label>Reply Text</mat-label>
+          <textarea
+            matInput
+            placeholder="Reply Text"
+            [(ngModel)]="replies[i]"
           [maxlength]="maxReplyLength"></textarea>
-        <button class="icon red action button" matSuffix (click)="removeReply(i)">
-          <i class="fa-solid fa-xmark"></i>
-        </button>
-      </mat-form-field>
-    </div>
+          <button class="icon red action button" matSuffix (click)="removeReply(i)">
+            <i class="fa-solid fa-xmark"></i>
+          </button>
+        </mat-form-field>
+      </div>
+    }
     <div class="action-buttons">
       <button class="action-button secondary action button" (click)="addReply()">
         + Add Reply
@@ -143,22 +159,26 @@
   </div>
   <div class="input-section">
     <h2>Reactions</h2>
-    <div *ngFor="let reaction of reactions; let i = index; trackBy: trackByFn">
-      <span class="form-error" *ngIf="!isValidSingleEmoji(reactions[i])">
-        {{ invalidEmojiErrorMessage }}
-      </span>
-      <mat-form-field class="input-full-width">
-        <mat-label>Reaction Emoji</mat-label>
-        <input matInput placeholder="Reaction Emoji" [(ngModel)]="reactions[i]" />
-        <button
-          class="icon red action button"
-          matSuffix
-          tooltip="Remove this Reaction"
-          (click)="removeReaction(i)">
-          <i class="fa-solid fa-xmark"></i>
-        </button>
-      </mat-form-field>
-    </div>
+    @for (reaction of reactions; track trackByFn(i, reaction); let i = $index) {
+      <div>
+        @if (!isValidSingleEmoji(reactions[i])) {
+          <span class="form-error">
+            {{ invalidEmojiErrorMessage }}
+          </span>
+        }
+        <mat-form-field class="input-full-width">
+          <mat-label>Reaction Emoji</mat-label>
+          <input matInput placeholder="Reaction Emoji" [(ngModel)]="reactions[i]" />
+          <button
+            class="icon red action button"
+            matSuffix
+            tooltip="Remove this Reaction"
+            (click)="removeReaction(i)">
+            <i class="fa-solid fa-xmark"></i>
+          </button>
+        </mat-form-field>
+      </div>
+    }
     <div class="action-buttons">
       <button class="action-button secondary action button" (click)="addReaction()">
         <i class="fa-solid fa-plus"></i>

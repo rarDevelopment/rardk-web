@@ -5,36 +5,43 @@
   </div>
 </div>
 <app-loading-indicator [isLoading]="isLoading"></app-loading-indicator>
-<div class="content-container" *ngIf="!isLoading">
-  <div class="content-container-card">
-    <div class="search-container">Title Search</div>
-    <div class="search-container">
-      <input type="text" placeholder="Enter a game title" [(ngModel)]="searchTerm" />
+@if (!isLoading) {
+  <div class="content-container">
+    <div class="content-container-card">
+      <div class="search-container">Title Search</div>
+      <div class="search-container">
+        <input type="text" placeholder="Enter a game title" [(ngModel)]="searchTerm" />
+      </div>
+      <div class="platform-select-container">Platform</div>
+      <div class="platform-select-container">
+        <select [(ngModel)]="selectedPlatform">
+          @for (platform of availablePlatforms; track platform) {
+            <option [value]="platform.name">
+              {{ platform.name }} ({{ platform.gameCount }} games)
+            </option>
+          }
+        </select>
+      </div>
+      @for (
+        platformGrouping of gameCollectionItemsGrouped | keyvalue; track
+        platformGrouping; let platformIndex = $index) {
+        <section
+          class="games-collection-section"
+          >
+          @if (platformGrouping.key === selectedPlatform) {
+            <table class="game-table">
+              <th>Game</th>
+              @for (gameCollectionItem of filterGames(platformGrouping.value); track gameCollectionItem) {
+                <tr>
+                  <td>
+                    {{ gameCollectionItem.title }}
+                  </td>
+                </tr>
+              }
+            </table>
+          }
+        </section>
+      }
     </div>
-    <div class="platform-select-container">Platform</div>
-    <div class="platform-select-container">
-      <select [(ngModel)]="selectedPlatform">
-        @for (platform of availablePlatforms; track platform) {
-        <option [value]="platform.name">
-          {{ platform.name }} ({{ platform.gameCount }} games)
-        </option>
-        }
-      </select>
-    </div>
-    <section
-      class="games-collection-section"
-      *ngFor="
-        let platformGrouping of gameCollectionItemsGrouped | keyvalue;
-        let platformIndex = index
-      ">
-      <table class="game-table" *ngIf="platformGrouping.key === selectedPlatform">
-        <th>Game</th>
-        <tr *ngFor="let gameCollectionItem of filterGames(platformGrouping.value)">
-          <td>
-            {{ gameCollectionItem.title }}
-          </td>
-        </tr>
-      </table>
-    </section>
   </div>
-</div>
+}

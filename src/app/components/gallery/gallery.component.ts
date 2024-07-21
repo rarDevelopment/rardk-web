@@ -2,7 +2,7 @@ import { Component, Input, OnInit } from '@angular/core';
 import { PixelfedPost } from 'src/app/components/gallery/models/pixelfed-post';
 import { PixelfedService } from './gallery.service';
 import { finalize, take } from 'rxjs';
-import { CommonModule } from '@angular/common';
+
 import { PageTitleComponent } from '../shared/page-title/page-title.component';
 import { ModalComponent } from '../shared/modal/modal.component';
 import { LoadingIndicatorComponent } from '../shared/loading-indicator/loading-indicator.component';
@@ -15,13 +15,12 @@ import { ModalImage, ModalImageItem } from 'src/app/components/shared/modal/mode
   selector: 'app-gallery',
   standalone: true,
   imports: [
-    CommonModule,
     DateDisplayComponent,
     PageTitleComponent,
     ModalComponent,
     LoadingIndicatorComponent,
-    RouterLink,
-  ],
+    RouterLink
+],
   templateUrl: './gallery.component.html',
   styleUrl: './gallery.component.scss',
 })

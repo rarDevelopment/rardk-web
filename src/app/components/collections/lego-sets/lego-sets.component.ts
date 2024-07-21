@@ -8,7 +8,7 @@ import { MatOptionModule } from '@angular/material/core';
 import { FormsModule } from '@angular/forms';
 import { MatSelectModule } from '@angular/material/select';
 import { MatFormFieldModule } from '@angular/material/form-field';
-import { CommonModule } from '@angular/common';
+
 import { PageTitleComponent } from '../../shared/page-title/page-title.component';
 import { LoadingIndicatorComponent } from '../../shared/loading-indicator/loading-indicator.component';
 import { ModalImage, ModalImageItem } from 'src/app/components/shared/modal/models/modal-image';
@@ -22,7 +22,6 @@ import { ModalComponent } from '../../shared/modal/modal.component';
   standalone: true,
   imports: [
     PageTitleComponent,
-    CommonModule,
     MatFormFieldModule,
     MatSelectModule,
     FormsModule,
@@ -30,8 +29,8 @@ import { ModalComponent } from '../../shared/modal/modal.component';
     MatRadioModule,
     CheckOrXComponent,
     LoadingIndicatorComponent,
-    ModalComponent,
-  ],
+    ModalComponent
+],
 })
 export class LegoSetsComponent {
   public ownedSets: LegoSetDisplay[];

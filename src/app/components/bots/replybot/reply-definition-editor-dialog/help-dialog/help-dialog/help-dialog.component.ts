@@ -9,7 +9,7 @@ import { HelpKeywordDetail } from 'src/app/components/bots/models/replybot/help-
 import { MatIconModule } from '@angular/material/icon';
 import { ClipboardModule } from '@angular/cdk/clipboard';
 import { MatButtonModule } from '@angular/material/button';
-import { NgFor } from '@angular/common';
+
 
 @Component({
     selector: 'app-help-dialog',
@@ -17,11 +17,10 @@ import { NgFor } from '@angular/common';
     styleUrls: ['./help-dialog.component.scss'],
     standalone: true,
     imports: [
-        NgFor,
-        MatButtonModule,
-        ClipboardModule,
-        MatIconModule,
-    ],
+    MatButtonModule,
+    ClipboardModule,
+    MatIconModule
+],
 })
 export class HelpDialogComponent {
   public dialogData: any;

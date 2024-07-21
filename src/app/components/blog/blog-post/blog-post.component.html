@@ -1,18 +1,20 @@
 <app-loading-indicator [isLoading]="isLoading"></app-loading-indicator>
-<div class="content-container" *ngIf="!isLoading">
-  <div class="blog-post-container">
-    <ng-container *ngIf="post">
-      <h1 class="card-title">{{ post.attributes.title }}</h1>
-      <app-date-display [dateToDisplay]="post.attributes.publishedAt"></app-date-display>
-      <p class="blog-post-content" markdown [data]="post.attributes.content"></p>
-      <div class="blog-post-end">
-        <img class="blog-post-end-img" src="/assets/rar-face.png" />
-      </div>
-    </ng-container>
+@if (!isLoading) {
+  <div class="content-container">
+    <div class="blog-post-container">
+      @if (post) {
+        <h1 class="card-title">{{ post.attributes.title }}</h1>
+        <app-date-display [dateToDisplay]="post.attributes.publishedAt"></app-date-display>
+        <p class="blog-post-content" markdown [data]="post.attributes.content"></p>
+        <div class="blog-post-end">
+          <img class="blog-post-end-img" src="/assets/rar-face.png" />
+        </div>
+      }
+    </div>
   </div>
-</div>
+}
 <app-social-media-discussion
-  [getDiscussionsMethod]="discussionMethod"></app-social-media-discussion>
+[getDiscussionsMethod]="discussionMethod"></app-social-media-discussion>
 <div class="back-to-blog-link">
   <a [routerLink]="['/blog']">&#x2190; Back to Blog</a>
 </div>

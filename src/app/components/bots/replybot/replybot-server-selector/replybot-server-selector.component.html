@@ -5,17 +5,21 @@
 </div>
 <div class="guild-list-container">
   <app-loading-indicator [isLoading]="isLoading"></app-loading-indicator>
-  <div class="guild-items" *ngIf="!isLoading">
-    <ng-container *ngIf="isLoggedIn()">
-      <a
-        class="guild-item-link"
-        *ngFor="let guild of discordGuilds"
+  @if (!isLoading) {
+    <div class="guild-items">
+      @if (isLoggedIn()) {
+        @for (guild of discordGuilds; track guild) {
+          <a
+            class="guild-item-link"
         [href]="'/bots/replybot/reply-definitions?guildId=' + guild.id">
         <div class="guild-item">
           <img class="icon-img" [src]="guild.iconUrl" [alt]="guild.name" />
           <span class="guild-name">{{ guild.name }}</span>
         </div>
       </a>
-    </ng-container>
+}
+    
+}
   </div>
+}
 </div>

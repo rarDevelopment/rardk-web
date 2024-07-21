@@ -4,7 +4,7 @@ import { BotPageComponent } from '../../bot-page/bot-page.component';
 import { forkJoin } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { GuildConfiguration } from 'src/app/components/bots/models/replybot/guild-configuration';
-import { CommonModule } from '@angular/common';
+
 import { PageTitleComponent } from '../../../shared/page-title/page-title.component';
 import { LoadingIndicatorComponent } from 'src/app/components/shared/loading-indicator/loading-indicator.component';
 
@@ -13,7 +13,7 @@ import { LoadingIndicatorComponent } from 'src/app/components/shared/loading-ind
   templateUrl: './replybot-server-selector.component.html',
   styleUrls: ['./replybot-server-selector.component.scss'],
   standalone: true,
-  imports: [PageTitleComponent, CommonModule, LoadingIndicatorComponent],
+  imports: [PageTitleComponent, LoadingIndicatorComponent],
 })
 export class ReplybotServerSelectorComponent extends BotPageComponent implements OnInit {
   public isLoading = false;
