@@ -50,9 +50,12 @@
           @if(feedItem.url) {
           <a [href]="feedItem.url" target="_blank">{{ feedItem.title }}</a>
           } @else{
-          {{ feedItem.title }}
+          <span class="feed-item-list-item-title">{{ feedItem.title }}</span>
           }
           {{ feedItem.summary ? " - " + feedItem.summary : "" }}
+          @if(showRatings && feedItem.rating) {
+          <span>- {{ formatRating(feedItem.rating) }} / {{ ratingMax }}</span>
+          } @else{ (no rating) }
         </li>
       </ul>
     </div>

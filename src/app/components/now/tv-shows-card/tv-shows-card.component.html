@@ -1,7 +1,14 @@
 <app-feed-posters
   sectionTitle="Recent TV"
-  [ratingMax]="5"
   [isLoading]="isLoading"
-  [feedItems]="feedItems"
+  [feedItems]="currentTvFeedItems"
   displayType="poster"
   [isError]="isCurrentTvError"></app-feed-posters>
+<app-feed-posters
+  sectionTitle="Recent TV Ratings"
+  [showRatings]="true"
+  [ratingMax]="5"
+  [isLoading]="isLoading"
+  [feedItems]="tvReviewFeedItems"
+  displayType="list"
+  [isError]="isTvReviewsError"></app-feed-posters>
