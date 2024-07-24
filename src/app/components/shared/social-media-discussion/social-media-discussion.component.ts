@@ -1,4 +1,3 @@
-
 import { Component, Input, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { Observable, take } from 'rxjs';
@@ -52,7 +51,6 @@ export class SocialMediaDiscussionComponent implements OnInit {
           if (postDiscussion) {
             if (postDiscussion.mastodon) {
               postDiscussion.mastodon.forEach((post: MastodonStatusFull) => {
-                console.log('post content', post.content);
                 const postToDisplay = {
                   likes: post.favourites_count,
                   shares: post.reblogs_count,
