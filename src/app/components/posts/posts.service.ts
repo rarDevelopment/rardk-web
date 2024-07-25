@@ -13,12 +13,16 @@ export class PostsService {
   private url: string = `${environment.feedsSiteUrl}rss/posts/json/`;
   private postTypeFilters: { [key: string]: PostTypeFilter } = {
     [PostType.Link]: {
-      filter: (p: Post) => p.url?.trim().length > 0,
+      filter: (p: Post) => p.post_type === PostType.Link,
       hashtagPrefix: '#rardklink',
     },
     [PostType.Post]: {
-      filter: (p: Post) => !p.url || p.url?.trim().length === 0,
+      filter: (p: Post) => p.post_type === PostType.Post,
       hashtagPrefix: '#rardkpost',
+    },
+    [PostType.Blog]: {
+      filter: (p: Post) => p.post_type === PostType.Blog,
+      hashtagPrefix: '#rardkblogpost',
     },
   };
 
