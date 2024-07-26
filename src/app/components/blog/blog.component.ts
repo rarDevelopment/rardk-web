@@ -1,14 +1,14 @@
 import { Component, Input } from '@angular/core';
-import { Router, RouterLink } from '@angular/router';
-import { BlogPost } from 'src/app/components/blog/models/blog-post';
-import { BlogPostAttributes } from 'src/app/components/blog/models/blog-post-attributes';
-import { BlogService } from 'src/app/components/blog/blog.service';
+import { RouterLink } from '@angular/router';
 import { PageTitleComponent } from '../shared/page-title/page-title.component';
 
 import { DateDisplayComponent } from '../shared/date-display/date-display.component';
 import { HtmlDirective } from 'src/app/directives/html.directive';
 import { LoadingIndicatorComponent } from '../shared/loading-indicator/loading-indicator.component';
 import { finalize, take } from 'rxjs';
+import { PostsService } from '../posts/posts.service';
+import { PostType } from '../posts/models/post-type';
+import { Post } from '../posts/models/post';
 
 @Component({
   selector: 'app-blog',
@@ -18,24 +18,24 @@ import { finalize, take } from 'rxjs';
     LoadingIndicatorComponent,
     DateDisplayComponent,
     HtmlDirective,
-    RouterLink
-],
+    RouterLink,
+  ],
   templateUrl: './blog.component.html',
   styleUrl: './blog.component.scss',
 })
 export class BlogComponent {
   public isLoading: boolean;
-  public blogPosts: BlogPost[];
+  public blogPosts: Post[];
   @Input() itemCount: number = 0;
   @Input() pageTitle = 'Blog';
   @Input() showPageLink = false;
 
-  constructor(private blogService: BlogService, private router: Router) {}
+  constructor(private blogService: PostsService) {}
 
   ngOnInit() {
     this.isLoading = true;
     this.blogService
-      .getBlogPosts()
+      .getPosts(PostType.Blog)
       .pipe(
         take(1),
         finalize(() => {
@@ -43,12 +43,9 @@ export class BlogComponent {
         })
       )
       .subscribe({
-        next: (blogPostsResponse: BlogPost[]) => {
+        next: (blogPostsResponse: Post[]) => {
           let blogPostsToShow = blogPostsResponse.sort((p1, p2) =>
-            new Date(this.getPublishedDate(p1.attributes)) >
-            new Date(this.getPublishedDate(p2.attributes))
-              ? -1
-              : 1
+            p1.posted_at > p2.posted_at ? -1 : 1
           );
 
           this.itemCount > 0
@@ -59,11 +56,5 @@ export class BlogComponent {
           console.error(error);
         },
       });
-  }
-
-  public getPublishedDate(attributes: BlogPostAttributes): string {
-    return attributes.originallyPostedDate
-      ? attributes.originallyPostedDate
-      : attributes.publishedAt;
   }
 }

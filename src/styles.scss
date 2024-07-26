@@ -176,6 +176,17 @@ a:visited {
   }
 }
 
+.post-end {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
+.post-end-img {
+  width: 60px;
+}
+
 .post-image {
   display: block;
   max-width: 100%;
