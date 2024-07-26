@@ -3,24 +3,27 @@
 </div>
 <app-loading-indicator [isLoading]="isLoading"></app-loading-indicator>
 @if (!isLoading && post) {
-  <div class="post">
-    <div class="post-summary">
-      <p>
-        {{ post.content }}
-      </p>
-      @if (post.images_csv) {
-        <p>
-          <img [src]="post.images_csv" [alt]="post.content" class="post-image" />
-        </p>
-      }
-      <app-date-display [dateToDisplay]="post.posted_at" labelText="Posted on:"></app-date-display>
+<div class="post">
+  <div class="post-summary">
+    <p>
+      {{ post.content }}
+    </p>
+    @if (post.images_csv) {
+    <p>
+      <img [src]="post.images_csv" [alt]="post.content" class="post-image" />
+    </p>
+    }
+    <app-date-display [dateToDisplay]="post.posted_at" labelText="Posted on:"></app-date-display>
+    <div class="post-end">
+      <img class="post-end-img" src="/assets/rar-face.png" />
     </div>
   </div>
+</div>
 }
 <app-social-media-discussion
   [getDiscussionsMethod]="discussionMethod"
   [showContent]="false"
-[discussionId]="post.time_stamp"></app-social-media-discussion>
+  [discussionId]="post.time_stamp"></app-social-media-discussion>
 <div class="back-to-posts-link">
   <a [routerLink]="['/posts']">&#x2190; Back to Posts</a>
 </div>

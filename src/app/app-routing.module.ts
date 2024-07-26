@@ -22,7 +22,7 @@ import { PostComponent } from './components/posts/post/post.component';
 import { PostsComponent } from './components/posts/posts.component';
 
 const routes: Routes = [
-  { path: 'blog/:postId', pathMatch: 'full', component: BlogPostComponent },
+  { path: 'blog/:slug', pathMatch: 'full', component: BlogPostComponent },
   { path: 'blog', pathMatch: 'full', component: BlogComponent },
   { path: 'links/:slug', component: LinkPostComponent },
   { path: 'links', component: LinksComponent },

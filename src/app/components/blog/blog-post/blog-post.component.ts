@@ -1,8 +1,6 @@
 import { Component } from '@angular/core';
-import { BlogPost } from 'src/app/components/blog/models/blog-post';
-import { BlogService } from '../blog.service';
 import { ActivatedRoute, ParamMap, Router, RouterLink } from '@angular/router';
-import { take, switchMap, finalize } from 'rxjs/operators';
+import { take, finalize, map } from 'rxjs/operators';
 import { Meta } from '@angular/platform-browser';
 import { HtmlDirective } from '../../../directives/html.directive';
 import { DateDisplayComponent } from '../../shared/date-display/date-display.component';
@@ -11,6 +9,10 @@ import { MarkdownModule, provideMarkdown, MarkdownService } from 'ngx-markdown';
 import { SocialMediaDiscussionComponent } from '../../shared/social-media-discussion/social-media-discussion.component';
 import { DiscussionPostsService } from 'src/app/services/discussion-posts.service';
 import { LoadingIndicatorComponent } from '../../shared/loading-indicator/loading-indicator.component';
+import { PostsService } from '../../posts/posts.service';
+import { Post } from '../../posts/models/post';
+import { PostType } from '../../posts/models/post-type';
+import { combineLatest } from 'rxjs';
 
 @Component({
   selector: 'app-blog-post',
@@ -23,20 +25,20 @@ import { LoadingIndicatorComponent } from '../../shared/loading-indicator/loadin
     HtmlDirective,
     MarkdownModule,
     RouterLink,
-    SocialMediaDiscussionComponent
-],
+    SocialMediaDiscussionComponent,
+  ],
   providers: [provideMarkdown()],
   host: { ngSkipHydration: 'true' },
 })
 export class BlogPostComponent {
-  public post: BlogPost;
+  public post: Post;
   public isLoading: boolean;
   public discussionMethod = this.discussionPostsService.getDiscussionPostsForBlog.bind(
     this.discussionPostsService
   );
 
   constructor(
-    private blogService: BlogService,
+    private postsService: PostsService,
     private route: ActivatedRoute,
     private router: Router,
     private meta: Meta,
@@ -63,23 +65,24 @@ export class BlogPostComponent {
     };
 
     this.isLoading = true;
-    this.route.paramMap
+    combineLatest([this.postsService.getPosts(PostType.Blog), this.route.paramMap])
       .pipe(
         take(1),
-        switchMap((routeParams: ParamMap) =>
-          this.blogService.getBlogPost(routeParams.get('postId')!)
-        ),
+        map(([posts, routeParams]) => {
+          {
+            return {
+              posts: posts,
+              routeParams: routeParams,
+            };
+          }
+        }),
         finalize(() => {
           this.isLoading = false;
         })
       )
       .subscribe({
-        next: (blogPost: BlogPost) => {
-          if (!blogPost) {
-            this.router.navigate(['home']);
-          }
-          this.post = blogPost;
-          this.setMeta(blogPost);
+        next: (result: { posts: Post[]; routeParams: ParamMap }) => {
+          this.findAndSetPost(result.posts, result.routeParams);
         },
         error: (error) => {
           console.error(error);
@@ -87,8 +90,19 @@ export class BlogPostComponent {
       });
   }
 
-  setMeta(blogPost: BlogPost) {
-    this.meta.updateTag({ property: 'og:title', content: blogPost.attributes.title });
+  public findAndSetPost(posts: Post[], routeParams: ParamMap) {
+    console.log('canonical_url', routeParams.get('slug'));
+    const foundPost = posts.find((post) => post.canonical_url === routeParams.get('slug')!);
+    if (!foundPost) {
+      console.log('posts', posts);
+      this.router.navigate(['blog']);
+    }
+    this.post = foundPost!;
+    this.setMeta(this.post);
+  }
+
+  setMeta(post: Post) {
+    this.meta.updateTag({ property: 'og:title', content: post.post_title });
     this.meta.updateTag({
       property: 'og:image',
       content: '/assets/rarvatar.png',
@@ -96,7 +110,7 @@ export class BlogPostComponent {
     this.meta.updateTag({ property: 'og:url', content: this.router.url });
     this.meta.updateTag({
       property: 'og:description',
-      content: blogPost.attributes.description,
+      content: post.post_description,
     });
   }
 }
