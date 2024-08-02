@@ -35,9 +35,22 @@ export class PostsService {
       map((posts: Post[]) =>
         posts.filter(postTypeFilter).map((p) => ({
           ...p,
-          content: p.content.replace(`${hashtagPrefix}${p.time_stamp}`, ''),
+          content: this.htmlEntityDecode(p.content.replace(`${hashtagPrefix}${p.time_stamp}`, '')),
         }))
       )
     );
+  }
+
+  private htmlEntityDecode(encodedString: string): string {
+    const entities = {
+      '&amp;': '&',
+      '&lt;': '<',
+      '&gt;': '>',
+      '&quot;': '"',
+      '&#39;': "'",
+      // Add more entities as needed
+    } as any;
+
+    return encodedString.replace(/&[a-zA-Z0-9#]+;/g, (match) => entities[match] || match);
   }
 }
