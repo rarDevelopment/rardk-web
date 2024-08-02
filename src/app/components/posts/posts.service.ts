@@ -48,7 +48,6 @@ export class PostsService {
       '&gt;': '>',
       '&quot;': '"',
       '&#39;': "'",
-      // Add more entities as needed
     } as any;
 
     return encodedString.replace(/&[a-zA-Z0-9#]+;/g, (match) => entities[match] || match);
