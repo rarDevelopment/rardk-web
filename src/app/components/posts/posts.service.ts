@@ -48,8 +48,10 @@ export class PostsService {
       '&gt;': '>',
       '&quot;': '"',
       '&#39;': "'",
-    } as any;
-
-    return encodedString.replace(/&[a-zA-Z0-9#]+;/g, (match) => entities[match] || match);
+    };
+    Object.entries(entities).forEach(([key, value]) => {
+      encodedString = encodedString.replace(new RegExp(key, 'g'), value);
+    });
+    return encodedString;
   }
 }
