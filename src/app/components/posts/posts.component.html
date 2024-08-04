@@ -8,28 +8,25 @@
   </div>
 </div>
 <app-loading-indicator [isLoading]="isLoading"></app-loading-indicator>
-@if (!isLoading) {
-  @for (post of posts; track post) {
-    <div class="repeating-post">
-      <div class="repeating-post-summary">
-        <p>
-          {{ post.content }}
-        </p>
-        @if (post.images_csv) {
-          <p>
-            <img [src]="post.images_csv" [alt]="post.content" class="post-image" />
-          </p>
-        }
-        <app-date-display
-          [routerLink]="['/posts', post.time_stamp]"
-          [dateToDisplay]="post.posted_at"
-        labelText="Posted on:"></app-date-display>
-      </div>
-    </div>
-  }
-}
-@if(showPageLink) {
-  <div class="section-footer">
-    <a [routerLink]="['/posts']">See more Posts</a>
+@if (!isLoading) { @for (post of posts; track post) {
+<div class="repeating-post">
+  <div class="repeating-post-summary">
+    <p>
+      {{ post.content }}
+    </p>
+    @if (post.images_csv) {
+    <p>
+      <img [src]="post.images_csv" [alt]="post.image_alt_text" class="post-image" />
+    </p>
+    }
+    <app-date-display
+      [routerLink]="['/posts', post.time_stamp]"
+      [dateToDisplay]="post.posted_at"
+      labelText="Posted on:"></app-date-display>
   </div>
+</div>
+} } @if(showPageLink) {
+<div class="section-footer">
+  <a [routerLink]="['/posts']">See more Posts</a>
+</div>
 }
