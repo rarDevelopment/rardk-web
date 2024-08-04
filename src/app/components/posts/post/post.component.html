@@ -10,7 +10,7 @@
     </p>
     @if (post.images_csv) {
     <p>
-      <img [src]="post.images_csv" [alt]="post.content" class="post-image" />
+      <img [src]="post.images_csv" [alt]="post.image_alt_text" class="post-image" />
     </p>
     }
     <app-date-display [dateToDisplay]="post.posted_at" labelText="Posted on:"></app-date-display>
