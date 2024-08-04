@@ -3,6 +3,7 @@ export class Post {
   public posted_at: string;
   public edited_at: string;
   public images_csv: string;
+  public image_alt_text: string;
   public url: string;
   public url_title: string;
   public post_type: string;
