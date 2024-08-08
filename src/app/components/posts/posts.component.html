@@ -25,8 +25,22 @@
       labelText="Posted on:"></app-date-display>
   </div>
 </div>
-} } @if(showPageLink) {
+} } @if (showPageLink) {
 <div class="section-footer">
   <a [routerLink]="['/posts']">See more Posts</a>
+</div>
+} @else if (showPaginator) {
+<div class="section-footer">
+  @if(currentPage > 1) {
+  <button class="action-button secondary action button" (click)="previousPage()">
+    <i class="fa-solid fa-arrow-left"></i>
+    Previous
+  </button>
+  } @if(currentPage < numberOfPages) {
+  <button class="action-button secondary action button" (click)="nextPage()">
+    <i class="fa-solid fa-arrow-right"></i>
+    Next
+  </button>
+  }
 </div>
 }
