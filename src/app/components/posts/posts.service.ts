@@ -42,16 +42,8 @@ export class PostsService {
   }
 
   private htmlEntityDecode(encodedString: string): string {
-    const entities = {
-      '&amp;': '&',
-      '&lt;': '<',
-      '&gt;': '>',
-      '&quot;': '"',
-      '&#39;': "'",
-    };
-    Object.entries(entities).forEach(([key, value]) => {
-      encodedString = encodedString.replace(new RegExp(key, 'g'), value);
-    });
-    return encodedString;
+    const parser = new DOMParser();
+    const doc = parser.parseFromString(encodedString, 'text/html');
+    return doc.documentElement.textContent || '';
   }
 }
