@@ -63,5 +63,20 @@
       <div class="copyright">&copy; rardk64</div>
     </div>
     <noscript>Please enable JavaScript to continue using this application.</noscript>
+    <script>
+      window.addEventListener("scroll", () => {
+        const elements = document.querySelectorAll(".shrinkable");
+        const scrollPosition = window.scrollY;
+
+        elements.forEach((element) => {
+          if (scrollPosition > 50) {
+            // Adjust the scroll threshold as needed
+            element.classList.add("shrink");
+          } else {
+            element.classList.remove("shrink");
+          }
+        });
+      });
+    </script>
   </body>
 </html>
