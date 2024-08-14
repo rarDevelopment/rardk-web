@@ -9,3 +9,9 @@
 .navbar-card {
   max-width: 900px;
 }
+
+@media screen and (min-width: 0px) and (max-width: 767px) {
+  .navbar {
+    margin-bottom: 15px;
+  }
+}

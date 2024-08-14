@@ -69,12 +69,13 @@ h3 {
   min-width: $min-width;
 }
 
-.with-border {
-  background-color: rgba(164, 39, 214, 0.506);
-  border-radius: 5px;
-  padding: 20px;
-  margin-bottom: 15px;
-  box-shadow: 4px 4px #000000;
+.shrinkable {
+  transition: transform 0.2s ease;
+}
+
+.shrink {
+  transform: scale(0.4);
+  height: 80px;
 }
 
 .webrings {
