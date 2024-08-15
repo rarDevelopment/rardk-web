@@ -10,8 +10,22 @@
   max-width: 900px;
 }
 
+.collapse-button {
+  display: none;
+}
+
 @media screen and (min-width: 0px) and (max-width: 767px) {
   .navbar {
     margin-bottom: 15px;
+  }
+  .navbar-container {
+    display: none;
+  }
+  .navbar-mobile-show {
+    display: block;
+  }
+  .collapse-button {
+    display: inline-block;
+    font-size: 24px;
   }
 }

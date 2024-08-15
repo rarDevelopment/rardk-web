@@ -271,6 +271,17 @@ a:visited {
   background-color: #f28834;
 }
 
+.button.transparent {
+  background-color: transparent;
+  color: #ffffff;
+  border: none;
+  padding: 0px;
+}
+
+.button.transparent:active {
+  color: #6d6d6d;
+}
+
 .button.action:disabled,
 .button.action[disabled="disabled"],
 .button.action:disabled:hover,
