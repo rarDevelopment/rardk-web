@@ -8,6 +8,8 @@ import { PostsService } from './posts.service';
 import { Post } from './models/post';
 import { RouterLink } from '@angular/router';
 import { PostType } from './models/post-type';
+import { PostDisplay } from './models/post-display';
+import { ModalComponent } from '../shared/modal/modal.component';
 
 @Component({
   selector: 'app-posts',
@@ -18,13 +20,14 @@ import { PostType } from './models/post-type';
     LoadingIndicatorComponent,
     DateDisplayComponent,
     RouterLink,
+    ModalComponent,
   ],
   templateUrl: './posts.component.html',
   styleUrl: './posts.component.scss',
 })
 export class PostsComponent implements OnInit {
   constructor(private postsService: PostsService) {}
-  public posts: Post[];
+  public posts: PostDisplay[];
   public allPosts: Post[];
   public isLoading: boolean;
   @Input() itemCount: number = 0;
@@ -58,12 +61,16 @@ export class PostsComponent implements OnInit {
             ? (this.allPosts = postsToShow.slice(0, this.itemCount))
             : (this.allPosts = postsToShow);
 
+          let paginatedPosts = [];
+
           if (this.showPaginator) {
             this.numberOfPages = Math.ceil(this.allPosts.length / this.itemsPerPage);
-            this.posts = this.allPosts.slice(0, this.itemsPerPage);
+            paginatedPosts = this.allPosts.slice(0, this.itemsPerPage);
           } else {
-            this.posts = this.allPosts;
+            paginatedPosts = this.allPosts;
           }
+
+          this.posts = paginatedPosts.map((p) => new PostDisplay(p));
         },
         error: (error) => {
           console.error(error);
@@ -85,11 +92,17 @@ export class PostsComponent implements OnInit {
 
   public setPostsForCurrentPage() {
     const start = (this.currentPage - 1) * this.itemsPerPage;
-    this.posts = this.allPosts.slice(start, start + this.itemsPerPage);
+    this.posts = this.allPosts
+      .slice(start, start + this.itemsPerPage)
+      .map((p) => new PostDisplay(p));
   }
 
   public goToPage(pageNumber: number) {
     this.currentPage = pageNumber;
     this.setPostsForCurrentPage();
+  }
+
+  toggleModal(post: PostDisplay, isVisible: boolean) {
+    post.isModalVisible = isVisible;
   }
 }

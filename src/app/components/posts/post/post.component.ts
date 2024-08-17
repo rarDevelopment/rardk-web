@@ -10,6 +10,8 @@ import { LoadingIndicatorComponent } from '../../shared/loading-indicator/loadin
 import { PostsService } from '../posts.service';
 import { Post } from '../models/post';
 import { PostType } from '../models/post-type';
+import { PostDisplay } from '../models/post-display';
+import { ModalComponent } from '../../shared/modal/modal.component';
 
 @Component({
   selector: 'app-post',
@@ -19,13 +21,14 @@ import { PostType } from '../models/post-type';
     LoadingIndicatorComponent,
     DateDisplayComponent,
     RouterLink,
-    SocialMediaDiscussionComponent
-],
+    SocialMediaDiscussionComponent,
+    ModalComponent,
+  ],
   templateUrl: './post.component.html',
   styleUrl: './post.component.scss',
 })
 export class PostComponent implements OnInit {
-  public post: Post;
+  public post: PostDisplay;
   public isLoading: boolean;
   public slug: string;
   public discussionMethod = this.discussionPostsService.getDiscussionPostsForPosts.bind(
@@ -70,6 +73,10 @@ export class PostComponent implements OnInit {
     if (!foundPost) {
       this.router.navigate(['posts']);
     }
-    this.post = foundPost!;
+    this.post = new PostDisplay(foundPost!);
+  }
+
+  toggleModal(post: PostDisplay, isVisible: boolean) {
+    post.isModalVisible = isVisible;
   }
 }

@@ -29,8 +29,8 @@ import { ModalComponent } from '../../shared/modal/modal.component';
     MatRadioModule,
     CheckOrXComponent,
     LoadingIndicatorComponent,
-    ModalComponent
-],
+    ModalComponent,
+  ],
 })
 export class LegoSetsComponent {
   public ownedSets: LegoSetDisplay[];
@@ -46,8 +46,6 @@ export class LegoSetsComponent {
   public ownedSeriesOptions: string[];
   public filterOptionNoSeries = 'NONE';
   public seriesOptionSelected: string = this.filterOptionNoSeries;
-  public modalVisibilitiesWantedSets: boolean[] = [];
-  public modalVisibilitiesOwnedSets: boolean[] = [];
   public isLoading: boolean = false;
   @ViewChild('wantedSetsSection') wantedSetsSection: ElementRef;
   @ViewChild('ownedSetsSection') ownedSetsSection: ElementRef;
