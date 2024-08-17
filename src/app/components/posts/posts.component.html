@@ -16,7 +16,15 @@
     </p>
     @if (post.images_csv) {
     <p>
-      <img [src]="post.images_csv" [alt]="post.image_alt_text" class="post-image" />
+      <img
+        [src]="post.images_csv"
+        [alt]="post.image_alt_text"
+        class="post-image"
+        (click)="toggleModal(post, true)" />
+      <app-modal
+        [post]="post.modalImage"
+        [isVisible]="post.isModalVisible"
+        (onClose)="toggleModal(post, false)"></app-modal>
     </p>
     }
     <app-date-display
