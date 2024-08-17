@@ -39,7 +39,6 @@ export class PostDisplay {
         {
           url: post.images_csv,
           description: post.image_alt_text,
-          altText: post.image_alt_text,
         } as ModalImageItem,
       ],
       content: post.content,
