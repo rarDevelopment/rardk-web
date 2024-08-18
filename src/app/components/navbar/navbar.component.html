@@ -1,6 +1,10 @@
 <section class="navbar">
   <div class="navbar-card">
-    <button type="button" class="button transparent collapse-button" (click)="toggleNavbar()">
+    <button
+      type="button"
+      class="button transparent collapse-button"
+      [ngClass]="{ 'collapse-button-clicked': showNavbarOnMobile }"
+      (click)="toggleNavbar()">
       <i class="fa-solid fa-bars"></i>
     </button>
 

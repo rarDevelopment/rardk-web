@@ -12,6 +12,12 @@
 
 .collapse-button {
   display: none;
+  transition: all 0.2s ease-in-out;
+}
+
+.collapse-button-clicked {
+  color: #f28834;
+  transform: rotate(90deg);
 }
 
 @media screen and (min-width: 0px) and (max-width: 767px) {
