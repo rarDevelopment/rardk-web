@@ -5,6 +5,7 @@ import { Post } from './models/post';
 import { environment } from 'src/environments/environment';
 import { PostType } from './models/post-type';
 import { PostTypeFilter } from './models/post-type-filter';
+import { HtmlDecoder } from 'src/app/utilities/html-decoder';
 
 @Injectable({
   providedIn: 'root',
@@ -26,24 +27,17 @@ export class PostsService {
     },
   };
 
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient, private htmlDecoder: HtmlDecoder) {}
 
   public getPosts(postType: PostType): Observable<Post[]> {
     const postTypeFilter = this.postTypeFilters[postType].filter;
-    const hashtagPrefix = this.postTypeFilters[postType].hashtagPrefix;
     return this.http.get<Post[]>(this.url).pipe(
       map((posts: Post[]) =>
         posts.filter(postTypeFilter).map((p) => ({
           ...p,
-          content: this.htmlEntityDecode(p.content.replace(`${hashtagPrefix}${p.time_stamp}`, '')),
+          content: this.htmlDecoder.htmlEntityDecode(p.content),
         }))
       )
     );
-  }
-
-  private htmlEntityDecode(encodedString: string): string {
-    const parser = new DOMParser();
-    const doc = parser.parseFromString(encodedString, 'text/html');
-    return doc.documentElement.textContent || '';
   }
 }
