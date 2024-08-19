@@ -9,7 +9,7 @@ import { HtmlDecoder } from 'src/app/utilities/html-decoder';
   providedIn: 'root',
 })
 export class LegoSetsService {
-  private setsUrl: string = `${environment.apiUrl}now/json/lego-sets-with-images`;
+  private setsUrl: string = `${environment.feedsSiteUrl}rss/lego/json/`;
 
   constructor(private http: HttpClient, private htmlDecoder: HtmlDecoder) {}
 
