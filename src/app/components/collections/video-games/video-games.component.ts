@@ -26,7 +26,8 @@ export class VideoGamesComponent implements OnInit {
   public gameCollectionItemsGrouped: { [key: string]: GameCollectionEntry[] };
   public gameCollectionItems: GameCollectionEntry[];
   public isLoading: boolean;
-  public selectedPlatform: string = 'Nintendo 64';
+  public allGenre = 'All Games';
+  public selectedPlatform: string = this.allGenre;
   public availablePlatforms: GamePlatform[] = [];
   public searchTerm: string = '';
 
@@ -48,12 +49,25 @@ export class VideoGamesComponent implements OnInit {
       )
       .subscribe({
         next: (gameCollectionItems: GameCollectionEntry[]) => {
-          const gameCollectionItemsFiltered = gameCollectionItems
-            .filter((g) => g.category === 'Games')
+          this.gameCollectionItems = gameCollectionItems
+            .filter((g) => g.category === 'Games' && g.userRecordType === 'Owned')
             .sort((a, b) => {
-              return a > b ? 1 : -1;
+              if (a.platform > b.platform) {
+                return 1;
+              }
+              if (a.platform < b.platform) {
+                return -1;
+              }
+              if (a.title > b.title) {
+                return 1;
+              }
+              if (a.title < b.title) {
+                return -1;
+              }
+              return 0;
             });
-          this.gameCollectionItemsGrouped = this.groupBy(gameCollectionItemsFiltered, 'platform');
+          this.gameCollectionItemsGrouped = this.groupBy(this.gameCollectionItems, 'platform');
+          this.gameCollectionItemsGrouped[this.allGenre] = this.gameCollectionItems;
           this.setAvailablePlatforms();
         },
         error: (error) => {

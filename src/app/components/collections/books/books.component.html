@@ -15,10 +15,9 @@
     <div class="search-container">
       <input type="text" placeholder="Enter a book title" [(ngModel)]="searchTerm" />
     </div>
-    <div class="genre-select-container">Genre</div>
+    <div class="genre-select-container">Filter by Genre</div>
     <div class="genre-select-container">
       <select [(ngModel)]="selectedGenre">
-        <option [value]="allGenre">All Genres</option>
         @for (genre of availableGenres; track genre) {
         <option [value]="genre.name">{{ genre.name }} ({{ genre.bookCount }} books)</option>
         }

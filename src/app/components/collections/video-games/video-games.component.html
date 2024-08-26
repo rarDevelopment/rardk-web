@@ -15,7 +15,7 @@
     <div class="search-container">
       <input type="text" placeholder="Enter a game title" [(ngModel)]="searchTerm" />
     </div>
-    <div class="platform-select-container">Platform</div>
+    <div class="platform-select-container">Filter by Platform</div>
     <div class="platform-select-container">
       <select [(ngModel)]="selectedPlatform">
         @for (platform of availablePlatforms; track platform) {
@@ -31,10 +31,18 @@
       @if (platformGrouping.key === selectedPlatform) {
       <table class="game-table">
         <th>Game</th>
+        <th>Platform</th>
+        <th>Developer</th>
         @for (gameCollectionItem of filterGames(platformGrouping.value); track gameCollectionItem) {
         <tr>
           <td>
             {{ gameCollectionItem.title }}
+          </td>
+          <td>
+            {{ gameCollectionItem.platform }}
+          </td>
+          <td>
+            {{ gameCollectionItem.developer }}
           </td>
         </tr>
         }

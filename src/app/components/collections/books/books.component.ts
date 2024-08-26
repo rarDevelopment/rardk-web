@@ -26,7 +26,7 @@ export class BooksComponent {
   public bookCollectionItemsGrouped: { [key: string]: BookCollectionEntry[] };
   public bookCollectionItems: BookCollectionEntry[];
   public isLoading: boolean;
-  public allGenre = 'all';
+  public allGenre = 'All Books';
   public selectedGenre: string = this.allGenre;
   public availableGenres: BookGenre[] = [];
   public searchTerm: string = '';
@@ -49,12 +49,11 @@ export class BooksComponent {
       )
       .subscribe({
         next: (bookCollectionItems: BookCollectionEntry[]) => {
-          const bookCollectionItemsFiltered = bookCollectionItems.sort((a, b) => {
-            return a > b ? 1 : -1;
+          this.bookCollectionItems = bookCollectionItems.sort((a, b) => {
+            return a.title > b.title ? 1 : -1;
           });
-          this.bookCollectionItemsGrouped = this.groupBy(bookCollectionItemsFiltered, 'genre');
-          console.log('bookCollectionItemsGrouped', this.bookCollectionItemsGrouped);
-          this.bookCollectionItemsGrouped[this.allGenre] = bookCollectionItemsFiltered;
+          this.bookCollectionItemsGrouped = this.groupBy(this.bookCollectionItems, 'genre');
+          this.bookCollectionItemsGrouped[this.allGenre] = this.bookCollectionItems;
           this.setAvailableGenres();
         },
         error: (error) => {
