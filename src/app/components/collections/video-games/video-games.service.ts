@@ -11,8 +11,6 @@ export class GameCollectionService {
   constructor(private http: HttpClient) {}
 
   public getGameCollection(): Observable<GameCollectionEntry[]> {
-    return this.http.get<GameCollectionEntry[]>(
-      `${environment.apiUrl}now/games/collection`
-    );
+    return this.http.get<GameCollectionEntry[]>(`${environment.apiUrl}now/games/collection`);
   }
 }

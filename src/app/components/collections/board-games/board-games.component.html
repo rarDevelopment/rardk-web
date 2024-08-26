@@ -1,6 +1,9 @@
 <div class="page-description-container">
   <div class="page-description-content">
-    <app-page-title [titleSize]="1">Board Games Collection</app-page-title>
+    <app-page-title [titleSize]="1">
+      <i class="fa-solid fa-dice"></i>
+      Board Game Collection
+    </app-page-title>
     <p>
       This data is pulled from my
       <a href="https://boardgamegeek.com/wishlist/rardk" target="_blank">Wishlist</a>
@@ -14,62 +17,61 @@
     </p>
   </div>
 </div>
-<app-loading-indicator [isLoading]="isLoadingWishlist || isLoadingOwnedList"></app-loading-indicator>
+<app-loading-indicator
+  [isLoading]="isLoadingWishlist || isLoadingOwnedList"></app-loading-indicator>
 @if (!isLoadingWishlist && !isLoadingOwnedList) {
-  <div class="content-container">
-    <div class="content-container-card">
-      <section class="wanted-section">
-        <h2>Board Games I Want</h2>
-        @if (!isLoadingWishlist && isErrorWishlist) {
-          <div class="error-message">
-            There was an error loading this list. Please try again or come back later!
-          </div>
+<div class="content-container">
+  <div class="content-container-card">
+    <section class="wanted-section">
+      <h2>Board Games I Want</h2>
+      @if (!isLoadingWishlist && isErrorWishlist) {
+      <div class="error-message">
+        There was an error loading this list. Please try again or come back later!
+      </div>
+      } @if (!isLoadingWishlist && !isErrorWishlist) {
+      <table class="set-table">
+        <th></th>
+        <th>Name</th>
+        <th>Notes</th>
+        @for (boardGame of wishlistGames; track boardGame) {
+        <tr>
+          <td class="img-cell">
+            <a [href]="boardGame.url" target="_blank">
+              <img [src]="boardGame.thumbnail" alt="{{ boardGame.name }}" />
+            </a>
+          </td>
+          <td>{{ boardGame.name }} ({{ boardGame.yearPublished }})</td>
+          <td [innerHTML]="boardGame.comment"></td>
+        </tr>
         }
-        @if (!isLoadingWishlist && !isErrorWishlist) {
-          <table class="set-table">
-            <th></th>
-            <th>Name</th>
-            <th>Notes</th>
-            @for (boardGame of wishlistGames; track boardGame) {
-              <tr>
-                <td class="img-cell">
-                  <a [href]="boardGame.url" target="_blank">
-                    <img [src]="boardGame.thumbnail" alt="{{ boardGame.name }}" />
-                  </a>
-                </td>
-                <td>{{ boardGame.name }} ({{ boardGame.yearPublished }})</td>
-                <td [innerHTML]="boardGame.comment"></td>
-              </tr>
-            }
-          </table>
+      </table>
+      }
+    </section>
+    <section class="owned-section">
+      <h2>Board Games I Own</h2>
+      @if (!isLoadingWishlist && isErrorWishlist) {
+      <div class="error-message">
+        There was an error loading this list. Please try again or come back later!
+      </div>
+      } @if (!isLoadingOwnedList && !isErrorOwnedList) {
+      <table class="set-table">
+        <th></th>
+        <th>Name</th>
+        <th>My Rating</th>
+        @for (boardGame of ownedGames; track boardGame) {
+        <tr>
+          <td class="img-cell">
+            <a [href]="boardGame.url" target="_blank">
+              <img [src]="boardGame.thumbnail" alt="{{ boardGame.name }}" />
+            </a>
+          </td>
+          <td>{{ boardGame.name }} ({{ boardGame.yearPublished }})</td>
+          <td>{{ boardGame.rating }}</td>
+        </tr>
         }
-      </section>
-      <section class="owned-section">
-        <h2>Board Games I Own</h2>
-        @if (!isLoadingWishlist && isErrorWishlist) {
-          <div class="error-message">
-            There was an error loading this list. Please try again or come back later!
-          </div>
-        }
-        @if (!isLoadingOwnedList && !isErrorOwnedList) {
-          <table class="set-table">
-            <th></th>
-            <th>Name</th>
-            <th>My Rating</th>
-            @for (boardGame of ownedGames; track boardGame) {
-              <tr>
-                <td class="img-cell">
-                  <a [href]="boardGame.url" target="_blank">
-                    <img [src]="boardGame.thumbnail" alt="{{ boardGame.name }}" />
-                  </a>
-                </td>
-                <td>{{ boardGame.name }} ({{ boardGame.yearPublished }})</td>
-                <td>{{ boardGame.rating }}</td>
-              </tr>
-            }
-          </table>
-        }
-      </section>
-    </div>
+      </table>
+      }
+    </section>
   </div>
+</div>
 }
