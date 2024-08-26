@@ -1,0 +1,57 @@
+<div class="page-description-container">
+  <div class="page-description-content">
+    <app-page-title [titleSize]="1">
+      <i class="fa-solid fa-book"></i>
+      Book Collection
+    </app-page-title>
+    <p>Select a genre below to view the books I have in that genre.</p>
+  </div>
+</div>
+<app-loading-indicator [isLoading]="isLoading"></app-loading-indicator>
+@if (!isLoading) {
+<div class="content-container">
+  <div class="content-container-card">
+    <div class="search-container">Title Search</div>
+    <div class="search-container">
+      <input type="text" placeholder="Enter a book title" [(ngModel)]="searchTerm" />
+    </div>
+    <div class="genre-select-container">Filter by Genre</div>
+    <div class="genre-select-container">
+      <select [(ngModel)]="selectedGenre">
+        @for (genre of availableGenres; track genre) {
+        <option [value]="genre.name">{{ genre.name }} ({{ genre.bookCount }} books)</option>
+        }
+      </select>
+    </div>
+    @for ( genreGrouping of bookCollectionItemsGrouped | keyvalue; track genreGrouping; let
+    genreIndex = $index) {
+    <section>
+      @if (genreGrouping.key === selectedGenre) {
+      <table class="book-table">
+        <th>Book</th>
+        <th>Author</th>
+        <th>Year</th>
+        <th>Genre</th>
+        @for (bookCollectionItem of filterBooks(genreGrouping.value); track bookCollectionItem) {
+        <tr>
+          <td>
+            {{ bookCollectionItem.title }}
+          </td>
+          <td>
+            {{ bookCollectionItem.author }}
+          </td>
+          <td>
+            {{ bookCollectionItem.yearPublished }}
+          </td>
+          <td>
+            {{ bookCollectionItem.genre }}
+          </td>
+        </tr>
+        }
+      </table>
+      }
+    </section>
+    }
+  </div>
+</div>
+}
