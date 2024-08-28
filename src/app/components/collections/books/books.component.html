@@ -31,7 +31,6 @@
         <th>Book</th>
         <th>Author</th>
         <th>Year</th>
-        <th>Genre</th>
         @for (bookCollectionItem of filterBooks(genreGrouping.value); track bookCollectionItem) {
         <tr>
           <td>
@@ -42,9 +41,6 @@
           </td>
           <td>
             {{ bookCollectionItem.yearPublished }}
-          </td>
-          <td>
-            {{ bookCollectionItem.genre }}
           </td>
         </tr>
         }
