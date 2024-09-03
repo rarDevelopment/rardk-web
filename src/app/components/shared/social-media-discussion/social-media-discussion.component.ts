@@ -69,15 +69,18 @@ export class SocialMediaDiscussionComponent implements OnInit {
                 const splitUri = post.uri.split('/');
                 const postId = splitUri[splitUri.length - 1];
                 const bskyUrl = `https://bsky.app/profile/${environment.bskyHandle}/post/${postId}`;
+
                 const postToDisplay = {
-                  likes: -1,
-                  shares: -1,
-                  comments: -1,
+                  likes: post.likeCount ?? null,
+                  shares: post.repostCount ?? null,
+                  quotes: post.quoteCount ?? null,
+                  comments: post.replyCount ?? null,
                   content: this.cleanText(post.value.text, true, false),
                   url: bskyUrl,
                   commentsUrl: bskyUrl,
-                  likesUrl: `${bskyUrl}/liked-by`,
-                  sharesUrl: `${bskyUrl}/reposted-by`,
+                  likesUrl: post.likeCount !== 0 ? `${bskyUrl}/liked-by` : bskyUrl,
+                  sharesUrl: post.repostCount !== 0 ? `${bskyUrl}/reposted-by` : bskyUrl,
+                  quotesUrl: post.quoteCount !== 0 ? `${bskyUrl}/quotes` : bskyUrl,
                 } as PostToDisplay;
                 this.blueskyPosts.push(postToDisplay);
               });

@@ -2,6 +2,10 @@ export interface BlueskyPostFull {
   uri: string;
   cid: string;
   value: Value;
+  likeCount: number;
+  repostCount: number;
+  replyCount: number;
+  quoteCount: number;
 }
 
 export interface Value {
