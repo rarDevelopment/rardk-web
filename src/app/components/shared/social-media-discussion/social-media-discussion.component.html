@@ -1,90 +1,89 @@
 @if (mastodonPosts.length > 0 || blueskyPosts.length > 0) {
-  <div class="discussion-container">
-    <div class="discussion-note">Join the discussion below:</div>
-    @if (mastodonPosts.length > 0) {
-      <div class="mastodon discussion-posts">
-        @for (post of mastodonPosts; track post) {
-          <div class="discussion-post">
-            <div class="discussion-header">
-              <i class="fa-brands fa-mastodon mastodon-color mastodon-icon"></i>
-              <a [href]="post.url" target="_blank">View on Mastodon</a>
-            </div>
-            @if (showContent) {
-              <div class="discussion-content" [html]="post.content"></div>
-            }
-            <div class="discussion-interactions">
-              <div class="interaction-button mastodon-color likes">
-                <a [href]="post.likesUrl" target="_blank">
-                  <i class="fa-solid fa-star"></i>
-                  {{ post.likes }}
-                </a>
-              </div>
-              <div class="interaction-button mastodon-color shares">
-                <a [href]="post.sharesUrl" target="_blank">
-                  <i class="fa-solid fa-rocket"></i>
-                  {{ post.shares }}
-                </a>
-              </div>
-              <div class="interaction-button mastodon-color comments">
-                <a [href]="post.commentsUrl" target="_blank">
-                  <i class="fa-solid fa-reply"></i>
-                  {{ post.comments }}
-                </a>
-              </div>
-            </div>
-          </div>
-        }
+<div class="discussion-container">
+  <div class="discussion-note">Join the discussion below:</div>
+  @if (mastodonPosts.length > 0) {
+  <div class="mastodon discussion-posts">
+    @for (post of mastodonPosts; track post) {
+    <div class="discussion-post">
+      <div class="discussion-header">
+        <i class="fa-brands fa-mastodon mastodon-color mastodon-icon"></i>
+        <a [href]="post.url" target="_blank">View on Mastodon</a>
       </div>
-    }
-    @if (blueskyPosts.length > 0) {
-      <div class="bluesky discussion-posts">
-        @for (post of blueskyPosts; track post) {
-          <div class="discussion-post">
-            <div class="discussion-header">
-              <svg
-                class="bluesky-color bluesky-icon"
-                tooltip="@rardk64.com on Bluesky"
-                role="img"
-                viewBox="0 0 24 24"
-                xmlns="http://www.w3.org/2000/svg">
-                <title>Bluesky</title>
-                <path
-                  d="M12 10.8c-1.087-2.114-4.046-6.053-6.798-7.995C2.566.944 1.561 1.266.902 1.565.139 1.908 0 3.08 0 3.768c0 .69.378 5.65.624 6.479.815 2.736 3.713 3.66 6.383 3.364.136-.02.275-.039.415-.056-.138.022-.276.04-.415.056-3.912.58-7.387 2.005-2.83 7.078 5.013 5.19 6.87-1.113 7.823-4.308.953 3.195 2.05 9.271 7.733 4.308 4.267-4.308 1.172-6.498-2.74-7.078a8.741 8.741 0 0 1-.415-.056c.14.017.279.036.415.056 2.67.297 5.568-.628 6.383-3.364.246-.828.624-5.79.624-6.478 0-.69-.139-1.861-.902-2.206-.659-.298-1.664-.62-4.3 1.24C16.046 4.748 13.087 8.687 12 10.8Z" />
-                </svg>
-                <a [href]="post.url" target="_blank">View on Bluesky</a>
-              </div>
-              @if (showContent) {
-                <div class="discussion-content" [html]="post.content"></div>
-              }
-              <div class="discussion-interactions">
-                <div class="interaction-button bluesky-color likes">
-                  <a [href]="post.likesUrl" target="_blank">
-                    <i class="fa-solid fa-heart"></i>
-                    @if (post.likes > -1) {
-                      <span>{{ post.likes }}</span>
-                    }
-                  </a>
-                </div>
-                <div class="interaction-button bluesky-color shares">
-                  <a [href]="post.sharesUrl" target="_blank">
-                    <i class="fa-solid fa-retweet"></i>
-                    @if (post.shares > -1) {
-                      <span>{{ post.shares }}</span>
-                    }
-                  </a>
-                </div>
-                <div class="interaction-button bluesky-color comments">
-                  <a [href]="post.commentsUrl" target="_blank">
-                    <i class="fa-solid fa-comment"></i>
-                    @if (post.comments > -1) {
-                      <span>{{ post.comments }}</span>
-                    }
-                  </a>
-                </div>
-              </div>
-            </div>
-          }
-        </div>
+      @if (showContent) {
+      <div class="discussion-content" [html]="post.content"></div>
       }
+      <div class="discussion-interactions">
+        <div class="interaction-button mastodon-color likes">
+          <a [href]="post.likesUrl" target="_blank">
+            <i class="fa-solid fa-star"></i>
+            {{ post.likes }}
+          </a>
+        </div>
+        <div class="interaction-button mastodon-color shares">
+          <a [href]="post.sharesUrl" target="_blank">
+            <i class="fa-solid fa-rocket"></i>
+            {{ post.shares }}
+          </a>
+        </div>
+        <div class="interaction-button mastodon-color comments">
+          <a [href]="post.commentsUrl" target="_blank">
+            <i class="fa-solid fa-reply"></i>
+            {{ post.comments }}
+          </a>
+        </div>
+      </div>
     </div>
+    }
+  </div>
+  } @if (blueskyPosts.length > 0) {
+  <div class="bluesky discussion-posts">
+    @for (post of blueskyPosts; track post) {
+    <div class="discussion-post">
+      <div class="discussion-header">
+        <svg
+          class="bluesky-color bluesky-icon"
+          tooltip="@rardk64.com on Bluesky"
+          role="img"
+          viewBox="0 0 24 24"
+          xmlns="http://www.w3.org/2000/svg">
+          <title>Bluesky</title>
+          <path
+            d="M12 10.8c-1.087-2.114-4.046-6.053-6.798-7.995C2.566.944 1.561 1.266.902 1.565.139 1.908 0 3.08 0 3.768c0 .69.378 5.65.624 6.479.815 2.736 3.713 3.66 6.383 3.364.136-.02.275-.039.415-.056-.138.022-.276.04-.415.056-3.912.58-7.387 2.005-2.83 7.078 5.013 5.19 6.87-1.113 7.823-4.308.953 3.195 2.05 9.271 7.733 4.308 4.267-4.308 1.172-6.498-2.74-7.078a8.741 8.741 0 0 1-.415-.056c.14.017.279.036.415.056 2.67.297 5.568-.628 6.383-3.364.246-.828.624-5.79.624-6.478 0-.69-.139-1.861-.902-2.206-.659-.298-1.664-.62-4.3 1.24C16.046 4.748 13.087 8.687 12 10.8Z" />
+        </svg>
+        <a [href]="post.url" target="_blank">View on Bluesky</a>
+      </div>
+      @if (showContent) {
+      <div class="discussion-content" [html]="post.content"></div>
+      }
+      <div class="discussion-interactions">
+        <div class="interaction-button bluesky-color likes">
+          <a [href]="post.likesUrl" target="_blank">
+            <i class="fa-solid fa-heart"></i>
+            {{ post.likes }}
+          </a>
+        </div>
+        <div class="interaction-button bluesky-color shares">
+          <a [href]="post.sharesUrl" target="_blank">
+            <i class="fa-solid fa-retweet"></i>
+            {{ post.shares }}
+          </a>
+        </div>
+        <div class="interaction-button bluesky-color comments">
+          <a [href]="post.quotesUrl" target="_blank">
+            <i class="fa-solid fa-quote-left"></i>
+            {{ post.quotes }}
+          </a>
+        </div>
+        <div class="interaction-button bluesky-color comments">
+          <a [href]="post.commentsUrl" target="_blank">
+            <i class="fa-solid fa-comment"></i>
+            {{ post.comments }}
+          </a>
+        </div>
+      </div>
+    </div>
+    }
+  </div>
   }
+</div>
+}

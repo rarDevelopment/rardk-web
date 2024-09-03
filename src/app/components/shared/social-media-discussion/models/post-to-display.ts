@@ -3,6 +3,8 @@ export class PostToDisplay {
   public likesUrl: string;
   public shares: number;
   public sharesUrl: string;
+  public quotes: number;
+  public quotesUrl: string;
   public comments: number;
   public commentsUrl: string;
   public content: string;
