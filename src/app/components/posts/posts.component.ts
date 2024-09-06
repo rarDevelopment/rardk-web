@@ -10,6 +10,7 @@ import { RouterLink, ActivatedRoute, Router } from '@angular/router';
 import { PostType } from './models/post-type';
 import { PostDisplay } from './models/post-display';
 import { ModalComponent } from '../shared/modal/modal.component';
+import { PageNumbersComponent } from '../shared/page-numbers/page-numbers.component';
 
 @Component({
   selector: 'app-posts',
@@ -21,6 +22,7 @@ import { ModalComponent } from '../shared/modal/modal.component';
     DateDisplayComponent,
     RouterLink,
     ModalComponent,
+    PageNumbersComponent,
   ],
   templateUrl: './posts.component.html',
   styleUrl: './posts.component.scss',

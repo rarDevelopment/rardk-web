@@ -9,17 +9,11 @@
 </div>
 <app-loading-indicator [isLoading]="isLoading"></app-loading-indicator>
 @if (!isLoading) { @if(showPaginator) {
-<div class="page-numbers">
-  @for(i of pageNumbers; track i) { @if(i !== 1) {
-  <span class="page-number-separator">|</span>
-  } @if(i === currentPage) {
-  <span class="active-page-number">{{ i }}</span>
-  } @else {
-  <span class="page-number-link" (click)="goToPage(i)">
-    {{ i }}
-  </span>
-  } }
-</div>
+<app-page-numbers
+  [currentPage]="currentPage"
+  [numberOfPages]="numberOfPages"
+  [pageNumbers]="pageNumbers"
+  (pageChange)="goToPage($event)"></app-page-numbers>
 } @for (post of posts; track post) {
 <div class="repeating-post">
   <div class="repeating-post-summary">
@@ -50,6 +44,11 @@
   <a [routerLink]="['/posts']">See more Posts</a>
 </div>
 } @else if (showPaginator) {
+<app-page-numbers
+  [currentPage]="currentPage"
+  [numberOfPages]="numberOfPages"
+  [pageNumbers]="pageNumbers"
+  (pageChange)="goToPage($event)"></app-page-numbers>
 <div class="section-footer">
   @if(currentPage > 1) {
   <button class="action-button secondary action button" (click)="previousPage()">
