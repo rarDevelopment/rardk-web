@@ -6,7 +6,7 @@ import { DateDisplayComponent } from '../shared/date-display/date-display.compon
 import { LoadingIndicatorComponent } from '../shared/loading-indicator/loading-indicator.component';
 import { PostsService } from './posts.service';
 import { Post } from './models/post';
-import { RouterLink } from '@angular/router';
+import { RouterLink, ActivatedRoute, Router } from '@angular/router';
 import { PostType } from './models/post-type';
 import { PostDisplay } from './models/post-display';
 import { ModalComponent } from '../shared/modal/modal.component';
@@ -26,7 +26,11 @@ import { ModalComponent } from '../shared/modal/modal.component';
   styleUrl: './posts.component.scss',
 })
 export class PostsComponent implements OnInit {
-  constructor(private postsService: PostsService) {}
+  constructor(
+    private postsService: PostsService,
+    private route: ActivatedRoute,
+    private router: Router
+  ) {}
   public posts: PostDisplay[];
   public allPosts: Post[];
   public isLoading: boolean;
@@ -34,12 +38,17 @@ export class PostsComponent implements OnInit {
   @Input() pageTitle = 'Posts';
   @Input() showPageLink = false;
   @Input() showPaginator = true;
+  public pageQueryParam = 1;
   public currentPage = 1;
-  public itemsPerPage = 5;
+  public itemsPerPage = 10;
   public numberOfPages = 1;
+  public pageNumbers: number[] = [];
 
   async ngOnInit() {
-    this.populatePosts();
+    this.route.queryParams.subscribe((params) => {
+      this.pageQueryParam = +params['page'];
+      this.populatePosts();
+    });
   }
 
   public populatePosts() {
@@ -65,12 +74,18 @@ export class PostsComponent implements OnInit {
 
           if (this.showPaginator) {
             this.numberOfPages = Math.ceil(this.allPosts.length / this.itemsPerPage);
+            this.currentPage =
+              this.pageQueryParam && this.pageQueryParam <= this.numberOfPages
+                ? this.pageQueryParam
+                : 1;
+            this.pageNumbers = Array.from({ length: this.numberOfPages }, (_, i) => i + 1);
             paginatedPosts = this.allPosts.slice(0, this.itemsPerPage);
           } else {
             paginatedPosts = this.allPosts;
           }
 
           this.posts = paginatedPosts.map((p) => new PostDisplay(p));
+          this.setPostsForCurrentPage();
         },
         error: (error) => {
           console.error(error);
@@ -90,6 +105,10 @@ export class PostsComponent implements OnInit {
     }
   }
 
+  public scrollToTop() {
+    window.scrollTo(0, 0);
+  }
+
   public setPostsForCurrentPage() {
     const start = (this.currentPage - 1) * this.itemsPerPage;
     this.posts = this.allPosts
@@ -99,7 +118,8 @@ export class PostsComponent implements OnInit {
 
   public goToPage(pageNumber: number) {
     this.currentPage = pageNumber;
-    this.setPostsForCurrentPage();
+    this.router.navigate(['posts'], { queryParams: { page: pageNumber } });
+    this.scrollToTop();
   }
 
   toggleModal(post: PostDisplay, isVisible: boolean) {

@@ -145,6 +145,32 @@ a:visited {
   color: $opposite-font-color;
 }
 
+.page-numbers {
+  max-width: 700px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 0 auto;
+  margin-bottom: 5px;
+
+  font-size: 20px;
+}
+
+.page-number-separator {
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+.page-number-link {
+  cursor: pointer;
+  text-decoration: underline;
+  color: $link-blue;
+}
+
+.active-page-number {
+  font-weight: bold;
+}
+
 /* repeating posts (blog, links) */
 .repeating-post {
   max-width: 700px;

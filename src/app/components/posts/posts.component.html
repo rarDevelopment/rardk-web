@@ -8,7 +8,19 @@
   </div>
 </div>
 <app-loading-indicator [isLoading]="isLoading"></app-loading-indicator>
-@if (!isLoading) { @for (post of posts; track post) {
+@if (!isLoading) { @if(showPaginator) {
+<div class="page-numbers">
+  @for(i of pageNumbers; track i) { @if(i !== 1) {
+  <span class="page-number-separator">|</span>
+  } @if(i === currentPage) {
+  <span class="active-page-number">{{ i }}</span>
+  } @else {
+  <span class="page-number-link" (click)="goToPage(i)">
+    {{ i }}
+  </span>
+  } }
+</div>
+} @for (post of posts; track post) {
 <div class="repeating-post">
   <div class="repeating-post-summary">
     <p>
