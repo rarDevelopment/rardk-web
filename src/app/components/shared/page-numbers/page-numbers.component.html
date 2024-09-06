@@ -1,0 +1,11 @@
+<div class="page-numbers">
+  @for(i of pageNumbers; track i) { @if(i !== 1) {
+  <span class="page-number-separator">|</span>
+  } @if(i === currentPage) {
+  <span class="active-page-number">{{ i }}</span>
+  } @else {
+  <span class="page-number-link" (click)="goToPage(i)">
+    {{ i }}
+  </span>
+  } }
+</div>
