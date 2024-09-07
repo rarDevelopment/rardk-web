@@ -8,6 +8,8 @@ import { MastodonStatusFull } from 'src/app/components/shared/social-media-discu
 import { PostToDisplay } from 'src/app/components/shared/social-media-discussion/models/post-to-display';
 import { SafeHtmlPipe } from 'src/app/pipes/safe-html.pipe';
 import { environment } from 'src/environments/environment';
+import { PostType } from '../../posts/models/post-type';
+import { DiscussionPostsService } from 'src/app/services/discussion-posts.service';
 
 @Component({
   selector: 'app-social-media-discussion',
@@ -19,11 +21,12 @@ import { environment } from 'src/environments/environment';
 export class SocialMediaDiscussionComponent implements OnInit {
   public mastodonPosts: PostToDisplay[] = [];
   public blueskyPosts: PostToDisplay[] = [];
+  @Input() postType: PostType;
   @Input() getDiscussionsMethod: () => Observable<DiscussionPostsResponse>;
   @Input() showContent: boolean = true;
   @Input() discussionId: string;
 
-  constructor(private router: Router) {}
+  constructor(private router: Router, private discussionPostsService: DiscussionPostsService) {}
 
   ngOnInit(): void {
     this.getDiscussionForPost();
@@ -43,7 +46,7 @@ export class SocialMediaDiscussionComponent implements OnInit {
   }
 
   getDiscussionForPost() {
-    this.getDiscussionsMethod()
+    this.determineDiscussionMethod(this.postType)
       .pipe(take(1))
       .subscribe({
         next: (discussion) => {
@@ -65,6 +68,7 @@ export class SocialMediaDiscussionComponent implements OnInit {
               });
             }
             if (postDiscussion.bluesky) {
+              console.log('bluesky', postDiscussion.bluesky);
               postDiscussion.bluesky.forEach((post: BlueskyPostFull) => {
                 const splitUri = post.uri.split('/');
                 const postId = splitUri[splitUri.length - 1];
@@ -91,5 +95,16 @@ export class SocialMediaDiscussionComponent implements OnInit {
           console.error(error);
         },
       });
+  }
+
+  private determineDiscussionMethod(postType: PostType): Observable<DiscussionPostsResponse> {
+    switch (postType) {
+      case PostType.Blog:
+        return this.discussionPostsService.getDiscussionPostsForBlog();
+      case PostType.Link:
+        return this.discussionPostsService.getDiscussionPostsForLinks();
+      case PostType.Post:
+        return this.discussionPostsService.getDiscussionPostsForPosts();
+    }
   }
 }
