@@ -18,8 +18,8 @@ export class PostDisplay {
   public modalImage: ModalImage;
   public isModalVisible: boolean;
 
-  constructor(post: Post) {
-    const imagePostUrl = '/posts/' + post.time_stamp;
+  constructor(post: Post, postsPagePath: string) {
+    const imagePostUrl = `/${postsPagePath}/` + post.time_stamp;
     this.content = post.content;
     this.posted_at = post.posted_at;
     this.edited_at = post.edited_at;

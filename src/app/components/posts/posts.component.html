@@ -4,62 +4,11 @@
       <i class="fa-solid fa-comment"></i>
       {{ pageTitle }}
     </app-page-title>
-    <p></p>
   </div>
 </div>
-<app-loading-indicator [isLoading]="isLoading"></app-loading-indicator>
-@if (!isLoading) { @if(showPaginator) {
-<app-page-numbers
-  [currentPage]="currentPage"
-  [numberOfPages]="numberOfPages"
-  [pageNumbers]="pageNumbers"
-  (pageChange)="goToPage($event)"></app-page-numbers>
-} @for (post of posts; track post) {
-<div class="repeating-post">
-  <div class="repeating-post-summary">
-    <p>
-      {{ post.content }}
-    </p>
-    @if (post.images_csv) {
-    <p>
-      <img
-        [src]="post.images_csv"
-        [alt]="post.image_alt_text"
-        class="post-image"
-        (click)="toggleModal(post, true)" />
-      <app-modal
-        [post]="post.modalImage"
-        [isVisible]="post.isModalVisible"
-        (onClose)="toggleModal(post, false)"></app-modal>
-    </p>
-    }
-    <app-date-display
-      [routerLink]="['/posts', post.time_stamp]"
-      [dateToDisplay]="post.posted_at"
-      labelText="Posted on:"></app-date-display>
-  </div>
-</div>
-} } @if (showPageLink) {
-<div class="section-footer">
-  <a [routerLink]="['/posts']">See more Posts</a>
-</div>
-} @else if (showPaginator) {
-<app-page-numbers
-  [currentPage]="currentPage"
-  [numberOfPages]="numberOfPages"
-  [pageNumbers]="pageNumbers"
-  (pageChange)="goToPage($event)"></app-page-numbers>
-<div class="section-footer">
-  @if(currentPage > 1) {
-  <button class="action-button secondary action button" (click)="previousPage()">
-    <i class="fa-solid fa-arrow-left"></i>
-    Previous
-  </button>
-  } @if(currentPage < numberOfPages) {
-  <button class="action-button secondary action button" (click)="nextPage()">
-    <i class="fa-solid fa-arrow-right"></i>
-    Next
-  </button>
-  }
-</div>
-}
+<app-post-feed
+  [postType]="postType"
+  [itemCount]="itemCount"
+  [pageTitle]="pageTitle"
+  [showPageLink]="showPageLink"
+  [showPaginator]="showPaginator"></app-post-feed>

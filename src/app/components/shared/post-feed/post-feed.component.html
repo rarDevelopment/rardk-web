@@ -1,0 +1,72 @@
+<app-loading-indicator [isLoading]="isLoading"></app-loading-indicator>
+@if (!isLoading) { @if(showPaginator) {
+<app-page-numbers
+  [currentPage]="currentPage"
+  [numberOfPages]="numberOfPages"
+  [pageNumbers]="pageNumbers"
+  (pageChange)="goToPage($event)"></app-page-numbers>
+} @for (post of posts; track post) {
+<div class="repeating-post">
+  <div class="repeating-post-summary">
+    @if(isBlog()){
+    <a [routerLink]="['/blog', post.canonical_url]" class="">
+      <h1 class="repeating-post-title">{{ post.post_title }}</h1>
+    </a>
+    <p>
+      {{ post.post_description }}
+    </p>
+    } @else{
+    <p>
+      {{ post.content }}
+    </p>
+    @if (post.images_csv) {
+    <p>
+      <img
+        [src]="post.images_csv"
+        [alt]="post.image_alt_text"
+        class="post-image"
+        (click)="toggleModal(post, true)" />
+      <app-modal
+        [post]="post.modalImage"
+        [isVisible]="post.isModalVisible"
+        (onClose)="toggleModal(post, false)"></app-modal>
+    </p>
+    } @if(post.url) {
+    <p>
+      <a [href]="post.url" target="_blank">
+        {{ post.url_title }}
+        <i class="fa-solid fa-arrow-up-right-from-square"></i>
+      </a>
+      &nbsp;
+    </p>
+    } }
+    <app-date-display
+      [routerLink]="['/' + getPageForLink(), getPostIdentifier(post)]"
+      [dateToDisplay]="post.posted_at"
+      labelText="Posted on:"></app-date-display>
+  </div>
+</div>
+} @if (showPageLink) {
+<div class="section-footer">
+  <a [routerLink]="['/' + getPageForLink()]">See more {{ getSeeMoreName() }}</a>
+</div>
+} @else if (showPaginator) {
+<app-page-numbers
+  [currentPage]="currentPage"
+  [numberOfPages]="numberOfPages"
+  [pageNumbers]="pageNumbers"
+  (pageChange)="goToPage($event)"></app-page-numbers>
+<div class="section-footer">
+  @if(currentPage > 1) {
+  <button class="action-button secondary action button" (click)="previousPage()">
+    <i class="fa-solid fa-arrow-left"></i>
+    Previous
+  </button>
+  } @if(currentPage < numberOfPages) {
+  <button class="action-button secondary action button" (click)="nextPage()">
+    <i class="fa-solid fa-arrow-right"></i>
+    Next
+  </button>
+  }
+</div>
+} }

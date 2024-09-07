@@ -2,31 +2,13 @@
   <div class="page-description-content">
     <app-page-title [titleSize]="1">
       <i class="fa-solid fa-link"></i>
-      Links
+      {{ pageTitle }}
     </app-page-title>
-    <p></p>
   </div>
 </div>
-<app-loading-indicator [isLoading]="isLoading"></app-loading-indicator>
-@if (!isLoading) {
-  @for (link of links; track link) {
-    <div class="repeating-post">
-      <div class="repeating-post-summary">
-        <p>
-          {{ link.description }}
-        </p>
-        <p>
-          <a [href]="link.link" target="_blank">
-            {{ link.title }}
-            <i class="fa-solid fa-arrow-up-right-from-square"></i>
-          </a>
-          &nbsp;
-        </p>
-        <app-date-display
-          [routerLink]="['/links', link.slug]"
-          [dateToDisplay]="link.dateShared"
-        labelText="Shared on:"></app-date-display>
-      </div>
-    </div>
-  }
-}
+<app-post-feed
+  [postType]="postType"
+  [itemCount]="itemCount"
+  [pageTitle]="pageTitle"
+  [showPageLink]="showPageLink"
+  [showPaginator]="showPaginator"></app-post-feed>

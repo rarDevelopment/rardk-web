@@ -73,7 +73,7 @@ export class PostComponent implements OnInit {
     if (!foundPost) {
       this.router.navigate(['posts']);
     }
-    this.post = new PostDisplay(foundPost!);
+    this.post = new PostDisplay(foundPost!, 'posts');
   }
 
   toggleModal(post: PostDisplay, isVisible: boolean) {
