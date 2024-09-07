@@ -20,7 +20,6 @@ import { LinkPostComponent } from './components/links/link-post/link-post.compon
 import { GalleryComponent } from './components/gallery/gallery.component';
 import { PostComponent } from './components/posts/post/post.component';
 import { PostsComponent } from './components/posts/posts.component';
-import { BookCollectionEntry } from './components/collections/books/models/book-collection-entry';
 import { BooksComponent } from './components/collections/books/books.component';
 
 const routes: Routes = [

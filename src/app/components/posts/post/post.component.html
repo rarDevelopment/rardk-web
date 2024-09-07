@@ -1,5 +1,12 @@
 <app-loading-indicator [isLoading]="isLoading"></app-loading-indicator>
-@if (!isLoading && post) {
+
+@if (!isLoading && post) { @if(post.url_title){
+<div class="page-description-container">
+  <div class="page-description-content">
+    <app-page-title [titleSize]="2">🔗 {{ post.url_title }}</app-page-title>
+  </div>
+</div>
+}
 <div class="post">
   <div class="post-summary">
     <p>
@@ -16,6 +23,13 @@
         [post]="post.modalImage"
         [isVisible]="post.isModalVisible"
         (onClose)="toggleModal(post, false)"></app-modal>
+    </p>
+    } @if (post.url) {
+    <p>
+      <a [href]="post.url" target="_blank">
+        {{ post.url_title }}
+        <i class="fa-solid fa-arrow-up-right-from-square"></i>
+      </a>
     </p>
     }
     <app-date-display [dateToDisplay]="post.posted_at" labelText="Posted on:"></app-date-display>
