@@ -160,7 +160,7 @@ export class PostFeedComponent implements OnInit {
       case PostType.Post:
         return 'Posts';
       case PostType.Link:
-        return 'See More Links';
+        return 'Links';
     }
   }
 }
