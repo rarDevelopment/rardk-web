@@ -11,13 +11,25 @@
 <div class="page-section-container">
   <app-posts
     pageTitle="Latest Quick Posts"
-    [itemCount]="2"
+    [itemCount]="3"
     [showPageLink]="true"
     [showPaginator]="false"></app-posts>
 </div>
 
 <div class="page-section-container">
-  <app-blog pageTitle="Latest Blog Posts" [itemCount]="2" [showPageLink]="true"></app-blog>
+  <app-blog
+    pageTitle="Latest Blog Posts"
+    [itemCount]="2"
+    [showPageLink]="true"
+    [showPaginator]="false"></app-blog>
+</div>
+
+<div class="page-section-container">
+  <app-links
+    pageTitle="Latest Shared Links"
+    [itemCount]="2"
+    [showPageLink]="true"
+    [showPaginator]="false"></app-links>
 </div>
 
 <div class="page-section-container">

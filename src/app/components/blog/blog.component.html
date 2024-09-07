@@ -6,21 +6,9 @@
     </app-page-title>
   </div>
 </div>
-<app-loading-indicator [isLoading]="isLoading"></app-loading-indicator>
-@if (!isLoading) { @for (post of blogPosts; track post) {
-<div class="repeating-post">
-  <div class="repeating-post-summary">
-    <a [routerLink]="['/blog', post.canonical_url]" class="">
-      <h1 class="repeating-post-title">{{ post.post_title }}</h1>
-    </a>
-    <p>
-      {{ post.post_description }}
-    </p>
-    <app-date-display [dateToDisplay]="post.posted_at"></app-date-display>
-  </div>
-</div>
-} } @if(showPageLink) {
-<div class="section-footer">
-  <a [routerLink]="['/blog']">See more Blog Posts</a>
-</div>
-}
+<app-post-feed
+  [postType]="postType"
+  [itemCount]="itemCount"
+  [pageTitle]="pageTitle"
+  [showPageLink]="showPageLink"
+  [showPaginator]="showPaginator"></app-post-feed>
