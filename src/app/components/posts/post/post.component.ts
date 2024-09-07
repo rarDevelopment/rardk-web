@@ -29,16 +29,12 @@ import { ModalComponent } from '../../shared/modal/modal.component';
 export class PostComponent implements OnInit {
   public post: PostDisplay;
   public isLoading: boolean;
-  @Input() postType: PostType; // = PostType.Post;
-  public discussionMethod = this.discussionPostsService.getDiscussionPostsForPosts.bind(
-    this.discussionPostsService
-  );
+  @Input() postType: PostType = PostType.Post;
 
   constructor(
     private postsService: PostsService,
     private route: ActivatedRoute,
-    private router: Router,
-    private discussionPostsService: DiscussionPostsService
+    private router: Router
   ) {}
   ngOnInit(): void {
     this.isLoading = true;
@@ -81,10 +77,22 @@ export class PostComponent implements OnInit {
   }
 
   public isLink(): boolean {
+    console.log("here's the post type!", this.postType);
     return this.postType === PostType.Link;
   }
 
   public getPageForPost(): string {
     return this.isLink() ? 'links' : 'posts';
+  }
+
+  public getBackText(): string {
+    switch (this.postType) {
+      case PostType.Blog:
+        return 'Blog';
+      case PostType.Post:
+        return 'Posts';
+      case PostType.Link:
+        return 'Links';
+    }
   }
 }

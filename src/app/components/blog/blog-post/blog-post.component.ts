@@ -33,17 +33,14 @@ import { combineLatest } from 'rxjs';
 export class BlogPostComponent {
   public post: Post;
   public isLoading: boolean;
-  public discussionMethod = this.discussionPostsService.getDiscussionPostsForBlog.bind(
-    this.discussionPostsService
-  );
+  public postType: PostType = PostType.Blog;
 
   constructor(
     private postsService: PostsService,
     private route: ActivatedRoute,
     private router: Router,
     private meta: Meta,
-    private markdownService: MarkdownService,
-    private discussionPostsService: DiscussionPostsService
+    private markdownService: MarkdownService
   ) {}
 
   ngOnInit() {

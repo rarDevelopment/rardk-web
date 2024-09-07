@@ -39,10 +39,10 @@
   </div>
 </div>
 <app-social-media-discussion
-  [getDiscussionsMethod]="discussionMethod"
+  [postType]="postType"
   [showContent]="false"
   [discussionId]="post.time_stamp"></app-social-media-discussion>
 <div class="back-to-posts-link">
-  <a [routerLink]="['/posts']">&#x2190; Back to Posts</a>
+  <a [routerLink]="['/' + getPageForPost()]">&#x2190; Back to {{ getBackText() }}</a>
 </div>
 }
