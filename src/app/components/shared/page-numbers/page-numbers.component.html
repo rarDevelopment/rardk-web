@@ -1,3 +1,4 @@
+@if(pageNumbers.length > 1) {
 <div class="page-numbers">
   @for(i of pageNumbers; track i) { @if(i !== 1) {
   <span class="page-number-separator">|</span>
@@ -9,3 +10,4 @@
   </span>
   } }
 </div>
+}

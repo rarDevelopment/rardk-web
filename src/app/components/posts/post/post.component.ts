@@ -1,8 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { ActivatedRoute, ParamMap, Router, RouterLink } from '@angular/router';
 import { combineLatest, finalize, map, take } from 'rxjs';
 import { PageTitleComponent } from '../../shared/page-title/page-title.component';
-
 import { DateDisplayComponent } from '../../shared/date-display/date-display.component';
 import { SocialMediaDiscussionComponent } from '../../shared/social-media-discussion/social-media-discussion.component';
 import { DiscussionPostsService } from 'src/app/services/discussion-posts.service';
@@ -30,7 +29,7 @@ import { ModalComponent } from '../../shared/modal/modal.component';
 export class PostComponent implements OnInit {
   public post: PostDisplay;
   public isLoading: boolean;
-  public slug: string;
+  @Input() postType: PostType; // = PostType.Post;
   public discussionMethod = this.discussionPostsService.getDiscussionPostsForPosts.bind(
     this.discussionPostsService
   );
@@ -43,7 +42,7 @@ export class PostComponent implements OnInit {
   ) {}
   ngOnInit(): void {
     this.isLoading = true;
-    combineLatest([this.postsService.getPosts(PostType.Post), this.route.paramMap])
+    combineLatest([this.postsService.getPosts(this.postType ?? PostType.Post), this.route.paramMap])
       .pipe(
         take(1),
         map(([posts, routeParams]) => {
@@ -69,14 +68,23 @@ export class PostComponent implements OnInit {
   }
 
   public findAndSetPost(posts: Post[], routeParams: ParamMap) {
+    console.log('posts', posts);
     const foundPost = posts.find((post) => post.time_stamp === routeParams.get('slug')!);
     if (!foundPost) {
-      this.router.navigate(['posts']);
+      this.router.navigate([this.getPageForPost()]);
     }
-    this.post = new PostDisplay(foundPost!, 'posts');
+    this.post = new PostDisplay(foundPost!, this.getPageForPost());
   }
 
   toggleModal(post: PostDisplay, isVisible: boolean) {
     post.isModalVisible = isVisible;
+  }
+
+  public isLink(): boolean {
+    return this.postType === PostType.Link;
+  }
+
+  public getPageForPost(): string {
+    return this.isLink() ? 'links' : 'posts';
   }
 }
