@@ -37,9 +37,10 @@ export class InterestsComponent implements OnInit {
       .subscribe({
         next: (result: FavouriteGame[]) => {
           let items = result.map((m) => {
+            const imageUrl = `https://images.igdb.com/igdb/image/upload/t_cover_big/${m.imageId}.jpg`;
             return {
               title: m.gameName,
-              imageUrl: m.imageUrl,
+              imageUrl: imageUrl,
               url: m.igdbUrl,
             } as FeedItem;
           });
