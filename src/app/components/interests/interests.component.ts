@@ -44,7 +44,9 @@ export class InterestsComponent implements OnInit {
               url: m.igdbUrl,
             } as FeedItem;
           });
-          this.favouriteGames = items;
+          this.favouriteGames = items.sort((a, b) => {
+            return a.title > b.title ? 1 : -1;
+          });
         },
         error: (error) => {
           console.error(error);
