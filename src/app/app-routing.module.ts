@@ -21,6 +21,7 @@ import { GalleryComponent } from './components/gallery/gallery.component';
 import { PostComponent } from './components/posts/post/post.component';
 import { PostsComponent } from './components/posts/posts.component';
 import { BooksComponent } from './components/collections/books/books.component';
+import { InterestsComponent } from './components/interests/interests.component';
 
 const routes: Routes = [
   { path: 'blog/:slug', pathMatch: 'full', component: BlogPostComponent },
@@ -49,6 +50,7 @@ const routes: Routes = [
   { path: 'collections/video-games', component: VideoGamesComponent },
   { path: 'collections/books', component: BooksComponent },
   { path: 'collections/lego', component: LegoSetsComponent },
+  { path: 'interests', component: InterestsComponent },
   { path: 'now', component: NowComponent },
   { path: 'feeds', component: FeedsComponent },
   { path: 'collections', component: CollectionsComponent },
