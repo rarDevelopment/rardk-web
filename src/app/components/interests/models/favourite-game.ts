@@ -3,6 +3,6 @@ export class FavouriteGame {
   gameName: string;
   igdbId: number;
   igdbUrl: string;
-  imageUrl: string;
+  imageId: string;
   releaseYear: number;
 }
