@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { BoardGamesService } from './board-games.service';
-import { BoardGame } from 'src/app/components/collections/board-games/models/board-game';
+import { BoardGame } from 'src/app/components/interests/board-games/models/board-game';
 import { finalize, take } from 'rxjs';
 import { micromark } from 'micromark';
 
@@ -15,7 +15,7 @@ import { LoadingIndicatorComponent } from '../../shared/loading-indicator/loadin
   standalone: true,
   imports: [PageTitleComponent, LoadingIndicatorComponent],
 })
-export class BoardGamesComponent implements OnInit {
+export class BoardGamesCollectionComponent implements OnInit {
   constructor(private boardGamesService: BoardGamesService, private router: Router) {}
 
   public wishlistGames: BoardGame[];
