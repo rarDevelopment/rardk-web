@@ -1,16 +1,16 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { LegoSetsComponent } from './lego-sets.component';
+import { LegoSetsCollectionComponent } from './lego-sets.component';
 
 describe('LegoSetsComponent', () => {
-  let component: LegoSetsComponent;
-  let fixture: ComponentFixture<LegoSetsComponent>;
+  let component: LegoSetsCollectionComponent;
+  let fixture: ComponentFixture<LegoSetsCollectionComponent>;
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-    imports: [LegoSetsComponent]
+    imports: [LegoSetsCollectionComponent]
 });
-    fixture = TestBed.createComponent(LegoSetsComponent);
+    fixture = TestBed.createComponent(LegoSetsCollectionComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

@@ -1,6 +1,6 @@
 import { Component, ElementRef, ViewChild } from '@angular/core';
 import { finalize, take } from 'rxjs';
-import { LegoSet } from 'src/app/components/collections/lego-sets/models/lego-set';
+import { LegoSet } from 'src/app/components/interests/lego-sets/models/lego-set';
 import { LegoSetsService } from './lego-sets.service';
 import { CheckOrXComponent } from '../../shared/check-or-x/check-or-x.component';
 import { MatRadioModule } from '@angular/material/radio';
@@ -32,7 +32,7 @@ import { ModalComponent } from '../../shared/modal/modal.component';
     ModalComponent,
   ],
 })
-export class LegoSetsComponent {
+export class LegoSetsCollectionComponent {
   public ownedSets: LegoSetDisplay[];
   public wantedSets: LegoSetDisplay[];
   public filteredOwnedSets: LegoSetDisplay[];

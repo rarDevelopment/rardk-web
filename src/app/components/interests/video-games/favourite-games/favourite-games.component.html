@@ -1,0 +1,23 @@
+<div class="page-description-container">
+  <div class="page-description-content">
+    <app-page-title [titleSize]="1">
+      <i class="fa-solid fa-gamepad"></i>
+      Video Game Hall of Fame
+    </app-page-title>
+    <p>
+      This is where I'll track my favourite games. Broadly speaking, they're games that have stuck
+      with me for one reason or another.
+    </p>
+  </div>
+</div>
+<div class="content-container">
+  <div class="content-container-card">
+    <app-feed-posters
+      
+      [isLoading]="isVideoGameHallOfFameLoading"
+      [feedItems]="favouriteGames"
+      displayType="poster"
+      [isError]="isVideoGameHallOfFameError"></app-feed-posters>
+  </div>
+</div>
+<br />

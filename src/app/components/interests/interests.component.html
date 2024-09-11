@@ -1,7 +1,7 @@
 <div class="page-description-container">
   <div class="page-description-content">
     <app-page-title [titleSize]="1">
-      <i class="fa-solid fa-gamepad"></i>
+      <i class="fa-solid fa-puzzle-piece"></i>
       Interests
     </app-page-title>
     <p></p>
@@ -9,12 +9,73 @@
 </div>
 <div class="content-container">
   <div class="content-container-card">
-    <app-feed-posters
-      sectionTitle="Video Game Hall of Fame"
-      [isLoading]="isVideoGameHallOfFameLoading"
-      [feedItems]="favouriteGames"
-      displayType="poster"
-      [isError]="isVideoGameHallOfFameError"></app-feed-posters>
+    <div class="collection-section">
+      <h2>Video Games</h2>
+      <p></p>
+      <p>
+        <a
+          class="collection-link"
+          routerLink="/interests/collections/video-games"
+          title="Video Game Collection">
+          <div class="collection-button">
+            <i class="fa-solid fa-list-check"></i>
+            Video Game Collection
+          </div>
+        </a>
+      </p>
+      <p>
+        <a
+          class="collection-link"
+          routerLink="/interests/favourite-games"
+          title="Video Game Hall of Fame">
+          <div class="collection-button">
+            <i class="fa-solid fa-trophy"></i>
+            My Video Game Hall of Fame
+          </div>
+        </a>
+      </p>
+    </div>
+    <div class="collection-section">
+      <h2>LEGO</h2>
+      <p></p>
+      <p>
+        <a class="collection-link" routerLink="/interests/collections/lego" title="LEGO Collection">
+          <div class="collection-button">
+            <i class="fa-solid fa-list-check"></i>
+            LEGO Collection
+          </div>
+        </a>
+      </p>
+    </div>
+    <div class="collection-section">
+      <h2>Board Games</h2>
+      <p></p>
+      <p>
+        <a
+          class="collection-link"
+          routerLink="/interests/collections/board-games"
+          title="Board Game Collection">
+          <div class="collection-button">
+            <i class="fa-solid fa-list-check"></i>
+            Board Game Collection
+          </div>
+        </a>
+      </p>
+    </div>
+    <div class="collection-section">
+      <h2>Books</h2>
+      <p></p>
+      <p>
+        <a
+          class="collection-link"
+          routerLink="/interests/collections/books"
+          title="Book Collection">
+          <div class="collection-button">
+            <i class="fa-solid fa-list-check"></i>
+            Book Collection
+          </div>
+        </a>
+      </p>
+    </div>
   </div>
 </div>
-<br />

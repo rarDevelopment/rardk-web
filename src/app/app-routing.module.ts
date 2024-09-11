@@ -1,9 +1,9 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { CollectionsComponent } from './components/collections/collections.component';
+import { InterestsComponent } from './components/interests/interests.component';
 import { NowComponent } from './components/now/now.component';
-import { LegoSetsComponent } from './components/collections/lego-sets/lego-sets.component';
-import { BoardGamesComponent } from './components/collections/board-games/board-games.component';
+import { LegoSetsCollectionComponent } from './components/interests/lego-sets/lego-sets.component';
+import { BoardGamesCollectionComponent } from './components/interests/board-games/board-games.component';
 import { HomeComponent } from './components/home/home.component';
 import { TimezonesComponent } from './components/bots/timezonebot/timezones/timezones.component';
 import { AuthenticationGuard } from './guards/authentication-guard.guard';
@@ -11,7 +11,7 @@ import { ReplybotServerSelectorComponent } from './components/bots/replybot/repl
 import { ReplyDefinitionsComponent } from './components/bots/replybot/reply-definitions.component';
 import { CallbackComponent } from './components/bots/callback/callback.component';
 import { BotsComponent } from './components/bots/bots.component';
-import { VideoGamesComponent } from './components/collections/video-games/video-games.component';
+import { VideoGamesCollectionComponent } from './components/interests/video-games/video-game-collection/video-game-collection.component';
 import { LinksComponent } from './components/links/links.component';
 import { BlogPostComponent } from './components/blog/blog-post/blog-post.component';
 import { BlogComponent } from './components/blog/blog.component';
@@ -20,8 +20,8 @@ import { LinkPostComponent } from './components/links/link-post/link-post.compon
 import { GalleryComponent } from './components/gallery/gallery.component';
 import { PostComponent } from './components/posts/post/post.component';
 import { PostsComponent } from './components/posts/posts.component';
-import { BooksComponent } from './components/collections/books/books.component';
-import { InterestsComponent } from './components/interests/interests.component';
+import { BooksCollectionComponent } from './components/interests/books/books.component';
+import { FavouriteGamesComponent } from './components/interests/video-games/favourite-games/favourite-games.component';
 
 const routes: Routes = [
   { path: 'blog/:slug', pathMatch: 'full', component: BlogPostComponent },
@@ -32,28 +32,28 @@ const routes: Routes = [
   { path: 'posts', component: PostsComponent },
   {
     path: 'board-games',
-    redirectTo: 'collections/board-games',
+    redirectTo: 'interests/collections/board-games',
     pathMatch: 'full',
   },
   {
     path: 'video-games',
-    redirectTo: 'collections/video-games',
+    redirectTo: 'interests/collections/video-games',
     pathMatch: 'full',
   },
   {
     path: 'books',
-    redirectTo: 'collections/books',
+    redirectTo: 'interests/collections/books',
     pathMatch: 'full',
   },
-  { path: 'lego', redirectTo: 'collections/lego', pathMatch: 'full' },
-  { path: 'collections/board-games', component: BoardGamesComponent },
-  { path: 'collections/video-games', component: VideoGamesComponent },
-  { path: 'collections/books', component: BooksComponent },
-  { path: 'collections/lego', component: LegoSetsComponent },
+  { path: 'lego', redirectTo: 'interests/collections/lego', pathMatch: 'full' },
+  { path: 'interests/collections/board-games', component: BoardGamesCollectionComponent },
+  { path: 'interests/favourite-games', component: FavouriteGamesComponent },
+  { path: 'interests/collections/video-games', component: VideoGamesCollectionComponent },
+  { path: 'interests/collections/books', component: BooksCollectionComponent },
+  { path: 'interests/collections/lego', component: LegoSetsCollectionComponent },
   { path: 'interests', component: InterestsComponent },
   { path: 'now', component: NowComponent },
   { path: 'feeds', component: FeedsComponent },
-  { path: 'collections', component: CollectionsComponent },
   { path: 'gallery', component: GalleryComponent },
   {
     path: 'bots/timezonebot',

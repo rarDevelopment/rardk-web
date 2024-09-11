@@ -1,17 +1,17 @@
 import { Component, OnInit } from '@angular/core';
 import { finalize, take } from 'rxjs';
 import { KeyValuePipe, NgClass, CommonModule } from '@angular/common';
-import { PageTitleComponent } from '../../shared/page-title/page-title.component';
-import { GameCollectionService } from './video-games.service';
-import { GameCollectionEntry } from './models/game-collection-entry';
+import { PageTitleComponent } from '../../../shared/page-title/page-title.component';
+import { VideoGamesService } from '../video-games.service';
+import { GameCollectionEntry } from '../models/game-collection-entry';
 import { FormsModule } from '@angular/forms';
-import { GamePlatform } from './models/game-platform';
-import { LoadingIndicatorComponent } from '../../shared/loading-indicator/loading-indicator.component';
+import { GamePlatform } from '../models/game-platform';
+import { LoadingIndicatorComponent } from '../../../shared/loading-indicator/loading-indicator.component';
 
 @Component({
-  selector: 'app-video-games',
-  templateUrl: './video-games.component.html',
-  styleUrls: ['./video-games.component.scss'],
+  selector: 'app-video-game-collection',
+  templateUrl: './video-game-collection.component.html',
+  styleUrls: ['./video-game-collection.component.scss'],
   standalone: true,
   imports: [
     PageTitleComponent,
@@ -22,7 +22,7 @@ import { LoadingIndicatorComponent } from '../../shared/loading-indicator/loadin
     FormsModule,
   ],
 })
-export class VideoGamesComponent implements OnInit {
+export class VideoGamesCollectionComponent implements OnInit {
   public gameCollectionItemsGrouped: { [key: string]: GameCollectionEntry[] };
   public gameCollectionItems: GameCollectionEntry[];
   public isLoading: boolean;
@@ -31,7 +31,7 @@ export class VideoGamesComponent implements OnInit {
   public availablePlatforms: GamePlatform[] = [];
   public searchTerm: string = '';
 
-  constructor(private gameCollectionService: GameCollectionService) {}
+  constructor(private videoGamesService: VideoGamesService) {}
 
   ngOnInit() {
     this.isLoading = true;
@@ -39,7 +39,7 @@ export class VideoGamesComponent implements OnInit {
   }
 
   public async populateGameCollection() {
-    this.gameCollectionService
+    this.videoGamesService
       .getGameCollection()
       .pipe(
         take(1),

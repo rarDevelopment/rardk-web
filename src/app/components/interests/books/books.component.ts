@@ -22,7 +22,7 @@ import { finalize, take } from 'rxjs';
   templateUrl: './books.component.html',
   styleUrl: './books.component.scss',
 })
-export class BooksComponent {
+export class BooksCollectionComponent {
   public bookCollectionItemsGrouped: { [key: string]: BookCollectionEntry[] };
   public bookCollectionItems: BookCollectionEntry[];
   public isLoading: boolean;
