@@ -4,12 +4,10 @@
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
-    "start-port": "ng serve --port 52340",
     "gitsync": "git checkout main && git pull && git checkout dev && git merge main && git push",
     "build": "ng build",
     "watch": "ng build --watch --configuration development",
-    "test": "ng test",
-    "serve:ssr:rardk-web": "node dist/rardk-web/server/server.mjs"
+    "test": "ng test"
   },
   "private": true,
   "engines": {
@@ -28,8 +26,6 @@
     "@angular/platform-server": "^18.2.4",
     "@angular/router": "^18.2.4",
     "@angular/service-worker": "^18.2.4",
-    "@angular/ssr": "^18.2.4",
-    "express": "^4.21.0",
     "luxon": "^3.4.4",
     "marked": "^9.0.0",
     "micromark": "^4.0.0",
