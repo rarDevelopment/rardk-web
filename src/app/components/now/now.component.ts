@@ -1,4 +1,4 @@
-import { Component, ElementRef, ViewChild } from '@angular/core';
+import { AfterViewInit, Component, ElementRef, ViewChild } from '@angular/core';
 import { LastfmCardComponent } from './lastfm-card/lastfm-card.component';
 import { GoodreadsCardComponent } from './goodreads-card/goodreads-card.component';
 import { TvShowsCardComponent } from './tv-shows-card/tv-shows-card.component';
@@ -24,7 +24,7 @@ import { TooltipDirective } from 'src/app/directives/tooltip.directive';
     TooltipDirective,
   ],
 })
-export class NowComponent {
+export class NowComponent implements AfterViewInit {
   @ViewChild('projectsCard') projectsCard: ElementRef;
   @ViewChild('gamesCard') gamesCard: ElementRef;
   @ViewChild('moviesCard') moviesCard: ElementRef;
@@ -32,33 +32,26 @@ export class NowComponent {
   @ViewChild('booksCard') booksCard: ElementRef;
   @ViewChild('musicCard') musicCard: ElementRef;
 
-  public scrollToProjects() {
-    this.scrollToSection(this.projectsCard);
+  private scrollTitleOffset = 28;
+  private sectionMap: { [key: string]: ElementRef } = {};
+
+  ngAfterViewInit() {
+    this.sectionMap = {
+      projects: this.projectsCard,
+      games: this.gamesCard,
+      movies: this.moviesCard,
+      tv: this.tvCard,
+      books: this.booksCard,
+      music: this.musicCard,
+    };
   }
 
-  public scrollToGames() {
-    this.scrollToSection(this.gamesCard);
-  }
-
-  public scrollToMovies() {
-    this.scrollToSection(this.moviesCard);
-  }
-
-  public scrollToTv() {
-    this.scrollToSection(this.tvCard);
-  }
-
-  public scrollToBooks() {
-    this.scrollToSection(this.booksCard);
-  }
-
-  public scrollToMusic() {
-    this.scrollToSection(this.musicCard);
-  }
-
-  public scrollToSection(element: ElementRef<any>) {
-    const yOffset = -25;
-    const y = element.nativeElement.getBoundingClientRect().top + window.scrollY + yOffset;
-    window.scrollTo({ top: y, behavior: 'smooth' });
+  public scrollToSection(section: string) {
+    const element = this.sectionMap[section];
+    if (element) {
+      const yOffset = -this.scrollTitleOffset;
+      const y = element.nativeElement.getBoundingClientRect().top + window.scrollY + yOffset;
+      window.scrollTo({ top: y, behavior: 'smooth' });
+    }
   }
 }
