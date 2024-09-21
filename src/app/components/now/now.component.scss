@@ -1,0 +1,50 @@
+.section-icons {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 0px;
+  margin-bottom: 15px;
+}
+
+.section-icon {
+  font-size: 30px;
+  padding-left: 5px;
+  padding-right: 5px;
+
+  transition: all 0.5s ease-in-out;
+  cursor: pointer;
+}
+
+.section-icon:hover {
+  transform: rotate(360deg);
+}
+
+.section-icon:active {
+  opacity: 0;
+  transition: 0.1s linear;
+  transform: scale(3) rotate(10deg);
+}
+
+.code {
+  color: orange;
+}
+
+.games {
+  color: rgb(141, 1, 206);
+}
+
+.movies {
+  color: rgb(3, 112, 214);
+}
+
+.tv {
+  color: rgb(189, 4, 4);
+}
+
+.books {
+  color: rgb(3, 187, 3);
+}
+
+.music {
+  color: rgb(245, 245, 82);
+}
