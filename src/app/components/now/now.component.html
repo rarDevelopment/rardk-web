@@ -7,37 +7,57 @@
     <p></p>
   </div>
 </div>
-<div class="content-container">
+<div class="section-icons">
+  <span (click)="scrollToProjects()" tooltip="Scroll to Projects">
+    <i class="section-icon fa-solid fa-code code"></i>
+  </span>
+  <span (click)="scrollToGames()" tooltip="Scroll to Games">
+    <i class="section-icon fa-solid fa-gamepad games"></i>
+  </span>
+  <span (click)="scrollToMovies()" tooltip="Scroll to Movies">
+    <i class="section-icon fa-solid fa-film movies"></i>
+  </span>
+  <span (click)="scrollToTv()" tooltip="Scroll to TV">
+    <i class="section-icon fa-solid fa-tv tv"></i>
+  </span>
+  <span (click)="scrollToBooks()" tooltip="Scroll to Books">
+    <i class="section-icon fa-solid fa-book books"></i>
+  </span>
+  <span (click)="scrollToMusic()" tooltip="Scroll to Music">
+    <i class="section-icon fa-solid fa-music music"></i>
+  </span>
+</div>
+<div class="content-container" #projectsCard>
   <div class="content-container-card">
     <app-github-card></app-github-card>
   </div>
 </div>
 <br />
-<div class="content-container">
+<div class="content-container" #gamesCard>
   <div class="content-container-card">
     <app-backloggd-card></app-backloggd-card>
   </div>
 </div>
 <br />
-<div class="content-container">
+<div class="content-container" #moviesCard>
   <div class="content-container-card">
     <app-letterboxd-card></app-letterboxd-card>
   </div>
 </div>
 <br />
-<div class="content-container">
+<div class="content-container" #tvCard>
   <div class="content-container-card">
     <app-tv-shows-card></app-tv-shows-card>
   </div>
 </div>
 <br />
-<div class="content-container">
+<div class="content-container" #booksCard>
   <div class="content-container-card">
     <app-goodreads-card></app-goodreads-card>
   </div>
 </div>
 <br />
-<div class="content-container">
+<div class="content-container" #musicCard>
   <div class="content-container-card">
     <app-lastfm-card></app-lastfm-card>
   </div>
