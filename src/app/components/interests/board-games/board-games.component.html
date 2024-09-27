@@ -22,7 +22,17 @@
 @if (!isLoadingWishlist && !isLoadingOwnedList) {
 <div class="content-container">
   <div class="content-container-card">
-    <section class="wanted-section">
+    <div class="description">
+      <div class="button-container">
+        <button class="button action secondary" (click)="scrollToSection('want')">
+          Skip to Wanted Games
+        </button>
+        <button class="button action secondary" (click)="scrollToSection('owned')">
+          Skip to Owned Games
+        </button>
+      </div>
+    </div>
+    <section class="wanted-section" #wantSection>
       <h2>Board Games I Want</h2>
       @if (!isLoadingWishlist && isErrorWishlist) {
       <div class="error-message">
@@ -47,18 +57,24 @@
       </table>
       }
     </section>
-    <section class="owned-section">
+    <section class="owned-section" #ownedSection>
       <h2>Board Games I Own</h2>
       @if (!isLoadingWishlist && isErrorWishlist) {
       <div class="error-message">
         There was an error loading this list. Please try again or come back later!
       </div>
       } @if (!isLoadingOwnedList && !isErrorOwnedList) {
+      <div class="search-container">
+        <input
+          type="text"
+          placeholder="Enter a board game title to search"
+          [(ngModel)]="searchTerm" />
+      </div>
       <table class="set-table">
         <th></th>
         <th>Name</th>
         <th>My Rating</th>
-        @for (boardGame of ownedGames; track boardGame) {
+        @for (boardGame of filterBoardGames(ownedGames); track boardGame) {
         <tr>
           <td class="img-cell">
             <a [href]="boardGame.url" target="_blank">

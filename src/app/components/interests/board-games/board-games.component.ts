@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { BoardGamesService } from './board-games.service';
 import { BoardGame } from 'src/app/components/interests/board-games/models/board-game';
 import { finalize, take } from 'rxjs';
@@ -7,16 +7,20 @@ import { micromark } from 'micromark';
 import { PageTitleComponent } from '../../shared/page-title/page-title.component';
 import { Router } from '@angular/router';
 import { LoadingIndicatorComponent } from '../../shared/loading-indicator/loading-indicator.component';
+import { FormsModule } from '@angular/forms';
 
 @Component({
   selector: 'app-board-games',
   templateUrl: './board-games.component.html',
   styleUrls: ['./board-games.component.scss'],
   standalone: true,
-  imports: [PageTitleComponent, LoadingIndicatorComponent],
+  imports: [PageTitleComponent, LoadingIndicatorComponent, FormsModule],
 })
 export class BoardGamesCollectionComponent implements OnInit {
   constructor(private boardGamesService: BoardGamesService, private router: Router) {}
+
+  @ViewChild('wantSection') wantSection: ElementRef;
+  @ViewChild('ownedSection') ownedSection: ElementRef;
 
   public wishlistGames: BoardGame[];
   public ownedGames: BoardGame[];
@@ -24,6 +28,19 @@ export class BoardGamesCollectionComponent implements OnInit {
   public isLoadingOwnedList: boolean;
   public isErrorWishlist: boolean;
   public isErrorOwnedList: boolean;
+  public searchTerm: string = '';
+
+  private scrollTitleOffset = 28;
+  private sectionMap: { [key: string]: ElementRef } = {};
+
+  ngAfterViewChecked() {
+    this.sectionMap = {
+      want: this.wantSection,
+      owned: this.ownedSection,
+    };
+    console.log(this.wantSection); // Should not be undefined
+    console.log(this.ownedSection); // Should not be undefined
+  }
 
   ngOnInit() {
     this.isLoadingWishlist = true;
@@ -101,5 +118,24 @@ export class BoardGamesCollectionComponent implements OnInit {
       return micromark(comment);
     }
     return '';
+  }
+
+  filterBoardGames(boardGames: BoardGame[]) {
+    if (this.searchTerm.trim() !== '') {
+      return boardGames.filter((boardGame) =>
+        boardGame.name.toLowerCase().includes(this.searchTerm.toLowerCase())
+      );
+    }
+    return boardGames.sort((book1, book2) => (book1.name > book2.name ? 1 : -1));
+  }
+
+  public scrollToSection(section: string) {
+    const element = this.sectionMap[section];
+    console.log('section map', this.sectionMap);
+    if (element) {
+      const yOffset = -this.scrollTitleOffset;
+      const y = element.nativeElement.getBoundingClientRect().top + window.scrollY + yOffset;
+      window.scrollTo({ top: y, behavior: 'smooth' });
+    }
   }
 }
