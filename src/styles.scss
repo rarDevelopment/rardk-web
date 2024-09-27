@@ -421,6 +421,20 @@ a:visited {
   color: rgb(224, 47, 34);
 }
 
+.search-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.search-container input[type="text"] {
+  width: 80%;
+  padding: 12px 20px;
+  margin: 8px 0;
+  box-sizing: border-box;
+  font-size: 16px;
+}
+
 /* footer */
 .footer {
   margin-top: 40px;

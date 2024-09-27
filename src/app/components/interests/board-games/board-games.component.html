@@ -64,11 +64,17 @@
         There was an error loading this list. Please try again or come back later!
       </div>
       } @if (!isLoadingOwnedList && !isErrorOwnedList) {
+      <div class="search-container">
+        <input
+          type="text"
+          placeholder="Enter a board game title to search"
+          [(ngModel)]="searchTerm" />
+      </div>
       <table class="set-table">
         <th></th>
         <th>Name</th>
         <th>My Rating</th>
-        @for (boardGame of ownedGames; track boardGame) {
+        @for (boardGame of filterBoardGames(ownedGames); track boardGame) {
         <tr>
           <td class="img-cell">
             <a [href]="boardGame.url" target="_blank">

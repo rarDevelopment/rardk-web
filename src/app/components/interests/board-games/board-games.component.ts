@@ -7,13 +7,14 @@ import { micromark } from 'micromark';
 import { PageTitleComponent } from '../../shared/page-title/page-title.component';
 import { Router } from '@angular/router';
 import { LoadingIndicatorComponent } from '../../shared/loading-indicator/loading-indicator.component';
+import { FormsModule } from '@angular/forms';
 
 @Component({
   selector: 'app-board-games',
   templateUrl: './board-games.component.html',
   styleUrls: ['./board-games.component.scss'],
   standalone: true,
-  imports: [PageTitleComponent, LoadingIndicatorComponent],
+  imports: [PageTitleComponent, LoadingIndicatorComponent, FormsModule],
 })
 export class BoardGamesCollectionComponent implements OnInit {
   constructor(private boardGamesService: BoardGamesService, private router: Router) {}
@@ -27,6 +28,7 @@ export class BoardGamesCollectionComponent implements OnInit {
   public isLoadingOwnedList: boolean;
   public isErrorWishlist: boolean;
   public isErrorOwnedList: boolean;
+  public searchTerm: string = '';
 
   private scrollTitleOffset = 28;
   private sectionMap: { [key: string]: ElementRef } = {};
@@ -116,6 +118,15 @@ export class BoardGamesCollectionComponent implements OnInit {
       return micromark(comment);
     }
     return '';
+  }
+
+  filterBoardGames(boardGames: BoardGame[]) {
+    if (this.searchTerm.trim() !== '') {
+      return boardGames.filter((boardGame) =>
+        boardGame.name.toLowerCase().includes(this.searchTerm.toLowerCase())
+      );
+    }
+    return boardGames.sort((book1, book2) => (book1.name > book2.name ? 1 : -1));
   }
 
   public scrollToSection(section: string) {
