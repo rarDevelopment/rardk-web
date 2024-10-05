@@ -64,7 +64,6 @@ export class PostComponent implements OnInit {
   }
 
   public findAndSetPost(posts: Post[], routeParams: ParamMap) {
-    console.log('posts', posts);
     const foundPost = posts.find((post) => post.time_stamp === routeParams.get('slug')!);
     if (!foundPost) {
       this.router.navigate([this.getPageForPost()]);
@@ -77,7 +76,6 @@ export class PostComponent implements OnInit {
   }
 
   public isLink(): boolean {
-    console.log("here's the post type!", this.postType);
     return this.postType === PostType.Link;
   }
 

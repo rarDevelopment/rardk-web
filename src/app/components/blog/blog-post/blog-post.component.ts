@@ -88,10 +88,8 @@ export class BlogPostComponent {
   }
 
   public findAndSetPost(posts: Post[], routeParams: ParamMap) {
-    console.log('canonical_url', routeParams.get('slug'));
     const foundPost = posts.find((post) => post.canonical_url === routeParams.get('slug')!);
     if (!foundPost) {
-      console.log('posts', posts);
       this.router.navigate(['blog']);
     }
     this.post = foundPost!;

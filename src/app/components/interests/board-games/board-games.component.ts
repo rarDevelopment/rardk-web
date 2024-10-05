@@ -38,8 +38,6 @@ export class BoardGamesCollectionComponent implements OnInit {
       want: this.wantSection,
       owned: this.ownedSection,
     };
-    console.log(this.wantSection); // Should not be undefined
-    console.log(this.ownedSection); // Should not be undefined
   }
 
   ngOnInit() {
@@ -131,7 +129,6 @@ export class BoardGamesCollectionComponent implements OnInit {
 
   public scrollToSection(section: string) {
     const element = this.sectionMap[section];
-    console.log('section map', this.sectionMap);
     if (element) {
       const yOffset = -this.scrollTitleOffset;
       const y = element.nativeElement.getBoundingClientRect().top + window.scrollY + yOffset;

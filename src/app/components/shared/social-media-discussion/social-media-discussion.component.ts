@@ -68,7 +68,6 @@ export class SocialMediaDiscussionComponent implements OnInit {
               });
             }
             if (postDiscussion.bluesky) {
-              console.log('bluesky', postDiscussion.bluesky);
               postDiscussion.bluesky.forEach((post: BlueskyPostFull) => {
                 const splitUri = post.uri.split('/');
                 const postId = splitUri[splitUri.length - 1];
