@@ -3,23 +3,39 @@
 }
 
 .collection-button {
-  display: inline-block;
-  border-style: solid;
-  border-width: 1px;
-  border-radius: 3px;
-  border-color: #000000;
-  font-weight: 500;
-  padding: 10px;
-  margin: 4px;
   width: 240px;
-  font-size: 17px;
   box-shadow: 2px 2px #000000;
+  color: white;
 }
 
-.collection-button:hover {
-  background-color: #f28834;
+$hover-lighten-percentage: 3.92%;
+
+@mixin lighten-hover($color) {
+  &:hover {
+    background-color: lighten($color, $hover-lighten-percentage);
+  }
 }
 
-.collection-link {
-  color: #000000;
+.video-games-button {
+  $video-games-color: #526ff1;
+  background-color: $video-games-color;
+  @include lighten-hover($video-games-color);
+}
+
+.lego-button {
+  $lego-color: #824b9e;
+  background-color: $lego-color;
+  @include lighten-hover($lego-color);
+}
+
+.board-games-button {
+  $board-games-color: #03bb56;
+  background-color: $board-games-color;
+  @include lighten-hover($board-games-color);
+}
+
+.books-button {
+  $books-color: #f0137a;
+  background-color: $books-color;
+  @include lighten-hover($books-color);
 }

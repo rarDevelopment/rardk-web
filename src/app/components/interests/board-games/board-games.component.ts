@@ -8,6 +8,7 @@ import { PageTitleComponent } from '../../shared/page-title/page-title.component
 import { Router } from '@angular/router';
 import { LoadingIndicatorComponent } from '../../shared/loading-indicator/loading-indicator.component';
 import { FormsModule } from '@angular/forms';
+import { environment } from 'src/environments/environment';
 
 @Component({
   selector: 'app-board-games',
@@ -29,6 +30,9 @@ export class BoardGamesCollectionComponent implements OnInit {
   public isErrorWishlist: boolean;
   public isErrorOwnedList: boolean;
   public searchTerm: string = '';
+
+  public boardGameGeekWishlist = environment.boardGameGeekWishlist;
+  public boardGameGeekOwnedList = environment.boardGameGeekOwnedList;
 
   private scrollTitleOffset = 28;
   private sectionMap: { [key: string]: ElementRef } = {};
