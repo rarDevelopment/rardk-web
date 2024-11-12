@@ -26,6 +26,8 @@ export class SocialMediaDiscussionComponent implements OnInit {
   @Input() showContent: boolean = true;
   @Input() discussionId: string;
 
+  public isSocialEnabled = environment.isSocialEnabled;
+
   constructor(private router: Router, private discussionPostsService: DiscussionPostsService) {}
 
   ngOnInit(): void {
