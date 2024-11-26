@@ -1,41 +1,7 @@
 @if(isSocialEnabled){ @if (mastodonPosts.length > 0 || blueskyPosts.length > 0) {
 <div class="discussion-container">
   <div class="discussion-note">Join the discussion below:</div>
-  @if (mastodonPosts.length > 0) {
-  <div class="mastodon discussion-posts">
-    @for (post of mastodonPosts; track post) {
-    <div class="discussion-post">
-      <div class="discussion-header">
-        <i class="fa-brands fa-mastodon mastodon-color mastodon-icon"></i>
-        <a [href]="post.url" target="_blank">View on Mastodon</a>
-      </div>
-      @if (showContent) {
-      <div class="discussion-content" [html]="post.content"></div>
-      }
-      <div class="discussion-interactions">
-        <div class="interaction-button mastodon-color likes">
-          <a [href]="post.likesUrl" target="_blank">
-            <i class="fa-solid fa-star"></i>
-            {{ post.likes }}
-          </a>
-        </div>
-        <div class="interaction-button mastodon-color shares">
-          <a [href]="post.sharesUrl" target="_blank">
-            <i class="fa-solid fa-rocket"></i>
-            {{ post.shares }}
-          </a>
-        </div>
-        <div class="interaction-button mastodon-color comments">
-          <a [href]="post.commentsUrl" target="_blank">
-            <i class="fa-solid fa-reply"></i>
-            {{ post.comments }}
-          </a>
-        </div>
-      </div>
-    </div>
-    }
-  </div>
-  } @if (blueskyPosts.length > 0) {
+  @if (blueskyPosts.length > 0) {
   <div class="bluesky discussion-posts">
     @for (post of blueskyPosts; track post) {
     <div class="discussion-post">
@@ -68,6 +34,40 @@
         <div class="interaction-button bluesky-color comments">
           <a [href]="post.commentsUrl" target="_blank">
             <i class="fa-solid fa-comment"></i>
+            {{ post.comments }}
+          </a>
+        </div>
+      </div>
+    </div>
+    }
+  </div>
+  } @if (mastodonPosts.length > 0) {
+  <div class="mastodon discussion-posts">
+    @for (post of mastodonPosts; track post) {
+    <div class="discussion-post">
+      <div class="discussion-header">
+        <i class="fa-brands fa-mastodon mastodon-color mastodon-icon"></i>
+        <a [href]="post.url" target="_blank">View on Mastodon</a>
+      </div>
+      @if (showContent) {
+      <div class="discussion-content" [html]="post.content"></div>
+      }
+      <div class="discussion-interactions">
+        <div class="interaction-button mastodon-color likes">
+          <a [href]="post.likesUrl" target="_blank">
+            <i class="fa-solid fa-star"></i>
+            {{ post.likes }}
+          </a>
+        </div>
+        <div class="interaction-button mastodon-color shares">
+          <a [href]="post.sharesUrl" target="_blank">
+            <i class="fa-solid fa-rocket"></i>
+            {{ post.shares }}
+          </a>
+        </div>
+        <div class="interaction-button mastodon-color comments">
+          <a [href]="post.commentsUrl" target="_blank">
+            <i class="fa-solid fa-reply"></i>
             {{ post.comments }}
           </a>
         </div>
