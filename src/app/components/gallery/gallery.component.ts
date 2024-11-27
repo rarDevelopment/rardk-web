@@ -7,7 +7,7 @@ import { PageTitleComponent } from '../shared/page-title/page-title.component';
 import { ModalComponent } from '../shared/modal/modal.component';
 import { LoadingIndicatorComponent } from '../shared/loading-indicator/loading-indicator.component';
 import { DateDisplayComponent } from '../shared/date-display/date-display.component';
-import { environment } from 'src/environments/environment';
+import { settings } from 'src/settings';
 import { RouterLink } from '@angular/router';
 import { ModalImage, ModalImageItem } from 'src/app/components/shared/modal/models/modal-image';
 
@@ -28,7 +28,7 @@ export class GalleryComponent implements OnInit {
   public pixelfedPosts: ModalImage[];
   public isLoading: boolean;
   public modalVisibilities: boolean[];
-  public pixelfedUrl = environment.pixelfedUrl;
+  public pixelfedUrl = settings.pixelfedUrl;
   @Input() itemCount: number = 0;
   @Input() pageTitle = 'Gallery';
   @Input() showPageLink = false;

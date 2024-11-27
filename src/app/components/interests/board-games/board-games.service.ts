@@ -2,7 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { BoardGame } from 'src/app/components/interests/board-games/models/board-game';
-import { environment } from 'src/environments/environment';
+import { settings } from 'src/settings';
 
 @Injectable({
   providedIn: 'root',
@@ -12,13 +12,13 @@ export class BoardGamesService {
 
   public getWishlistGames(): Observable<BoardGame[]> {
     return this.http.get<BoardGame[]>(
-      `${environment.apiUrl}now/json/collections-board-games-wishlist`
+      `${settings.apiUrl}now/json/collections-board-games-wishlist`
     );
   }
 
   public getOwnedGames(): Observable<BoardGame[]> {
     return this.http.get<BoardGame[]>(
-      `${environment.apiUrl}now/json/collections-board-games-owned`
+      `${settings.apiUrl}now/json/collections-board-games-owned`
     );
   }
 }

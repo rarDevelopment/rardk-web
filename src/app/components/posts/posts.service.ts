@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { map, Observable } from 'rxjs';
 import { Post } from './models/post';
-import { environment } from 'src/environments/environment';
+import { settings } from 'src/settings';
 import { PostType } from './models/post-type';
 import { PostTypeFilter } from './models/post-type-filter';
 import { HtmlDecoder } from 'src/app/utilities/html-decoder';
@@ -11,7 +11,7 @@ import { HtmlDecoder } from 'src/app/utilities/html-decoder';
   providedIn: 'root',
 })
 export class PostsService {
-  private url: string = `${environment.feedsSiteUrl}rss/posts/json/`;
+  private url: string = `${settings.feedsSiteUrl}rss/posts/json/`;
   private postTypeFilters: { [key: string]: PostTypeFilter } = {
     [PostType.Link]: {
       filter: (p: Post) => p.post_type === PostType.Link,

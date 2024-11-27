@@ -1,5 +1,4 @@
-export const environment = {
-  production: false,
+export const settings = {
   mastodonBaseUrl: 'https://mastodon.social/',
   mastodonId: 425168,
   apiUrl: 'https://rardk64-bot-api.com/api/',
