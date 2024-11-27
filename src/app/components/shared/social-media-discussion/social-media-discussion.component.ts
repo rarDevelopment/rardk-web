@@ -7,7 +7,7 @@ import { DiscussionPostsResponse } from 'src/app/components/shared/social-media-
 import { MastodonStatusFull } from 'src/app/components/shared/social-media-discussion/models/mastodon-status-full';
 import { PostToDisplay } from 'src/app/components/shared/social-media-discussion/models/post-to-display';
 import { SafeHtmlPipe } from 'src/app/pipes/safe-html.pipe';
-import { environment } from 'src/environments/environment';
+import { settings } from 'src/settings';
 import { PostType } from '../../posts/models/post-type';
 import { DiscussionPostsService } from 'src/app/services/discussion-posts.service';
 
@@ -26,7 +26,7 @@ export class SocialMediaDiscussionComponent implements OnInit {
   @Input() showContent: boolean = true;
   @Input() discussionId: string;
 
-  public isSocialEnabled = environment.isSocialEnabled;
+  public isSocialEnabled = settings.isSocialEnabled;
 
   constructor(private router: Router, private discussionPostsService: DiscussionPostsService) {}
 
@@ -73,7 +73,7 @@ export class SocialMediaDiscussionComponent implements OnInit {
               postDiscussion.bluesky.forEach((post: BlueskyPostFull) => {
                 const splitUri = post.uri.split('/');
                 const postId = splitUri[splitUri.length - 1];
-                const bskyUrl = `https://bsky.app/profile/${environment.bskyHandle}/post/${postId}`;
+                const bskyUrl = `https://bsky.app/profile/${settings.bskyHandle}/post/${postId}`;
 
                 const postToDisplay = {
                   likes: post.likeCount ?? null,

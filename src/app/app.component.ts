@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { environment } from 'src/environments/environment';
+import { settings } from 'src/settings';
 
 @Component({
   selector: 'app-root',
@@ -7,6 +7,6 @@ import { environment } from 'src/environments/environment';
   styleUrls: ['./app.component.scss'],
 })
 export class AppComponent {
-  public isSocialEnabled: boolean = environment.isSocialEnabled;
+  public isSocialEnabled: boolean = settings.isSocialEnabled;
   public currentYear = new Date().getFullYear();
 }

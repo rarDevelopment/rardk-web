@@ -2,14 +2,14 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { LegoSet } from './models/lego-set';
 import { map, Observable } from 'rxjs';
-import { environment } from 'src/environments/environment';
+import { settings } from 'src/settings';
 import { HtmlDecoder } from 'src/app/utilities/html-decoder';
 
 @Injectable({
   providedIn: 'root',
 })
 export class LegoSetsService {
-  private setsUrl: string = `${environment.feedsSiteUrl}rss/lego/json/`;
+  private setsUrl: string = `${settings.feedsSiteUrl}rss/lego/json/`;
 
   constructor(private http: HttpClient, private htmlDecoder: HtmlDecoder) {}
 
