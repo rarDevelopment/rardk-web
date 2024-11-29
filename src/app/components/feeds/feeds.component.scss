@@ -1,3 +1,5 @@
+@import "variables.scss";
+
 .feed-section {
   text-align: center;
 }
@@ -17,7 +19,7 @@
 }
 
 .feed-button:hover {
-  background-color: #f28834;
+  background-color: $accent-color;
 }
 
 .feed-link {
