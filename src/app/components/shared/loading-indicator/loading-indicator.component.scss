@@ -1,9 +1,11 @@
+@import "../../../../styles.scss";
+
 .spin {
   animation: 1.2s cubic-bezier(0.26, 1.36, 0.74, -0.29) infinite spinner;
   // animation: 1.2s linear infinite spinner;
   animation-play-state: inherit;
   border: solid 10px #ffffff;
-  border-bottom-color: #f28834;
+  border-bottom-color: $accent-color;
   border-radius: 50%;
   content: "";
   will-change: transform;
