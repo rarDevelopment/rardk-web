@@ -1,7 +1,9 @@
+@import "../../../variables.scss";
+
 .page-section-container {
   padding-top: 20px;
   padding-bottom: 20px;
-  border-top: 4px dotted rgb(82, 81, 81);
+  border-top: $divider-color;
   max-width: 700px;
   display: flex;
   justify-content: center;
@@ -10,5 +12,5 @@
 }
 
 .page-section-container:last-child {
-  border-bottom: 4px dotted rgb(82, 81, 81);
+  border-bottom: $divider-color;
 }
