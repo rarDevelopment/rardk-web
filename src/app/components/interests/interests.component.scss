@@ -1,10 +1,12 @@
+@import "../../../variables.scss";
+
 .collection-section {
   text-align: center;
 }
 
 .collection-button {
   width: 240px;
-  box-shadow: 2px 2px #000000;
+  box-shadow: $button-box-shadow;
   color: white;
 }
 
