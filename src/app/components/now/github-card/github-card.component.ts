@@ -6,11 +6,10 @@ import { GithubService } from './github.service';
 import { FeedPostersComponent } from '../../shared/feed-posters/feed-posters.component';
 
 @Component({
-  selector: 'app-github-card',
-  templateUrl: './github-card.component.html',
-  styleUrls: ['./github-card.component.scss'],
-  standalone: true,
-  imports: [FeedPostersComponent],
+    selector: 'app-github-card',
+    templateUrl: './github-card.component.html',
+    styleUrls: ['./github-card.component.scss'],
+    imports: [FeedPostersComponent]
 })
 export class GithubCardComponent implements OnInit {
   constructor(private githubService: GithubService) {}

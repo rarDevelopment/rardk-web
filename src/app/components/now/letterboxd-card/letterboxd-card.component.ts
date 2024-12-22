@@ -6,11 +6,10 @@ import { LetterboxdService } from './letterboxd.service';
 import { FeedPostersComponent } from '../../shared/feed-posters/feed-posters.component';
 
 @Component({
-  selector: 'app-letterboxd-card',
-  templateUrl: './letterboxd-card.component.html',
-  styleUrls: ['./letterboxd-card.component.scss'],
-  standalone: true,
-  imports: [FeedPostersComponent],
+    selector: 'app-letterboxd-card',
+    templateUrl: './letterboxd-card.component.html',
+    styleUrls: ['./letterboxd-card.component.scss'],
+    imports: [FeedPostersComponent]
 })
 export class LetterboxdCardComponent {
   public isLoading: boolean;

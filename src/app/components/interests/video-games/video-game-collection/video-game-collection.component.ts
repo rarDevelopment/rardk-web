@@ -9,18 +9,17 @@ import { GamePlatform } from '../models/game-platform';
 import { LoadingIndicatorComponent } from '../../../shared/loading-indicator/loading-indicator.component';
 
 @Component({
-  selector: 'app-video-game-collection',
-  templateUrl: './video-game-collection.component.html',
-  styleUrls: ['./video-game-collection.component.scss'],
-  standalone: true,
-  imports: [
-    PageTitleComponent,
-    CommonModule,
-    LoadingIndicatorComponent,
-    KeyValuePipe,
-    NgClass,
-    FormsModule,
-  ],
+    selector: 'app-video-game-collection',
+    templateUrl: './video-game-collection.component.html',
+    styleUrls: ['./video-game-collection.component.scss'],
+    imports: [
+        PageTitleComponent,
+        CommonModule,
+        LoadingIndicatorComponent,
+        KeyValuePipe,
+        NgClass,
+        FormsModule,
+    ]
 })
 export class VideoGamesCollectionComponent implements OnInit {
   public gameCollectionItemsGrouped: { [key: string]: GameCollectionEntry[] };

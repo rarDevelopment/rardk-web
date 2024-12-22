@@ -12,11 +12,10 @@ import { PostType } from '../../posts/models/post-type';
 import { DiscussionPostsService } from 'src/app/services/discussion-posts.service';
 
 @Component({
-  selector: 'app-social-media-discussion',
-  standalone: true,
-  imports: [SafeHtmlPipe, HtmlDirective],
-  templateUrl: './social-media-discussion.component.html',
-  styleUrl: './social-media-discussion.component.scss',
+    selector: 'app-social-media-discussion',
+    imports: [SafeHtmlPipe, HtmlDirective],
+    templateUrl: './social-media-discussion.component.html',
+    styleUrl: './social-media-discussion.component.scss'
 })
 export class SocialMediaDiscussionComponent implements OnInit {
   public mastodonPosts: PostToDisplay[] = [];

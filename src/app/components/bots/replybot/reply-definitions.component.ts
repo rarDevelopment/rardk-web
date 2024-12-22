@@ -22,23 +22,22 @@ import { LoadingIndicatorComponent } from '../../shared/loading-indicator/loadin
 import { TooltipDirective } from 'src/app/directives/tooltip.directive';
 
 @Component({
-  selector: 'app-reply-definitions',
-  templateUrl: './reply-definitions.component.html',
-  styleUrls: ['./reply-definitions.component.scss'],
-  standalone: true,
-  imports: [
-    CommonModule,
-    PageTitleComponent,
-    MatButtonToggleModule,
-    FormsModule,
-    MatExpansionModule,
-    TooltipDirective,
-    MatButtonModule,
-    MatIconModule,
-    CheckOrXComponent,
-    RouterLink,
-    LoadingIndicatorComponent,
-  ],
+    selector: 'app-reply-definitions',
+    templateUrl: './reply-definitions.component.html',
+    styleUrls: ['./reply-definitions.component.scss'],
+    imports: [
+        CommonModule,
+        PageTitleComponent,
+        MatButtonToggleModule,
+        FormsModule,
+        MatExpansionModule,
+        TooltipDirective,
+        MatButtonModule,
+        MatIconModule,
+        CheckOrXComponent,
+        RouterLink,
+        LoadingIndicatorComponent,
+    ]
 })
 export class ReplyDefinitionsComponent extends BotPageComponent implements OnInit {
   isLoading: boolean;

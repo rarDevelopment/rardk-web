@@ -8,11 +8,10 @@ import { PageTitleComponent } from '../../../shared/page-title/page-title.compon
 import { VideoGamesService } from '../video-games.service';
 
 @Component({
-  selector: 'app-interests',
-  standalone: true,
-  imports: [CommonModule, FeedPostersComponent, PageTitleComponent],
-  templateUrl: './favourite-games.component.html',
-  styleUrl: './favourite-games.component.scss',
+    selector: 'app-interests',
+    imports: [CommonModule, FeedPostersComponent, PageTitleComponent],
+    templateUrl: './favourite-games.component.html',
+    styleUrl: './favourite-games.component.scss'
 })
 export class FavouriteGamesComponent implements OnInit {
   public isVideoGameHallOfFameLoading: boolean = false;

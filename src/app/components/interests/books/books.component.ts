@@ -9,18 +9,17 @@ import { BooksService } from './books.service';
 import { finalize, take } from 'rxjs';
 
 @Component({
-  selector: 'app-books',
-  standalone: true,
-  imports: [
-    PageTitleComponent,
-    CommonModule,
-    LoadingIndicatorComponent,
-    KeyValuePipe,
-    NgClass,
-    FormsModule,
-  ],
-  templateUrl: './books.component.html',
-  styleUrl: './books.component.scss',
+    selector: 'app-books',
+    imports: [
+        PageTitleComponent,
+        CommonModule,
+        LoadingIndicatorComponent,
+        KeyValuePipe,
+        NgClass,
+        FormsModule,
+    ],
+    templateUrl: './books.component.html',
+    styleUrl: './books.component.scss'
 })
 export class BooksCollectionComponent {
   public bookCollectionItemsGrouped: { [key: string]: BookCollectionEntry[] };

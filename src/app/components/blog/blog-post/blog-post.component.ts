@@ -15,20 +15,19 @@ import { PostType } from '../../posts/models/post-type';
 import { combineLatest } from 'rxjs';
 
 @Component({
-  selector: 'app-blog-post',
-  templateUrl: './blog-post.component.html',
-  styleUrl: './blog-post.component.scss',
-  standalone: true,
-  imports: [
-    LoadingIndicatorComponent,
-    DateDisplayComponent,
-    HtmlDirective,
-    MarkdownModule,
-    RouterLink,
-    SocialMediaDiscussionComponent,
-  ],
-  providers: [provideMarkdown()],
-  host: { ngSkipHydration: 'true' },
+    selector: 'app-blog-post',
+    templateUrl: './blog-post.component.html',
+    styleUrl: './blog-post.component.scss',
+    imports: [
+        LoadingIndicatorComponent,
+        DateDisplayComponent,
+        HtmlDirective,
+        MarkdownModule,
+        RouterLink,
+        SocialMediaDiscussionComponent,
+    ],
+    providers: [provideMarkdown()],
+    host: { ngSkipHydration: 'true' }
 })
 export class BlogPostComponent {
   public post: Post;

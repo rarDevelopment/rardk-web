@@ -17,22 +17,21 @@ import { PageTitleComponent } from '../../../shared/page-title/page-title.compon
 import { LoadingIndicatorComponent } from 'src/app/components/shared/loading-indicator/loading-indicator.component';
 
 @Component({
-  selector: 'app-timezones',
-  templateUrl: './timezones.component.html',
-  styleUrls: ['./timezones.component.scss'],
-  standalone: true,
-  imports: [
-    PageTitleComponent,
-    MatIconModule,
-    MatFormFieldModule,
-    MatSelectModule,
-    FormsModule,
-    MatOptionModule,
-    MatInputModule,
-    MatButtonModule,
-    ClipboardModule,
-    LoadingIndicatorComponent
-],
+    selector: 'app-timezones',
+    templateUrl: './timezones.component.html',
+    styleUrls: ['./timezones.component.scss'],
+    imports: [
+        PageTitleComponent,
+        MatIconModule,
+        MatFormFieldModule,
+        MatSelectModule,
+        FormsModule,
+        MatOptionModule,
+        MatInputModule,
+        MatButtonModule,
+        ClipboardModule,
+        LoadingIndicatorComponent
+    ]
 })
 export class TimezonesComponent extends BotPageComponent implements OnInit {
   public isLoading: boolean;

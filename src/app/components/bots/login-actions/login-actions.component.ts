@@ -3,11 +3,10 @@ import { BotPageComponent } from '../bot-page/bot-page.component';
 
 
 @Component({
-  selector: 'app-login-actions',
-  templateUrl: './login-actions.component.html',
-  styleUrls: ['./login-actions.component.scss'],
-  standalone: true,
-  imports: [],
+    selector: 'app-login-actions',
+    templateUrl: './login-actions.component.html',
+    styleUrls: ['./login-actions.component.scss'],
+    imports: []
 })
 export class LoginActionsComponent extends BotPageComponent {
   public confirmLogOut() {

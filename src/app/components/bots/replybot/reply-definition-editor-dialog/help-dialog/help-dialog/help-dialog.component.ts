@@ -15,12 +15,11 @@ import { MatButtonModule } from '@angular/material/button';
     selector: 'app-help-dialog',
     templateUrl: './help-dialog.component.html',
     styleUrls: ['./help-dialog.component.scss'],
-    standalone: true,
     imports: [
-    MatButtonModule,
-    ClipboardModule,
-    MatIconModule
-],
+        MatButtonModule,
+        ClipboardModule,
+        MatIconModule
+    ]
 })
 export class HelpDialogComponent {
   public dialogData: any;

@@ -6,11 +6,10 @@ import { BackloggdService } from './backloggd.service';
 import { FeedPostersComponent } from '../../shared/feed-posters/feed-posters.component';
 
 @Component({
-  selector: 'app-backloggd-card',
-  templateUrl: './backloggd-card.component.html',
-  styleUrls: ['./backloggd-card.component.scss'],
-  standalone: true,
-  imports: [FeedPostersComponent],
+    selector: 'app-backloggd-card',
+    templateUrl: './backloggd-card.component.html',
+    styleUrls: ['./backloggd-card.component.scss'],
+    imports: [FeedPostersComponent]
 })
 export class BackloggdCardComponent {
   public isCurrentGamesLoading: boolean;

@@ -6,10 +6,9 @@ import { PostsComponent } from '../posts/posts.component';
 import { LinksComponent } from '../links/links.component';
 
 @Component({
-  selector: 'app-home',
-  templateUrl: './home.component.html',
-  styleUrl: './home.component.scss',
-  standalone: true,
-  imports: [PageTitleComponent, BlogComponent, GalleryComponent, PostsComponent, LinksComponent],
+    selector: 'app-home',
+    templateUrl: './home.component.html',
+    styleUrl: './home.component.scss',
+    imports: [PageTitleComponent, BlogComponent, GalleryComponent, PostsComponent, LinksComponent]
 })
 export class HomeComponent {}

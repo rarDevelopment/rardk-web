@@ -12,19 +12,18 @@ import { ModalComponent } from '../modal/modal.component';
 import { PageNumbersComponent } from '../page-numbers/page-numbers.component';
 
 @Component({
-  selector: 'app-post-feed',
-  standalone: true,
-  imports: [
-    HtmlDirective,
-    LoadingIndicatorComponent,
-    DateDisplayComponent,
-    RouterLink,
-    ModalComponent,
-    PageNumbersComponent,
-    LoadingIndicatorComponent,
-  ],
-  templateUrl: './post-feed.component.html',
-  styleUrl: './post-feed.component.scss',
+    selector: 'app-post-feed',
+    imports: [
+        HtmlDirective,
+        LoadingIndicatorComponent,
+        DateDisplayComponent,
+        RouterLink,
+        ModalComponent,
+        PageNumbersComponent,
+        LoadingIndicatorComponent,
+    ],
+    templateUrl: './post-feed.component.html',
+    styleUrl: './post-feed.component.scss'
 })
 export class PostFeedComponent implements OnInit {
   constructor(

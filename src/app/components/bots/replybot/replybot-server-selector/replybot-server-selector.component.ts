@@ -9,11 +9,10 @@ import { PageTitleComponent } from '../../../shared/page-title/page-title.compon
 import { LoadingIndicatorComponent } from 'src/app/components/shared/loading-indicator/loading-indicator.component';
 
 @Component({
-  selector: 'app-guild-selector',
-  templateUrl: './replybot-server-selector.component.html',
-  styleUrls: ['./replybot-server-selector.component.scss'],
-  standalone: true,
-  imports: [PageTitleComponent, LoadingIndicatorComponent],
+    selector: 'app-guild-selector',
+    templateUrl: './replybot-server-selector.component.html',
+    styleUrls: ['./replybot-server-selector.component.scss'],
+    imports: [PageTitleComponent, LoadingIndicatorComponent]
 })
 export class ReplybotServerSelectorComponent extends BotPageComponent implements OnInit {
   public isLoading = false;

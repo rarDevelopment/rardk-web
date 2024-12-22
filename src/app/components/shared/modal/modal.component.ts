@@ -4,11 +4,10 @@ import { DateDisplayComponent } from '../date-display/date-display.component';
 import { ModalImage } from 'src/app/components/shared/modal/models/modal-image';
 
 @Component({
-  selector: 'app-modal',
-  standalone: true,
-  imports: [DateDisplayComponent],
-  templateUrl: './modal.component.html',
-  styleUrl: './modal.component.scss',
+    selector: 'app-modal',
+    imports: [DateDisplayComponent],
+    templateUrl: './modal.component.html',
+    styleUrl: './modal.component.scss'
 })
 export class ModalComponent {
   @Input() isVisible: boolean;

@@ -2,11 +2,10 @@ import { CommonModule } from '@angular/common';
 import { Component, EventEmitter, Input, Output } from '@angular/core';
 
 @Component({
-  selector: 'app-page-numbers',
-  standalone: true,
-  imports: [CommonModule],
-  templateUrl: './page-numbers.component.html',
-  styleUrl: './page-numbers.component.scss',
+    selector: 'app-page-numbers',
+    imports: [CommonModule],
+    templateUrl: './page-numbers.component.html',
+    styleUrl: './page-numbers.component.scss'
 })
 export class PageNumbersComponent {
   @Input() currentPage: number;

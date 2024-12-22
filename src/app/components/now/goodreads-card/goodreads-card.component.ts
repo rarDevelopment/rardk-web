@@ -6,11 +6,10 @@ import { finalize, take } from 'rxjs';
 import { FeedPostersComponent } from '../../shared/feed-posters/feed-posters.component';
 
 @Component({
-  selector: 'app-goodreads-card',
-  templateUrl: './goodreads-card.component.html',
-  styleUrls: ['./goodreads-card.component.scss'],
-  standalone: true,
-  imports: [FeedPostersComponent],
+    selector: 'app-goodreads-card',
+    templateUrl: './goodreads-card.component.html',
+    styleUrls: ['./goodreads-card.component.scss'],
+    imports: [FeedPostersComponent]
 })
 export class GoodreadsCardComponent {
   public isFinishedBooksLoading: boolean;
