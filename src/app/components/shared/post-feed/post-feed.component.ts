@@ -14,7 +14,6 @@ import { PageNumbersComponent } from '../page-numbers/page-numbers.component';
 @Component({
     selector: 'app-post-feed',
     imports: [
-        HtmlDirective,
         LoadingIndicatorComponent,
         DateDisplayComponent,
         RouterLink,

@@ -17,7 +17,6 @@ import { LoadingIndicatorComponent } from '../../../shared/loading-indicator/loa
         CommonModule,
         LoadingIndicatorComponent,
         KeyValuePipe,
-        NgClass,
         FormsModule,
     ]
 })

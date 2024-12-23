@@ -21,11 +21,10 @@ import { Tokens } from 'marked';
   imports: [
     LoadingIndicatorComponent,
     DateDisplayComponent,
-    HtmlDirective,
     MarkdownModule,
     RouterLink,
     SocialMediaDiscussionComponent,
-    RouterModule
+    RouterModule,
   ],
   providers: [provideMarkdown()],
   host: { ngSkipHydration: 'true' },
@@ -44,14 +43,13 @@ export class BlogPostComponent {
   ) {}
 
   ngOnInit() {
-    
-    this.markdownService.renderer.heading = function({ tokens, depth }) {
+    this.markdownService.renderer.heading = function ({ tokens, depth }) {
       const text = this.parser.parseInline(tokens);
       const escapedText = text.toLowerCase().replace(/[^\w]+/g, '-');
       return `<h${depth}><a name="${escapedText}" class="anchor" href="#${escapedText}"><span class="header-link"></span></a>${text}</h${depth}>`;
     };
 
-    this.markdownService.renderer.link = function({ href, title, tokens }: Tokens.Link): string {
+    this.markdownService.renderer.link = function ({ href, title, tokens }: Tokens.Link): string {
       const text = this.parser.parseInline(tokens);
       return `<a href="${href}" target="_blank">${text}</a>`;
     };

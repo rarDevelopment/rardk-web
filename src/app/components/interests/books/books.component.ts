@@ -15,7 +15,6 @@ import { finalize, take } from 'rxjs';
         CommonModule,
         LoadingIndicatorComponent,
         KeyValuePipe,
-        NgClass,
         FormsModule,
     ],
     templateUrl: './books.component.html',

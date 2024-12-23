@@ -6,14 +6,13 @@ import { BlueskyPostFull } from 'src/app/components/shared/social-media-discussi
 import { DiscussionPostsResponse } from 'src/app/components/shared/social-media-discussion/models/discussion-posts-response';
 import { MastodonStatusFull } from 'src/app/components/shared/social-media-discussion/models/mastodon-status-full';
 import { PostToDisplay } from 'src/app/components/shared/social-media-discussion/models/post-to-display';
-import { SafeHtmlPipe } from 'src/app/pipes/safe-html.pipe';
 import { settings } from 'src/settings';
 import { PostType } from '../../posts/models/post-type';
 import { DiscussionPostsService } from 'src/app/services/discussion-posts.service';
 
 @Component({
     selector: 'app-social-media-discussion',
-    imports: [SafeHtmlPipe, HtmlDirective],
+    imports: [HtmlDirective],
     templateUrl: './social-media-discussion.component.html',
     styleUrl: './social-media-discussion.component.scss'
 })
