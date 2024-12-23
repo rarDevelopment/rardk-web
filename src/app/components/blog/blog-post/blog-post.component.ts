@@ -2,7 +2,6 @@ import { Component } from '@angular/core';
 import { ActivatedRoute, ParamMap, Router, RouterLink, RouterModule } from '@angular/router';
 import { take, finalize, map } from 'rxjs/operators';
 import { Meta } from '@angular/platform-browser';
-import { HtmlDirective } from '../../../directives/html.directive';
 import { DateDisplayComponent } from '../../shared/date-display/date-display.component';
 
 import { MarkdownModule, provideMarkdown, MarkdownService } from 'ngx-markdown';
