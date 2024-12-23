@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { ActivatedRoute, ParamMap, Router, RouterLink } from '@angular/router';
+import { ActivatedRoute, ParamMap, Router, RouterLink, RouterModule } from '@angular/router';
 import { take, finalize, map } from 'rxjs/operators';
 import { Meta } from '@angular/platform-browser';
 import { HtmlDirective } from '../../../directives/html.directive';
@@ -7,27 +7,28 @@ import { DateDisplayComponent } from '../../shared/date-display/date-display.com
 
 import { MarkdownModule, provideMarkdown, MarkdownService } from 'ngx-markdown';
 import { SocialMediaDiscussionComponent } from '../../shared/social-media-discussion/social-media-discussion.component';
-import { DiscussionPostsService } from 'src/app/services/discussion-posts.service';
 import { LoadingIndicatorComponent } from '../../shared/loading-indicator/loading-indicator.component';
 import { PostsService } from '../../posts/posts.service';
 import { Post } from '../../posts/models/post';
 import { PostType } from '../../posts/models/post-type';
 import { combineLatest } from 'rxjs';
+import { Tokens } from 'marked';
 
 @Component({
-    selector: 'app-blog-post',
-    templateUrl: './blog-post.component.html',
-    styleUrl: './blog-post.component.scss',
-    imports: [
-        LoadingIndicatorComponent,
-        DateDisplayComponent,
-        HtmlDirective,
-        MarkdownModule,
-        RouterLink,
-        SocialMediaDiscussionComponent,
-    ],
-    providers: [provideMarkdown()],
-    host: { ngSkipHydration: 'true' }
+  selector: 'app-blog-post',
+  templateUrl: './blog-post.component.html',
+  styleUrl: './blog-post.component.scss',
+  imports: [
+    LoadingIndicatorComponent,
+    DateDisplayComponent,
+    HtmlDirective,
+    MarkdownModule,
+    RouterLink,
+    SocialMediaDiscussionComponent,
+    RouterModule
+  ],
+  providers: [provideMarkdown()],
+  host: { ngSkipHydration: 'true' },
 })
 export class BlogPostComponent {
   public post: Post;
@@ -43,20 +44,19 @@ export class BlogPostComponent {
   ) {}
 
   ngOnInit() {
-    this.markdownService.renderer.heading = (text: string, level: number) => {
+    
+    this.markdownService.renderer.heading = function({ tokens, depth }) {
+      const text = this.parser.parseInline(tokens);
       const escapedText = text.toLowerCase().replace(/[^\w]+/g, '-');
-      return `<h${level}><a name="${escapedText}" class="anchor" href="#${escapedText}"><span class="header-link"></span></a>${text}</h${level}>`;
+      return `<h${depth}><a name="${escapedText}" class="anchor" href="#${escapedText}"><span class="header-link"></span></a>${text}</h${depth}>`;
     };
 
-    this.markdownService.renderer.link = (
-      href: string,
-      title: string | null | undefined,
-      text: string
-    ): string => {
+    this.markdownService.renderer.link = function({ href, title, tokens }: Tokens.Link): string {
+      const text = this.parser.parseInline(tokens);
       return `<a href="${href}" target="_blank">${text}</a>`;
     };
 
-    this.markdownService.renderer.image = (href: string, title: string, text: string) => {
+    this.markdownService.renderer.image = ({ href, title, text }: Tokens.Image) => {
       return `<a href="${href}" target="_blank" title="${text}"><img src="${href}" alt="${text}" /></a>`;
     };
 

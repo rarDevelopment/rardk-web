@@ -1,14 +1,14 @@
 /* You can add global styles to this file, and also import other style files */
 
-@import url(https://fonts.bunny.net/css?family=atkinson-hyperlegible:400,400i,700,700i);
+@use "variables" as variables;
 
-@import "variables.scss";
+@import url(https://fonts.bunny.net/css?family=atkinson-hyperlegible:400,400i,700,700i);
 
 html,
 body {
   font-family: "Atkinson Hyperlegible", sans-serif;
   background-color: rgb(27, 25, 27);
-  color: $font-color;
+  color: variables.$font-color;
   margin: 0;
   height: 100%;
 }
@@ -28,14 +28,14 @@ h3 {
 }
 
 ::selection {
-  background-color: $font-color;
+  background-color: variables.$font-color;
   text-shadow: none;
-  color: $opposite-font-color;
+  color: variables.$opposite-font-color;
 }
 
 .cdk-overlay-pane ::selection {
-  background-color: $opposite-font-color;
-  color: $font-color;
+  background-color: variables.$opposite-font-color;
+  color: variables.$font-color;
 }
 
 .page-container {
@@ -54,8 +54,8 @@ h3 {
 .page-description-content {
   text-align: center;
   width: 70%;
-  max-width: $max-width - 50px;
-  min-width: $min-width;
+  max-width: variables.$max-width - 50px;
+  min-width: variables.$min-width;
 }
 
 .shrinkable {
@@ -73,11 +73,11 @@ h3 {
 }
 
 a {
-  color: $link-color;
+  color: variables.$link-color;
   // text-decoration: none;
 }
 a:visited {
-  color: $link-color;
+  color: variables.$link-color;
 }
 
 .page-description-content a {
@@ -106,34 +106,34 @@ a:visited {
 
 .content-container-card {
   text-align: left;
-  padding-left: $card-horizontal-padding;
-  padding-right: $card-horizontal-padding;
-  padding-top: $card-vertical-padding;
-  padding-bottom: $card-vertical-padding;
+  padding-left: variables.$card-horizontal-padding;
+  padding-right: variables.$card-horizontal-padding;
+  padding-top: variables.$card-vertical-padding;
+  padding-bottom: variables.$card-vertical-padding;
   width: 50%;
-  max-width: $max-width;
-  min-width: $min-width;
+  max-width: variables.$max-width;
+  min-width: variables.$min-width;
 }
 
 .content-container-card.white {
   border: 1px solid #000000;
   background-color: #ffffff;
-  color: $opposite-font-color;
+  color: variables.$opposite-font-color;
   border-radius: 5px;
-  box-shadow: $box-shadow;
+  box-shadow: variables.$box-shadow;
 }
 
 .content-container-card.white ::selection {
-  background-color: $opposite-font-color;
-  color: $font-color;
+  background-color: variables.$opposite-font-color;
+  color: variables.$font-color;
 }
 
 .content-container-card.white a {
-  color: $opposite-font-color;
+  color: variables.$opposite-font-color;
 }
 
 .content-container-card.white a:visited {
-  color: $opposite-font-color;
+  color: variables.$opposite-font-color;
 }
 
 .page-numbers {
@@ -155,7 +155,7 @@ a:visited {
 .page-number-link {
   cursor: pointer;
   text-decoration: underline;
-  color: $link-color;
+  color: variables.$link-color;
 }
 
 .active-page-number {
@@ -169,11 +169,11 @@ a:visited {
   justify-content: center;
   align-items: center;
   margin: 0 auto;
-  border-top: $small-divider-color;
+  border-top: variables.$small-divider-color;
 }
 
 .repeating-post:last-child {
-  border-bottom: $small-divider-color;
+  border-bottom: variables.$small-divider-color;
 }
 
 .repeating-post-title {
@@ -281,7 +281,7 @@ a:visited {
   color: #000000;
   cursor: pointer;
   background-color: #ffffff;
-  box-shadow: $button-box-shadow;
+  box-shadow: variables.$button-box-shadow;
 }
 
 .button.no-shadow {
@@ -291,7 +291,7 @@ a:visited {
 
 .button:hover,
 .button.selected {
-  background-color: $accent-color;
+  background-color: variables.$accent-color;
 }
 
 .button.transparent {
@@ -493,11 +493,11 @@ a:visited {
 }
 
 circle {
-  stroke: $accent-color;
+  stroke: variables.$accent-color;
 }
 
 .mdc-linear-progress__bar-inner {
-  border-color: $accent-color !important;
+  border-color: variables.$accent-color !important;
 }
 
 // used for dropdown on lego filters

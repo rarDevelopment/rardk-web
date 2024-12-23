@@ -1,9 +1,9 @@
-@import "../../../variables.scss";
+@use "../../../variables.scss" as variables;
 
 .page-section-container {
   padding-top: 20px;
   padding-bottom: 20px;
-  border-top: $divider-color;
+  border-top: variables.$divider-color;
   max-width: 700px;
   display: flex;
   justify-content: center;
@@ -12,5 +12,5 @@
 }
 
 .page-section-container:last-child {
-  border-bottom: $divider-color;
+  border-bottom: variables.$divider-color;
 }

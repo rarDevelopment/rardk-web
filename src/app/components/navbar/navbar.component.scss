@@ -1,4 +1,4 @@
-@import "../../../variables.scss";
+@use "../../../variables.scss" as variables;
 
 .navbar {
   justify-content: center;
@@ -19,7 +19,7 @@
 }
 
 .collapse-button-clicked {
-  color: $accent-color;
+  color: variables.$accent-color;
   transform: rotate(90deg);
 }
 
