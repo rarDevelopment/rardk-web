@@ -13,18 +13,17 @@ import { PostDisplay } from '../models/post-display';
 import { ModalComponent } from '../../shared/modal/modal.component';
 
 @Component({
-  selector: 'app-post',
-  standalone: true,
-  imports: [
-    PageTitleComponent,
-    LoadingIndicatorComponent,
-    DateDisplayComponent,
-    RouterLink,
-    SocialMediaDiscussionComponent,
-    ModalComponent,
-  ],
-  templateUrl: './post.component.html',
-  styleUrl: './post.component.scss',
+    selector: 'app-post',
+    imports: [
+        PageTitleComponent,
+        LoadingIndicatorComponent,
+        DateDisplayComponent,
+        RouterLink,
+        SocialMediaDiscussionComponent,
+        ModalComponent,
+    ],
+    templateUrl: './post.component.html',
+    styleUrl: './post.component.scss'
 })
 export class PostComponent implements OnInit {
   public post: PostDisplay;

@@ -11,11 +11,10 @@ import { FormsModule } from '@angular/forms';
 import { settings } from 'src/settings';
 
 @Component({
-  selector: 'app-board-games',
-  templateUrl: './board-games.component.html',
-  styleUrls: ['./board-games.component.scss'],
-  standalone: true,
-  imports: [PageTitleComponent, LoadingIndicatorComponent, FormsModule],
+    selector: 'app-board-games',
+    templateUrl: './board-games.component.html',
+    styleUrls: ['./board-games.component.scss'],
+    imports: [PageTitleComponent, LoadingIndicatorComponent, FormsModule]
 })
 export class BoardGamesCollectionComponent implements OnInit {
   constructor(private boardGamesService: BoardGamesService, private router: Router) {}

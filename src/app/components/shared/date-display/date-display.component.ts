@@ -3,11 +3,10 @@ import { RouterLink } from '@angular/router';
 import { DateTime } from 'luxon';
 
 @Component({
-  selector: 'app-date-display',
-  templateUrl: './date-display.component.html',
-  styleUrl: './date-display.component.scss',
-  standalone: true,
-  imports: [RouterLink],
+    selector: 'app-date-display',
+    templateUrl: './date-display.component.html',
+    styleUrl: './date-display.component.scss',
+    imports: [RouterLink]
 })
 export class DateDisplayComponent implements OnInit {
   @Input() dateToDisplay: string;

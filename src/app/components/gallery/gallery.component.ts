@@ -6,21 +6,13 @@ import { finalize, take } from 'rxjs';
 import { PageTitleComponent } from '../shared/page-title/page-title.component';
 import { ModalComponent } from '../shared/modal/modal.component';
 import { LoadingIndicatorComponent } from '../shared/loading-indicator/loading-indicator.component';
-import { DateDisplayComponent } from '../shared/date-display/date-display.component';
 import { settings } from 'src/settings';
 import { RouterLink } from '@angular/router';
 import { ModalImage, ModalImageItem } from 'src/app/components/shared/modal/models/modal-image';
 
 @Component({
   selector: 'app-gallery',
-  standalone: true,
-  imports: [
-    DateDisplayComponent,
-    PageTitleComponent,
-    ModalComponent,
-    LoadingIndicatorComponent,
-    RouterLink
-],
+  imports: [PageTitleComponent, ModalComponent, LoadingIndicatorComponent, RouterLink],
   templateUrl: './gallery.component.html',
   styleUrl: './gallery.component.scss',
 })

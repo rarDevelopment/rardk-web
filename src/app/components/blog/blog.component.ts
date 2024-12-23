@@ -5,11 +5,10 @@ import { PostType } from '../posts/models/post-type';
 import { PostFeedComponent } from '../shared/post-feed/post-feed.component';
 
 @Component({
-  selector: 'app-blog',
-  standalone: true,
-  imports: [PageTitleComponent, PostFeedComponent],
-  templateUrl: './blog.component.html',
-  styleUrl: './blog.component.scss',
+    selector: 'app-blog',
+    imports: [PageTitleComponent, PostFeedComponent],
+    templateUrl: './blog.component.html',
+    styleUrl: './blog.component.scss'
 })
 export class BlogComponent {
   @Input() itemCount: number = 0;

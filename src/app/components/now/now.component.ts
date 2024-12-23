@@ -9,20 +9,19 @@ import { PageTitleComponent } from '../shared/page-title/page-title.component';
 import { TooltipDirective } from 'src/app/directives/tooltip.directive';
 
 @Component({
-  selector: 'app-now',
-  templateUrl: './now.component.html',
-  styleUrls: ['./now.component.scss'],
-  standalone: true,
-  imports: [
-    PageTitleComponent,
-    GithubCardComponent,
-    BackloggdCardComponent,
-    LetterboxdCardComponent,
-    TvShowsCardComponent,
-    GoodreadsCardComponent,
-    LastfmCardComponent,
-    TooltipDirective,
-  ],
+    selector: 'app-now',
+    templateUrl: './now.component.html',
+    styleUrls: ['./now.component.scss'],
+    imports: [
+        PageTitleComponent,
+        GithubCardComponent,
+        BackloggdCardComponent,
+        LetterboxdCardComponent,
+        TvShowsCardComponent,
+        GoodreadsCardComponent,
+        LastfmCardComponent,
+        TooltipDirective,
+    ]
 })
 export class NowComponent implements AfterViewInit {
   @ViewChild('projectsCard') projectsCard: ElementRef;

@@ -6,14 +6,12 @@ import { finalize, take } from 'rxjs';
 import { LoginActionsComponent } from './login-actions/login-actions.component';
 import { PageTitleComponent } from '../shared/page-title/page-title.component';
 import { RouterLink } from '@angular/router';
-import { TooltipDirective } from 'src/app/directives/tooltip.directive';
 
 @Component({
-  selector: 'app-bots',
-  templateUrl: './bots.component.html',
-  styleUrls: ['./bots.component.scss'],
-  standalone: true,
-  imports: [PageTitleComponent, LoginActionsComponent, TooltipDirective, RouterLink],
+    selector: 'app-bots',
+    templateUrl: './bots.component.html',
+    styleUrls: ['./bots.component.scss'],
+    imports: [PageTitleComponent, LoginActionsComponent, RouterLink]
 })
 export class BotsComponent extends BotPageComponent implements OnInit {
   public isLoading: boolean;

@@ -4,11 +4,10 @@ import { PostType } from '../posts/models/post-type';
 import { PostFeedComponent } from '../shared/post-feed/post-feed.component';
 
 @Component({
-  selector: 'app-links',
-  standalone: true,
-  imports: [PageTitleComponent, PostFeedComponent],
-  templateUrl: './links.component.html',
-  styleUrl: './links.component.scss',
+    selector: 'app-links',
+    imports: [PageTitleComponent, PostFeedComponent],
+    templateUrl: './links.component.html',
+    styleUrl: './links.component.scss'
 })
 export class LinksComponent {
   @Input() itemCount: number = 0;

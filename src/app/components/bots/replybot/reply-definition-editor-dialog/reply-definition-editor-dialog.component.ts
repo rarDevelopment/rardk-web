@@ -15,20 +15,19 @@ import { MatButtonModule } from '@angular/material/button';
 import { TooltipDirective } from 'src/app/directives/tooltip.directive';
 
 @Component({
-  selector: 'app-reply-definition-editor-dialog',
-  templateUrl: './reply-definition-editor-dialog.component.html',
-  styleUrls: ['./reply-definition-editor-dialog.component.scss'],
-  standalone: true,
-  imports: [
-    MatButtonModule,
-    TooltipDirective,
-    MatIconModule,
-    MatSlideToggleModule,
-    FormsModule,
-    MatFormFieldModule,
-    MatInputModule,
-    MatCheckboxModule
-],
+    selector: 'app-reply-definition-editor-dialog',
+    templateUrl: './reply-definition-editor-dialog.component.html',
+    styleUrls: ['./reply-definition-editor-dialog.component.scss'],
+    imports: [
+        MatButtonModule,
+        TooltipDirective,
+        MatIconModule,
+        MatSlideToggleModule,
+        FormsModule,
+        MatFormFieldModule,
+        MatInputModule,
+        MatCheckboxModule
+    ]
 })
 export class ReplyDefinitionEditorDialogComponent {
   public dialogData: ReplyDefinitionEditorDialogData;

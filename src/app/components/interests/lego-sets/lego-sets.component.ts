@@ -16,21 +16,20 @@ import { LegoSetDisplay } from './models/lego-set-display';
 import { ModalComponent } from '../../shared/modal/modal.component';
 
 @Component({
-  selector: 'app-lego-sets',
-  templateUrl: './lego-sets.component.html',
-  styleUrls: ['./lego-sets.component.scss'],
-  standalone: true,
-  imports: [
-    PageTitleComponent,
-    MatFormFieldModule,
-    MatSelectModule,
-    FormsModule,
-    MatOptionModule,
-    MatRadioModule,
-    CheckOrXComponent,
-    LoadingIndicatorComponent,
-    ModalComponent,
-  ],
+    selector: 'app-lego-sets',
+    templateUrl: './lego-sets.component.html',
+    styleUrls: ['./lego-sets.component.scss'],
+    imports: [
+        PageTitleComponent,
+        MatFormFieldModule,
+        MatSelectModule,
+        FormsModule,
+        MatOptionModule,
+        MatRadioModule,
+        CheckOrXComponent,
+        LoadingIndicatorComponent,
+        ModalComponent,
+    ]
 })
 export class LegoSetsCollectionComponent {
   public ownedSets: LegoSetDisplay[];

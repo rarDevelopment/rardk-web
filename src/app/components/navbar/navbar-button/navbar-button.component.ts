@@ -3,11 +3,10 @@ import { NgClass } from '@angular/common';
 import { Router, RouterLink } from '@angular/router';
 
 @Component({
-  selector: 'app-navbar-button',
-  templateUrl: './navbar-button.component.html',
-  styleUrl: './navbar-button.component.scss',
-  standalone: true,
-  imports: [RouterLink, NgClass],
+    selector: 'app-navbar-button',
+    templateUrl: './navbar-button.component.html',
+    styleUrl: './navbar-button.component.scss',
+    imports: [RouterLink, NgClass]
 })
 export class NavbarButtonComponent {
   @Input() urlPath: string;

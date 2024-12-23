@@ -7,11 +7,10 @@ import { TvShow } from 'src/app/components/now/tv-shows-card/models/tv-show';
 import { TvShowReview } from './models/tv-show-review';
 
 @Component({
-  selector: 'app-tv-shows-card',
-  templateUrl: './tv-shows-card.component.html',
-  styleUrls: ['./tv-shows-card.component.scss'],
-  standalone: true,
-  imports: [FeedPostersComponent],
+    selector: 'app-tv-shows-card',
+    templateUrl: './tv-shows-card.component.html',
+    styleUrls: ['./tv-shows-card.component.scss'],
+    imports: [FeedPostersComponent]
 })
 export class TvShowsCardComponent {
   public isLoading: boolean;

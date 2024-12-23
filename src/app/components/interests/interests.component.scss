@@ -1,4 +1,5 @@
-@import "../../../variables.scss";
+@use "sass:color";
+@use "../../../variables.scss" as variables;
 
 .collection-section {
   text-align: center;
@@ -6,7 +7,7 @@
 
 .collection-button {
   width: 240px;
-  box-shadow: $button-box-shadow;
+  box-shadow: variables.$button-box-shadow;
   color: white;
 }
 
@@ -14,7 +15,7 @@ $hover-lighten-percentage: 3.92%;
 
 @mixin lighten-hover($color) {
   &:hover {
-    background-color: lighten($color, $hover-lighten-percentage);
+    background-color: color.adjust($color, $lightness: $hover-lighten-percentage);
   }
 }
 

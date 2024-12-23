@@ -7,11 +7,10 @@ import { LastfmService } from './lastfm.service';
 import { FeedPostersComponent } from '../../shared/feed-posters/feed-posters.component';
 
 @Component({
-  selector: 'app-lastfm-card',
-  templateUrl: './lastfm-card.component.html',
-  styleUrls: ['./lastfm-card.component.scss'],
-  standalone: true,
-  imports: [FeedPostersComponent],
+    selector: 'app-lastfm-card',
+    templateUrl: './lastfm-card.component.html',
+    styleUrls: ['./lastfm-card.component.scss'],
+    imports: [FeedPostersComponent]
 })
 export class LastfmCardComponent {
   public isTopAlbumsLoading: boolean;
