@@ -3,7 +3,7 @@ export const settings = {
   mastodonId: 425168,
   apiUrl: 'https://rardk64-bot-api.com/api/',
   feedsSiteUrl: 'https://rardk64.com/',
-  isSocialEnabled: false,
+  isSocialEnabled: true,
   bskyHandle: 'rardk64.com',
   pixelfedUrl: 'https://pixelfed.social/i/web/profile/667497257763764183',
   boardGameGeekWishlist: 'https://boardgamegeek.com/wishlist/rardk',
