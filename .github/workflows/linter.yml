@@ -1,0 +1,20 @@
+name: Linter
+
+on:
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  run_lint:
+    runs-on: ubuntu-latest
+    name: 🧹 Linter
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          submodules: true
+          lfs: false
+      - uses: wearerequired/lint-action@v2.3.0
+        with:
+          eslint: true
+          prettier: true
