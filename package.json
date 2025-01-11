@@ -7,8 +7,7 @@
     "gitsync": "git checkout main && git pull && git checkout dev && git merge main && git push",
     "build": "ng build",
     "watch": "ng build --watch --configuration development",
-    "test": "ng test",
-    "lint": "ng lint"
+    "test": "ng test"
   },
   "private": true,
   "engines": {
@@ -16,17 +15,17 @@
   },
   "dependencies": {
     "@angular/animations": "^19.0.5",
-    "@angular/cdk": "^19.0.4",
     "@angular/common": "^19.0.5",
     "@angular/compiler": "^19.0.5",
     "@angular/core": "^19.0.5",
     "@angular/forms": "^19.0.5",
-    "@angular/material": "^19.0.4",
     "@angular/platform-browser": "^19.0.5",
     "@angular/platform-browser-dynamic": "^19.0.5",
     "@angular/platform-server": "^19.0.5",
     "@angular/router": "^19.0.5",
     "@angular/service-worker": "^19.0.5",
+    "@angular/cdk": "^19.0.4",
+    "@angular/material": "^19.0.4",
     "luxon": "^3.4.4",
     "marked": "^15.0.4",
     "micromark": "^4.0.0",
@@ -43,17 +42,14 @@
     "@types/jasmine": "~4.3.0",
     "@types/luxon": "^3.3.7",
     "@types/node": "^18.18.0",
-    "angular-eslint": "19.0.2",
     "browser-sync": "^3.0.3",
-    "eslint": "^9.16.0",
     "jasmine-core": "~4.5.0",
     "karma": "~6.4.0",
     "karma-chrome-launcher": "~3.1.0",
     "karma-coverage": "~2.2.0",
     "karma-jasmine": "~5.1.0",
     "karma-jasmine-html-reporter": "~2.0.0",
-    "typescript": "~5.6.3",
-    "typescript-eslint": "8.18.0"
+    "typescript": "~5.6.3"
   },
   "volta": {
     "node": "20.13.1"
