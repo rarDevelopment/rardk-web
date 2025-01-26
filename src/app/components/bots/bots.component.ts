@@ -8,10 +8,10 @@ import { PageTitleComponent } from '../shared/page-title/page-title.component';
 import { RouterLink } from '@angular/router';
 
 @Component({
-    selector: 'app-bots',
-    templateUrl: './bots.component.html',
-    styleUrls: ['./bots.component.scss'],
-    imports: [PageTitleComponent, LoginActionsComponent, RouterLink]
+  selector: 'app-bots',
+  templateUrl: './bots.component.html',
+  styleUrls: ['./bots.component.scss'],
+  imports: [PageTitleComponent, LoginActionsComponent, RouterLink],
 })
 export class BotsComponent extends BotPageComponent implements OnInit {
   public isLoading: boolean;
@@ -87,10 +87,10 @@ export class BotsComponent extends BotPageComponent implements OnInit {
     {
       name: 'Theodore (ThreadBot)',
       imageUrl: 'assets/threadbot.png',
-      // inviteLink:
-      //   'https://discord.com/api/oauth2/authorize?client_id=950921256314740766&permissions=534723914832&scope=bot%20applications.commands',
+      inviteLink:
+        'https://discord.com/api/oauth2/authorize?client_id=950921256314740766&permissions=534723914832&scope=bot%20applications.commands',
       description:
-        'A Discord Bot for displaying the active threads in a Discord server in a designated channel. This bot has been decommissioned and is no longer maintained.',
+        'A Discord Bot for displaying the active threads in a Discord server in a designated channel.',
       isConfigurable: false,
       gitHubLink: 'https://github.com/rarDevelopment/thread-bot-dotnet',
     } as BotDefinition,
