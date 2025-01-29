@@ -1,10 +1,12 @@
+import { PostImage } from './image';
+
 export class Post {
   public content: string;
   public posted_at: string;
   public edited_at: string;
-  public images_csv: string;
   public image_alt_text: string;
   public url: string;
+  public images: PostImage[];
   public url_title: string;
   public post_type: string;
   public post_title: string;

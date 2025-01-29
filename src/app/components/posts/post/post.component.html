@@ -12,17 +12,19 @@
     <p>
       {{ post.content }}
     </p>
-    @if (post.images_csv) {
+    @if (post.images && post.images.length > 0) {
     <p>
+      @for (image of post.images; track $index) {
       <img
-        [src]="post.images_csv"
-        [alt]="post.image_alt_text"
+        [src]="image.image_url"
+        [alt]="image.alt_text"
         class="post-image"
         (click)="toggleModal(post, true)" />
       <app-modal
         [post]="post.modalImage"
         [isVisible]="post.isModalVisible"
         (onClose)="toggleModal(post, false)"></app-modal>
+      }
     </p>
     } @if (post.url) {
     <p>
