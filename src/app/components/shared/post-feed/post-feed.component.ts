@@ -5,24 +5,25 @@ import { PostsService } from '../../posts/posts.service';
 import { ActivatedRoute, Router, RouterLink } from '@angular/router';
 import { PostType } from '../../posts/models/post-type';
 import { finalize, take } from 'rxjs';
-import { HtmlDirective } from 'src/app/directives/html.directive';
 import { LoadingIndicatorComponent } from '../loading-indicator/loading-indicator.component';
 import { DateDisplayComponent } from '../date-display/date-display.component';
 import { ModalComponent } from '../modal/modal.component';
 import { PageNumbersComponent } from '../page-numbers/page-numbers.component';
+import { CommonModule } from '@angular/common';
 
 @Component({
-    selector: 'app-post-feed',
-    imports: [
-        LoadingIndicatorComponent,
-        DateDisplayComponent,
-        RouterLink,
-        ModalComponent,
-        PageNumbersComponent,
-        LoadingIndicatorComponent,
-    ],
-    templateUrl: './post-feed.component.html',
-    styleUrl: './post-feed.component.scss'
+  selector: 'app-post-feed',
+  imports: [
+    CommonModule,
+    LoadingIndicatorComponent,
+    DateDisplayComponent,
+    RouterLink,
+    ModalComponent,
+    PageNumbersComponent,
+    LoadingIndicatorComponent,
+  ],
+  templateUrl: './post-feed.component.html',
+  styleUrl: './post-feed.component.scss',
 })
 export class PostFeedComponent implements OnInit {
   constructor(

@@ -1,11 +1,12 @@
 import { ModalImage, ModalImageItem } from '../../shared/modal/models/modal-image';
+import { PostImage } from './image';
 import { Post } from './post';
 
 export class PostDisplay {
   public content: string;
   public posted_at: string;
   public edited_at: string;
-  public images_csv: string;
+  public images: PostImage[];
   public image_alt_text: string;
   public url: string;
   public url_title: string;
@@ -23,8 +24,7 @@ export class PostDisplay {
     this.content = post.content;
     this.posted_at = post.posted_at;
     this.edited_at = post.edited_at;
-    this.images_csv = post.images_csv;
-    this.image_alt_text = post.image_alt_text;
+    this.images = post.images;
     this.url = post.url;
     this.url_title = post.url_title;
     this.post_type = post.post_type;
@@ -35,12 +35,13 @@ export class PostDisplay {
     this.time_stamp = post.time_stamp;
     this.modalImage = {
       url: imagePostUrl,
-      images: [
-        {
-          url: post.images_csv,
-          description: post.image_alt_text,
-        } as ModalImageItem,
-      ],
+      images: post.images.map(
+        (image) =>
+          ({
+            url: image.image_url,
+            description: image.alt_text,
+          } as ModalImageItem)
+      ),
       content: post.content,
       date: post.posted_at,
     } as ModalImage;
