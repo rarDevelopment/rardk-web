@@ -104,6 +104,8 @@ export class SocialMediaDiscussionComponent implements OnInit {
         return this.discussionPostsService.getDiscussionPostsForLinks();
       case PostType.Post:
         return this.discussionPostsService.getDiscussionPostsForPosts();
+      case PostType.Gallery:
+        return this.discussionPostsService.getDiscussionPostsForGallery();
     }
   }
 }

@@ -25,4 +25,8 @@ export class DiscussionPostsService {
   public getDiscussionPostsForPosts(): Observable<DiscussionPostsResponse> {
     return this.http.get<DiscussionPostsResponse>(this.discussionPostsUrl);
   }
+
+  public getDiscussionPostsForGallery(): Observable<DiscussionPostsResponse> {
+    return this.http.get<DiscussionPostsResponse>(this.discussionPostsUrl);
+  }
 }

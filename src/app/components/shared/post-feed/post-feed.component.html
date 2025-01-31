@@ -21,17 +21,17 @@
     </p>
     @if (post.images && post.images.length > 0) {
     <p>
-      @for (image of post.images; track $index) {
+      <!-- @for (image of post.images; track $index) { -->
       <img
-        [src]="image.image_url"
-        [alt]="image.alt_text"
+        [src]="post.images[0].image_url"
+        [alt]="post.images[0].alt_text"
         class="post-image"
         (click)="toggleModal(post, true)" />
       <app-modal
         [post]="post.modalImage"
         [isVisible]="post.isModalVisible"
         (onClose)="toggleModal(post, false)"></app-modal>
-      }
+      <!-- } -->
     </p>
     } @if(post.url) {
     <p>

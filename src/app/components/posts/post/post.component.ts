@@ -4,7 +4,6 @@ import { combineLatest, finalize, map, take } from 'rxjs';
 import { PageTitleComponent } from '../../shared/page-title/page-title.component';
 import { DateDisplayComponent } from '../../shared/date-display/date-display.component';
 import { SocialMediaDiscussionComponent } from '../../shared/social-media-discussion/social-media-discussion.component';
-import { DiscussionPostsService } from 'src/app/services/discussion-posts.service';
 import { LoadingIndicatorComponent } from '../../shared/loading-indicator/loading-indicator.component';
 import { PostsService } from '../posts.service';
 import { Post } from '../models/post';
@@ -13,17 +12,17 @@ import { PostDisplay } from '../models/post-display';
 import { ModalComponent } from '../../shared/modal/modal.component';
 
 @Component({
-    selector: 'app-post',
-    imports: [
-        PageTitleComponent,
-        LoadingIndicatorComponent,
-        DateDisplayComponent,
-        RouterLink,
-        SocialMediaDiscussionComponent,
-        ModalComponent,
-    ],
-    templateUrl: './post.component.html',
-    styleUrl: './post.component.scss'
+  selector: 'app-post',
+  imports: [
+    PageTitleComponent,
+    LoadingIndicatorComponent,
+    DateDisplayComponent,
+    RouterLink,
+    SocialMediaDiscussionComponent,
+    ModalComponent,
+  ],
+  templateUrl: './post.component.html',
+  styleUrl: './post.component.scss',
 })
 export class PostComponent implements OnInit {
   public post: PostDisplay;
@@ -90,6 +89,8 @@ export class PostComponent implements OnInit {
         return 'Posts';
       case PostType.Link:
         return 'Links';
+      case PostType.Gallery:
+        return 'Gallery';
     }
   }
 }

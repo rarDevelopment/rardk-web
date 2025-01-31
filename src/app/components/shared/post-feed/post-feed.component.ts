@@ -139,6 +139,8 @@ export class PostFeedComponent implements OnInit {
         return 'posts';
       case PostType.Link:
         return 'links';
+      case PostType.Gallery:
+        return 'gallery';
     }
   }
 
@@ -148,6 +150,7 @@ export class PostFeedComponent implements OnInit {
         return post.canonical_url;
       case PostType.Post:
       case PostType.Link:
+      case PostType.Gallery:
         return post.time_stamp;
     }
   }
@@ -160,6 +163,8 @@ export class PostFeedComponent implements OnInit {
         return 'Posts';
       case PostType.Link:
         return 'Links';
+      case PostType.Gallery:
+        return 'Gallery Posts';
     }
   }
 }
