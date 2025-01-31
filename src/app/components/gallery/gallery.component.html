@@ -8,29 +8,24 @@
 </div>
 <app-loading-indicator [isLoading]="isLoading"></app-loading-indicator>
 @if (!isLoading) {
-  <div class="grid">
-    @for (post of pixelfedPosts; track post; let i = $index) {
-      <div class="grid-square">
-        <img
-          (click)="toggleModal(i, true)"
-          class="gallery-thumbnail"
-          [src]="post.images[0].url"
-          alt="" />
-          <app-modal
-            [post]="post"
-            [isVisible]="modalVisibilities[i]"
-          (onClose)="toggleModal(i, false)"></app-modal>
-        </div>
-      }
-    </div>
-    <div class="gallery-footer">
-      @if(showPageLink) {
-        <a [routerLink]="['/gallery']">See more in the Gallery</a>
-      } @else{
-        <a target="_blank" [href]="pixelfedUrl">
-          See More on PixelFed
-          <i class="fa-solid fa-arrow-up-right-from-square"></i>
-        </a>
-      }
-    </div>
+<div class="grid">
+  @for (post of galleryPosts; track post; let i = $index) {
+  <div class="grid-square">
+    <img
+      (click)="toggleModal(i, true)"
+      class="gallery-thumbnail"
+      [src]="post.images[0].url"
+      alt="" />
+    <app-modal
+      [post]="post"
+      [isVisible]="modalVisibilities[i]"
+      (onClose)="toggleModal(i, false)"></app-modal>
+  </div>
   }
+</div>
+<div class="gallery-footer">
+  @if(showPageLink) {
+  <a [routerLink]="['/gallery']">See more in the Gallery</a>
+  }
+</div>
+}

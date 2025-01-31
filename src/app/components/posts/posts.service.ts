@@ -25,6 +25,10 @@ export class PostsService {
       filter: (p: Post) => p.post_type === PostType.Blog,
       hashtagPrefix: '#rardkblogpost',
     },
+    [PostType.Gallery]: {
+      filter: (p: Post) => p.post_type === PostType.Gallery,
+      hashtagPrefix: '#rardkgallery',
+    },
   };
 
   constructor(private http: HttpClient, private htmlDecoder: HtmlDecoder) {}
