@@ -10,6 +10,7 @@ import { Post } from '../models/post';
 import { PostType } from '../models/post-type';
 import { PostDisplay } from '../models/post-display';
 import { ModalComponent } from '../../shared/modal/modal.component';
+import { ContentPosition } from '../models/content-positions';
 
 @Component({
   selector: 'app-post',
@@ -28,6 +29,7 @@ export class PostComponent implements OnInit {
   public post: PostDisplay;
   public isLoading: boolean;
   @Input() postType: PostType = PostType.Post;
+  @Input() contentPosition: ContentPosition = ContentPosition.Above;
 
   constructor(
     private postsService: PostsService,
@@ -73,12 +75,25 @@ export class PostComponent implements OnInit {
     post.isModalVisible = isVisible;
   }
 
-  public isLink(): boolean {
-    return this.postType === PostType.Link;
+  public isAbove(): boolean {
+    return this.contentPosition === ContentPosition.Above;
+  }
+
+  public getImageClass(): string {
+    return this.postType === PostType.Gallery ? 'post-image gallery-post-image' : 'post-image';
   }
 
   public getPageForPost(): string {
-    return this.isLink() ? 'links' : 'posts';
+    switch (this.postType) {
+      case PostType.Blog:
+        return '/blog';
+      case PostType.Post:
+        return '/posts';
+      case PostType.Link:
+        return '/links';
+      case PostType.Gallery:
+        return '/gallery';
+    }
   }
 
   public getBackText(): string {

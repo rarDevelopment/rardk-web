@@ -39,7 +39,9 @@
     </div>
     <div class="image-description" [innerHTML]="post.content">{{ post.content }}</div>
     <div class="image-footer">
-      <app-date-display [dateToDisplay]="post.date"></app-date-display>
+      <app-date-display
+        [routerLink]="postUrl ? [postUrl] : undefined"
+        [dateToDisplay]="post.date"></app-date-display>
       @if(post.url && post.sourceSiteName) {
       <a target="_blank" [href]="post.url">
         View on {{ post.sourceSiteName }}

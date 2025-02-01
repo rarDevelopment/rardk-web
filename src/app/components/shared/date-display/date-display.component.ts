@@ -11,7 +11,7 @@ import { DateTime } from 'luxon';
 export class DateDisplayComponent implements OnInit {
   @Input() dateToDisplay: string;
   @Input() labelText: string;
-  @Input() routerLink: string[];
+  @Input() routerLink?: string[];
   public formattedDate: string;
 
   ngOnInit(): void {

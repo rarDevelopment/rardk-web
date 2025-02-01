@@ -12,17 +12,29 @@
   @for (post of galleryPosts; track post; let i = $index) {
   <div class="grid-square">
     <img
+      #imageElement
       (click)="toggleModal(i, true)"
       class="gallery-thumbnail"
       [src]="post.images[0].url"
-      alt="" />
+      [alt]="post.images[0].description" />
+    @if (post.images.length > 1 && imageLoaded[i]) {
+    <span class="image-count">{{ post.images.length }}</span>
+    }
     <app-modal
       [post]="post"
+      [postUrl]="post.url"
       [isVisible]="modalVisibilities[i]"
       (onClose)="toggleModal(i, false)"></app-modal>
   </div>
   }
 </div>
+@if(allGalleryPosts.length > itemCount){
+<div class="gallery-show-more">
+  <button class="button gallery-show-more-button" (click)="showMoreImages()">
+    Show More Posts
+  </button>
+</div>
+}
 <div class="gallery-footer">
   @if(showPageLink) {
   <a [routerLink]="['/gallery']">See more in the Gallery</a>

@@ -9,16 +9,17 @@
 }
 <div class="post">
   <div class="post-summary">
+    @if(isAbove()){
     <p>
       {{ post.content }}
     </p>
-    @if (post.images && post.images.length > 0) {
+    } @if (post.images && post.images.length > 0) {
     <p>
       @for (image of post.images; track $index) {
       <img
         [src]="image.image_url"
         [alt]="image.alt_text"
-        class="post-image"
+        [class]="getImageClass()"
         (click)="toggleModal(post, true)" />
       <app-modal
         [post]="post.modalImage"
@@ -32,6 +33,10 @@
         {{ post.url_title }}
         <i class="fa-solid fa-arrow-up-right-from-square"></i>
       </a>
+    </p>
+    } @if(!isAbove()){
+    <p>
+      {{ post.content }}
     </p>
     }
     <app-date-display [dateToDisplay]="post.posted_at" labelText="Posted on:"></app-date-display>
