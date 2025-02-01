@@ -11,6 +11,7 @@ export class DiscussionPostsService {
   private discussionBlogPostsUrl: string = `${settings.apiUrl}now/json/discussion-blog-posts`;
   private discussionLinksPostsUrl: string = `${settings.apiUrl}now/json/discussion-links`;
   private discussionPostsUrl: string = `${settings.apiUrl}now/json/discussion-posts`;
+  private discussionGalleryUrl: string = `${settings.apiUrl}now/json/discussion-gallery`;
 
   constructor(private http: HttpClient) {}
 
@@ -27,6 +28,6 @@ export class DiscussionPostsService {
   }
 
   public getDiscussionPostsForGallery(): Observable<DiscussionPostsResponse> {
-    return this.http.get<DiscussionPostsResponse>(this.discussionPostsUrl);
+    return this.http.get<DiscussionPostsResponse>(this.discussionGalleryUrl);
   }
 }
