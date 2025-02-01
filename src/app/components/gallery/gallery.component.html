@@ -10,9 +10,14 @@
 @if (!isLoading) {
 <div class="grid">
   @for (post of galleryPosts; track post; let i = $index) {
-  <div class="grid-square" (click)="toggleModal(i, true)">
-    <img class="gallery-thumbnail" [src]="post.images[0].url" [alt]="post.images[0].description" />
-    @if (post.images.length > 1) {
+  <div class="grid-square">
+    <img
+      #imageElement
+      (click)="toggleModal(i, true)"
+      class="gallery-thumbnail"
+      [src]="post.images[0].url"
+      [alt]="post.images[0].description" />
+    @if (post.images.length > 1 && imageLoaded[i]) {
     <span class="image-count">{{ post.images.length }}</span>
     }
     <app-modal

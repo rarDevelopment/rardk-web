@@ -1,4 +1,14 @@
-import { Component, Input, OnInit } from '@angular/core';
+import {
+  AfterViewChecked,
+  AfterViewInit,
+  Component,
+  ElementRef,
+  Input,
+  OnInit,
+  QueryList,
+  Renderer2,
+  ViewChildren,
+} from '@angular/core';
 import { finalize, take } from 'rxjs';
 
 import { PageTitleComponent } from '../shared/page-title/page-title.component';
@@ -16,7 +26,7 @@ import { Post } from '../posts/models/post';
   templateUrl: './gallery.component.html',
   styleUrl: './gallery.component.scss',
 })
-export class GalleryComponent implements OnInit {
+export class GalleryComponent implements OnInit, AfterViewChecked {
   public galleryPosts: ModalImage[];
   public allGalleryPosts: ModalImage[];
   public isLoading: boolean;
@@ -25,13 +35,24 @@ export class GalleryComponent implements OnInit {
   @Input() pageTitle = 'Gallery';
   @Input() showPageLink = false;
 
+  @ViewChildren('imageElement') imageElements: QueryList<ElementRef>;
+  public imageLoaded: boolean[] = [];
+
   public imgIndex = 0;
 
-  constructor(private postsService: PostsService) {}
+  constructor(private postsService: PostsService, private renderer: Renderer2) {}
 
   ngOnInit() {
     this.isLoading = true;
     this.populateGallery();
+  }
+
+  ngAfterViewChecked() {
+    this.imageElements.forEach((imageElement, index) => {
+      this.renderer.listen(imageElement.nativeElement, 'load', () => {
+        this.imageLoaded[index] = true;
+      });
+    });
   }
 
   populateGallery() {
@@ -57,7 +78,6 @@ export class GalleryComponent implements OnInit {
           });
           this.allGalleryPosts = modalImages;
           this.updateLimitedGalleryImages();
-          this.modalVisibilities = modalImages.map((_) => false);
         },
         error: (error: any) => {
           console.error(error);
@@ -69,6 +89,7 @@ export class GalleryComponent implements OnInit {
     this.itemCount > 0
       ? (this.galleryPosts = this.allGalleryPosts.slice(0, this.itemCount))
       : (this.galleryPosts = this.allGalleryPosts);
+    this.modalVisibilities = this.galleryPosts.map((_) => false);
   }
 
   toggleModal(index: number, isVisible: boolean) {
