@@ -14,19 +14,21 @@
       {{ post.content }}
     </p>
     } @if (post.images && post.images.length > 0) {
-    <p>
-      @for (image of post.images; track $index) {
+    <div class="post-image-container">
       <img
-        [src]="image.image_url"
-        [alt]="image.alt_text"
+        #imageElement
+        [src]="post.images[0].image_url"
+        [alt]="post.images[0].alt_text"
         [class]="getImageClass()"
         (click)="toggleModal(post, true)" />
+      @if (post.images.length > 1 && imageLoaded) {
+      <span class="image-count">{{ post.images.length }}</span>
+      }
       <app-modal
         [post]="post.modalImage"
         [isVisible]="post.isModalVisible"
         (onClose)="toggleModal(post, false)"></app-modal>
-      }
-    </p>
+    </div>
     } @if (post.url) {
     <p>
       <a [href]="post.url" target="_blank">

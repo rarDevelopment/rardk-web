@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { DateDisplayComponent } from '../date-display/date-display.component';
 import { ModalImage } from 'src/app/components/shared/modal/models/modal-image';
 
@@ -15,7 +15,8 @@ export class ModalComponent {
 
   @Output() onClose = new EventEmitter<string>();
 
-  public imgIndex: number = 0;
+  public imageIndex: number = 0;
+
   public allowedClassesForClosing = ['modal', 'close', 'closing-x'];
 
   public isDirectionEnabled(newIndex: number): boolean {
@@ -24,7 +25,7 @@ export class ModalComponent {
 
   public changeImage(newIndex: number) {
     if (this.isDirectionEnabled(newIndex)) {
-      this.imgIndex = newIndex;
+      this.imageIndex = newIndex;
     }
   }
 
@@ -32,7 +33,7 @@ export class ModalComponent {
     const clickedElement = $event.target as Element;
     if (clickedElement && this.isAllowedClassForClosing(clickedElement.className)) {
       this.onClose.emit();
-      this.imgIndex = 0;
+      this.imageIndex = 0;
     }
   }
 

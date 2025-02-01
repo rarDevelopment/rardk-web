@@ -38,7 +38,7 @@ export class GalleryComponent implements OnInit, AfterViewChecked {
   @ViewChildren('imageElement') imageElements: QueryList<ElementRef>;
   public imageLoaded: boolean[] = [];
 
-  public imgIndex = 0;
+  public imageIndex = 0;
 
   constructor(private postsService: PostsService, private renderer: Renderer2) {}
 
