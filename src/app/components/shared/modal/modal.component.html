@@ -8,14 +8,14 @@
     <div class="image-container">
       <img
         class="gallery-image"
-        [src]="post.images[imgIndex].url"
-        [alt]="post.images[imgIndex].description" />
-      @if (isDirectionEnabled(imgIndex - 1)) {
-      <button class="arrow-button left" (click)="changeImage(imgIndex - 1)">
+        [src]="post.images[imageIndex].url"
+        [alt]="post.images[imageIndex].description" />
+      @if (isDirectionEnabled(imageIndex - 1)) {
+      <button class="arrow-button left" (click)="changeImage(imageIndex - 1)">
         <i class="fa-solid fa-arrow-left"></i>
       </button>
-      } @if (isDirectionEnabled(imgIndex + 1)) {
-      <button class="arrow-button right" (click)="changeImage(imgIndex + 1)">
+      } @if (isDirectionEnabled(imageIndex + 1)) {
+      <button class="arrow-button right" (click)="changeImage(imageIndex + 1)">
         <i class="fa-solid fa-arrow-right"></i>
       </button>
       } @if (post.images.length > 1) {
@@ -25,7 +25,7 @@
           <circle
             class="image-position-circle"
             [attr.class]="
-              circleIndex === imgIndex ? 'image-position-circle current' : 'image-position-circle'
+              circleIndex === imageIndex ? 'image-position-circle current' : 'image-position-circle'
             "
             cx="20"
             cy="20"

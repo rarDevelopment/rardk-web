@@ -1,4 +1,12 @@
-import { Component, Input, OnInit } from '@angular/core';
+import {
+  AfterViewChecked,
+  Component,
+  ElementRef,
+  Input,
+  OnInit,
+  Renderer2,
+  ViewChild,
+} from '@angular/core';
 import { ActivatedRoute, ParamMap, Router, RouterLink } from '@angular/router';
 import { combineLatest, finalize, map, take } from 'rxjs';
 import { PageTitleComponent } from '../../shared/page-title/page-title.component';
@@ -25,16 +33,19 @@ import { ContentPosition } from '../models/content-positions';
   templateUrl: './post.component.html',
   styleUrl: './post.component.scss',
 })
-export class PostComponent implements OnInit {
+export class PostComponent implements OnInit, AfterViewChecked {
   public post: PostDisplay;
   public isLoading: boolean;
   @Input() postType: PostType = PostType.Post;
   @Input() contentPosition: ContentPosition = ContentPosition.Above;
+  @ViewChild('imageElement') imageElement: ElementRef;
+  public imageLoaded: boolean = false;
 
   constructor(
     private postsService: PostsService,
     private route: ActivatedRoute,
-    private router: Router
+    private router: Router,
+    private renderer: Renderer2
   ) {}
   ngOnInit(): void {
     this.isLoading = true;
@@ -61,6 +72,14 @@ export class PostComponent implements OnInit {
           console.error(error);
         },
       });
+  }
+
+  ngAfterViewChecked() {
+    if (this.imageElement && !this.imageLoaded) {
+      this.renderer.listen(this.imageElement.nativeElement, 'load', () => {
+        this.imageLoaded = true;
+      });
+    }
   }
 
   public findAndSetPost(posts: Post[], routeParams: ParamMap) {
