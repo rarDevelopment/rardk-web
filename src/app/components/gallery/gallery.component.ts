@@ -18,9 +18,10 @@ import { Post } from '../posts/models/post';
 })
 export class GalleryComponent implements OnInit {
   public galleryPosts: ModalImage[];
+  public allGalleryPosts: ModalImage[];
   public isLoading: boolean;
   public modalVisibilities: boolean[];
-  @Input() itemCount: number = 0;
+  @Input() itemCount: number = 10;
   @Input() pageTitle = 'Gallery';
   @Input() showPageLink = false;
 
@@ -48,15 +49,14 @@ export class GalleryComponent implements OnInit {
             return {
               content: post.content,
               date: post.posted_at,
-              url: post.url,
+              url: '/gallery/' + post.time_stamp,
               images: post.images.map((media) => {
                 return { url: media.image_url, description: media.alt_text } as ModalImageItem;
               }),
             } as ModalImage;
           });
-          this.itemCount > 0
-            ? (this.galleryPosts = modalImages.slice(0, this.itemCount))
-            : (this.galleryPosts = modalImages);
+          this.allGalleryPosts = modalImages;
+          this.updateLimitedGalleryImages();
           this.modalVisibilities = modalImages.map((_) => false);
         },
         error: (error: any) => {
@@ -65,7 +65,18 @@ export class GalleryComponent implements OnInit {
       });
   }
 
+  updateLimitedGalleryImages() {
+    this.itemCount > 0
+      ? (this.galleryPosts = this.allGalleryPosts.slice(0, this.itemCount))
+      : (this.galleryPosts = this.allGalleryPosts);
+  }
+
   toggleModal(index: number, isVisible: boolean) {
     this.modalVisibilities[index] = isVisible;
+  }
+
+  showMoreImages() {
+    this.itemCount += 10;
+    this.updateLimitedGalleryImages();
   }
 }

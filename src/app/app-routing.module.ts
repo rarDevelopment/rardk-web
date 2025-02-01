@@ -22,6 +22,7 @@ import { PostComponent } from './components/posts/post/post.component';
 import { PostsComponent } from './components/posts/posts.component';
 import { BooksCollectionComponent } from './components/interests/books/books.component';
 import { FavouriteGamesComponent } from './components/interests/video-games/favourite-games/favourite-games.component';
+import { GalleryPostComponent } from './components/gallery/gallery-post/gallery-post.component';
 
 const routes: Routes = [
   { path: 'blog/:slug', pathMatch: 'full', component: BlogPostComponent },
@@ -30,6 +31,8 @@ const routes: Routes = [
   { path: 'links', component: LinksComponent },
   { path: 'posts/:slug', component: PostComponent },
   { path: 'posts', component: PostsComponent },
+  { path: 'gallery/:slug', component: GalleryPostComponent },
+  { path: 'gallery', component: GalleryComponent },
   {
     path: 'board-games',
     redirectTo: 'interests/collections/board-games',
@@ -54,7 +57,6 @@ const routes: Routes = [
   { path: 'interests', component: InterestsComponent },
   { path: 'now', component: NowComponent },
   { path: 'feeds', component: FeedsComponent },
-  { path: 'gallery', component: GalleryComponent },
   {
     path: 'bots/timezonebot',
     component: TimezonesComponent,

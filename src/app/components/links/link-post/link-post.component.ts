@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { PostType } from '../../posts/models/post-type';
 import { PostComponent } from '../../posts/post/post.component';
+import { ContentPosition } from '../../posts/models/content-positions';
 
 @Component({
     selector: 'app-link-post',
@@ -10,5 +11,6 @@ import { PostComponent } from '../../posts/post/post.component';
 })
 export class LinkPostComponent {
   public postType: PostType = PostType.Link;
+  public contentPosition: ContentPosition = ContentPosition.Below;
   constructor() {}
 }

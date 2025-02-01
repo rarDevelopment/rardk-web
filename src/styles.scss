@@ -215,6 +215,9 @@ a:visited {
   padding-bottom: 10px;
   border-radius: 20px;
 }
+.gallery-post-image {
+  max-height: 500px;
+}
 
 // for markdown in the blog post
 .blog-post-content {
