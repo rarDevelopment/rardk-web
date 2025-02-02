@@ -5,12 +5,15 @@
       <span class="close" (click)="close($event)"><i class="fa-solid fa-x closing-x"></i></span>
     </div>
     <h2>{{ post.title }}</h2>
+
     <div class="image-container">
+      <app-loading-indicator [isLoading]="isLoading"></app-loading-indicator>
+      @if(!isLoading){
       <img
         class="gallery-image"
         [src]="post.images[imageIndex].url"
         [alt]="post.images[imageIndex].description" />
-      @if (isDirectionEnabled(imageIndex - 1)) {
+      } @if (isDirectionEnabled(imageIndex - 1)) {
       <button class="arrow-button left" (click)="changeImage(imageIndex - 1)">
         <i class="fa-solid fa-arrow-left"></i>
       </button>
