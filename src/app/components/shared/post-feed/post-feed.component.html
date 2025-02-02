@@ -5,7 +5,7 @@
   [numberOfPages]="numberOfPages"
   [pageNumbers]="pageNumbers"
   (pageChange)="goToPage($event)"></app-page-numbers>
-} @for (post of posts; track post) {
+} @for (post of posts; track post; let i = $index) {
 <div class="repeating-post">
   <div class="repeating-post-summary">
     @if(isBlog()){
@@ -20,19 +20,23 @@
       {{ post.content }}
     </p>
     @if (post.images && post.images.length > 0) {
-    <p>
+    <div class="post-image-container">
       <!-- @for (image of post.images; track $index) { -->
       <img
+        #imageElement
         [src]="post.images[0].image_url"
         [alt]="post.images[0].alt_text"
         class="post-image"
         (click)="toggleModal(post, true)" />
+      @if (post.images.length > 1 && imageLoaded[i]) {
+      <span class="image-count">{{ post.images.length }}</span>
+      }
       <app-modal
         [post]="post.modalImage"
         [isVisible]="post.isModalVisible"
         (onClose)="toggleModal(post, false)"></app-modal>
       <!-- } -->
-    </p>
+    </div>
     } @if(post.url) {
     <p>
       <a [href]="post.url" target="_blank">
