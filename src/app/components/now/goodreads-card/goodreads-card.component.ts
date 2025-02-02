@@ -6,10 +6,10 @@ import { finalize, take } from 'rxjs';
 import { FeedPostersComponent } from '../../shared/feed-posters/feed-posters.component';
 
 @Component({
-    selector: 'app-goodreads-card',
-    templateUrl: './goodreads-card.component.html',
-    styleUrls: ['./goodreads-card.component.scss'],
-    imports: [FeedPostersComponent]
+  selector: 'app-goodreads-card',
+  templateUrl: './goodreads-card.component.html',
+  styleUrls: ['./goodreads-card.component.scss'],
+  imports: [FeedPostersComponent],
 })
 export class GoodreadsCardComponent {
   public isFinishedBooksLoading: boolean;
@@ -44,8 +44,10 @@ export class GoodreadsCardComponent {
             imageUrl: m.imageUrl,
             rating: m.rating,
             url: m.url,
+            date: m.readDate,
           } as FeedItem;
         });
+        items = items.sort((a, b) => (a.date < b.date ? 1 : -1));
         if (this.numberOfBooksToList > 0) {
           items = items.slice(0, this.numberOfBooksToList);
         }
