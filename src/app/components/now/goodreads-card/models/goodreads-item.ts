@@ -4,4 +4,5 @@ export class GoodreadsItem {
   url: string;
   rating: number;
   imageUrl: string;
+  readDate: string;
 }
