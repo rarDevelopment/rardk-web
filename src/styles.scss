@@ -143,13 +143,29 @@ a:visited {
   align-items: center;
   margin: 0 auto;
   margin-bottom: 5px;
-
-  font-size: 20px;
+  font-size: 30px;
 }
 
 .page-number-separator {
   padding-left: 5px;
   padding-right: 5px;
+}
+
+.pagination-buttons {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 15px;
+  margin-right: 30px;
+  margin-left: 30px;
+}
+
+.next-prev-button {
+  font-size: 35px;
+}
+
+.first-last-button {
+  font-size: 30px;
 }
 
 .page-number-link {
