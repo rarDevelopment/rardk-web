@@ -120,6 +120,14 @@ export class PostFeedComponent implements OnInit {
     }
   }
 
+  public lastPage() {
+    this.goToPage(this.numberOfPages);
+  }
+
+  public firstPage() {
+    this.goToPage(1);
+  }
+
   public previousPage() {
     if (this.currentPage > 1) {
       this.goToPage(this.currentPage - 1);
