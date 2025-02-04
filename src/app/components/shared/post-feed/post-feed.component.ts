@@ -114,26 +114,6 @@ export class PostFeedComponent implements OnInit {
       });
   }
 
-  public nextPage() {
-    if (this.currentPage < this.numberOfPages) {
-      this.goToPage(this.currentPage + 1);
-    }
-  }
-
-  public lastPage() {
-    this.goToPage(this.numberOfPages);
-  }
-
-  public firstPage() {
-    this.goToPage(1);
-  }
-
-  public previousPage() {
-    if (this.currentPage > 1) {
-      this.goToPage(this.currentPage - 1);
-    }
-  }
-
   public scrollToTop() {
     window.scrollTo(0, 0);
   }
