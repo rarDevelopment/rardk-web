@@ -15,9 +15,10 @@ import { PostType } from '../../posts/models/post-type';
 import { finalize, take } from 'rxjs';
 import { LoadingIndicatorComponent } from '../loading-indicator/loading-indicator.component';
 import { DateDisplayComponent } from '../date-display/date-display.component';
-import { ModalComponent } from '../modal/modal.component';
-import { PageNumbersComponent } from '../page-numbers/page-numbers.component';
+import { PaginatorComponent } from '../paginator/paginator.component';
 import { CommonModule } from '@angular/common';
+import { ContentPosition } from '../../posts/models/content-positions';
+import { PostContentComponent } from '../../posts/post/post-content/post-content.component';
 
 @Component({
   selector: 'app-post-feed',
@@ -26,9 +27,9 @@ import { CommonModule } from '@angular/common';
     LoadingIndicatorComponent,
     DateDisplayComponent,
     RouterLink,
-    ModalComponent,
-    PageNumbersComponent,
+    PaginatorComponent,
     LoadingIndicatorComponent,
+    PostContentComponent,
   ],
   templateUrl: './post-feed.component.html',
   styleUrl: './post-feed.component.scss',
@@ -48,6 +49,7 @@ export class PostFeedComponent implements OnInit {
   @Input() showPageLink = false;
   @Input() showPaginator = true;
   @Input() postType: PostType;
+  @Input() contentPosition: ContentPosition = ContentPosition.Below;
   public pageQueryParam = 1;
   public currentPage = 1;
   public itemsPerPage = 10;
@@ -131,9 +133,9 @@ export class PostFeedComponent implements OnInit {
     this.scrollToTop();
   }
 
-  toggleModal(post: PostDisplay, isVisible: boolean) {
-    post.isModalVisible = isVisible;
-  }
+  // toggleModal(post: PostDisplay, isVisible: boolean) {
+  //   post.isModalVisible = isVisible;
+  // }
 
   public isBlog(): boolean {
     return this.postType === PostType.Blog;
@@ -160,6 +162,20 @@ export class PostFeedComponent implements OnInit {
       case PostType.Link:
       case PostType.Gallery:
         return post.time_stamp;
+    }
+  }
+
+  public getPostType(type: string): PostType {
+    switch (type) {
+      case 'blog':
+        return PostType.Blog;
+      case 'link':
+        return PostType.Link;
+      case 'gallery':
+        return PostType.Gallery;
+      case 'post':
+      default:
+        return PostType.Post;
     }
   }
 

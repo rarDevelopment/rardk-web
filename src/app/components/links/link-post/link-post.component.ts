@@ -12,5 +12,4 @@ import { ContentPosition } from '../../posts/models/content-positions';
 export class LinkPostComponent {
   public postType: PostType = PostType.Link;
   public contentPosition: ContentPosition = ContentPosition.Below;
-  constructor() {}
 }

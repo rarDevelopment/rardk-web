@@ -2,12 +2,12 @@ import { CommonModule } from '@angular/common';
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 
 @Component({
-  selector: 'app-page-numbers',
+  selector: 'app-paginator',
   imports: [CommonModule],
-  templateUrl: './page-numbers.component.html',
-  styleUrl: './page-numbers.component.scss',
+  templateUrl: './paginator.component.html',
+  styleUrl: './paginator.component.scss',
 })
-export class PageNumbersComponent implements OnInit {
+export class PaginatorComponent implements OnInit {
   @Input() currentPage: number;
   @Input() numberOfPages: number;
   @Input() pageNumbers: number[] = [];

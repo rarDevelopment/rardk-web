@@ -1,13 +1,13 @@
 <app-loading-indicator [isLoading]="isLoading"></app-loading-indicator>
 @if (!isLoading) { @if(showPaginator) {
-<app-page-numbers
+<app-paginator
   [currentPage]="currentPage"
   [numberOfPages]="numberOfPages"
   [pageNumbers]="pageNumbers"
-  (pageChange)="goToPage($event)"></app-page-numbers>
+  (pageChange)="goToPage($event)"></app-paginator>
 } @for (post of posts; track post; let i = $index) {
 <div class="repeating-post">
-  <div class="repeating-post-summary">
+  <div class="post-summary">
     @if(isBlog()){
     <a [routerLink]="['/blog', post.canonical_url]" class="">
       <h1 class="repeating-post-title">{{ post.post_title }}</h1>
@@ -16,36 +16,11 @@
       {{ post.post_description }}
     </p>
     } @else{
-    <p>
-      {{ post.content }}
-    </p>
-    @if (post.images && post.images.length > 0) {
-    <div class="post-image-container">
-      <!-- @for (image of post.images; track $index) { -->
-      <img
-        #imageElement
-        [src]="post.images[0].image_url"
-        [alt]="post.images[0].alt_text"
-        class="post-image"
-        (click)="toggleModal(post, true)" />
-      @if (post.images.length > 1 && imageLoaded[i]) {
-      <span class="image-count">{{ post.images.length }}</span>
-      }
-      <app-modal
-        [post]="post.modalImage"
-        [isVisible]="post.isModalVisible"
-        (onClose)="toggleModal(post, false)"></app-modal>
-      <!-- } -->
-    </div>
-    } @if(post.url) {
-    <p>
-      <a [href]="post.url" target="_blank">
-        {{ post.url_title }}
-        <i class="fa-solid fa-arrow-up-right-from-square"></i>
-      </a>
-      &nbsp;
-    </p>
-    } }
+    <app-post-content
+      [post]="post"
+      [postType]="getPostType(post.post_type)"
+      [contentPosition]="contentPosition"></app-post-content>
+    }
     <app-date-display
       [routerLink]="['/' + getPageForLink(), getPostIdentifier(post)]"
       [dateToDisplay]="post.posted_at"
@@ -57,9 +32,9 @@
   <a [routerLink]="['/' + getPageForLink()]">See more {{ getSeeMoreName() }}</a>
 </div>
 } @else if (showPaginator) {
-<app-page-numbers
+<app-paginator
   [currentPage]="currentPage"
   [numberOfPages]="numberOfPages"
   [pageNumbers]="pageNumbers"
-  (pageChange)="goToPage($event)"></app-page-numbers>
+  (pageChange)="goToPage($event)"></app-paginator>
 } }

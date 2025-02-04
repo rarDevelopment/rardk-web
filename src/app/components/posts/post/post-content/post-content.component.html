@@ -1,0 +1,32 @@
+@if(isAbove()){
+<p>
+  {{ post.content }}
+</p>
+} @if (post.images && post.images.length > 0) {
+<div class="post-image-container">
+  <img
+    #imageElement
+    [src]="post.images[0].image_url"
+    [alt]="post.images[0].alt_text"
+    [class]="getImageClass()"
+    (click)="toggleModal(post, true)" />
+  @if (post.images.length > 1 && imageLoaded) {
+  <span class="image-count">{{ post.images.length }}</span>
+  }
+  <app-modal
+    [post]="post.modalImage"
+    [isVisible]="post.isModalVisible"
+    (onClose)="toggleModal(post, false)"></app-modal>
+</div>
+} @if (post.url) {
+<p>
+  <a [href]="post.url" target="_blank">
+    {{ post.url_title }}
+    <i class="fa-solid fa-arrow-up-right-from-square"></i>
+  </a>
+</p>
+} @if(!isAbove()){
+<p>
+  {{ post.content }}
+</p>
+}

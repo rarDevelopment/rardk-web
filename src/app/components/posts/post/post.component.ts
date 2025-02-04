@@ -19,6 +19,7 @@ import { PostType } from '../models/post-type';
 import { PostDisplay } from '../models/post-display';
 import { ModalComponent } from '../../shared/modal/modal.component';
 import { ContentPosition } from '../models/content-positions';
+import { PostContentComponent } from './post-content/post-content.component';
 
 @Component({
   selector: 'app-post',
@@ -28,24 +29,21 @@ import { ContentPosition } from '../models/content-positions';
     DateDisplayComponent,
     RouterLink,
     SocialMediaDiscussionComponent,
-    ModalComponent,
+    PostContentComponent,
   ],
   templateUrl: './post.component.html',
   styleUrl: './post.component.scss',
 })
-export class PostComponent implements OnInit, AfterViewChecked {
+export class PostComponent implements OnInit {
   public post: PostDisplay;
   public isLoading: boolean;
   @Input() postType: PostType = PostType.Post;
   @Input() contentPosition: ContentPosition = ContentPosition.Above;
-  @ViewChild('imageElement') imageElement: ElementRef;
-  public imageLoaded: boolean = false;
 
   constructor(
     private postsService: PostsService,
     private route: ActivatedRoute,
-    private router: Router,
-    private renderer: Renderer2
+    private router: Router
   ) {}
   ngOnInit(): void {
     this.isLoading = true;
@@ -74,32 +72,12 @@ export class PostComponent implements OnInit, AfterViewChecked {
       });
   }
 
-  ngAfterViewChecked() {
-    if (this.imageElement && !this.imageLoaded) {
-      this.renderer.listen(this.imageElement.nativeElement, 'load', () => {
-        this.imageLoaded = true;
-      });
-    }
-  }
-
   public findAndSetPost(posts: Post[], routeParams: ParamMap) {
     const foundPost = posts.find((post) => post.time_stamp === routeParams.get('slug')!);
     if (!foundPost) {
       this.router.navigate([this.getPageForPost()]);
     }
     this.post = new PostDisplay(foundPost!, this.getPageForPost());
-  }
-
-  toggleModal(post: PostDisplay, isVisible: boolean) {
-    post.isModalVisible = isVisible;
-  }
-
-  public isAbove(): boolean {
-    return this.contentPosition === ContentPosition.Above;
-  }
-
-  public getImageClass(): string {
-    return this.postType === PostType.Gallery ? 'post-image gallery-post-image' : 'post-image';
   }
 
   public getPageForPost(): string {

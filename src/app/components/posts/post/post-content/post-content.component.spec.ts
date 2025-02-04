@@ -1,18 +1,18 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { PageNumbersComponent } from './page-numbers.component';
+import { PostContentComponent } from './post-content.component';
 
-describe('PageNumbersComponent', () => {
-  let component: PageNumbersComponent;
-  let fixture: ComponentFixture<PageNumbersComponent>;
+describe('PostContentComponent', () => {
+  let component: PostContentComponent;
+  let fixture: ComponentFixture<PostContentComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [PageNumbersComponent]
+      imports: [PostContentComponent]
     })
     .compileComponents();
 
-    fixture = TestBed.createComponent(PageNumbersComponent);
+    fixture = TestBed.createComponent(PostContentComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
