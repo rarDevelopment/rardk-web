@@ -1,12 +1,4 @@
-import {
-  Component,
-  ElementRef,
-  Input,
-  OnInit,
-  QueryList,
-  Renderer2,
-  ViewChildren,
-} from '@angular/core';
+import { Component, Input, OnInit, Renderer2 } from '@angular/core';
 import { PostDisplay } from '../../posts/models/post-display';
 import { Post } from '../../posts/models/post';
 import { PostsService } from '../../posts/posts.service';
@@ -56,21 +48,10 @@ export class PostFeedComponent implements OnInit {
   public numberOfPages = 1;
   public pageNumbers: number[] = [];
 
-  @ViewChildren('imageElement') imageElements: QueryList<ElementRef>;
-  public imageLoaded: boolean[] = [];
-
   async ngOnInit() {
     this.route.queryParams.subscribe((params) => {
       this.pageQueryParam = +params['page'];
       this.populatePosts();
-    });
-  }
-
-  ngAfterViewChecked() {
-    this.imageElements.forEach((imageElement, index) => {
-      this.renderer.listen(imageElement.nativeElement, 'load', () => {
-        this.imageLoaded[index] = true;
-      });
     });
   }
 
@@ -132,10 +113,6 @@ export class PostFeedComponent implements OnInit {
     this.router.navigate([this.getPageForLink()], { queryParams: { page: pageNumber } });
     this.scrollToTop();
   }
-
-  // toggleModal(post: PostDisplay, isVisible: boolean) {
-  //   post.isModalVisible = isVisible;
-  // }
 
   public isBlog(): boolean {
     return this.postType === PostType.Blog;
