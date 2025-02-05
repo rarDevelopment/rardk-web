@@ -1,12 +1,4 @@
-import {
-  AfterViewChecked,
-  Component,
-  ElementRef,
-  Input,
-  OnInit,
-  Renderer2,
-  ViewChild,
-} from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { ActivatedRoute, ParamMap, Router, RouterLink } from '@angular/router';
 import { combineLatest, finalize, map, take } from 'rxjs';
 import { PageTitleComponent } from '../../shared/page-title/page-title.component';

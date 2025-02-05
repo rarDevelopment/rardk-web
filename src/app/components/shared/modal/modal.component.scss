@@ -16,7 +16,7 @@
   padding: 30px;
   border-radius: 20px;
   border: 2px dotted #797979;
-  width: 60%;
+  width: 80%;
   text-align: center;
 }
 
@@ -31,8 +31,12 @@ a:visited {
 }
 
 .gallery-image {
-  width: 80%;
-  border-radius: 2px;
+  border-radius: 10px;
+  width: 100%;
+  height: 70vh;
+  max-width: 80vw;
+  max-height: 70vh;
+  object-fit: contain;
 }
 
 .image-description {
@@ -96,14 +100,22 @@ a:visited {
 }
 
 @media screen and (min-width: 0px) and (max-width: 767px) {
+  .modal {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+  }
+
   .modal-content {
-    margin: 50% auto;
+    height: unset;
     width: 80%;
     padding: 10px;
+    margin: auto;
   }
   .gallery-image {
     width: 100%;
-    border-radius: 2px;
+    height: auto;
   }
   .image-description {
     font-size: 14px;
