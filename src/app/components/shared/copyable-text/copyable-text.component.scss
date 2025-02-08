@@ -1,0 +1,13 @@
+.copyable-text {
+  padding: 4px;
+  border-radius: 5px;
+  text-align: center;
+  cursor: pointer;
+}
+.copyable-text:hover {
+  background-color: #acacac;
+}
+.copyable-text:active {
+  background-color: #000000;
+  color: #ffffff;
+}

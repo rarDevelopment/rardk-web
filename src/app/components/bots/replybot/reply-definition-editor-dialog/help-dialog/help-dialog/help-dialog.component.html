@@ -78,19 +78,17 @@
   </div>
   <div class="keywords help-section">
     <h2 class="help-section-title">Keywords you can use in Reply Text</h2>
+    <p>You can click on a keyword to copy it to your clipboard.</p>
     <div class="keyword-options">
       @for (keyword of keywords; track keyword) {
-        <div class="keyword-option">
-          <div class="keyword-name">
+      <div class="keyword-option">
+        <div class="keyword-name">
+          <app-copyable-text [textToCopy]="keyword.keyword">
             {{ keyword.keyword }}
-            <button
-              class="copy-button action-button secondary action button"
-              [cdkCopyToClipboard]="keyword.keyword">
-              <i class="fa-regular fa-copy"></i>
-            </button>
-          </div>
-          <span class="keyword-description">{{ keyword.description }}</span>
+          </app-copyable-text>
         </div>
+        <span class="keyword-description">{{ keyword.description }}</span>
+      </div>
       }
     </div>
   </div>
