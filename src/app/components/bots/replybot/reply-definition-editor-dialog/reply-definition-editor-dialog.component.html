@@ -5,7 +5,7 @@
       class="icon action button"
       tooltip="Click here for a detailed outline of this editor"
       (click)="openHelpDialog()">
-      <i class="fa-solid fa-circle-question"></i>
+      <i class="fa-solid fa-circle-question"></i> Help
     </button>
   </h1>
 
@@ -20,24 +20,24 @@
   <div class="input-section">
     <h2>Triggers</h2>
     @for (trigger of triggers; track trackByFn(i, trigger); let i = $index) {
-      <div>
-        @if (hasForbiddenTerm(triggers[i])) {
-          <span class="form-error">
-            {{ forbiddenTermErrorMessage }}
-          </span>
-        }
-        <mat-form-field class="input-full-width">
-          <mat-label>Trigger Text</mat-label>
-          <input matInput placeholder="Trigger Text" [(ngModel)]="triggers[i]" />
-          <button
-            class="icon red action button no-shadow"
-            matSuffix
-            tooltip="Remove this trigger"
-            (click)="removeTrigger(i)">
-            <i class="fa-solid fa-xmark"></i>
-          </button>
-        </mat-form-field>
-      </div>
+    <div>
+      @if (hasForbiddenTerm(triggers[i])) {
+      <span class="form-error">
+        {{ forbiddenTermErrorMessage }}
+      </span>
+      }
+      <mat-form-field class="input-full-width">
+        <mat-label>Trigger Text</mat-label>
+        <input matInput placeholder="Trigger Text" [(ngModel)]="triggers[i]" />
+        <button
+          class="icon red action button no-shadow"
+          matSuffix
+          tooltip="Remove this trigger"
+          (click)="removeTrigger(i)">
+          <i class="fa-solid fa-xmark"></i>
+        </button>
+      </mat-form-field>
+    </div>
     }
     <div class="action-buttons">
       <button class="action-button secondary action button" (click)="addTrigger()">
@@ -54,31 +54,31 @@
   <div class="input-section">
     <h2>
       Specific Channels
-      <button
-        class="icon action button"
+      <span
+        class="icon"
         tooltip="The IDs of the only channels in your server where you want this trigger to apply. If none
     are specified, this will trigger server-wide.">
         <i class="fa-solid fa-circle-info"></i>
-      </button>
+      </span>
     </h2>
     <div class="channel-ids-description"></div>
     @for (channelId of channelIds; track trackByFn(i, channelId); let i = $index) {
-      <div>
-        @if (!isValidId(channelIds[i])) {
-          <span class="form-error">{{ invalidIdErrorMessage }}</span>
-        }
-        <mat-form-field class="input-full-width">
-          <mat-label>Channel ID</mat-label>
-          <input matInput placeholder="Channel ID" [(ngModel)]="channelIds[i]" />
-          <button
-            class="icon red action button"
-            matSuffix
-            tooltip="Remove this Channel ID"
-            (click)="removeChannelId(i)">
-            <i class="fa-solid fa-xmark"></i>
-          </button>
-        </mat-form-field>
-      </div>
+    <div>
+      @if (!isValidId(channelIds[i])) {
+      <span class="form-error">{{ invalidIdErrorMessage }}</span>
+      }
+      <mat-form-field class="input-full-width">
+        <mat-label>Channel ID</mat-label>
+        <input matInput placeholder="Channel ID" [(ngModel)]="channelIds[i]" />
+        <button
+          class="icon red action button"
+          matSuffix
+          tooltip="Remove this Channel ID"
+          (click)="removeChannelId(i)">
+          <i class="fa-solid fa-xmark"></i>
+        </button>
+      </mat-form-field>
+    </div>
     }
     <div class="action-buttons">
       <button class="action-button secondary action button" (click)="addChannelId()">
@@ -91,30 +91,30 @@
   <div class="input-section">
     <h2>
       Specific Users
-      <button
-        class="icon action button"
+      <span
+        class="icon"
         tooltip="The IDs of the only users to whom you want this trigger to apply. If none
   are specified, this will trigger for everyone.">
         <i class="fa-solid fa-circle-info"></i>
-      </button>
+      </span>
     </h2>
     @for (userId of userIds; track trackByFn(i, userId); let i = $index) {
-      <div>
-        @if (!isValidId(userIds[i])) {
-          <span class="form-error">{{ invalidIdErrorMessage }}</span>
-        }
-        <mat-form-field class="input-full-width">
-          <mat-label>User ID</mat-label>
-          <input matInput placeholder="User ID" [(ngModel)]="userIds[i]" />
-          <button
-            class="icon red action button"
-            matSuffix
-            tooltip="Remove this User ID"
-            (click)="removeUserId(i)">
-            <i class="fa-solid fa-xmark"></i>
-          </button>
-        </mat-form-field>
-      </div>
+    <div>
+      @if (!isValidId(userIds[i])) {
+      <span class="form-error">{{ invalidIdErrorMessage }}</span>
+      }
+      <mat-form-field class="input-full-width">
+        <mat-label>User ID</mat-label>
+        <input matInput placeholder="User ID" [(ngModel)]="userIds[i]" />
+        <button
+          class="icon red action button"
+          matSuffix
+          tooltip="Remove this User ID"
+          (click)="removeUserId(i)">
+          <i class="fa-solid fa-xmark"></i>
+        </button>
+      </mat-form-field>
+    </div>
     }
     <div class="action-buttons">
       <button class="action-button secondary action button" (click)="addUserId()">
@@ -127,24 +127,24 @@
     <h2>Replies</h2>
 
     @for (reply of replies; track trackByFn(i, reply); let i = $index) {
-      <div>
-        @if (hasForbiddenTerm(replies[i])) {
-          <span class="form-error">
-            {{ forbiddenTermErrorMessage }}
-          </span>
-        }
-        <mat-form-field class="input-full-width">
-          <mat-label>Reply Text</mat-label>
-          <textarea
-            matInput
-            placeholder="Reply Text"
-            [(ngModel)]="replies[i]"
+    <div>
+      @if (hasForbiddenTerm(replies[i])) {
+      <span class="form-error">
+        {{ forbiddenTermErrorMessage }}
+      </span>
+      }
+      <mat-form-field class="input-full-width">
+        <mat-label>Reply Text</mat-label>
+        <textarea
+          matInput
+          placeholder="Reply Text"
+          [(ngModel)]="replies[i]"
           [maxlength]="maxReplyLength"></textarea>
-          <button class="icon red action button" matSuffix (click)="removeReply(i)">
-            <i class="fa-solid fa-xmark"></i>
-          </button>
-        </mat-form-field>
-      </div>
+        <button class="icon red action button" matSuffix (click)="removeReply(i)">
+          <i class="fa-solid fa-xmark"></i>
+        </button>
+      </mat-form-field>
+    </div>
     }
     <div class="action-buttons">
       <button class="action-button secondary action button" (click)="addReply()">
@@ -160,24 +160,24 @@
   <div class="input-section">
     <h2>Reactions</h2>
     @for (reaction of reactions; track trackByFn(i, reaction); let i = $index) {
-      <div>
-        @if (!isValidSingleEmoji(reactions[i])) {
-          <span class="form-error">
-            {{ invalidEmojiErrorMessage }}
-          </span>
-        }
-        <mat-form-field class="input-full-width">
-          <mat-label>Reaction Emoji</mat-label>
-          <input matInput placeholder="Reaction Emoji" [(ngModel)]="reactions[i]" />
-          <button
-            class="icon red action button"
-            matSuffix
-            tooltip="Remove this Reaction"
-            (click)="removeReaction(i)">
-            <i class="fa-solid fa-xmark"></i>
-          </button>
-        </mat-form-field>
-      </div>
+    <div>
+      @if (!isValidSingleEmoji(reactions[i])) {
+      <span class="form-error">
+        {{ invalidEmojiErrorMessage }}
+      </span>
+      }
+      <mat-form-field class="input-full-width">
+        <mat-label>Reaction Emoji</mat-label>
+        <input matInput placeholder="Reaction Emoji" [(ngModel)]="reactions[i]" />
+        <button
+          class="icon red action button"
+          matSuffix
+          tooltip="Remove this Reaction"
+          (click)="removeReaction(i)">
+          <i class="fa-solid fa-xmark"></i>
+        </button>
+      </mat-form-field>
+    </div>
     }
     <div class="action-buttons">
       <button class="action-button secondary action button" (click)="addReaction()">
