@@ -66,6 +66,9 @@ export class TooltipDirective implements OnDestroy {
   }
 
   setPosition() {
+    if (!this.tooltip) {
+      return;
+    }
     const elemRect = this.el.nativeElement.getBoundingClientRect();
     const tooltipRect = this.tooltip?.getBoundingClientRect()!;
 
