@@ -159,16 +159,15 @@ export class ReplyDefinitionEditorDialogComponent extends BotPageComponent imple
   }
 
   addFromCopy(replyDefinition: ReplyDefinition) {
-    console.log('copying', replyDefinition);
     this.editorData = {
       guildId: replyDefinition.guildId,
       mentionAuthor: replyDefinition.mentionAuthor,
-      reactions: replyDefinition.reactions,
-      replies: replyDefinition.replies,
+      reactions: replyDefinition.reactions ?? [],
+      replies: replyDefinition.replies ?? [],
       requiresBotName: replyDefinition.requiresBotName,
-      triggers: replyDefinition.triggers,
-      channelIds: replyDefinition.channelIds,
-      userIds: replyDefinition.userIds,
+      triggers: replyDefinition.triggers ?? [],
+      channelIds: replyDefinition.channelIds ?? [],
+      userIds: replyDefinition.userIds ?? [],
       isActive: replyDefinition.isActive,
     } as ReplyDefinitionEditorData;
   }
@@ -178,12 +177,12 @@ export class ReplyDefinitionEditorDialogComponent extends BotPageComponent imple
       id: replyDefinition.id,
       guildId: replyDefinition.guildId,
       mentionAuthor: replyDefinition.mentionAuthor,
-      reactions: replyDefinition.reactions,
-      replies: replyDefinition.replies,
+      reactions: replyDefinition.reactions ?? [],
+      replies: replyDefinition.replies ?? [],
       requiresBotName: replyDefinition.requiresBotName,
-      triggers: replyDefinition.triggers,
-      channelIds: replyDefinition.channelIds,
-      userIds: replyDefinition.userIds,
+      triggers: replyDefinition.triggers ?? [],
+      channelIds: replyDefinition.channelIds ?? [],
+      userIds: replyDefinition.userIds ?? [],
       isActive: replyDefinition.isActive,
       user: {
         id: discordUser.id,
@@ -289,7 +288,9 @@ export class ReplyDefinitionEditorDialogComponent extends BotPageComponent imple
   }
 
   saveEdit() {
-    const triggersCleaned = this.removeEmptyStringsAndTrim(this.editorData.triggers);
+    const triggersCleaned = this.removeDuplicates(
+      this.removeEmptyStringsAndTrim(this.editorData.triggers)
+    );
     const repliesCleaned = this.removeEmptyStringsAndTrim(this.editorData.replies);
     const channelIdsCleaned = this.removeEmptyStringsAndTrim(this.editorData.channelIds);
     const userIdsCleaned = this.removeEmptyStringsAndTrim(this.editorData.userIds);
@@ -314,6 +315,10 @@ export class ReplyDefinitionEditorDialogComponent extends BotPageComponent imple
 
   removeEmptyStringsAndTrim(replies: string[]): string[] {
     return replies.filter((r) => r.trim() !== '').map((r) => r.trim());
+  }
+
+  removeDuplicates(array: string[]): string[] {
+    return Array.from(new Set(array));
   }
 
   cleanReactions(reactions: string[]) {
