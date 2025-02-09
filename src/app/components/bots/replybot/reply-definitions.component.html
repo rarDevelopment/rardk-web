@@ -1,332 +1,274 @@
 <div class="guild-reply-definitions-list-container">
   <app-loading-indicator [isLoading]="isLoading"></app-loading-indicator>
   @if (!isLoading && isAuthorizedToAdministrate) {
-    <div class="guild-reply-definitions-container">
-      <app-page-title>Custom Reply Definitions for {{ guildName }}</app-page-title>
-      <div class="navigation-button-section">
-        <a [routerLink]="['/bots/replybot']">
-          <div class="back-button secondary action button">
-            <i class="fa-solid fa-arrow-left"></i>
-            Back to Server List
-          </div>
-        </a>
+  <div class="guild-reply-definitions-container">
+    <app-page-title>Custom Reply Definitions for {{ guildName }}</app-page-title>
+    <div class="navigation-button-section">
+      <a [routerLink]="['/bots/replybot']">
+        <div class="back-button secondary action button">
+          <i class="fa-solid fa-arrow-left"></i>
+          Back to Server List
+        </div>
+      </a>
+    </div>
+    @if (replyDefinitions.length > 0) {
+    <div class="guild-reply-definition-add-action-section">
+      <button
+        class="add-guild-reply-definition-button primary action button"
+        (click)="addNewReplyDefinition()">
+        Create New Reply Definition
+      </button>
+    </div>
+    } @if (replyDefinitions && replyDefinitions.length > 0) {
+    <div class="filter-options-container">
+      <div>
+        <div class="filter-description">Filter By:</div>
+        <mat-button-toggle-group
+          class="filter-options-toggle-group"
+          name="filterOptions"
+          aria-label="filter options"
+          [(ngModel)]="filterOptions"
+          multiple>
+          @for (filterType of getFilters(); track filterType) {
+          <mat-button-toggle (click)="applyFilters()" [value]="filterType" [disableRipple]="true">
+            {{ filterType.displayName }}
+          </mat-button-toggle>
+          }
+        </mat-button-toggle-group>
       </div>
-      @if (replyDefinitions.length > 0) {
-        <div class="guild-reply-definition-add-action-section">
-          <button
-            class="add-guild-reply-definition-button primary action button"
-            (click)="addNewReplyDefinition()">
-            Create New Reply Definition
-          </button>
-        </div>
+      @if (hasFilters()) {
+      <div class="active-filter-display-text">
+        <span>Showing only: {{ getActiveFilterDisplayNames().join(" & ") }}</span>
+        <button class="clear-filters-button tertiary action button" (click)="clearFilters()">
+          Clear Filters
+        </button>
+      </div>
       }
-      @if (replyDefinitions.length > 0) {
-        <div class="guild-reply-definition-paste-action-section">
-          <button
-            class="add-guild-reply-definition-button secondary action button"
-            (click)="addFromClipboard()">
-            Create From Clipboard
-            <i class="fa-solid fa-paste"></i>
-          </button>
-        </div>
+    </div>
+    } @if (filteredReplyDefinitions.length === 0) {
+    <div>
+      @if (!hasFilters()) {
+      <span>No reply definitions are set up for this server yet.</span>
+      } @if (hasFilters()) {
+      <span>No reply definitions match the selected filter criteria.</span>
       }
-      @if (replyDefinitions && replyDefinitions.length > 0) {
-        <div class="filter-options-container">
-          <div>
-            <div class="filter-description">Filter By:</div>
-            <mat-button-toggle-group
-              class="filter-options-toggle-group"
-              name="filterOptions"
-              aria-label="filter options"
-              [(ngModel)]="filterOptions"
-              multiple>
-              @for (filterType of getFilters(); track filterType) {
-                <mat-button-toggle
-                  (click)="applyFilters()"
-                  [value]="filterType"
-                  [disableRipple]="true">
-                  {{ filterType.displayName }}
-                </mat-button-toggle>
-              }
-            </mat-button-toggle-group>
-          </div>
-          @if (hasFilters()) {
-            <div class="active-filter-display-text">
-              <span>Showing only: {{ getActiveFilterDisplayNames().join(" & ") }}</span>
-              <button class="clear-filters-button tertiary action button" (click)="clearFilters()">
-                Clear Filters
-              </button>
-            </div>
-          }
-        </div>
-      }
-      @if (filteredReplyDefinitions.length === 0) {
-        <div>
-          @if (!hasFilters()) {
-            <span>No reply definitions are set up for this server yet.</span>
-          }
-          @if (hasFilters()) {
-            <span>No reply definitions match the selected filter criteria.</span>
-          }
-        </div>
-      }
-      @for (replyDefinition of filteredReplyDefinitions; track replyDefinition; let indexOfReplies = $index) {
-        <div
-          class="guild-reply-definition-card-container"
-          >
-          <mat-expansion-panel
-            class="guild-reply-definition-card"
+    </div>
+    } @for (replyDefinition of filteredReplyDefinitions; track replyDefinition; let indexOfReplies =
+    $index) {
+    <div class="guild-reply-definition-card-container">
+      <mat-expansion-panel
+        class="guild-reply-definition-card"
         [ngClass]="{
           'guild-reply-definition-card': true,
           'inactive-reply-defintion': !replyDefinition.isActive
         }"
-            (opened)="setOpen(indexOfReplies, true)"
-            (closed)="setOpen(indexOfReplies, false)">
-            <mat-expansion-panel-header>
-              @if (!getOpen(indexOfReplies)) {
-                <mat-panel-title>
-                  {{ replyDefinition.triggers.slice(0, 3).join(", ") }}
-                  @if (replyDefinition.triggers.length > 3) {
-                    (...)
-                  }
-                </mat-panel-title>
-              }
-              @if (!getOpen(indexOfReplies)) {
-                <mat-panel-description>
-                  @for (filterType of getAttributes(); track filterType) {
-                    <div
-                      class="filter-chip"
-                      [ngClass]="{ disabled: !filterType.filter(replyDefinition) }"
-                      [tooltip]="filterType.valueDisplayText(replyDefinition)">
-                      {{ filterType.displayName }}
-                    </div>
-                  }
-                </mat-panel-description>
-              }
-            </mat-expansion-panel-header>
-            @if (!hasFilters()) {
-              <div class="priority-buttons">
-                <button
-                  class="priority-button primary action button"
-                  tooltip="Move up in priority"
-                  color="primary"
-                  [disabled]="indexOfReplies == 0"
-                  (click)="movePriority('up', replyDefinition)">
-                  <i class="fa-solid fa-arrow-up"></i>
-                </button>
-                <button
-                  class="priority-button primary action button"
-                  tooltip="Move down in priority"
-                  color="primary"
-                  [disabled]="indexOfReplies == filteredReplyDefinitions.length - 1"
-                  (click)="movePriority('down', replyDefinition)">
-                  <i class="fa-solid fa-arrow-down"></i>
-                </button>
-              </div>
-            }
-            <div class="meta-details-section">
-              <div class="status-section">
-                Status:
-                <span class="status-text">{{ replyDefinition.isActive ? "ON" : "OFF" }}</span>
-              </div>
+        (opened)="setOpen(indexOfReplies, true)"
+        (closed)="setOpen(indexOfReplies, false)">
+        <mat-expansion-panel-header>
+          @if (!getOpen(indexOfReplies)) {
+          <mat-panel-title>
+            {{ replyDefinition.triggers.slice(0, 3).join(", ") }}
+            @if (replyDefinition.triggers.length > 3) { (...) }
+          </mat-panel-title>
+          } @if (!getOpen(indexOfReplies)) {
+          <mat-panel-description>
+            @for (filterType of getAttributes(); track filterType) {
+            <div
+              class="filter-chip"
+              [ngClass]="{ disabled: !filterType.filter(replyDefinition) }"
+              [tooltip]="filterType.valueDisplayText(replyDefinition)">
+              {{ filterType.displayName }}
             </div>
-            <div class="triggers">
-              <h2 class="triggers-title">Triggers</h2>
-              <div class="trigger">
-                <ul>
-                  @for (trigger of replyDefinition.triggers; track trigger) {
-                    <li>
-                      {{ trigger }}
-                    </li>
-                  }
-                </ul>
-              </div>
-              <div class="requires-bot-name">
-                <span class="requires-bot-name-title">Trigger Requires Bot Name</span>
-                <app-check-or-x [isCheck]="replyDefinition.requiresBotName"></app-check-or-x>
-              </div>
-            </div>
-            @if (replyDefinition.channelIds && replyDefinition.channelIds.length > 0) {
-              <div
-                class="channel-ids"
-                >
-                <h2 class="channel-ids-title">Specific Channels</h2>
-                <div class="channel-id">
-                  <ul>
-                    @for (channelId of replyDefinition.channelIds; track channelId) {
-                      <li>
-                        {{ channelId }}
-                      </li>
-                    }
-                  </ul>
-                </div>
-              </div>
             }
-            @if (replyDefinition.userIds && replyDefinition.userIds.length > 0) {
-              <div class="user-ids">
-                <h2 class="user-ids-title">Specific Users</h2>
-                <div class="user-id">
-                  <ul>
-                    @for (userId of replyDefinition.userIds; track userId) {
-                      <li>
-                        {{ userId }}
-                      </li>
-                    }
-                  </ul>
-                </div>
-              </div>
-            }
-            @if (replyDefinition.replies && replyDefinition.replies.length > 0) {
-              <div class="replies">
-                <h2 class="replies-title">Replies</h2>
-                <div class="response">
-                  <ul>
-                    @for (reply of replyDefinition.replies; track reply) {
-                      <li>
-                        {{ reply }}
-                      </li>
-                    }
-                  </ul>
-                </div>
-                <div class="mention-author">
-                  <span class="mention-author-title">Mention Author When Replying</span>
-                  <app-check-or-x [isCheck]="replyDefinition.mentionAuthor"></app-check-or-x>
-                </div>
-              </div>
-            }
-            @if (replyDefinition.reactions && replyDefinition.reactions.length > 0) {
-              <div
-                class="reactions"
-                >
-                <h2 class="reactions-title">Reactions</h2>
-                <div class="reaction">
-                  <ul>
-                    @for (reaction of replyDefinition.reactions; track reaction) {
-                      <li>
-                        {{ reaction }}
-                      </li>
-                    }
-                  </ul>
-                </div>
-              </div>
-            }
-            <hr />
-            <div class="dates-section">
-              <div class="created-info">
-                Created On
-                @if (replyDefinition.createdDate) {
-                  <span
-                    class="edit-date"
-                    [tooltip]="replyDefinition.createdDate">
-                    {{ replyDefinition.createdDate | date }}
-                  </span>
-                }
-                @if (!replyDefinition.createdDate) {
-                  <span class="edit-date">Unknown Date</span>
-                }
-                by
-                @if (replyDefinition.createdById) {
-                  <span
-                    class="edit-user"
-                    [tooltip]="replyDefinition.createdById">
-                    {{ replyDefinition.createdByUsername }}
-                  </span>
-                }
-                @if (!replyDefinition.createdById) {
-                  <span class="edit-user">Unknown User</span>
-                }
-              </div>
-              <div class="updated-info">
-                Last Updated On
-                @if (replyDefinition.updatedDate) {
-                  <span
-                    class="edit-date"
-                    [tooltip]="replyDefinition.updatedDate">
-                    {{ replyDefinition.updatedDate | date }}
-                  </span>
-                }
-                @if (!replyDefinition.updatedDate) {
-                  <span class="edit-date">Unknown Date</span>
-                }
-                by
-                @if (replyDefinition.updatedById) {
-                  <span
-                    class="edit-user"
-                    [tooltip]="replyDefinition.updatedById">
-                    {{ replyDefinition.updatedByUsername }}
-                  </span>
-                }
-                @if (!replyDefinition.updatedById) {
-                  <span class="edit-user">Unknown</span>
-                }
-              </div>
-            </div>
-            <div class="guild-reply-definition-action-section">
-              @if (replyDefinitionToDelete?.id === replyDefinition.id) {
-                <div class="delete-warning">Are you sure you want to delete? You cannot undo this!</div>
-                <div class="delete-warning-actions">
-                  <button class="delete-warning-button danger action button" (click)="doDelete()">
-                    Delete Forever!
-                  </button>
-                  <button
-                    class="delete-warning-button secondary action button"
-                    (click)="cancelDelete()">
-                    No! Cancel!
-                  </button>
-                </div>
-              }
-              @if (replyDefinitionToDelete?.id !== replyDefinition.id) {
-                <div class="guild-reply-definition-actions">
-                  <button
-                    class="guild-reply-definition-action-button secondary action button"
-                    (click)="addFromCopy(replyDefinition)">
-                    Create Duplicate
-                  </button>
-                  <button
-                    class="guild-reply-definition-action-button secondary action button"
-                    (click)="copyJsonToClipboard(replyDefinition)">
-                    Copy to Clipboard
-                    <i class="fa-regular fa-copy"></i>
-                  </button>
-                </div>
-                <div class="guild-reply-definition-actions">
-                  <button
-                    class="guild-reply-definition-action-button tertiary action button"
-                    (click)="startEdit(replyDefinition)">
-                    Edit
-                  </button>
-                  <button
-                    class="guild-reply-definition-action-button danger action button"
-                    (click)="showDeleteConfirm(replyDefinition)">
-                    Delete
-                  </button>
-                </div>
-              }
-            </div>
-          </mat-expansion-panel>
+          </mat-panel-description>
+          }
+        </mat-expansion-panel-header>
+        @if (!hasFilters()) {
+        <div class="priority-buttons">
+          <button
+            class="priority-button primary action button"
+            tooltip="Move up in priority"
+            color="primary"
+            [disabled]="indexOfReplies == 0"
+            (click)="movePriority('up', replyDefinition)">
+            <i class="fa-solid fa-arrow-up"></i>
+          </button>
+          <button
+            class="priority-button primary action button"
+            tooltip="Move down in priority"
+            color="primary"
+            [disabled]="indexOfReplies == filteredReplyDefinitions.length - 1"
+            (click)="movePriority('down', replyDefinition)">
+            <i class="fa-solid fa-arrow-down"></i>
+          </button>
         </div>
-      }
-      <div class="guild-reply-definition-add-action-section">
-        <button
-          class="add-guild-reply-definition-button primary action button"
-          color="primary"
-          (click)="addNewReplyDefinition()">
-          Create New Reply Definition
-        </button>
-      </div>
-      <div class="guild-reply-definition-paste-action-section">
-        <button
-          class="add-guild-reply-definition-button secondary action button"
-          (click)="addFromClipboard()">
-          Create From Clipboard
-          <i class="fa-solid fa-paste"></i>
-        </button>
-      </div>
+        }
+        <div class="meta-details-section">
+          <div class="status-section">
+            Status:
+            <span class="status-text">{{ replyDefinition.isActive ? "ON" : "OFF" }}</span>
+          </div>
+        </div>
+        <div class="triggers">
+          <h2 class="triggers-title">Triggers</h2>
+          <div class="trigger">
+            <ul>
+              @for (trigger of replyDefinition.triggers; track trigger) {
+              <li>
+                {{ trigger }}
+              </li>
+              }
+            </ul>
+          </div>
+          <div class="requires-bot-name">
+            <span class="requires-bot-name-title">Trigger Requires Bot Name</span>
+            <app-check-or-x [isCheck]="replyDefinition.requiresBotName"></app-check-or-x>
+          </div>
+        </div>
+        @if (replyDefinition.channelIds && replyDefinition.channelIds.length > 0) {
+        <div class="channel-ids">
+          <h2 class="channel-ids-title">Specific Channels</h2>
+          <div class="channel-id">
+            <ul>
+              @for (channelId of replyDefinition.channelIds; track channelId) {
+              <li>
+                {{ channelId }}
+              </li>
+              }
+            </ul>
+          </div>
+        </div>
+        } @if (replyDefinition.userIds && replyDefinition.userIds.length > 0) {
+        <div class="user-ids">
+          <h2 class="user-ids-title">Specific Users</h2>
+          <div class="user-id">
+            <ul>
+              @for (userId of replyDefinition.userIds; track userId) {
+              <li>
+                {{ userId }}
+              </li>
+              }
+            </ul>
+          </div>
+        </div>
+        } @if (replyDefinition.replies && replyDefinition.replies.length > 0) {
+        <div class="replies">
+          <h2 class="replies-title">Replies</h2>
+          <div class="response">
+            <ul>
+              @for (reply of replyDefinition.replies; track reply) {
+              <li>
+                {{ reply }}
+              </li>
+              }
+            </ul>
+          </div>
+          <div class="mention-author">
+            <span class="mention-author-title">Mention Author When Replying</span>
+            <app-check-or-x [isCheck]="replyDefinition.mentionAuthor"></app-check-or-x>
+          </div>
+        </div>
+        } @if (replyDefinition.reactions && replyDefinition.reactions.length > 0) {
+        <div class="reactions">
+          <h2 class="reactions-title">Reactions</h2>
+          <div class="reaction">
+            <ul>
+              @for (reaction of replyDefinition.reactions; track reaction) {
+              <li>
+                {{ reaction }}
+              </li>
+              }
+            </ul>
+          </div>
+        </div>
+        }
+        <hr />
+        <div class="dates-section">
+          <div class="created-info">
+            Created On @if (replyDefinition.createdDate) {
+            <span class="edit-date" [tooltip]="replyDefinition.createdDate">
+              {{ replyDefinition.createdDate | date }}
+            </span>
+            } @if (!replyDefinition.createdDate) {
+            <span class="edit-date">Unknown Date</span>
+            } by @if (replyDefinition.createdById) {
+            <span class="edit-user" [tooltip]="replyDefinition.createdById">
+              {{ replyDefinition.createdByUsername }}
+            </span>
+            } @if (!replyDefinition.createdById) {
+            <span class="edit-user">Unknown User</span>
+            }
+          </div>
+          <div class="updated-info">
+            Last Updated On @if (replyDefinition.updatedDate) {
+            <span class="edit-date" [tooltip]="replyDefinition.updatedDate">
+              {{ replyDefinition.updatedDate | date }}
+            </span>
+            } @if (!replyDefinition.updatedDate) {
+            <span class="edit-date">Unknown Date</span>
+            } by @if (replyDefinition.updatedById) {
+            <span class="edit-user" [tooltip]="replyDefinition.updatedById">
+              {{ replyDefinition.updatedByUsername }}
+            </span>
+            } @if (!replyDefinition.updatedById) {
+            <span class="edit-user">Unknown</span>
+            }
+          </div>
+        </div>
+        <div class="guild-reply-definition-action-section">
+          @if (replyDefinitionToDelete?.id === replyDefinition.id) {
+          <div class="delete-warning">Are you sure you want to delete? You cannot undo this!</div>
+          <div class="delete-warning-actions">
+            <button class="delete-warning-button danger action button" (click)="doDelete()">
+              Delete Forever!
+            </button>
+            <button class="delete-warning-button secondary action button" (click)="cancelDelete()">
+              No! Cancel!
+            </button>
+          </div>
+          } @if (replyDefinitionToDelete?.id !== replyDefinition.id) {
+          <div class="guild-reply-definition-actions">
+            <button
+              class="guild-reply-definition-action-button secondary action button"
+              (click)="addFromCopy(replyDefinition)">
+              Create Duplicate
+            </button>
+            <button
+              class="guild-reply-definition-action-button secondary action button"
+              (click)="copyJsonToClipboard(replyDefinition)">
+              Copy to Clipboard
+              <i class="fa-regular fa-copy"></i>
+            </button>
+          </div>
+          <div class="guild-reply-definition-actions">
+            <button
+              class="guild-reply-definition-action-button tertiary action button"
+              (click)="startEdit(replyDefinition)">
+              Edit
+            </button>
+            <button
+              class="guild-reply-definition-action-button danger action button"
+              (click)="showDeleteConfirm(replyDefinition)">
+              Delete
+            </button>
+          </div>
+          }
+        </div>
+      </mat-expansion-panel>
     </div>
-  }
-  @if (!isLoading && !isAuthorizedToAdministrate) {
-    <div class="guild-reply-definitions-container">
-      You do not have permission to administrate the bot in this server.
+    }
+    <div class="guild-reply-definition-add-action-section">
+      <button
+        class="add-guild-reply-definition-button primary action button"
+        color="primary"
+        (click)="addNewReplyDefinition()">
+        Create New Reply Definition
+      </button>
     </div>
+  </div>
+  } @if (!isLoading && !isAuthorizedToAdministrate) {
+  <div class="guild-reply-definitions-container">
+    You do not have permission to administrate the bot in this server.
+  </div>
   }
 </div>
