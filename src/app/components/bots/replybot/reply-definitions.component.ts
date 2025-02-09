@@ -3,8 +3,7 @@ import { BotPageComponent } from '../bot-page/bot-page.component';
 import { ReplyDefinition } from 'src/app/components/bots/models/replybot/reply-definition';
 import { take, forkJoin, timeout, throwError } from 'rxjs';
 import { map, switchMap } from 'rxjs/operators';
-import { ReplyDefinitionEditorDialogComponent } from './reply-definition-editor-dialog/reply-definition-editor-dialog.component';
-import { ReplyDefinitionEditorDialogData } from 'src/app/components/bots/models/replybot/reply-definition-editor-dialog-data';
+import { ReplyDefinitionEditorEditorData } from 'src/app/components/bots/models/replybot/reply-definition-editor-dialog-data';
 import { DiscordGuild } from 'src/app/components/bots/models/discord-guild';
 import { GuildConfiguration } from 'src/app/components/bots/models/replybot/guild-configuration';
 import { ReplyDefinitionAttributeType } from 'src/app/components/bots/models/replybot/reply-definition-filter-type';
@@ -16,28 +15,28 @@ import { FormsModule } from '@angular/forms';
 import { MatButtonToggleModule } from '@angular/material/button-toggle';
 import { PageTitleComponent } from '../../shared/page-title/page-title.component';
 import { CommonModule } from '@angular/common';
-import { RouterLink } from '@angular/router';
+import { ActivatedRoute, Router, RouterLink } from '@angular/router';
 import { CheckOrXComponent } from '../../shared/check-or-x/check-or-x.component';
 import { LoadingIndicatorComponent } from '../../shared/loading-indicator/loading-indicator.component';
 import { TooltipDirective } from 'src/app/directives/tooltip.directive';
 
 @Component({
-    selector: 'app-reply-definitions',
-    templateUrl: './reply-definitions.component.html',
-    styleUrls: ['./reply-definitions.component.scss'],
-    imports: [
-        CommonModule,
-        PageTitleComponent,
-        MatButtonToggleModule,
-        FormsModule,
-        MatExpansionModule,
-        TooltipDirective,
-        MatButtonModule,
-        MatIconModule,
-        CheckOrXComponent,
-        RouterLink,
-        LoadingIndicatorComponent,
-    ]
+  selector: 'app-reply-definitions',
+  templateUrl: './reply-definitions.component.html',
+  styleUrls: ['./reply-definitions.component.scss'],
+  imports: [
+    CommonModule,
+    PageTitleComponent,
+    MatButtonToggleModule,
+    FormsModule,
+    MatExpansionModule,
+    TooltipDirective,
+    MatButtonModule,
+    MatIconModule,
+    CheckOrXComponent,
+    RouterLink,
+    LoadingIndicatorComponent,
+  ],
 })
 export class ReplyDefinitionsComponent extends BotPageComponent implements OnInit {
   isLoading: boolean;
@@ -253,7 +252,10 @@ export class ReplyDefinitionsComponent extends BotPageComponent implements OnIni
     this.openEditDialog({
       guildId: this.guildId,
       isActive: true,
-    } as ReplyDefinitionEditorDialogData);
+    } as ReplyDefinitionEditorEditorData);
+    this.router.navigate(['bots/replybot/reply-definitions/definition/'], {
+      queryParams: { guildId: this.guildId },
+    });
   }
 
   getFilters() {
@@ -276,8 +278,10 @@ export class ReplyDefinitionsComponent extends BotPageComponent implements OnIni
       channelIds: replyDefinition.channelIds,
       userIds: replyDefinition.userIds,
       isActive: replyDefinition.isActive,
-    } as ReplyDefinitionEditorDialogData;
-
+    } as ReplyDefinitionEditorEditorData;
+    this.router.navigate(['bots/replybot/reply-definitions/definition/'], {
+      queryParams: { guildId: this.guildId, replyDefinitionId: replyDefinition.id },
+    });
     this.openEditDialog(dialogData);
   }
 
@@ -292,8 +296,10 @@ export class ReplyDefinitionsComponent extends BotPageComponent implements OnIni
       channelIds: replyDefinition.channelIds,
       userIds: replyDefinition.userIds,
       isActive: replyDefinition.isActive,
-    } as ReplyDefinitionEditorDialogData;
-
+    } as ReplyDefinitionEditorEditorData;
+    this.router.navigate(['bots/replybot/reply-definitions/definition/'], {
+      queryParams: { guildId: this.guildId, copyFromId: replyDefinition.id },
+    });
     this.openEditDialog(dialogData);
   }
 
@@ -318,7 +324,7 @@ export class ReplyDefinitionsComponent extends BotPageComponent implements OnIni
       requiresBotName: replyDefinition.requiresBotName,
       triggers: replyDefinition.triggers,
       isActive: replyDefinition.isActive,
-    } as ReplyDefinitionEditorDialogData;
+    } as ReplyDefinitionEditorEditorData;
 
     if (this.clipboard.copy(JSON.stringify(dialogData))) {
       this.showSnackBar('Copied reply definition to clipboard!', false);
@@ -396,27 +402,27 @@ export class ReplyDefinitionsComponent extends BotPageComponent implements OnIni
     this.applyFilters();
   }
 
-  private openEditDialog(dialogData?: ReplyDefinitionEditorDialogData) {
+  private openEditDialog(dialogData?: ReplyDefinitionEditorEditorData) {
     // add editing user to dialog data
     if (dialogData) {
       dialogData.user = this.discordUser;
     } else {
       dialogData = {
         user: this.discordUser,
-      } as ReplyDefinitionEditorDialogData;
+      } as ReplyDefinitionEditorEditorData;
     }
 
     // open dialog
-    let dialogRef = this.dialog.open(ReplyDefinitionEditorDialogComponent, {
-      height: '800px',
-      width: '700px',
-      data: dialogData,
-    });
-    dialogRef.afterClosed().subscribe((replyDefinitionToSave) => {
-      if (replyDefinitionToSave) {
-        this.saveReplyDefinition(replyDefinitionToSave);
-      }
-    });
+    // let dialogRef = this.dialog.open(ReplyDefinitionEditorDialogComponent, {
+    //   height: '800px',
+    //   width: '700px',
+    //   data: dialogData,
+    // });
+    // dialogRef.afterClosed().subscribe((replyDefinitionToSave) => {
+    //   if (replyDefinitionToSave) {
+    //     this.saveReplyDefinition(replyDefinitionToSave);
+    //   }
+    // });
   }
 
   movePriority(direction: string, replyDefinition: ReplyDefinition) {

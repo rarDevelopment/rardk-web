@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { ApiService } from '../../../services/api.service';
 import { ReplyDefinition } from '../models/replybot/reply-definition';
-import { Observable } from 'rxjs';
+import { Observable, of } from 'rxjs';
 import { GuildConfiguration } from '../models/replybot/guild-configuration';
 
 @Injectable({
@@ -17,6 +17,19 @@ export class ReplybotService extends ApiService {
     );
   }
 
+  public getReplybotReplyDefinition(
+    discordAccessToken: string,
+    guildId: string,
+    replyDefinitionId: string
+  ): Observable<ReplyDefinition | null> {
+    if (!replyDefinitionId) {
+      return of(null);
+    }
+    return this.http.get<ReplyDefinition>(
+      `${this.domainUrl}replybot/reply-definition?accessToken=${discordAccessToken}&guildId=${guildId}&replyDefinitionId=${replyDefinitionId}`
+    );
+  }
+
   public deleteReplyDefinition(
     discordAccessToken: string,
     replyDefinitionId: number
@@ -26,22 +39,12 @@ export class ReplybotService extends ApiService {
     );
   }
 
-  public createReplyDefinition(
-    bodyToUse: any
-  ): Observable<ReplyDefinition> {
-    return this.http.post<ReplyDefinition>(
-      `${this.domainUrl}replybot/reply-definition`,
-      bodyToUse
-    );
+  public createReplyDefinition(bodyToUse: any): Observable<ReplyDefinition> {
+    return this.http.post<ReplyDefinition>(`${this.domainUrl}replybot/reply-definition`, bodyToUse);
   }
 
-  public updateReplyDefinition(
-    bodyToUse: any
-  ): Observable<ReplyDefinition> {
-    return this.http.put<ReplyDefinition>(
-      `${this.domainUrl}replybot/reply-definition`,
-      bodyToUse
-    );
+  public updateReplyDefinition(bodyToUse: any): Observable<ReplyDefinition> {
+    return this.http.put<ReplyDefinition>(`${this.domainUrl}replybot/reply-definition`, bodyToUse);
   }
 
   public movePriority(
@@ -50,9 +53,7 @@ export class ReplybotService extends ApiService {
     direction: string
   ) {
     return this.http.put<ReplyDefinition[]>(
-      `${
-        this.domainUrl
-      }replybot/reply-definition/${direction.toLowerCase()}`,
+      `${this.domainUrl}replybot/reply-definition/${direction.toLowerCase()}`,
       {
         accessToken: discordAccessToken,
         ...replyDefinition,
