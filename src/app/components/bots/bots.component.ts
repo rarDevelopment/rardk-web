@@ -18,7 +18,7 @@ export class BotsComponent extends BotPageComponent implements OnInit {
   public bots: BotDefinition[] = [
     {
       name: 'TimeZoneBot',
-      imageUrl: 'assets/timezonebot.jpg',
+      imageUrl: 'assets/bots/timezonebot.webp',
       inviteLink:
         'https://discord.com/api/oauth2/authorize?client_id=736720417166721105&permissions=414464859200&scope=bot%20applications.commands',
       description:
@@ -29,7 +29,7 @@ export class BotsComponent extends BotPageComponent implements OnInit {
     } as BotDefinition,
     {
       name: 'Toby the ReplyBot',
-      imageUrl: 'assets/replybot.png',
+      imageUrl: 'assets/bots/replybot.webp',
       inviteLink:
         'https://discord.com/api/oauth2/authorize?client_id=737404113624498347&permissions=1757015219633399&scope=bot%20applications.commands',
       description:
@@ -40,7 +40,7 @@ export class BotsComponent extends BotPageComponent implements OnInit {
     } as BotDefinition,
     {
       name: 'RoleBot',
-      imageUrl: 'assets/rolebot.png',
+      imageUrl: 'assets/bots/rolebot.webp',
       inviteLink:
         'https://discord.com/api/oauth2/authorize?client_id=740381594669285466&permissions=139855349840&scope=bot%20applications.commands',
       description: 'A Discord Bot for easily creating roles and letting users manage those roles.',
@@ -49,7 +49,7 @@ export class BotsComponent extends BotPageComponent implements OnInit {
     } as BotDefinition,
     {
       name: 'PinBot',
-      imageUrl: 'assets/pinbot.png',
+      imageUrl: 'assets/bots/pinbot.webp',
       inviteLink:
         'https://discord.com/api/oauth2/authorize?client_id=830875816300380210&permissions=2684873936&scope=bot%20applications.commands',
       description: `A Discord Bot for pinning messages in a dedicated channel instead of Discord's pin list.`,
@@ -58,7 +58,7 @@ export class BotsComponent extends BotPageComponent implements OnInit {
     } as BotDefinition,
     {
       name: 'Fantasy Critic Bot',
-      imageUrl: 'assets/fantasycriticbot.png',
+      imageUrl: 'assets/bots/fantasycriticbot.webp',
       inviteLink: 'https://www.fantasycritic.games/discord-bot',
       description: `A Discord Bot for keeping up with your Fantasy Critic League. Developed in collaboration with Steve Fallon (the creator of Fantasy Critic).`,
       isConfigurable: false,
@@ -66,7 +66,7 @@ export class BotsComponent extends BotPageComponent implements OnInit {
     } as BotDefinition,
     {
       name: 'PokémonBot',
-      imageUrl: 'assets/pokemonbot2.png',
+      imageUrl: 'assets/bots/pokemonbot2.webp',
       inviteLink:
         'https://discord.com/api/oauth2/authorize?client_id=798376639578112001&permissions=515136&scope=bot%20applications.commands',
       description:
@@ -76,7 +76,7 @@ export class BotsComponent extends BotPageComponent implements OnInit {
     } as BotDefinition,
     {
       name: 'ChefBot',
-      imageUrl: 'assets/chefbot.png',
+      imageUrl: 'assets/bots/chefbot.webp',
       inviteLink:
         'https://discord.com/api/oauth2/authorize?client_id=847737219125084180&permissions=414464678976&scope=bot%20applications.commands',
       description:
@@ -86,7 +86,7 @@ export class BotsComponent extends BotPageComponent implements OnInit {
     } as BotDefinition,
     {
       name: 'Theodore (ThreadBot)',
-      imageUrl: 'assets/threadbot.png',
+      imageUrl: 'assets/bots/threadbot.webp',
       inviteLink:
         'https://discord.com/api/oauth2/authorize?client_id=950921256314740766&permissions=534723914832&scope=bot%20applications.commands',
       description:
