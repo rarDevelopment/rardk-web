@@ -1,12 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { ReplyDefinition } from 'src/app/components/bots/models/replybot/reply-definition';
-import { ReplyDefinitionEditorEditorData as ReplyDefinitionEditorEditorData } from 'src/app/components/bots/models/replybot/reply-definition-editor-dialog-data';
+import { ReplyDefinitionEditorData as ReplyDefinitionEditorData } from 'src/app/components/bots/models/replybot/reply-definition-editor-data';
 import { HelpDialogComponent } from './help-dialog/help-dialog/help-dialog.component';
 import emojiRegex from 'emoji-regex';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatInputModule } from '@angular/material/input';
 import { MatFormFieldModule } from '@angular/material/form-field';
-
 import { FormsModule } from '@angular/forms';
 import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 import { MatIconModule } from '@angular/material/icon';
@@ -38,16 +37,7 @@ import { PageTitleComponent } from 'src/app/components/shared/page-title/page-ti
   ],
 })
 export class ReplyDefinitionEditorDialogComponent extends BotPageComponent implements OnInit {
-  public editorData: ReplyDefinitionEditorEditorData;
-
-  public isActive: boolean;
-  public triggers: string[];
-  public replies: string[];
-  public mentionAuthor: boolean;
-  public requiresBotName: boolean;
-  public channelIds: string[];
-  public userIds: string[];
-  public reactions: string[];
+  public editorData: ReplyDefinitionEditorData;
   public maxReplyLength: number = 1800;
   public isLoading: boolean = false;
   public isSaving: boolean = false;
@@ -79,7 +69,7 @@ export class ReplyDefinitionEditorDialogComponent extends BotPageComponent imple
           this.guildId = params['guildId'];
           this.replyDefinitionId = params['replyDefinitionId'];
           this.copyFromId = params['copyFromId'];
-          
+
           const accessToken = this.getLoginToken();
           return forkJoin([
             this.replybotService.getReplybotReplyDefinition(
@@ -153,9 +143,8 @@ export class ReplyDefinitionEditorDialogComponent extends BotPageComponent imple
                   id: result.discordUser.id,
                   username: result.discordUser.username,
                 },
-              } as ReplyDefinitionEditorEditorData;
+              } as ReplyDefinitionEditorData;
             }
-            this.initializeEditor();
           }
         },
         error: (error) => {
@@ -181,8 +170,7 @@ export class ReplyDefinitionEditorDialogComponent extends BotPageComponent imple
       channelIds: replyDefinition.channelIds,
       userIds: replyDefinition.userIds,
       isActive: replyDefinition.isActive,
-    } as ReplyDefinitionEditorEditorData;
-    this.initializeEditor();
+    } as ReplyDefinitionEditorData;
   }
 
   addFromExisting(replyDefinition: ReplyDefinition, discordUser: DiscordUser) {
@@ -201,7 +189,7 @@ export class ReplyDefinitionEditorDialogComponent extends BotPageComponent imple
         id: discordUser.id,
         username: discordUser.username,
       },
-    } as ReplyDefinitionEditorEditorData;
+    } as ReplyDefinitionEditorData;
   }
 
   async addFromClipboard() {
@@ -215,7 +203,6 @@ export class ReplyDefinitionEditorDialogComponent extends BotPageComponent imple
       try {
         this.editorData = JSON.parse(clipboardValue);
         this.editorData.guildId = this.guildId;
-        this.initializeEditor();
       } catch (err) {
         console.error(err);
         this.showSnackBar('Your clipboard data is not a valid reply definition!', true);
@@ -228,43 +215,43 @@ export class ReplyDefinitionEditorDialogComponent extends BotPageComponent imple
   }
 
   addTrigger() {
-    this.triggers.push('');
+    this.editorData.triggers.push('');
   }
 
   removeTrigger(index: number) {
-    this.triggers.splice(index, 1);
+    this.editorData.triggers.splice(index, 1);
   }
 
   addReply() {
-    this.replies.push('');
+    this.editorData.replies.push('');
   }
 
   removeReply(index: number) {
-    this.replies.splice(index, 1);
+    this.editorData.replies.splice(index, 1);
   }
 
   addReaction() {
-    this.reactions.push('');
+    this.editorData.reactions.push('');
   }
 
   removeReaction(index: number) {
-    this.reactions.splice(index, 1);
+    this.editorData.reactions.splice(index, 1);
   }
 
   addChannelId() {
-    this.channelIds.push('');
+    this.editorData.channelIds.push('');
   }
 
   removeChannelId(index: number) {
-    this.channelIds.splice(index, 1);
+    this.editorData.channelIds.splice(index, 1);
   }
 
   addUserId() {
-    this.userIds.push('');
+    this.editorData.userIds.push('');
   }
 
   removeUserId(index: number) {
-    this.userIds.splice(index, 1);
+    this.editorData.userIds.splice(index, 1);
   }
 
   cancelEdit() {
@@ -275,11 +262,11 @@ export class ReplyDefinitionEditorDialogComponent extends BotPageComponent imple
 
   isSaveEnabled(): boolean {
     return (
-      this.triggers.length > 0 &&
-      this.triggers.filter((t) => t.trim() !== '').length > 0 &&
-      !!!this.triggers.find((t) => this.hasForbiddenTerm(t)) &&
-      !!!this.replies.find((t) => this.hasForbiddenTerm(t)) &&
-      !!!this.reactions.find((reaction) => !this.isValidSingleEmoji(reaction)) &&
+      this.editorData.triggers.length > 0 &&
+      this.editorData.triggers.filter((t) => t.trim() !== '').length > 0 &&
+      !!!this.editorData.triggers.find((t) => this.hasForbiddenTerm(t)) &&
+      !!!this.editorData.replies.find((t) => this.hasForbiddenTerm(t)) &&
+      !!!this.editorData.reactions.find((reaction) => !this.isValidSingleEmoji(reaction)) &&
       !this.isSaving
     );
   }
@@ -302,23 +289,23 @@ export class ReplyDefinitionEditorDialogComponent extends BotPageComponent imple
   }
 
   saveEdit() {
-    const triggersCleaned = this.removeEmptyStringsAndTrim(this.triggers);
-    const repliesCleaned = this.removeEmptyStringsAndTrim(this.replies);
-    const channelIdsCleaned = this.removeEmptyStringsAndTrim(this.channelIds);
-    const userIdsCleaned = this.removeEmptyStringsAndTrim(this.userIds);
-    const reactionsCleaned = this.cleanReactions(this.reactions);
+    const triggersCleaned = this.removeEmptyStringsAndTrim(this.editorData.triggers);
+    const repliesCleaned = this.removeEmptyStringsAndTrim(this.editorData.replies);
+    const channelIdsCleaned = this.removeEmptyStringsAndTrim(this.editorData.channelIds);
+    const userIdsCleaned = this.removeEmptyStringsAndTrim(this.editorData.userIds);
+    const reactionsCleaned = this.cleanReactions(this.editorData.reactions);
 
     const savedObject = {
       id: this.editorData?.id,
       guildId: this.editorData?.guildId,
       triggers: triggersCleaned,
       replies: repliesCleaned,
-      mentionAuthor: this.mentionAuthor,
-      requiresBotName: this.requiresBotName,
+      mentionAuthor: this.editorData.mentionAuthor,
+      requiresBotName: this.editorData.requiresBotName,
       channelIds: channelIdsCleaned,
       userIds: userIdsCleaned,
       reactions: reactionsCleaned,
-      isActive: this.isActive,
+      isActive: this.editorData.isActive,
     } as ReplyDefinition;
     if (savedObject) {
       this.saveReplyDefinition(savedObject);
@@ -378,17 +365,6 @@ export class ReplyDefinitionEditorDialogComponent extends BotPageComponent imple
         console.error('error saving', error);
       },
     });
-  }
-
-  private initializeEditor() {
-    this.triggers = this.editorData?.triggers?.map((t) => t) ?? [];
-    this.replies = this.editorData?.replies?.map((r) => r) ?? [];
-    this.mentionAuthor = this.editorData?.mentionAuthor ?? false;
-    this.requiresBotName = this.editorData?.requiresBotName ?? false;
-    this.reactions = this.editorData?.reactions?.map((r) => r) ?? [];
-    this.channelIds = this.editorData?.channelIds?.map((r) => r) ?? [];
-    this.userIds = this.editorData?.userIds?.map((r) => r) ?? [];
-    this.isActive = this.editorData?.isActive ?? false;
   }
 
   openHelpDialog() {

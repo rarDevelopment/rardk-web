@@ -35,24 +35,24 @@
     </div>
     <div class="input-section">
       <h2>Status</h2>
-      <mat-slide-toggle [(ngModel)]="isActive">
-        {{ isActive ? "ENABLED" : "DISABLED" }}
+      <mat-slide-toggle [(ngModel)]="editorData.isActive">
+        {{ editorData.isActive ? "ENABLED" : "DISABLED" }}
       </mat-slide-toggle>
-      (The bot will {{ isActive ? "use" : "ignore" }} this reply definition)
+      (The bot will {{ editorData.isActive ? "use" : "ignore" }} this reply definition)
     </div>
 
     <div class="input-section">
       <h2>Triggers</h2>
-      @for (trigger of triggers; track trackByFn(i, trigger); let i = $index) {
+      @for (trigger of editorData.triggers; track trackByFn(i, trigger); let i = $index) {
       <div>
-        @if (hasForbiddenTerm(triggers[i])) {
+        @if (hasForbiddenTerm(editorData.triggers[i])) {
         <span class="form-error">
           {{ forbiddenTermErrorMessage }}
         </span>
         }
         <mat-form-field class="input-full-width">
           <mat-label>Trigger Text</mat-label>
-          <input matInput placeholder="Trigger Text" [(ngModel)]="triggers[i]" />
+          <input matInput placeholder="Trigger Text" [(ngModel)]="editorData.triggers[i]" />
           <button
             class="icon red action button no-shadow"
             matSuffix
@@ -70,7 +70,10 @@
         </button>
       </div>
       <div class="input-section">
-        <mat-checkbox [(ngModel)]="requiresBotName" labelPosition="before" [disableRipple]="true">
+        <mat-checkbox
+          [(ngModel)]="editorData.requiresBotName"
+          labelPosition="before"
+          [disableRipple]="true">
           Trigger Requires Bot Name in the Message
         </mat-checkbox>
       </div>
@@ -86,14 +89,14 @@
         </span>
       </h2>
       <div class="channel-ids-description"></div>
-      @for (channelId of channelIds; track trackByFn(i, channelId); let i = $index) {
+      @for (channelId of editorData.channelIds; track trackByFn(i, channelId); let i = $index) {
       <div>
-        @if (!isValidId(channelIds[i])) {
+        @if (!isValidId(editorData.channelIds[i])) {
         <span class="form-error">{{ invalidIdErrorMessage }}</span>
         }
         <mat-form-field class="input-full-width">
           <mat-label>Channel ID</mat-label>
-          <input matInput placeholder="Channel ID" [(ngModel)]="channelIds[i]" />
+          <input matInput placeholder="Channel ID" [(ngModel)]="editorData.channelIds[i]" />
           <button
             class="icon red action button"
             matSuffix
@@ -122,14 +125,14 @@
           <i class="fa-solid fa-circle-info"></i>
         </span>
       </h2>
-      @for (userId of userIds; track trackByFn(i, userId); let i = $index) {
+      @for (userId of editorData.userIds; track trackByFn(i, userId); let i = $index) {
       <div>
-        @if (!isValidId(userIds[i])) {
+        @if (!isValidId(editorData.userIds[i])) {
         <span class="form-error">{{ invalidIdErrorMessage }}</span>
         }
         <mat-form-field class="input-full-width">
           <mat-label>User ID</mat-label>
-          <input matInput placeholder="User ID" [(ngModel)]="userIds[i]" />
+          <input matInput placeholder="User ID" [(ngModel)]="editorData.userIds[i]" />
           <button
             class="icon red action button"
             matSuffix
@@ -150,9 +153,9 @@
     <div class="input-section">
       <h2>Replies</h2>
 
-      @for (reply of replies; track trackByFn(i, reply); let i = $index) {
+      @for (reply of editorData.replies; track trackByFn(i, reply); let i = $index) {
       <div>
-        @if (hasForbiddenTerm(replies[i])) {
+        @if (hasForbiddenTerm(editorData.replies[i])) {
         <span class="form-error">
           {{ forbiddenTermErrorMessage }}
         </span>
@@ -162,7 +165,7 @@
           <textarea
             matInput
             placeholder="Reply Text"
-            [(ngModel)]="replies[i]"
+            [(ngModel)]="editorData.replies[i]"
             [maxlength]="maxReplyLength"></textarea>
           <button class="icon red action button" matSuffix (click)="removeReply(i)">
             <i class="fa-solid fa-xmark"></i>
@@ -176,23 +179,26 @@
         </button>
       </div>
       <div class="input-section">
-        <mat-checkbox [(ngModel)]="mentionAuthor" labelPosition="before" [disableRipple]="true">
+        <mat-checkbox
+          [(ngModel)]="editorData.mentionAuthor"
+          labelPosition="before"
+          [disableRipple]="true">
           Mention Message Sender When Replying
         </mat-checkbox>
       </div>
     </div>
     <div class="input-section">
       <h2>Reactions</h2>
-      @for (reaction of reactions; track trackByFn(i, reaction); let i = $index) {
+      @for (reaction of editorData.reactions; track trackByFn(i, reaction); let i = $index) {
       <div>
-        @if (!isValidSingleEmoji(reactions[i])) {
+        @if (!isValidSingleEmoji(editorData.reactions[i])) {
         <span class="form-error">
           {{ invalidEmojiErrorMessage }}
         </span>
         }
         <mat-form-field class="input-full-width">
           <mat-label>Reaction Emoji</mat-label>
-          <input matInput placeholder="Reaction Emoji" [(ngModel)]="reactions[i]" />
+          <input matInput placeholder="Reaction Emoji" [(ngModel)]="editorData.reactions[i]" />
           <button
             class="icon red action button"
             matSuffix

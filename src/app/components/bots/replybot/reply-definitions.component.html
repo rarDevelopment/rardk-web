@@ -19,18 +19,7 @@
         Create New Reply Definition
       </button>
     </div>
-    }
-    <!-- @if (replyDefinitions.length > 0) {
-        <div class="guild-reply-definition-paste-action-section">
-          <button
-            class="add-guild-reply-definition-button secondary action button"
-            (click)="addFromClipboard()">
-            Create From Clipboard
-            <i class="fa-solid fa-paste"></i>
-          </button>
-        </div>
-      } -->
-    @if (replyDefinitions && replyDefinitions.length > 0) {
+    } @if (replyDefinitions && replyDefinitions.length > 0) {
     <div class="filter-options-container">
       <div>
         <div class="filter-description">Filter By:</div>
@@ -276,14 +265,6 @@
         Create New Reply Definition
       </button>
     </div>
-    <!-- <div class="guild-reply-definition-paste-action-section">
-        <button
-          class="add-guild-reply-definition-button secondary action button"
-          (click)="addFromClipboard()">
-          Create From Clipboard
-          <i class="fa-solid fa-paste"></i>
-        </button>
-      </div> -->
   </div>
   } @if (!isLoading && !isAuthorizedToAdministrate) {
   <div class="guild-reply-definitions-container">

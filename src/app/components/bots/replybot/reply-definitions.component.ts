@@ -3,7 +3,7 @@ import { BotPageComponent } from '../bot-page/bot-page.component';
 import { ReplyDefinition } from 'src/app/components/bots/models/replybot/reply-definition';
 import { take, forkJoin, timeout, throwError } from 'rxjs';
 import { map, switchMap } from 'rxjs/operators';
-import { ReplyDefinitionEditorEditorData } from 'src/app/components/bots/models/replybot/reply-definition-editor-dialog-data';
+import { ReplyDefinitionEditorData } from 'src/app/components/bots/models/replybot/reply-definition-editor-data';
 import { DiscordGuild } from 'src/app/components/bots/models/discord-guild';
 import { GuildConfiguration } from 'src/app/components/bots/models/replybot/guild-configuration';
 import { ReplyDefinitionAttributeType } from 'src/app/components/bots/models/replybot/reply-definition-filter-type';
@@ -15,7 +15,7 @@ import { FormsModule } from '@angular/forms';
 import { MatButtonToggleModule } from '@angular/material/button-toggle';
 import { PageTitleComponent } from '../../shared/page-title/page-title.component';
 import { CommonModule } from '@angular/common';
-import { ActivatedRoute, Router, RouterLink } from '@angular/router';
+import { RouterLink } from '@angular/router';
 import { CheckOrXComponent } from '../../shared/check-or-x/check-or-x.component';
 import { LoadingIndicatorComponent } from '../../shared/loading-indicator/loading-indicator.component';
 import { TooltipDirective } from 'src/app/directives/tooltip.directive';
@@ -249,10 +249,6 @@ export class ReplyDefinitionsComponent extends BotPageComponent implements OnIni
   }
 
   addNewReplyDefinition() {
-    this.openEditDialog({
-      guildId: this.guildId,
-      isActive: true,
-    } as ReplyDefinitionEditorEditorData);
     this.router.navigate(['bots/replybot/reply-definitions/definition/'], {
       queryParams: { guildId: this.guildId },
     });
@@ -267,53 +263,15 @@ export class ReplyDefinitionsComponent extends BotPageComponent implements OnIni
   }
 
   startEdit(replyDefinition: ReplyDefinition) {
-    const dialogData = {
-      id: replyDefinition.id,
-      guildId: replyDefinition.guildId,
-      mentionAuthor: replyDefinition.mentionAuthor,
-      reactions: replyDefinition.reactions,
-      replies: replyDefinition.replies,
-      requiresBotName: replyDefinition.requiresBotName,
-      triggers: replyDefinition.triggers,
-      channelIds: replyDefinition.channelIds,
-      userIds: replyDefinition.userIds,
-      isActive: replyDefinition.isActive,
-    } as ReplyDefinitionEditorEditorData;
     this.router.navigate(['bots/replybot/reply-definitions/definition/'], {
       queryParams: { guildId: this.guildId, replyDefinitionId: replyDefinition.id },
     });
-    this.openEditDialog(dialogData);
   }
 
   addFromCopy(replyDefinition: ReplyDefinition) {
-    const dialogData = {
-      guildId: replyDefinition.guildId,
-      mentionAuthor: replyDefinition.mentionAuthor,
-      reactions: replyDefinition.reactions,
-      replies: replyDefinition.replies,
-      requiresBotName: replyDefinition.requiresBotName,
-      triggers: replyDefinition.triggers,
-      channelIds: replyDefinition.channelIds,
-      userIds: replyDefinition.userIds,
-      isActive: replyDefinition.isActive,
-    } as ReplyDefinitionEditorEditorData;
     this.router.navigate(['bots/replybot/reply-definitions/definition/'], {
       queryParams: { guildId: this.guildId, copyFromId: replyDefinition.id },
     });
-    this.openEditDialog(dialogData);
-  }
-
-  async addFromClipboard() {
-    const clipboardValue = await navigator.clipboard.readText();
-
-    try {
-      const dialogData = JSON.parse(clipboardValue);
-      dialogData.guildId = this.guildId;
-      this.openEditDialog(dialogData);
-    } catch (err) {
-      console.error(err);
-      this.showSnackBar('Your clipboard data is not a valid reply definition!', true);
-    }
   }
 
   copyJsonToClipboard(replyDefinition: ReplyDefinition) {
@@ -324,7 +282,7 @@ export class ReplyDefinitionsComponent extends BotPageComponent implements OnIni
       requiresBotName: replyDefinition.requiresBotName,
       triggers: replyDefinition.triggers,
       isActive: replyDefinition.isActive,
-    } as ReplyDefinitionEditorEditorData;
+    } as ReplyDefinitionEditorData;
 
     if (this.clipboard.copy(JSON.stringify(dialogData))) {
       this.showSnackBar('Copied reply definition to clipboard!', false);
@@ -402,29 +360,6 @@ export class ReplyDefinitionsComponent extends BotPageComponent implements OnIni
     this.applyFilters();
   }
 
-  private openEditDialog(dialogData?: ReplyDefinitionEditorEditorData) {
-    // add editing user to dialog data
-    if (dialogData) {
-      dialogData.user = this.discordUser;
-    } else {
-      dialogData = {
-        user: this.discordUser,
-      } as ReplyDefinitionEditorEditorData;
-    }
-
-    // open dialog
-    // let dialogRef = this.dialog.open(ReplyDefinitionEditorDialogComponent, {
-    //   height: '800px',
-    //   width: '700px',
-    //   data: dialogData,
-    // });
-    // dialogRef.afterClosed().subscribe((replyDefinitionToSave) => {
-    //   if (replyDefinitionToSave) {
-    //     this.saveReplyDefinition(replyDefinitionToSave);
-    //   }
-    // });
-  }
-
   movePriority(direction: string, replyDefinition: ReplyDefinition) {
     var accessToken = this.getLoginToken();
     this.replybotService
@@ -433,28 +368,5 @@ export class ReplyDefinitionsComponent extends BotPageComponent implements OnIni
       .subscribe((_) => {
         this.retrieveAndPopulateReplyDefinitions();
       });
-  }
-
-  saveReplyDefinition(replyDefinition: ReplyDefinition) {
-    var accessToken = this.getLoginToken();
-
-    const bodyToUse = {
-      accessToken: accessToken,
-      ...replyDefinition,
-    };
-    var observableToUse = replyDefinition.id
-      ? this.replybotService.updateReplyDefinition(bodyToUse)
-      : this.replybotService.createReplyDefinition(bodyToUse);
-
-    observableToUse.pipe(take(1)).subscribe({
-      next: (_) => {
-        this.retrieveAndPopulateReplyDefinitions();
-        this.showSnackBar('Reply Definition Saved', false);
-      },
-      error: (error) => {
-        this.showSnackBar('Error saving reply definition', true);
-        console.error('error saving', error);
-      },
-    });
   }
 }
