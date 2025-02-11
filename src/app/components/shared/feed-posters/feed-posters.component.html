@@ -1,93 +1,76 @@
 <h2 class="feed-section-title">
   {{ sectionTitle }}
   @if (profileUrl && profileName) {
-    <app-profile-link
-      [url]="profileUrl!"
-    [name]="profileName!"></app-profile-link>
+  <app-profile-link [url]="profileUrl!" [name]="profileName!"></app-profile-link>
   }
 </h2>
 <app-loading-indicator [isLoading]="isLoading && !isError"></app-loading-indicator>
-@if (!isLoading && !isError) {
-  @if (feedItems && feedItems.length > 0) {
-    @if (isPoster) {
-      <div class="feed-item-posters-wrapper">
-        @for (feedItem of feedItems; track feedItem) {
-          <div class="feed-item-poster">
-            @if(feedItem.url) {
-              <a [href]="feedItem.url" target="_blank" [title]="feedItem.title">
-                @if (feedItem.imageUrl) {
-                  <img
-                    [tooltip]="feedItem.title"
-                    class="feed-item-poster-img"
-                    [src]="feedItem.imageUrl" />
-                }
-                @if (!feedItem.imageUrl) {
-                  <div class="feed-item-poster-img no-img">
-                    <div class="no-poster-thumbnail"><i class="fa-solid fa-music"></i></div>
-                    {{ feedItem.title }}
-                  </div>
-                }
-              </a>
-            } @else{
-              <span [title]="feedItem.title">
-                @if (feedItem.imageUrl) {
-                  <img
-                    [tooltip]="feedItem.title"
-                    class="feed-item-poster-img"
-                    [src]="feedItem.imageUrl" />
-                }
-                @if (!feedItem.imageUrl) {
-                  <div class="feed-item-poster-img no-img">
-                    <div class="no-poster-thumbnail"><i class="fa-solid fa-music"></i></div>
-                    {{ feedItem.title }}
-                  </div>
-                }
-              </span>
-            }
-            @if (showRatings) {
-              <div>
-                <a class="feed-item-rating" [href]="feedItem.url" target="_blank">
-                  @if(feedItem.rating) {
-                    {{ formatRating(feedItem.rating) }} / {{ ratingMax }}
-                  } @else{
-                    <span>(no rating)</span>
-                  }
-                </a>
-              </div>
-            }
-          </div>
-        }
+@if (!isLoading && !isError) { @if (feedItems && feedItems.length > 0) { @if (isPoster) {
+<div class="feed-item-posters-wrapper">
+  @for (feedItem of feedItems; track feedItem) {
+  <div class="feed-item-poster">
+    @if(feedItem.url) {
+    <a [href]="feedItem.url" target="_blank" [title]="feedItem.title">
+      @if (feedItem.imageUrl) {
+      <img [tooltip]="feedItem.title" class="feed-item-poster-img" [src]="feedItem.imageUrl" />
+      } @if (!feedItem.imageUrl) {
+      <div class="feed-item-poster-img no-img">
+        <div class="no-poster-thumbnail"><i class="fa-solid fa-music"></i></div>
+        {{ feedItem.title }}
       </div>
-    }
-    @if (isList) {
-      <div>
-        <ul class="feed-list-item-name">
-          @for (feedItem of feedItems; track feedItem) {
-            <li class="feed-list-item">
-              @if(feedItem.url) {
-                <a [href]="feedItem.url" target="_blank">{{ feedItem.title }}</a>
-              } @else{
-                <span class="feed-item-list-item-title">{{ feedItem.title }}</span>
-              }
-              {{ feedItem.summary ? " - " + feedItem.summary : "" }}
-              @if(showRatings){ @if(showRatings && feedItem.rating) {
-                <span>- {{ formatRating(feedItem.rating) }} / {{ ratingMax }}</span>
-              } @else{
-                <span>(no rating)</span>
-                } }
-              </li>
-            }
-          </ul>
-        </div>
       }
-    } @else {
-      <div class="no-content-text-container">
-        <div class="no-content-text">None</div>
+    </a>
+    } @else{
+    <span [title]="feedItem.title">
+      @if (feedItem.imageUrl) {
+      <img [tooltip]="feedItem.title" class="feed-item-poster-img" [src]="feedItem.imageUrl" />
+      } @if (!feedItem.imageUrl) {
+      <div class="feed-item-poster-img no-img">
+        <div class="no-poster-thumbnail"><i class="fa-solid fa-music"></i></div>
+        {{ feedItem.title }}
       </div>
-    }
-  }
-  @if (isError) {
-    <div class="error-wrapper">
-      <div class="error-text">There was an error loading this data. Please try again later.</div>
+      }
+    </span>
+    } @if (showRatings) {
+    <div>
+      <a class="feed-item-rating" [href]="feedItem.url" target="_blank">
+        @if(feedItem.rating) {
+        {{ formatRating(feedItem.rating) }} / {{ ratingMax }}
+        } @else{
+        <span>(no rating)</span>
+        }
+      </a>
     </div>
+    }
+  </div>
   }
+</div>
+} @if (isList) {
+<div>
+  <ul class="feed-list-item-name">
+    @for (feedItem of feedItems; track feedItem) {
+    <li class="feed-list-item">
+      @if(feedItem.url) {
+      <a [href]="feedItem.url" target="_blank">{{ feedItem.title }}</a>
+      } @else{
+      <span class="feed-item-list-item-title">{{ feedItem.title }}</span>
+      }
+      {{ feedItem.summary ? " - " + feedItem.summary : "" }}
+      @if(showRatings){ @if(showRatings && feedItem.rating) {
+      <span>- {{ formatRating(feedItem.rating) }} / {{ ratingMax }}</span>
+      } @else{
+      <span>(no rating)</span>
+      } }
+    </li>
+    }
+  </ul>
+</div>
+} } @else {
+<div class="no-content-text-container">
+  <div class="no-content-text">None</div>
+</div>
+} } @if (isError) {
+<div class="error-wrapper">
+  <div class="error-text">There was an error loading this data. Please try again later.</div>
+</div>
+}

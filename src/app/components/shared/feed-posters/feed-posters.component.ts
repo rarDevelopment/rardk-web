@@ -6,10 +6,10 @@ import { LoadingIndicatorComponent } from '../loading-indicator/loading-indicato
 import { TooltipDirective } from 'src/app/directives/tooltip.directive';
 
 @Component({
-    selector: 'app-feed-posters',
-    templateUrl: './feed-posters.component.html',
-    styleUrls: ['./feed-posters.component.scss'],
-    imports: [ProfileLinkComponent, LoadingIndicatorComponent, TooltipDirective]
+  selector: 'app-feed-posters',
+  templateUrl: './feed-posters.component.html',
+  styleUrls: ['./feed-posters.component.scss'],
+  imports: [ProfileLinkComponent, LoadingIndicatorComponent, TooltipDirective],
 })
 export class FeedPostersComponent implements OnInit {
   @Input() sectionTitle: string;
