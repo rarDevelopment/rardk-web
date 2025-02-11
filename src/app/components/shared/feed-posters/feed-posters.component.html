@@ -7,7 +7,7 @@
 <app-loading-indicator [isLoading]="isLoading && !isError"></app-loading-indicator>
 @if (!isLoading && !isError) { @if (feedItems && feedItems.length > 0) { @if (isPoster) {
 <div class="feed-item-posters-wrapper">
-  @for (feedItem of feedItems; track feedItem) { @if(feedItem.imageUrl){
+  @for (feedItem of feedItems; track feedItem) {
   <div class="feed-item-poster">
     @if(feedItem.url) {
     <a [href]="feedItem.url" target="_blank" [title]="feedItem.title">
@@ -43,7 +43,7 @@
     </div>
     }
   </div>
-  } }
+  }
 </div>
 } @if (isList) {
 <div>

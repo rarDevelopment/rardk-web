@@ -13,7 +13,8 @@ import { FeedPostersComponent } from '../../shared/feed-posters/feed-posters.com
 export class MediaFeedComponent {
   public isLoading: boolean;
   public feedItems: FeedItem[];
-  private numberOfItemsToList = 10;
+  private numberOfItemsToList = 8;
+  public hideNoImagePosts = true;
   isError: boolean;
 
   constructor(private mediaFeedService: MediaFeedService) {}
@@ -35,6 +36,7 @@ export class MediaFeedComponent {
       .subscribe({
         next: (items: FeedItem[]) => {
           if (this.numberOfItemsToList > 0) {
+            items = items.filter((item) => item.imageUrl || !this.hideNoImagePosts);
             items = items.slice(0, this.numberOfItemsToList);
           }
           this.feedItems = items;
