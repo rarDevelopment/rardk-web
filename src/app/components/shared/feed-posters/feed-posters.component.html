@@ -1,9 +1,15 @@
-<h2 class="feed-section-title">
-  {{ sectionTitle }}
-  @if (profileUrl && profileName) {
-  <app-profile-link [url]="profileUrl!" [name]="profileName!"></app-profile-link>
-  }
-</h2>
+<div class="page-description-container">
+  <div class="page-description-content">
+    <app-page-title [titleSize]="2">
+      @if(titleIconToShow) {
+      <i [class]="titleIconToShow"></i>
+      }
+      {{ sectionTitle }} @if (profileUrl && profileName) {
+      <app-profile-link [url]="profileUrl!" [name]="profileName!"></app-profile-link>
+      }
+    </app-page-title>
+  </div>
+</div>
 <app-loading-indicator [isLoading]="isLoading && !isError"></app-loading-indicator>
 @if (!isLoading && !isError) { @if (feedItems && feedItems.length > 0) { @if (isPoster) {
 <div class="feed-item-posters-wrapper">

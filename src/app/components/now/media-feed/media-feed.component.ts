@@ -3,10 +3,11 @@ import { FeedItem } from '../../shared/feed-posters/models/feed-item';
 import { MediaFeedService } from './media-feed.service';
 import { finalize, take } from 'rxjs';
 import { FeedPostersComponent } from '../../shared/feed-posters/feed-posters.component';
+import { RouterLink } from '@angular/router';
 
 @Component({
   selector: 'app-media-feed',
-  imports: [FeedPostersComponent],
+  imports: [FeedPostersComponent, RouterLink],
   templateUrl: './media-feed.component.html',
   styleUrl: './media-feed.component.scss',
 })
@@ -15,7 +16,7 @@ export class MediaFeedComponent {
   public feedItems: FeedItem[];
   private numberOfItemsToList = 8;
   public hideNoImagePosts = true;
-  isError: boolean;
+  public isError: boolean;
 
   constructor(private mediaFeedService: MediaFeedService) {}
 
