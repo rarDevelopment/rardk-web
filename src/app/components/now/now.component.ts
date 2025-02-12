@@ -1,4 +1,4 @@
-import { AfterViewInit, Component, ElementRef, ViewChild } from '@angular/core';
+import { AfterViewInit, Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { LastfmCardComponent } from './lastfm-card/lastfm-card.component';
 import { GoodreadsCardComponent } from './goodreads-card/goodreads-card.component';
 import { TvShowsCardComponent } from './tv-shows-card/tv-shows-card.component';
@@ -9,21 +9,21 @@ import { PageTitleComponent } from '../shared/page-title/page-title.component';
 import { TooltipDirective } from 'src/app/directives/tooltip.directive';
 
 @Component({
-    selector: 'app-now',
-    templateUrl: './now.component.html',
-    styleUrls: ['./now.component.scss'],
-    imports: [
-        PageTitleComponent,
-        GithubCardComponent,
-        BackloggdCardComponent,
-        LetterboxdCardComponent,
-        TvShowsCardComponent,
-        GoodreadsCardComponent,
-        LastfmCardComponent,
-        TooltipDirective,
-    ]
+  selector: 'app-now',
+  templateUrl: './now.component.html',
+  styleUrls: ['./now.component.scss'],
+  imports: [
+    PageTitleComponent,
+    GithubCardComponent,
+    BackloggdCardComponent,
+    LetterboxdCardComponent,
+    TvShowsCardComponent,
+    GoodreadsCardComponent,
+    LastfmCardComponent,
+    TooltipDirective,
+  ],
 })
-export class NowComponent implements AfterViewInit {
+export class NowComponent implements OnInit, AfterViewInit {
   @ViewChild('projectsCard') projectsCard: ElementRef;
   @ViewChild('gamesCard') gamesCard: ElementRef;
   @ViewChild('moviesCard') moviesCard: ElementRef;
@@ -33,6 +33,10 @@ export class NowComponent implements AfterViewInit {
 
   private scrollTitleOffset = 28;
   private sectionMap: { [key: string]: ElementRef } = {};
+
+  ngOnInit(): void {
+    this.scrollToTop();
+  }
 
   ngAfterViewInit() {
     this.sectionMap = {
@@ -52,5 +56,9 @@ export class NowComponent implements AfterViewInit {
       const y = element.nativeElement.getBoundingClientRect().top + window.scrollY + yOffset;
       window.scrollTo({ top: y, behavior: 'smooth' });
     }
+  }
+
+  public scrollToTop() {
+    window.scrollTo(0, 0);
   }
 }
