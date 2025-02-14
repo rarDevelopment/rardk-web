@@ -15,7 +15,7 @@
       #imageElement
       (click)="toggleModal(i, true)"
       class="gallery-thumbnail"
-      [src]="post.images[0].url"
+      [src]="post.images[0].thumbnailUrl ?? post.images[0].url"
       [alt]="post.images[0].description" />
     @if (post.images.length > 1 && imageLoaded[i]) {
     <span class="image-count">{{ post.images.length }}</span>
