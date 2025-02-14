@@ -6,7 +6,7 @@
 <div class="post-image-container">
   <img
     #imageElement
-    [src]="post.images[0].image_url"
+    [src]="post.images[0].thumbnail_url ?? post.images[0].image_url"
     [alt]="post.images[0].alt_text"
     [class]="getImageClass()"
     (click)="toggleModal(post, true)" />

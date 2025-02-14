@@ -72,7 +72,11 @@ export class GalleryComponent implements OnInit, AfterViewChecked {
               date: post.posted_at,
               url: '/gallery/' + post.time_stamp,
               images: post.images.map((media) => {
-                return { url: media.image_url, description: media.alt_text } as ModalImageItem;
+                return {
+                  url: media.image_url,
+                  description: media.alt_text,
+                  thumbnailUrl: media.thumbnail_url,
+                } as ModalImageItem;
               }),
             } as ModalImage;
           });
