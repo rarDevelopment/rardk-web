@@ -71,16 +71,18 @@ export class GalleryComponent implements OnInit, AfterViewChecked {
               content: post.content,
               date: post.posted_at,
               url: '/gallery/' + post.time_stamp,
-              images: post.images.map((media) => {
-                return {
-                  url: media.image_url,
-                  description: media.alt_text,
-                  thumbnailUrl: media.thumbnail_url,
-                } as ModalImageItem;
-              }),
+              images: post.images
+                .filter((i) => !i.image_url.toLowerCase().includes('.mp4'))
+                .map((media) => {
+                  return {
+                    url: media.image_url,
+                    description: media.alt_text,
+                    thumbnailUrl: media.thumbnail_url,
+                  } as ModalImageItem;
+                }),
             } as ModalImage;
           });
-          this.allGalleryPosts = modalImages;
+          this.allGalleryPosts = modalImages.filter((post) => post.images.length > 0);
           this.updateLimitedGalleryImages();
         },
         error: (error: any) => {
