@@ -37,7 +37,12 @@ jobs:
       - uses: actions/checkout@v4
       - name: Create Release
         run: |
-          VERSION=$(date +'%Y-%m-%d-%H-%M-%S')
+          DATE=$(date +'%Y-%m-%d')
+          HOUR=$(date +'%H')
+          MINUTE=$(date +'%M')
+          SECOND=$(date +'%S')
+          BUILD_NUMBER=$((10#$HOUR + 10#$MINUTE + 10#$SECOND))
+          VERSION="${DATE}-${BUILD_NUMBER}"
           gh release create "${VERSION}" --generate-notes
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
