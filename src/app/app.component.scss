@@ -69,10 +69,17 @@
   margin-block-start: 10px;
 }
 
+.nav-icon {
+  padding-left: 4px;
+  padding-right: 4px;
+  text-align: center;
+}
+
 .social-icon {
-  width: 25px;
-  padding-left: 5px;
-  padding-right: 5px;
+  font-size: 27px;
+  transform-origin: center;
+  align-items: center;
+  justify-content: center;
 
   transition: all 0.5s ease-in-out;
 }
@@ -87,30 +94,38 @@
   transform: scale(3) rotate(10deg);
 }
 
-.github {
+.github,
+.fa-github {
   fill: #ffffff;
+  color: #ffffff;
 }
 
-.twitch {
+.twitch,
+.fa-twitch {
   fill: #9146ff;
+  color: #9146ff;
 }
 
-.mastodon {
+.mastodon,
+.fa-mastodon {
   fill: #6364ff;
+  color: #6364ff;
 }
 
-.bluesky {
+.bluesky,
+.fa-bluesky {
   fill: #0285ff;
+  color: #0285ff;
 }
 
-.twitter {
-  fill: #1d9bf0;
-}
-
-.discord {
+.discord,
+.fa-discord {
   fill: #5865f2;
+  color: #5865f2;
 }
 
-.rss {
+.rss,
+.fa-rss {
   fill: #ffa500;
+  color: #ffa500;
 }

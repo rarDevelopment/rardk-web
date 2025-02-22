@@ -10,4 +10,5 @@ export class ModalImage {
 export class ModalImageItem {
   public url: string;
   public description: string;
+  public thumbnailUrl?: string;
 }

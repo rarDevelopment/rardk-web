@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { DateDisplayComponent } from '../date-display/date-display.component';
 import { ModalImage } from 'src/app/components/shared/modal/models/modal-image';
 import { LoadingIndicatorComponent } from '../loading-indicator/loading-indicator.component';
@@ -9,7 +9,7 @@ import { LoadingIndicatorComponent } from '../loading-indicator/loading-indicato
   templateUrl: './modal.component.html',
   styleUrl: './modal.component.scss',
 })
-export class ModalComponent {
+export class ModalComponent implements OnInit {
   @Input() isVisible: boolean;
   @Input() post: ModalImage;
   @Input() postUrl?: string;
@@ -18,6 +18,12 @@ export class ModalComponent {
   public imageIndex: number = 0;
   public allowedClassesForClosing = ['modal', 'close', 'closing-x'];
   public isLoading: boolean = false;
+
+  ngOnInit(): void {
+    if (this.post && this.post.images && this.post.images.length > this.imageIndex) {
+      this.changeImage(this.imageIndex);
+    }
+  }
 
   public isDirectionEnabled(newIndex: number): boolean {
     return typeof this.post.images[newIndex] !== 'undefined';

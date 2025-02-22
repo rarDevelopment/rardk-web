@@ -1,10 +1,10 @@
-import { Directive, ElementRef, HostListener, Input } from '@angular/core';
+import { Directive, ElementRef, HostListener, Input, OnDestroy } from '@angular/core';
 // courtesty of https://www.youtube.com/watch?v=YPOwsP9GV0w
 @Directive({
   selector: '[tooltip]',
   standalone: true,
 })
-export class TooltipDirective {
+export class TooltipDirective implements OnDestroy {
   @Input('tooltip') tooltipText: string = '';
   @Input() placement?: string = 'bottom';
   @Input() delay?: number = 5;
@@ -12,6 +12,13 @@ export class TooltipDirective {
   offset = 10;
 
   constructor(private el: ElementRef) {}
+
+  ngOnDestroy(): void {
+    if (this.tooltip) {
+      this.tooltip.remove();
+      this.tooltip = undefined;
+    }
+  }
 
   @HostListener('mouseenter', ['$event'])
   @HostListener('touchstart')
@@ -50,13 +57,18 @@ export class TooltipDirective {
   }
 
   create() {
-    this.tooltip = document.createElement('span');
-    this.tooltip.classList.add('ng-tooltip');
-    this.tooltip.textContent = this.tooltipText;
-    document.body.appendChild(this.tooltip);
+    if (this.tooltipText && this.tooltipText.length > 0) {
+      this.tooltip = document.createElement('span');
+      this.tooltip.classList.add('ng-tooltip');
+      this.tooltip.textContent = this.tooltipText;
+      document.body.appendChild(this.tooltip);
+    }
   }
 
   setPosition() {
+    if (!this.tooltip) {
+      return;
+    }
     const elemRect = this.el.nativeElement.getBoundingClientRect();
     const tooltipRect = this.tooltip?.getBoundingClientRect()!;
 

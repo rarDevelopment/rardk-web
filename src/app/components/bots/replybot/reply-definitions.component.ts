@@ -3,8 +3,7 @@ import { BotPageComponent } from '../bot-page/bot-page.component';
 import { ReplyDefinition } from 'src/app/components/bots/models/replybot/reply-definition';
 import { take, forkJoin, timeout, throwError } from 'rxjs';
 import { map, switchMap } from 'rxjs/operators';
-import { ReplyDefinitionEditorDialogComponent } from './reply-definition-editor-dialog/reply-definition-editor-dialog.component';
-import { ReplyDefinitionEditorDialogData } from 'src/app/components/bots/models/replybot/reply-definition-editor-dialog-data';
+import { ReplyDefinitionEditorData } from 'src/app/components/bots/models/replybot/reply-definition-editor-data';
 import { DiscordGuild } from 'src/app/components/bots/models/discord-guild';
 import { GuildConfiguration } from 'src/app/components/bots/models/replybot/guild-configuration';
 import { ReplyDefinitionAttributeType } from 'src/app/components/bots/models/replybot/reply-definition-filter-type';
@@ -22,22 +21,22 @@ import { LoadingIndicatorComponent } from '../../shared/loading-indicator/loadin
 import { TooltipDirective } from 'src/app/directives/tooltip.directive';
 
 @Component({
-    selector: 'app-reply-definitions',
-    templateUrl: './reply-definitions.component.html',
-    styleUrls: ['./reply-definitions.component.scss'],
-    imports: [
-        CommonModule,
-        PageTitleComponent,
-        MatButtonToggleModule,
-        FormsModule,
-        MatExpansionModule,
-        TooltipDirective,
-        MatButtonModule,
-        MatIconModule,
-        CheckOrXComponent,
-        RouterLink,
-        LoadingIndicatorComponent,
-    ]
+  selector: 'app-reply-definitions',
+  templateUrl: './reply-definitions.component.html',
+  styleUrls: ['./reply-definitions.component.scss'],
+  imports: [
+    CommonModule,
+    PageTitleComponent,
+    MatButtonToggleModule,
+    FormsModule,
+    MatExpansionModule,
+    TooltipDirective,
+    MatButtonModule,
+    MatIconModule,
+    CheckOrXComponent,
+    RouterLink,
+    LoadingIndicatorComponent,
+  ],
 })
 export class ReplyDefinitionsComponent extends BotPageComponent implements OnInit {
   isLoading: boolean;
@@ -250,10 +249,9 @@ export class ReplyDefinitionsComponent extends BotPageComponent implements OnIni
   }
 
   addNewReplyDefinition() {
-    this.openEditDialog({
-      guildId: this.guildId,
-      isActive: true,
-    } as ReplyDefinitionEditorDialogData);
+    this.router.navigate(['bots/replybot/reply-definitions/definition/'], {
+      queryParams: { guildId: this.guildId },
+    });
   }
 
   getFilters() {
@@ -265,49 +263,15 @@ export class ReplyDefinitionsComponent extends BotPageComponent implements OnIni
   }
 
   startEdit(replyDefinition: ReplyDefinition) {
-    const dialogData = {
-      id: replyDefinition.id,
-      guildId: replyDefinition.guildId,
-      mentionAuthor: replyDefinition.mentionAuthor,
-      reactions: replyDefinition.reactions,
-      replies: replyDefinition.replies,
-      requiresBotName: replyDefinition.requiresBotName,
-      triggers: replyDefinition.triggers,
-      channelIds: replyDefinition.channelIds,
-      userIds: replyDefinition.userIds,
-      isActive: replyDefinition.isActive,
-    } as ReplyDefinitionEditorDialogData;
-
-    this.openEditDialog(dialogData);
+    this.router.navigate(['bots/replybot/reply-definitions/definition/'], {
+      queryParams: { guildId: this.guildId, replyDefinitionId: replyDefinition.id },
+    });
   }
 
   addFromCopy(replyDefinition: ReplyDefinition) {
-    const dialogData = {
-      guildId: replyDefinition.guildId,
-      mentionAuthor: replyDefinition.mentionAuthor,
-      reactions: replyDefinition.reactions,
-      replies: replyDefinition.replies,
-      requiresBotName: replyDefinition.requiresBotName,
-      triggers: replyDefinition.triggers,
-      channelIds: replyDefinition.channelIds,
-      userIds: replyDefinition.userIds,
-      isActive: replyDefinition.isActive,
-    } as ReplyDefinitionEditorDialogData;
-
-    this.openEditDialog(dialogData);
-  }
-
-  async addFromClipboard() {
-    const clipboardValue = await navigator.clipboard.readText();
-
-    try {
-      const dialogData = JSON.parse(clipboardValue);
-      dialogData.guildId = this.guildId;
-      this.openEditDialog(dialogData);
-    } catch (err) {
-      console.error(err);
-      this.showSnackBar('Your clipboard data is not a valid reply definition!', true);
-    }
+    this.router.navigate(['bots/replybot/reply-definitions/definition/'], {
+      queryParams: { guildId: this.guildId, copyFromId: replyDefinition.id },
+    });
   }
 
   copyJsonToClipboard(replyDefinition: ReplyDefinition) {
@@ -318,7 +282,7 @@ export class ReplyDefinitionsComponent extends BotPageComponent implements OnIni
       requiresBotName: replyDefinition.requiresBotName,
       triggers: replyDefinition.triggers,
       isActive: replyDefinition.isActive,
-    } as ReplyDefinitionEditorDialogData;
+    } as ReplyDefinitionEditorData;
 
     if (this.clipboard.copy(JSON.stringify(dialogData))) {
       this.showSnackBar('Copied reply definition to clipboard!', false);
@@ -396,29 +360,6 @@ export class ReplyDefinitionsComponent extends BotPageComponent implements OnIni
     this.applyFilters();
   }
 
-  private openEditDialog(dialogData?: ReplyDefinitionEditorDialogData) {
-    // add editing user to dialog data
-    if (dialogData) {
-      dialogData.user = this.discordUser;
-    } else {
-      dialogData = {
-        user: this.discordUser,
-      } as ReplyDefinitionEditorDialogData;
-    }
-
-    // open dialog
-    let dialogRef = this.dialog.open(ReplyDefinitionEditorDialogComponent, {
-      height: '800px',
-      width: '700px',
-      data: dialogData,
-    });
-    dialogRef.afterClosed().subscribe((replyDefinitionToSave) => {
-      if (replyDefinitionToSave) {
-        this.saveReplyDefinition(replyDefinitionToSave);
-      }
-    });
-  }
-
   movePriority(direction: string, replyDefinition: ReplyDefinition) {
     var accessToken = this.getLoginToken();
     this.replybotService
@@ -427,28 +368,5 @@ export class ReplyDefinitionsComponent extends BotPageComponent implements OnIni
       .subscribe((_) => {
         this.retrieveAndPopulateReplyDefinitions();
       });
-  }
-
-  saveReplyDefinition(replyDefinition: ReplyDefinition) {
-    var accessToken = this.getLoginToken();
-
-    const bodyToUse = {
-      accessToken: accessToken,
-      ...replyDefinition,
-    };
-    var observableToUse = replyDefinition.id
-      ? this.replybotService.updateReplyDefinition(bodyToUse)
-      : this.replybotService.createReplyDefinition(bodyToUse);
-
-    observableToUse.pipe(take(1)).subscribe({
-      next: (_) => {
-        this.retrieveAndPopulateReplyDefinitions();
-        this.showSnackBar('Reply Definition Saved', false);
-      },
-      error: (error) => {
-        this.showSnackBar('Error saving reply definition', true);
-        console.error('error saving', error);
-      },
-    });
   }
 }

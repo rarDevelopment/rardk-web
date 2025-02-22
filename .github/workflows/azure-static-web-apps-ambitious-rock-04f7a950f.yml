@@ -6,9 +6,9 @@ on:
       - main
 
 jobs:
-  build_and_deploy_job:
+  build_and_deploy:
     runs-on: ubuntu-latest
-    name: Build and Deploy Job
+    name: "🚀 Build and Deploy"
     steps:
       - uses: actions/checkout@v4
         with:
@@ -28,3 +28,21 @@ jobs:
           output_location: "dist/rardk-web/browser" # Built app content directory - optional
           app_build_command: "npm run build"
           ###### End of Repository/Build Configurations ######
+  create_tag_and_release:
+    runs-on: ubuntu-latest
+    name: "🏷️ Create Tag and Release"
+    if: github.event_name == 'push'
+    needs: build_and_deploy
+    steps:
+      - uses: actions/checkout@v4
+      - name: Create Release
+        run: |
+          DATE=$(date +'%Y-%m-%d')
+          HOUR=$(date +'%H')
+          MINUTE=$(date +'%M')
+          SECOND=$(date +'%S')
+          BUILD_NUMBER=$((10#$HOUR + 10#$MINUTE + 10#$SECOND))
+          VERSION="${DATE}.${BUILD_NUMBER}"
+          gh release create "${VERSION}" --generate-notes
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
