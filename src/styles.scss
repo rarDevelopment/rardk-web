@@ -7,7 +7,7 @@
 html,
 body {
   font-family: "Atkinson Hyperlegible", sans-serif;
-  background-color: rgb(27, 25, 27);
+  background-color: rgb(192, 96, 192);
   color: variables.$font-color;
   margin: 0;
   height: 100%;
@@ -70,6 +70,10 @@ h3 {
 .webrings {
   text-align: center;
   font-size: 16px;
+}
+
+.webrings a {
+  color: variables.$font-color !important;
 }
 
 a {
