@@ -239,9 +239,9 @@ export class ReplyDefinitionsComponent extends BotPageComponent implements OnIni
 
   populateReplyDefinitions(replyDefinitions: ReplyDefinition[]) {
     if (replyDefinitions) {
-      const sortedreplyDefinitions = replyDefinitions.sort((g1, g2) => g1.priority - g2.priority);
-      this.replyDefinitions = sortedreplyDefinitions;
-      this.filteredReplyDefinitions = sortedreplyDefinitions;
+      const sortedReplyDefinitions = replyDefinitions.sort((g1, g2) => g1.priority - g2.priority);
+      this.replyDefinitions = sortedReplyDefinitions;
+      this.filteredReplyDefinitions = sortedReplyDefinitions;
       this.panelOpenStates = new Array(this.filteredReplyDefinitions.length).fill(false);
     }
   }
