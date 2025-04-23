@@ -11,7 +11,6 @@ import { DiscordUser } from 'src/app/components/bots/models/discord-user';
 import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
 import { FormsModule } from '@angular/forms';
-import { MatButtonToggleModule } from '@angular/material/button-toggle';
 import { PageTitleComponent } from '../../shared/page-title/page-title.component';
 import { CommonModule } from '@angular/common';
 import { RouterLink } from '@angular/router';
@@ -26,7 +25,6 @@ import { TooltipDirective } from 'src/app/directives/tooltip.directive';
   imports: [
     CommonModule,
     PageTitleComponent,
-    MatButtonToggleModule,
     FormsModule,
     TooltipDirective,
     MatButtonModule,
@@ -35,6 +33,7 @@ import { TooltipDirective } from 'src/app/directives/tooltip.directive';
     RouterLink,
     LoadingIndicatorComponent,
   ],
+  standalone: true, // Ensure standalone is true if using Angular 17+ structure
 })
 export class ReplyDefinitionsComponent extends BotPageComponent implements OnInit {
   isLoading: boolean;
@@ -342,13 +341,8 @@ export class ReplyDefinitionsComponent extends BotPageComponent implements OnIni
       this.filteredReplyDefinitions = this.replyDefinitions;
     } else {
         this.filteredReplyDefinitions = this.replyDefinitions.filter((gr) => {
-        let filterResult = true;
-
-        this.filterOptions.forEach((filter) => {
-          filterResult = filterResult && filter.filter(gr);
-        });
-
-        return filterResult;
+        // Ensure all active filters match
+        return this.filterOptions.every((filter) => filter.filter(gr));
       });
     }
     this.panelOpenStates = new Array(this.filteredReplyDefinitions.length).fill(false);
@@ -367,5 +361,24 @@ export class ReplyDefinitionsComponent extends BotPageComponent implements OnIni
       .subscribe((_) => {
         this.retrieveAndPopulateReplyDefinitions();
       });
+  }
+
+  // NEW Method to handle filter button clicks
+  toggleFilter(filterType: ReplyDefinitionAttributeType) {
+    const index = this.filterOptions.findIndex(f => f.key === filterType.key);
+    if (index > -1) {
+      // Filter exists, remove it
+      this.filterOptions.splice(index, 1);
+    } else {
+      // Filter doesn't exist, add it
+      this.filterOptions.push(filterType);
+    }
+    // Apply filters after modification
+    this.applyFilters();
+  }
+
+  // Helper method to check if a filter is active for styling
+  isFilterActive(filterType: ReplyDefinitionAttributeType): boolean {
+    return this.filterOptions.some(f => f.key === filterType.key);
   }
 }

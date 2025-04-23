@@ -23,18 +23,19 @@
     <div class="filter-options-container">
       <div>
         <div class="filter-description">Filter By:</div>
-        <mat-button-toggle-group
-          class="filter-options-toggle-group"
-          name="filterOptions"
-          aria-label="filter options"
-          [(ngModel)]="filterOptions"
-          multiple>
-          @for (filterType of getFilters(); track filterType) {
-          <mat-button-toggle (click)="applyFilters()" [value]="filterType" [disableRipple]="true">
-            {{ filterType.displayName }}
-          </mat-button-toggle>
-          }
-        </mat-button-toggle-group>
+        <div class="filter-buttons-container">
+           @for (filterType of getFilters(); track filterType) {
+           <button
+             class="filter-button"
+             [ngClass]="{ 'active': isFilterActive(filterType) }"
+             (click)="toggleFilter(filterType)">
+             {{ filterType.displayName }}
+             @if (isFilterActive(filterType)) {
+               <i class="fa-solid fa-check filter-check-icon"></i>
+             }
+           </button>
+           }
+        </div>
       </div>
       @if (hasFilters()) {
       <div class="active-filter-display-text">

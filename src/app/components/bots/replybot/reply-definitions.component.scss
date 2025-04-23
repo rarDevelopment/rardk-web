@@ -6,9 +6,9 @@
 
 .guild-reply-definitions-container {
   max-width: 900px;
-  margin: 0 auto; // Centers the container block
+  margin: 0 auto;
   padding: 0.5rem;
-  text-align: center; // Center inline content like the page title
+  text-align: center;
 }
 
 // --- Filter Section ---
@@ -20,32 +20,67 @@
   border-radius: 4px;
   border: 1px solid #eee;
   color: #333;
-  text-align: left; // Reset text-align for filter content
+  text-align: left;
 
   .filter-description {
     margin-bottom: 0.75rem;
     font-size: 0.9em;
     color: #555;
+    font-weight: 500;
   }
 
-  .filter-options-toggle-group {
+  .filter-buttons-container {
     display: flex;
     flex-wrap: wrap;
-    gap: 0.4rem;
-    border: none;
+    gap: 0.5rem;
     justify-content: center;
     margin-bottom: 0.75rem;
+  }
+
+  .filter-button {
+    padding: 0.4rem 0.8rem;
+    border: 1px solid #ccc;
+    background-color: #fff;
+    color: #444;
+    border-radius: 1rem;
+    cursor: pointer;
+    font-size: 0.85em;
+    transition: background-color 0.2s ease, border-color 0.2s ease, color 0.2s ease;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+
+    &:hover {
+      background-color: #f0f0f0;
+      border-color: #bbb;
+    }
+
+    &:focus {
+      outline: 2px solid #3f51b54d;
+      outline-offset: 1px;
+    }
+
+    &.active {
+      background-color: #3f51b5;
+      border-color: #3f51b5;
+      color: #ffffff;
+      font-weight: 500;
+
+      .filter-check-icon {
+        font-size: 0.8em;
+      }
+    }
   }
 
   .active-filter-display-text {
     margin-top: 0.75rem;
     font-size: 0.85em;
     color: #666;
-  }
-
-  .clear-filters-button-section {
-    margin-top: 0.75rem;
-    text-align: center;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 0.5rem;
   }
 }
 
@@ -84,7 +119,7 @@
   align-items: center;
   padding: 0.75rem 1rem;
   cursor: pointer;
-  border-bottom: 1px solid transparent; // Keep transparent border for consistent height
+  border-bottom: 1px solid transparent;
   transition: background-color 0.2s ease-in-out, border-color 0.2s ease-in-out;
   color: #333;
   gap: 0.5rem;
@@ -95,18 +130,17 @@
 
   .header-content {
     display: flex;
-    flex-direction: column; // Stacks title/description
+    flex-direction: column;
     flex-grow: 1;
     gap: 0.2rem;
     margin-right: 0.5rem;
-    text-align: left; // Ensure content within header-content is left-aligned
+    text-align: left;
   }
 
   .panel-title {
     font-weight: 500;
     font-size: 1em;
     color: #222;
-    // text-align: left; // Should inherit from header-content now
   }
 
   .panel-description {
@@ -115,7 +149,6 @@
     flex-wrap: wrap;
     color: #555;
     font-size: 0.8em;
-    // text-align: left; // Should inherit from header-content now
   }
 
   .expansion-indicator {
@@ -126,15 +159,17 @@
 }
 
 .custom-expansion-panel.panel-open .custom-expansion-header {
-  // border-bottom-color: #e0e0e0; // REMOVE this line to remove the border when open
   background-color: #fdfdfd;
 }
+
+// .custom-expansion-panel.panel-open .expansion-indicator {
+//   transform: rotate(180deg);
+// }
 
 // --- Panel Content ---
 
 .custom-expansion-content {
   padding: 0.75rem 1rem;
-  // REMOVED this line
   animation: fadeIn 0.2s ease-in-out;
   color: #333;
   text-align: left;
@@ -156,7 +191,7 @@
     }
   }
   .meta-details-section {
-     margin-top: 0.25rem;
+    margin-top: 0.25rem;
   }
 
   .content-grid {
@@ -165,9 +200,6 @@
     gap: 0.75rem 1.5rem;
     margin-top: 0.75rem;
     margin-bottom: 0.75rem;
-  }
-
-  .grid-item {
   }
 
   h2 {
@@ -220,7 +252,8 @@
     border-top: 1px solid #eee;
   }
 
-  > span, .grid-item > span {
+  > span,
+  .grid-item > span {
     color: #777;
     font-style: italic;
     display: block;
@@ -351,9 +384,6 @@
   gap: 0.75rem;
 }
 
-.add-guild-reply-definition-button {
-}
-
 // --- Other Elements ---
 
 .status-text {
@@ -385,15 +415,6 @@
       grid-template-columns: 1fr;
       gap: 0.75rem 0;
     }
-
-    .grid-item {
-    }
-  }
-
-  .guild-reply-definition-actions {
-  }
-
-  .delete-warning-actions {
   }
 
   .priority-buttons {
