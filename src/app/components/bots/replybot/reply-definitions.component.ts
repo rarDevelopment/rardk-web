@@ -10,7 +10,6 @@ import { ReplyDefinitionAttributeType } from 'src/app/components/bots/models/rep
 import { DiscordUser } from 'src/app/components/bots/models/discord-user';
 import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
-import { MatExpansionModule } from '@angular/material/expansion';
 import { FormsModule } from '@angular/forms';
 import { MatButtonToggleModule } from '@angular/material/button-toggle';
 import { PageTitleComponent } from '../../shared/page-title/page-title.component';
@@ -29,7 +28,6 @@ import { TooltipDirective } from 'src/app/directives/tooltip.directive';
     PageTitleComponent,
     MatButtonToggleModule,
     FormsModule,
-    MatExpansionModule,
     TooltipDirective,
     MatButtonModule,
     MatIconModule,
@@ -245,6 +243,7 @@ export class ReplyDefinitionsComponent extends BotPageComponent implements OnIni
       const sortedreplyDefinitions = replyDefinitions.sort((g1, g2) => g1.priority - g2.priority);
       this.replyDefinitions = sortedreplyDefinitions;
       this.filteredReplyDefinitions = sortedreplyDefinitions;
+      this.panelOpenStates = new Array(this.filteredReplyDefinitions.length).fill(false);
     }
   }
 
@@ -339,20 +338,20 @@ export class ReplyDefinitionsComponent extends BotPageComponent implements OnIni
   }
 
   applyFilters() {
-    this.clearOpenStates();
     if (this.filterOptions.length === 0) {
       this.filteredReplyDefinitions = this.replyDefinitions;
-      return;
-    }
-    this.filteredReplyDefinitions = this.replyDefinitions.filter((gr) => {
-      let filterResult = true;
+    } else {
+        this.filteredReplyDefinitions = this.replyDefinitions.filter((gr) => {
+        let filterResult = true;
 
-      this.filterOptions.forEach((filter) => {
-        filterResult = filterResult && filter.filter(gr);
+        this.filterOptions.forEach((filter) => {
+          filterResult = filterResult && filter.filter(gr);
+        });
+
+        return filterResult;
       });
-
-      return filterResult;
-    });
+    }
+    this.panelOpenStates = new Array(this.filteredReplyDefinitions.length).fill(false);
   }
 
   clearFilters() {
