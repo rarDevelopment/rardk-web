@@ -1,5 +1,4 @@
-import { NgModule } from '@angular/core';
-import { RouterModule, Routes } from '@angular/router';
+import { Routes } from '@angular/router';
 import { InterestsComponent } from './components/interests/interests.component';
 import { NowComponent } from './components/now/now.component';
 import { LegoSetsCollectionComponent } from './components/interests/lego-sets/lego-sets.component';
@@ -25,7 +24,7 @@ import { FavouriteGamesComponent } from './components/interests/video-games/favo
 import { GalleryPostComponent } from './components/gallery/gallery-post/gallery-post.component';
 import { ReplyDefinitionEditorComponent } from './components/bots/replybot/reply-definition-editor-dialog/reply-definition-editor-dialog.component';
 
-const routes: Routes = [
+export const routes: Routes = [
   { path: 'blog/:slug', pathMatch: 'full', component: BlogPostComponent },
   { path: 'blog', pathMatch: 'full', component: BlogComponent },
   { path: 'links/:slug', component: LinkPostComponent },
@@ -82,9 +81,3 @@ const routes: Routes = [
   { path: 'callback', component: CallbackComponent },
   { path: '**', component: HomeComponent },
 ];
-
-@NgModule({
-  imports: [RouterModule.forRoot(routes)],
-  exports: [RouterModule],
-})
-export class AppRoutingModule {}

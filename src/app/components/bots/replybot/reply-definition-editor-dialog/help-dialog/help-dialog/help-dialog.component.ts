@@ -1,6 +1,4 @@
-import { Component, Inject } from '@angular/core';
-import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
-import { ReplyDefinitionEditorComponent } from '../../reply-definition-editor-dialog.component';
+import { Component, EventEmitter, Output } from '@angular/core'; // Removed Inject, MAT_DIALOG_DATA, MatDialogRef
 import { HelpKeywordDetail } from 'src/app/components/bots/models/replybot/help-keyword-detail';
 import { CopyableTextComponent } from '../../../../../shared/copyable-text/copyable-text.component';
 
@@ -8,10 +6,14 @@ import { CopyableTextComponent } from '../../../../../shared/copyable-text/copya
   selector: 'app-help-dialog',
   templateUrl: './help-dialog.component.html',
   styleUrls: ['./help-dialog.component.scss'],
-  imports: [CopyableTextComponent],
+  standalone: true, // Make standalone
+  imports: [CopyableTextComponent], // Add CommonModule and make standalone
 })
 export class HelpDialogComponent {
-  public dialogData: any;
+  @Output() close = new EventEmitter<void>(); // Add close event emitter
+
+  // Removed dialogData property and constructor injection
+
   public keywords: HelpKeywordDetail[] = [
     {
       keyword: '{{BOTNAME}}',
@@ -47,14 +49,9 @@ export class HelpDialogComponent {
     },
   ];
 
-  constructor(
-    public dialogRef: MatDialogRef<ReplyDefinitionEditorComponent>,
-    @Inject(MAT_DIALOG_DATA) public data: any
-  ) {
-    this.dialogData = data;
-  }
+  // Removed constructor
 
   closeHelp() {
-    this.dialogRef.close();
+    this.close.emit(); // Emit close event
   }
 }

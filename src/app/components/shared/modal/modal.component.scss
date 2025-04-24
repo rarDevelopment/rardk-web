@@ -1,3 +1,5 @@
+@use "../../../../variables" as variables;
+
 .modal {
   position: fixed;
   z-index: 1;
@@ -30,60 +32,122 @@ a:visited {
   justify-content: flex-end;
 }
 
-.gallery-image {
-  border-radius: 10px;
-  width: 100%;
-  height: 70vh;
-  max-width: 80vw;
-  max-height: 70vh;
-  object-fit: contain;
+.modal-body {
+  padding-top: 15px;
+  padding-bottom: 15px;
+  overflow-y: auto; // Allow vertical scrolling
+  flex-grow: 1;
 }
 
-.image-description {
-  color: #ffffff;
-  font-size: 16px;
+.modal-footer {
+  padding-top: 10px;
+  border-top: 1px solid #444; // Separator line for footer
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 0.9rem;
+  color: #ccc;
 }
 
-.image-footer {
-  padding-top: 20px;
-  font-size: 15px;
+// Styles specific to Image Modal
+.image-modal-body {
+  // Styles specific to the body when showing images
 }
 
 .image-container {
-  position: relative;
+  position: relative; // For positioning arrows
+  text-align: center; // Center image and indicators
+  min-height: 100px; // Ensure space for loading indicator
+}
+
+.gallery-image {
+  display: block;
+  max-width: 100%;
+  max-height: 65vh; // Limit image height within modal
+  width: auto; // Add this to maintain aspect ratio
+  height: auto; // Add this to maintain aspect ratio
+  margin: 0 auto; // Center image horizontally
+  border-radius: 4px;
 }
 
 .arrow-button {
   position: absolute;
-  top: 40%;
+  top: 50%;
   transform: translateY(-50%);
-  background-color: rgba(0, 0, 0, 0.2);
+  background-color: rgba(0, 0, 0, 0.5);
   color: white;
   border: none;
-  padding: 10px;
+  padding: 10px 15px;
   cursor: pointer;
-  font-size: 22px;
+  border-radius: 50%;
+  font-size: 1.2rem;
+  z-index: 10; // Ensure arrows are clickable
+
+  &:hover {
+    background-color: rgba(0, 0, 0, 0.8);
+  }
+
+  &.left {
+    left: 10px;
+  }
+
+  &.right {
+    right: 10px;
+  }
 }
 
-.arrow-button.left {
-  left: 5px;
+.image-position-indicators {
+  text-align: center;
+  margin-top: 10px;
+
+  svg {
+    cursor: pointer;
+    margin: 0 2px;
+  }
+
+  .image-position-circle {
+    fill: none;
+    stroke: #aaa;
+    stroke-width: 2;
+    transition: fill 0.3s ease;
+
+    &.current {
+      fill: #fff; // Highlight current image indicator
+      stroke: #fff;
+    }
+  }
 }
 
-.arrow-button.right {
-  right: 5px;
+.image-description {
+  margin-top: 15px;
+  text-align: center; // Changed back to center
+  padding: 0 10px; // Add some padding
+  color: #eee; // Lighter text for description
 }
 
-.image-position-circle {
-  stroke: #ffffff;
-  cursor: pointer;
+.image-modal-footer {
+  // Specific styles for image modal footer if needed
+  justify-content: center; // Changed from space-between to center
+  a {
+    color: variables.$link-color; // Ensure links are visible
+    text-decoration: none;
+    &:hover {
+      text-decoration: underline;
+    }
+    // Add some margin if both date and link are present to prevent touching
+    margin-left: 15px;
+  }
 }
 
-.image-position-circle.current {
-  fill: #ffffff;
+// Styles specific to Generic Modal
+.generic-modal-body {
+  // Styles specific to the body when projecting content
+  text-align: center; // Center align the projected content
 }
 
-.image-count {
-  font-size: 14px;
+.generic-modal-footer {
+   justify-content: flex-end; // Example: align buttons to the right
+   gap: 10px;
 }
 
 .close {
@@ -114,10 +178,33 @@ a:visited {
     margin: auto;
   }
   .gallery-image {
-    width: 100%;
+    // width: 100%;
     height: auto;
   }
   .image-description {
     font-size: 14px;
+  }
+}
+
+@media screen and (max-width: 767px) {
+  .modal-content {
+    width: 95%;
+    margin: 15% auto;
+    padding: 15px;
+    max-height: 85vh;
+  }
+
+  .modal-header h2 {
+    font-size: 1.2rem;
+  }
+
+  .gallery-image {
+     max-height: 60vh; // Adjust image height on smaller screens
+     // width: auto; and height: auto; are inherited, no need to repeat unless overriding
+  }
+
+  .arrow-button {
+    padding: 8px 12px;
+    font-size: 1rem;
   }
 }

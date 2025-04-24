@@ -509,7 +509,7 @@ a:visited {
     background-color: #ccc;
     transition: 0.4s;
     border-radius: 34px;
-    z-index: 1; // Ensure inner is behind switch and text
+    // z-index: 1; // Ensure inner is behind switch and text
   }
 
   &-switch {
@@ -522,12 +522,12 @@ a:visited {
     background-color: white;
     transition: 0.4s;
     border-radius: 50%;
-    z-index: 2; // Ensure switch is above inner
+    // z-index: 2; // Ensure switch is above inner
   }
 
   &-text {
     position: relative;
-    z-index: 2; // Ensure text is above inner
+    // z-index: 2; // Ensure text is above inner
     margin-left: 70px; // Position text to the right of the switch (adjust as needed)
     font-weight: bold;
     color: #000; // Ensure text color is visible
@@ -686,11 +686,6 @@ select {
     text-align: center;
     margin: 0 auto;
   }
-}
-
-/* center the material spinner */
-.mat-mdc-progress-spinner {
-  margin: 0 auto;
 }
 
 circle {

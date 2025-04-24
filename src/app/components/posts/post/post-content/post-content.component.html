@@ -16,7 +16,7 @@
   <app-modal
     [post]="post.modalImage"
     [isVisible]="post.isModalVisible"
-    (onClose)="toggleModal(post, false)"></app-modal>
+    (closeModalEvent)="toggleModal(post, false)"></app-modal>
 </div>
 } @if (post.url) {
 <p>

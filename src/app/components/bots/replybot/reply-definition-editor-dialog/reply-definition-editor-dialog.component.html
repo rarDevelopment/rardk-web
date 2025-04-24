@@ -1,4 +1,15 @@
 <app-loading-indicator [isLoading]="isLoading"></app-loading-indicator>
+
+<!-- Conditionally render the modal -->
+
+<app-modal
+  [isVisible]="showHelpDialog"
+  
+  modalId="helpDialogModal"
+  (closeModalEvent)="closeHelpDialog()">
+  <!-- Project the help dialog component inside the modal -->
+  <app-help-dialog (close)="closeHelpDialog()"></app-help-dialog>
+</app-modal>
 @if(!isLoading){
 <div class="page-description-container">
   <div class="page-description-content">

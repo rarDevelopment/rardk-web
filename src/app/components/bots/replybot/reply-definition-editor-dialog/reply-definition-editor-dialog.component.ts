@@ -12,16 +12,22 @@ import { GuildConfiguration } from '../../models/replybot/guild-configuration';
 import { DiscordUser } from '../../models/discord-user';
 import { LoadingIndicatorComponent } from '../../../shared/loading-indicator/loading-indicator.component';
 import { PageTitleComponent } from 'src/app/components/shared/page-title/page-title.component';
+import { CommonModule } from '@angular/common'; // Import CommonModule
+import { ModalComponent } from '../../../shared/modal/modal.component'; // Import ModalComponent
 
 @Component({
   selector: 'app-reply-definition-editor-dialog',
   templateUrl: './reply-definition-editor-dialog.component.html',
   styleUrls: ['./reply-definition-editor-dialog.component.scss'],
+  standalone: true, // Make standalone
   imports: [
+    CommonModule, // Add CommonModule
     TooltipDirective,
     FormsModule,
     LoadingIndicatorComponent,
     PageTitleComponent,
+    ModalComponent, // Import ModalComponent
+    HelpDialogComponent, // Import HelpDialogComponent
   ],
 })
 export class ReplyDefinitionEditorComponent extends BotPageComponent implements OnInit {
@@ -43,6 +49,7 @@ export class ReplyDefinitionEditorComponent extends BotPageComponent implements 
   public guildName: string;
 
   public forbiddenTerms: string[] = ['HowLongToBeat', 'DefineWord', 'FortniteShopInfo', 'Poll'];
+  public showHelpDialog: boolean = false; // Flag to control help dialog visibility
 
   ngOnInit(): void {
     this.initializePageContents();
@@ -361,11 +368,10 @@ export class ReplyDefinitionEditorComponent extends BotPageComponent implements 
   }
 
   openHelpDialog() {
-    this.dialog.open(HelpDialogComponent, {
-      height: '600px',
-      width: '600px',
-      disableClose: false,
-      hasBackdrop: true,
-    });
+    this.showHelpDialog = true; // Set flag to true to show the modal
+  }
+
+  closeHelpDialog() {
+    this.showHelpDialog = false; // Set flag to false to hide the modal
   }
 }
