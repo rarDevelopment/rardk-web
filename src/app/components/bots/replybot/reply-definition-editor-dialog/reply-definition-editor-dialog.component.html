@@ -35,32 +35,49 @@
     </div>
     <div class="input-section">
       <h2>Status</h2>
-      <mat-slide-toggle [(ngModel)]="editorData.isActive">
-        {{ editorData.isActive ? "ENABLED" : "DISABLED" }}
-      </mat-slide-toggle>
-      (The bot will {{ editorData.isActive ? "use" : "ignore" }} this reply definition)
+      <div class="toggle-switch">
+        <input
+          type="checkbox"
+          id="statusToggle"
+          class="toggle-switch-checkbox"
+          [(ngModel)]="editorData.isActive" />
+        <label class="toggle-switch-label" for="statusToggle">
+          <span class="toggle-switch-inner"></span>
+          <span class="toggle-switch-switch"></span>
+          <!-- Move text inside the label -->
+          <span class="toggle-switch-text">
+            {{ editorData.isActive ? "ENABLED" : "DISABLED" }}
+          </span>
+        </label>
+        <!-- Text is now inside the label -->
+      </div>
+      <span>(The bot will {{ editorData.isActive ? "use" : "ignore" }} this reply definition)</span>
     </div>
 
     <div class="input-section">
       <h2>Triggers</h2>
       @for (trigger of editorData.triggers; track trackByFn(i, trigger); let i = $index) {
-      <div>
+      <div class="form-group">
         @if (hasForbiddenTerm(editorData.triggers[i])) {
         <span class="form-error">
           {{ forbiddenTermErrorMessage }}
         </span>
         }
-        <mat-form-field class="input-full-width">
-          <mat-label>Trigger Text</mat-label>
-          <input matInput placeholder="Trigger Text" [(ngModel)]="editorData.triggers[i]" />
+        <label [for]="'trigger-' + i">Trigger Text</label>
+        <div class="input-with-button">
+          <input
+            type="text"
+            [id]="'trigger-' + i"
+            class="input-full-width"
+            placeholder="Trigger Text"
+            [(ngModel)]="editorData.triggers[i]" />
           <button
-            class="icon red action button no-shadow"
-            matSuffix
+            class="icon red action button no-shadow suffix-button"
             tooltip="Remove this trigger"
             (click)="removeTrigger(i)">
             <i class="fa-solid fa-xmark"></i>
           </button>
-        </mat-form-field>
+        </div>
       </div>
       }
       <div class="action-buttons">
@@ -70,12 +87,10 @@
         </button>
       </div>
       <div class="input-section">
-        <mat-checkbox
-          [(ngModel)]="editorData.requiresBotName"
-          labelPosition="before"
-          [disableRipple]="true">
-          Trigger Requires Bot Name in the Message
-        </mat-checkbox>
+        <div class="checkbox-group">
+          <input type="checkbox" id="requiresBotName" [(ngModel)]="editorData.requiresBotName" />
+          <label for="requiresBotName">Trigger Requires Bot Name in the Message</label>
+        </div>
       </div>
     </div>
     <div class="input-section">
@@ -90,21 +105,25 @@
       </h2>
       <div class="channel-ids-description"></div>
       @for (channelId of editorData.channelIds; track trackByFn(i, channelId); let i = $index) {
-      <div>
+      <div class="form-group">
         @if (!isValidId(editorData.channelIds[i])) {
         <span class="form-error">{{ invalidIdErrorMessage }}</span>
         }
-        <mat-form-field class="input-full-width">
-          <mat-label>Channel ID</mat-label>
-          <input matInput placeholder="Channel ID" [(ngModel)]="editorData.channelIds[i]" />
+        <label [for]="'channel-' + i">Channel ID</label>
+        <div class="input-with-button">
+          <input
+            type="text"
+            [id]="'channel-' + i"
+            class="input-full-width"
+            placeholder="Channel ID"
+            [(ngModel)]="editorData.channelIds[i]" />
           <button
-            class="icon red action button"
-            matSuffix
+            class="icon red action button no-shadow suffix-button"
             tooltip="Remove this Channel ID"
             (click)="removeChannelId(i)">
             <i class="fa-solid fa-xmark"></i>
           </button>
-        </mat-form-field>
+        </div>
       </div>
       }
       <div class="action-buttons">
@@ -126,21 +145,25 @@
         </span>
       </h2>
       @for (userId of editorData.userIds; track trackByFn(i, userId); let i = $index) {
-      <div>
+      <div class="form-group">
         @if (!isValidId(editorData.userIds[i])) {
         <span class="form-error">{{ invalidIdErrorMessage }}</span>
         }
-        <mat-form-field class="input-full-width">
-          <mat-label>User ID</mat-label>
-          <input matInput placeholder="User ID" [(ngModel)]="editorData.userIds[i]" />
+        <label [for]="'user-' + i">User ID</label>
+        <div class="input-with-button">
+          <input
+            type="text"
+            [id]="'user-' + i"
+            class="input-full-width"
+            placeholder="User ID"
+            [(ngModel)]="editorData.userIds[i]" />
           <button
-            class="icon red action button"
-            matSuffix
+            class="icon red action button no-shadow suffix-button"
             tooltip="Remove this User ID"
             (click)="removeUserId(i)">
             <i class="fa-solid fa-xmark"></i>
           </button>
-        </mat-form-field>
+        </div>
       </div>
       }
       <div class="action-buttons">
@@ -154,23 +177,24 @@
       <h2>Replies</h2>
 
       @for (reply of editorData.replies; track trackByFn(i, reply); let i = $index) {
-      <div>
+      <div class="form-group">
         @if (hasForbiddenTerm(editorData.replies[i])) {
         <span class="form-error">
           {{ forbiddenTermErrorMessage }}
         </span>
         }
-        <mat-form-field class="input-full-width">
-          <mat-label>Reply Text</mat-label>
+        <label [for]="'reply-' + i">Reply Text</label>
+        <div class="input-with-button">
           <textarea
-            matInput
+            [id]="'reply-' + i"
+            class="input-full-width"
             placeholder="Reply Text"
             [(ngModel)]="editorData.replies[i]"
             [maxlength]="maxReplyLength"></textarea>
-          <button class="icon red action button" matSuffix (click)="removeReply(i)">
+          <button class="icon red action button no-shadow suffix-button" (click)="removeReply(i)">
             <i class="fa-solid fa-xmark"></i>
           </button>
-        </mat-form-field>
+        </div>
       </div>
       }
       <div class="action-buttons">
@@ -179,34 +203,36 @@
         </button>
       </div>
       <div class="input-section">
-        <mat-checkbox
-          [(ngModel)]="editorData.mentionAuthor"
-          labelPosition="before"
-          [disableRipple]="true">
-          Mention Message Sender When Replying
-        </mat-checkbox>
+        <div class="checkbox-group">
+          <input type="checkbox" id="mentionAuthor" [(ngModel)]="editorData.mentionAuthor" />
+          <label for="mentionAuthor">Mention Message Sender When Replying</label>
+        </div>
       </div>
     </div>
     <div class="input-section">
       <h2>Reactions</h2>
       @for (reaction of editorData.reactions; track trackByFn(i, reaction); let i = $index) {
-      <div>
+      <div class="form-group">
         @if (!isValidSingleEmoji(editorData.reactions[i])) {
         <span class="form-error">
           {{ invalidEmojiErrorMessage }}
         </span>
         }
-        <mat-form-field class="input-full-width">
-          <mat-label>Reaction Emoji</mat-label>
-          <input matInput placeholder="Reaction Emoji" [(ngModel)]="editorData.reactions[i]" />
+        <label [for]="'reaction-' + i">Reaction Emoji</label>
+        <div class="input-with-button">
+          <input
+            type="text"
+            [id]="'reaction-' + i"
+            class="input-full-width"
+            placeholder="Reaction Emoji"
+            [(ngModel)]="editorData.reactions[i]" />
           <button
-            class="icon red action button"
-            matSuffix
+            class="icon red action button no-shadow suffix-button"
             tooltip="Remove this Reaction"
             (click)="removeReaction(i)">
             <i class="fa-solid fa-xmark"></i>
           </button>
-        </mat-form-field>
+        </div>
       </div>
       }
       <div class="action-buttons">

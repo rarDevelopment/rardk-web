@@ -3,11 +3,7 @@ import { ReplyDefinition } from 'src/app/components/bots/models/replybot/reply-d
 import { ReplyDefinitionEditorData as ReplyDefinitionEditorData } from 'src/app/components/bots/models/replybot/reply-definition-editor-data';
 import { HelpDialogComponent } from './help-dialog/help-dialog/help-dialog.component';
 import emojiRegex from 'emoji-regex';
-import { MatCheckboxModule } from '@angular/material/checkbox';
-import { MatInputModule } from '@angular/material/input';
-import { MatFormFieldModule } from '@angular/material/form-field';
 import { FormsModule } from '@angular/forms';
-import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
 import { TooltipDirective } from 'src/app/directives/tooltip.directive';
@@ -27,11 +23,7 @@ import { PageTitleComponent } from 'src/app/components/shared/page-title/page-ti
     MatButtonModule,
     TooltipDirective,
     MatIconModule,
-    MatSlideToggleModule,
     FormsModule,
-    MatFormFieldModule,
-    MatInputModule,
-    MatCheckboxModule,
     LoadingIndicatorComponent,
     PageTitleComponent,
   ],
