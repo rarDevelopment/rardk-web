@@ -23,7 +23,7 @@ import { PostsComponent } from './components/posts/posts.component';
 import { BooksCollectionComponent } from './components/interests/books/books.component';
 import { FavouriteGamesComponent } from './components/interests/video-games/favourite-games/favourite-games.component';
 import { GalleryPostComponent } from './components/gallery/gallery-post/gallery-post.component';
-import { ReplyDefinitionEditorDialogComponent } from './components/bots/replybot/reply-definition-editor-dialog/reply-definition-editor-dialog.component';
+import { ReplyDefinitionEditorComponent } from './components/bots/replybot/reply-definition-editor-dialog/reply-definition-editor-dialog.component';
 
 const routes: Routes = [
   { path: 'blog/:slug', pathMatch: 'full', component: BlogPostComponent },
@@ -75,7 +75,7 @@ const routes: Routes = [
   },
   {
     path: 'bots/replybot/reply-definitions/definition',
-    component: ReplyDefinitionEditorDialogComponent,
+    component: ReplyDefinitionEditorComponent,
     canActivate: [AuthenticationGuard],
   },
   { path: 'bots', component: BotsComponent },

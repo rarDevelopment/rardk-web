@@ -1,6 +1,6 @@
 import { Component, Inject } from '@angular/core';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
-import { ReplyDefinitionEditorDialogComponent } from '../../reply-definition-editor-dialog.component';
+import { ReplyDefinitionEditorComponent } from '../../reply-definition-editor-dialog.component';
 import { HelpKeywordDetail } from 'src/app/components/bots/models/replybot/help-keyword-detail';
 import { MatIconModule } from '@angular/material/icon';
 import { CopyableTextComponent } from '../../../../../shared/copyable-text/copyable-text.component';
@@ -49,7 +49,7 @@ export class HelpDialogComponent {
   ];
 
   constructor(
-    public dialogRef: MatDialogRef<ReplyDefinitionEditorDialogComponent>,
+    public dialogRef: MatDialogRef<ReplyDefinitionEditorComponent>,
     @Inject(MAT_DIALOG_DATA) public data: any
   ) {
     this.dialogData = data;

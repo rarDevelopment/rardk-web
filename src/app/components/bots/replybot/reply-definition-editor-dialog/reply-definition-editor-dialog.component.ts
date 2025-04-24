@@ -36,7 +36,7 @@ import { PageTitleComponent } from 'src/app/components/shared/page-title/page-ti
     PageTitleComponent,
   ],
 })
-export class ReplyDefinitionEditorDialogComponent extends BotPageComponent implements OnInit {
+export class ReplyDefinitionEditorComponent extends BotPageComponent implements OnInit {
   public editorData: ReplyDefinitionEditorData;
   public maxReplyLength: number = 1800;
   public isLoading: boolean = false;

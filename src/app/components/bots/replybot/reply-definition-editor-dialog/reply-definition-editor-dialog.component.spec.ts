@@ -1,18 +1,18 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { ReplyDefinitionEditorDialogComponent } from './reply-definition-editor-dialog.component';
+import { ReplyDefinitionEditorComponent } from './reply-definition-editor-dialog.component';
 
 describe('ReplyDefinitionEditorDialogComponent', () => {
-  let component: ReplyDefinitionEditorDialogComponent;
-  let fixture: ComponentFixture<ReplyDefinitionEditorDialogComponent>;
+  let component: ReplyDefinitionEditorComponent;
+  let fixture: ComponentFixture<ReplyDefinitionEditorComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-    imports: [ReplyDefinitionEditorDialogComponent]
+    imports: [ReplyDefinitionEditorComponent]
 })
     .compileComponents();
 
-    fixture = TestBed.createComponent(ReplyDefinitionEditorDialogComponent);
+    fixture = TestBed.createComponent(ReplyDefinitionEditorComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
