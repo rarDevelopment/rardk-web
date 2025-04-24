@@ -5,30 +5,20 @@ import { SetTimeZoneRequest } from 'src/app/components/bots/models/timezonebot/s
 import { TimeZoneDataSource } from 'src/app/components/bots/models/timezonebot/time-zone-data-source';
 import { TimeZoneItem } from 'src/app/components/bots/models/timezonebot/time-zone-item';
 import { ClipboardModule } from '@angular/cdk/clipboard';
-import { MatButtonModule } from '@angular/material/button';
-import { MatInputModule } from '@angular/material/input';
-import { MatOptionModule } from '@angular/material/core';
 import { FormsModule } from '@angular/forms';
-import { MatSelectModule } from '@angular/material/select';
-import { MatFormFieldModule } from '@angular/material/form-field';
-
-import { MatIconModule } from '@angular/material/icon';
 import { PageTitleComponent } from '../../../shared/page-title/page-title.component';
 import { LoadingIndicatorComponent } from 'src/app/components/shared/loading-indicator/loading-indicator.component';
+import { CommonModule } from '@angular/common';
 
 @Component({
     selector: 'app-timezones',
     templateUrl: './timezones.component.html',
     styleUrls: ['./timezones.component.scss'],
+    standalone: true,
     imports: [
+        CommonModule,
         PageTitleComponent,
-        MatIconModule,
-        MatFormFieldModule,
-        MatSelectModule,
         FormsModule,
-        MatOptionModule,
-        MatInputModule,
-        MatButtonModule,
         ClipboardModule,
         LoadingIndicatorComponent
     ]

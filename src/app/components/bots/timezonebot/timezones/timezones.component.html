@@ -19,24 +19,26 @@
   <div class="content-container-card white time-zones-container">
     <div class="filter-options">
       <div class="filter-explanation">Select a filter below to narrow down the list.</div>
-      <mat-form-field class="filter-field">
-        <mat-label>Select a Filter</mat-label>
-        <mat-select [(ngModel)]="selectedFilter" (selectionChange)="filterTimeZones()">
+      <div class="form-field filter-field filter-select-field">
+        <label for="filter-select">Select a Filter</label>
+        <select id="filter-select" [(ngModel)]="selectedFilter" (change)="filterTimeZones()">
+          <option [value]="undefined" disabled selected>Select a Filter</option>
           @for (filter of timeZoneFilterOptions; track filter) {
-          <mat-option [value]="filter">
+          <option [value]="filter">
             {{ filter }}
-          </mat-option>
+          </option>
           }
-        </mat-select>
-      </mat-form-field>
-      <mat-form-field class="filter-field">
-        <mat-label>Search Text</mat-label>
+        </select>
+      </div>
+      <div class="form-field filter-field">
+        <label for="search-text">Search Text</label>
         <input
+          id="search-text"
+          type="text"
           [(ngModel)]="filterText"
           (input)="filterTimeZones()"
-          matInput
           placeholder="Ex. Toronto" />
-      </mat-form-field>
+      </div>
       @if (selectedFilter || filterText) {
       <div class="clear-filter-section">
         <button class="tertiary action button" (click)="clearFilter()">Clear Filter</button>
@@ -66,7 +68,7 @@
       <tr>
         <td>{{ timeZone.id }} (UTC {{ formatUtcOffset(timeZone.utcOffsetHours) }})</td>
         <td>
-          <button class="icon action button" (click)="copyTimeZone(timeZone.id)">
+          <button class="icon action button" (click)="copyTimeZone(timeZone.id)" title="Copy Time Zone ID">
             <i class="fa-regular fa-copy"></i>
           </button>
         </td>

@@ -8,8 +8,6 @@ import { DiscordGuild } from 'src/app/components/bots/models/discord-guild';
 import { GuildConfiguration } from 'src/app/components/bots/models/replybot/guild-configuration';
 import { ReplyDefinitionAttributeType } from 'src/app/components/bots/models/replybot/reply-definition-filter-type';
 import { DiscordUser } from 'src/app/components/bots/models/discord-user';
-import { MatIconModule } from '@angular/material/icon';
-import { MatButtonModule } from '@angular/material/button';
 import { FormsModule } from '@angular/forms';
 import { PageTitleComponent } from '../../shared/page-title/page-title.component';
 import { CommonModule } from '@angular/common';
@@ -27,8 +25,6 @@ import { TooltipDirective } from 'src/app/directives/tooltip.directive';
     PageTitleComponent,
     FormsModule,
     TooltipDirective,
-    MatButtonModule,
-    MatIconModule,
     CheckOrXComponent,
     RouterLink,
     LoadingIndicatorComponent,

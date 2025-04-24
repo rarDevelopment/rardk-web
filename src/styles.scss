@@ -535,6 +535,76 @@ a:visited {
   }
 }
 
+// Basic Form Field Styling
+.form-field {
+  margin-bottom: 1rem; // Add some space below form fields
+
+  label {
+    display: block; // Make labels block elements
+    margin-bottom: 0.3rem; // Space between label and input/select
+    font-weight: 500; // Slightly bolder labels
+    font-size: 14px;
+    color: #333; // Darker label color for contrast on white background
+  }
+
+  input[type="text"],
+  select {
+    width: calc(100% - 22px); // Default width, accounting for padding and border
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 16px;
+    box-sizing: border-box; // Include padding and border in the element's total width and height
+    background-color: #fff; // Ensure background is white
+    color: #000; // Ensure text is black
+  }
+
+  input[type="text"]:focus,
+  select:focus {
+    border-color: variables.$accent-color; // Highlight focus
+    outline: none; // Remove default outline
+    box-shadow: 0 0 0 2px rgba(137, 37, 196, 0.2); // Optional: add a subtle glow on focus
+  }
+
+  // Style for disabled state if needed
+  input[type="text"]:disabled,
+  select:disabled {
+    background-color: #eee;
+    cursor: not-allowed;
+  }
+}
+
+// Specific adjustments for selects
+select {
+  appearance: none; // Remove default system appearance
+  background-image: url('data:image/svg+xml;charset=US-ASCII,<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="%23333" viewBox="0 0 16 16"><path fill-rule="evenodd" d="M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z"/></svg>'); // Custom dropdown arrow
+  background-repeat: no-repeat;
+  background-position: right 10px center;
+  background-size: 16px 12px;
+  padding-right: 30px; // Make space for the custom arrow
+}
+
+// Adjustments for white card context
+.content-container-card.white {
+  // ... existing styles ...
+  .form-field label {
+    color: #333; // Ensure label color is readable on white
+  }
+
+  .form-field input[type="text"],
+  .form-field select {
+    background-color: #fff;
+    color: #000;
+    border-color: #ccc;
+  }
+
+  .form-field input[type="text"]:focus,
+  .form-field select:focus {
+     border-color: variables.$accent-color; // Keep focus color consistent
+     box-shadow: 0 0 0 2px rgba(137, 37, 196, 0.2);
+  }
+}
+
 .search-container {
   display: flex;
   align-items: center;
@@ -616,9 +686,4 @@ circle {
 
 .mdc-linear-progress__bar-inner {
   border-color: variables.$accent-color !important;
-}
-
-// used for dropdown on lego filters
-.mat-mdc-form-field {
-  width: 340px;
 }

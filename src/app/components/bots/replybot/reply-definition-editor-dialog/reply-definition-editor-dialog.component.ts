@@ -4,8 +4,6 @@ import { ReplyDefinitionEditorData as ReplyDefinitionEditorData } from 'src/app/
 import { HelpDialogComponent } from './help-dialog/help-dialog/help-dialog.component';
 import emojiRegex from 'emoji-regex';
 import { FormsModule } from '@angular/forms';
-import { MatIconModule } from '@angular/material/icon';
-import { MatButtonModule } from '@angular/material/button';
 import { TooltipDirective } from 'src/app/directives/tooltip.directive';
 import { BotPageComponent } from '../../bot-page/bot-page.component';
 import { forkJoin, map, switchMap, take, throwError, timeout } from 'rxjs';
@@ -20,9 +18,7 @@ import { PageTitleComponent } from 'src/app/components/shared/page-title/page-ti
   templateUrl: './reply-definition-editor-dialog.component.html',
   styleUrls: ['./reply-definition-editor-dialog.component.scss'],
   imports: [
-    MatButtonModule,
     TooltipDirective,
-    MatIconModule,
     FormsModule,
     LoadingIndicatorComponent,
     PageTitleComponent,

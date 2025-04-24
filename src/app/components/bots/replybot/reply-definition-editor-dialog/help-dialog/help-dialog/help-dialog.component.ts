@@ -2,14 +2,13 @@ import { Component, Inject } from '@angular/core';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 import { ReplyDefinitionEditorComponent } from '../../reply-definition-editor-dialog.component';
 import { HelpKeywordDetail } from 'src/app/components/bots/models/replybot/help-keyword-detail';
-import { MatIconModule } from '@angular/material/icon';
 import { CopyableTextComponent } from '../../../../../shared/copyable-text/copyable-text.component';
 
 @Component({
   selector: 'app-help-dialog',
   templateUrl: './help-dialog.component.html',
   styleUrls: ['./help-dialog.component.scss'],
-  imports: [MatIconModule, CopyableTextComponent],
+  imports: [CopyableTextComponent],
 })
 export class HelpDialogComponent {
   public dialogData: any;
