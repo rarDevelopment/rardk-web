@@ -1,13 +1,10 @@
-import { Component, ElementRef, ViewChild } from '@angular/core';
+import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { finalize, take } from 'rxjs';
 import { LegoSet } from 'src/app/components/interests/lego-sets/models/lego-set';
 import { LegoSetsService } from './lego-sets.service';
 import { CheckOrXComponent } from '../../shared/check-or-x/check-or-x.component';
-import { MatRadioModule } from '@angular/material/radio';
-import { MatOptionModule } from '@angular/material/core';
 import { FormsModule } from '@angular/forms';
-import { MatSelectModule } from '@angular/material/select';
-import { MatFormFieldModule } from '@angular/material/form-field';
+import { CommonModule } from '@angular/common';
 
 import { PageTitleComponent } from '../../shared/page-title/page-title.component';
 import { LoadingIndicatorComponent } from '../../shared/loading-indicator/loading-indicator.component';
@@ -19,19 +16,17 @@ import { ModalComponent } from '../../shared/modal/modal.component';
     selector: 'app-lego-sets',
     templateUrl: './lego-sets.component.html',
     styleUrls: ['./lego-sets.component.scss'],
+    standalone: true,
     imports: [
-        PageTitleComponent,
-        MatFormFieldModule,
-        MatSelectModule,
+        CommonModule,
         FormsModule,
-        MatOptionModule,
-        MatRadioModule,
         CheckOrXComponent,
         LoadingIndicatorComponent,
         ModalComponent,
+        PageTitleComponent,
     ]
 })
-export class LegoSetsCollectionComponent {
+export class LegoSetsCollectionComponent implements OnInit {
   public ownedSets: LegoSetDisplay[];
   public wantedSets: LegoSetDisplay[];
   public filteredOwnedSets: LegoSetDisplay[];
