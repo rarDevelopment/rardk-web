@@ -1,5 +1,7 @@
 <a [routerLink]="urlPath">
-  <div class="button on-black navbar-button" [ngClass]="{ selected: isCurrentPage() }">
+  <div
+    [class]="'button on-black navbar-button ' + colour"
+    [ngClass]="{ selected: isCurrentPage() }">
     <ng-content></ng-content>
   </div>
 </a>

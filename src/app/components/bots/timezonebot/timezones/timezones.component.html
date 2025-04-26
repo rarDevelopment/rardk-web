@@ -64,7 +64,6 @@
     </h3>
     <table class="set-table">
       <th>Time Zone ID (IANA)</th>
-      <!-- <th></th> -->
       <th></th>
       @for (timeZone of dataSource; track timeZone) {
       <tr>
@@ -73,14 +72,6 @@
             {{ timeZone.id }} (UTC {{ formatUtcOffset(timeZone.utcOffsetHours) }})
           </app-copyable-text>
         </td>
-        <!-- <td>
-          <button
-            class="icon action button"
-            (click)="copyTimeZone(timeZone.id)"
-            title="Copy Time Zone ID">
-            <i class="fa-regular fa-copy"></i>
-          </button>
-        </td> -->
         <td>
           <button
             class="button magenta on-white"

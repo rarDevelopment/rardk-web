@@ -61,6 +61,7 @@ img {
   display: flex;
   justify-content: center;
   align-items: center;
+  gap: 10px;
 }
 
 .filters-container {
@@ -86,9 +87,9 @@ img {
   }
 
   input[type="radio"] {
-     width: auto; // Override default form-field input width
-     margin: 0; // Remove default margins
-     cursor: pointer;
+    width: auto; // Override default form-field input width
+    margin: 0; // Remove default margins
+    cursor: pointer;
   }
 }
 
