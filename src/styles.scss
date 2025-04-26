@@ -316,152 +316,272 @@ a:visited {
 
 .button {
   display: inline-block;
-  border-style: solid;
-  border-width: 1px;
-  border-radius: 3px;
-  border-color: #000000;
-  font-weight: 500;
+  color: black;
+  background-color: transparent;
+  width: 160px;
+  border-radius: 30px;
   padding: 10px;
-  margin: 4px;
-  font-size: 17px;
   text-align: center;
-  color: #000000;
   cursor: pointer;
-  background-color: #ffffff;
-  box-shadow: variables.$button-box-shadow;
-}
+  font-weight: 500;
+  font-size: 17px;
+  border-style: solid;
+  border-width: 3px;
 
-.button.no-shadow {
-  box-shadow: none;
-  border: none;
-}
+  &:disabled,
+  &[disabled="disabled"] {
+    background-color: rgba(56, 56, 56, 0.12);
+    color: rgba(65, 65, 65, 0.38);
+    cursor: not-allowed;
+    border-color: rgba(65, 65, 65, 0.2);
+    opacity: 0.7;
 
-.button:hover,
-.button.selected {
-  background-color: variables.$accent-color;
-}
+    &:hover,
+    &:active {
+      border-color: rgba(65, 65, 65, 0.2);
+      background-color: rgba(56, 56, 56, 0.12);
+    }
 
-.button.transparent {
-  background-color: transparent;
-  color: #ffffff;
-  border: none;
-  padding: 0px;
-}
+    // Override all color-specific hover effects
+    &.blue:hover,
+    &.purple:hover,
+    &.green:hover,
+    &.pink:hover,
+    &.magenta:hover,
+    &.red:hover,
+    &.hot-pink:hover,
+    &.dark-purple:hover,
+    &.light-blue:hover {
+      border-color: rgba(65, 65, 65, 0.2);
+    }
+  }
 
-.button.transparent:active {
-  color: #6d6d6d;
-}
+  &.on-black {
+    border-color: white;
+    color: white;
 
-.button.action:disabled,
-.button.action[disabled="disabled"],
-.button.action:disabled:hover,
-.button.action[disabled="disabled"]:hover,
-.button.action:disabled:active,
-.button.action[disabled="disabled"]:active,
-.button.action.primary:disabled,
-.button.action.primary[disabled="disabled"],
-.button.action.primary:disabled:hover,
-.button.action.primary[disabled="disabled"]:hover,
-.button.action.primary:disabled:active,
-.button.action.primary[disabled="disabled"]:active,
-.button.action.secondary:disabled,
-.button.action.secondary[disabled="disabled"],
-.button.action.secondary:disabled:hover,
-.button.action.secondary[disabled="disabled"]:hover,
-.button.action.secondary:disabled:active,
-.button.action.secondary[disabled="disabled"]:active,
-.button.action.tertiary:disabled,
-.button.action.tertiary[disabled="disabled"],
-.button.action.tertiary:disabled:hover,
-.button.action.tertiary[disabled="disabled"]:hover,
-.button.action.tertiary:disabled:active,
-.button.action.tertiary[disabled="disabled"]:active,
-.button.action.danger:disabled,
-.button.action.danger[disabled="disabled"],
-.button.action.danger:disabled:hover,
-.button.action.danger[disabled="disabled"]:hover,
-.button.action.danger:disabled:active,
-.button.action.danger[disabled="disabled"]:active {
-  background-color: rgba(56, 56, 56, 0.12);
-  color: rgba(65, 65, 65, 0.38);
-  cursor: default;
-}
+    &:disabled,
+    &[disabled="disabled"] {
+      border-color: rgba(255, 255, 255, 0.3);
+      color: rgba(255, 255, 255, 0.5);
+    }
+  }
 
-.button.action.primary {
-  background-color: rgb(137, 37, 196);
-  color: #ffffff;
-}
+  &.on-white {
+    border-color: black;
+    color: black;
+  }
 
-.button.action.primary:hover {
-  background-color: rgb(162, 42, 232);
-  color: #ffffff;
-}
+  &.navbar-button {
+    &:hover,
+    &.selected {
+      border-color: variables.$accent-color;
+    }
+  }
 
-.button.action.primary:active {
-  background-color: rgb(152, 32, 222);
-  color: #ffffff;
-}
+  &.orange {
+  }
+  &.orange:hover {
+    border-color: variables.$accent-color;
+  }
+  &.orange:active {
+    // Add styles for active state if needed later
+  }
 
-.button.action.secondary {
-  background-color: rgb(255, 255, 255);
-  color: #000000;
-}
+  &.blue {
+    // Add styles for non-hover state if needed later
+  }
+  &.blue:hover {
+    border-color: variables.$button-blue;
+  }
+  &.blue:active {
+    // Add styles for active state if needed later
+  }
 
-.button.action.secondary:hover {
-  background-color: rgb(245, 245, 245);
-  color: #000000;
-}
+  &.purple {
+    // Add styles for non-hover state if needed later
+  }
+  &.purple:hover {
+    border-color: variables.$button-purple;
+  }
+  &.purple:active {
+    // Add styles for active state if needed later
+  }
 
-.button.action.secondary:active {
-  background-color: rgb(235, 235, 235);
-  color: #000000;
-}
+  &.green {
+    // Add styles for non-hover state if needed later
+  }
+  &.green:hover {
+    border-color: variables.$button-green;
+  }
+  &.green:active {
+    // Add styles for active state if needed later
+  }
 
-.button.action.tertiary {
-  background-color: rgb(255, 64, 129);
-  color: #ffffff;
-}
+  &.pink {
+    // Add styles for non-hover state if needed later
+  }
+  &.pink:hover {
+    border-color: variables.$button-pink;
+  }
+  &.pink:active {
+    // Add styles for active state if needed later
+  }
 
-.button.action.tertiary:hover {
-  background-color: rgb(245, 54, 119);
-  color: #ffffff;
-}
+  &.magenta {
+    // Add styles for non-hover state if needed later
+  }
+  &.magenta:hover {
+    border-color: variables.$button-magenta-hover;
+  }
+  &.magenta:active {
+    // Add styles for active state if needed later
+  }
 
-.button.action.tertiary:active {
-  background-color: rgb(235, 44, 109);
-  color: #ffffff;
-}
+  &.red {
+    // Add styles for non-hover state if needed later
+  }
+  &.red:hover {
+    border-color: variables.$button-red;
+  }
+  &.red:active {
+    // Add styles for active state if needed later
+  }
 
-.button.action.danger {
-  background-color: rgb(244, 67, 54);
-  color: #ffffff;
-}
+  &.hot-pink {
+    // Add styles for non-hover state if needed later
+  }
+  &.hot-pink:hover {
+    border-color: variables.$button-hot-pink-hover;
+  }
+  &.hot-pink:active {
+    // Add styles for active state if needed later
+  }
 
-.button.action.danger:hover {
-  background-color: rgb(234, 57, 44);
-  color: #ffffff;
-}
+  &.dark-purple {
+    // Add styles for non-hover state if needed later
+  }
+  &.dark-purple:hover {
+    border-color: variables.$button-dark-purple-hover;
+  }
+  &.dark-purple:active {
+    // Add styles for active state if needed later
+  }
 
-.button.action.danger:active {
-  background-color: rgb(224, 47, 34);
-  color: #ffffff;
-}
+  &.light-blue {
+    // Add styles for non-hover state if needed later
+  }
+  &.light-blue:hover {
+    border-color: variables.$button-light-blue-hover;
+  }
+  &.light-blue:active {
+    // Add styles for active state if needed later
+  }
 
-.button.icon {
-  background-color: transparent;
-  color: #000000;
-}
+  &.no-shadow {
+    box-shadow: none;
+    border: none;
+  }
 
-.button.icon:hover {
-  background-color: rgb(245, 245, 245);
-}
+  &.transparent {
+    background-color: transparent;
+    color: #ffffff;
+    border: none;
+    padding: 0px;
 
-.button.icon:active {
-  background-color: rgb(235, 235, 235);
-}
+    &:active {
+      color: #6d6d6d;
+    }
+  }
 
-.button.icon.red {
-  color: rgb(224, 47, 34);
+  // &.action {
+  //   &:disabled,
+  //   &[disabled="disabled"] {
+  //     background-color: rgba(56, 56, 56, 0.12);
+  //     color: rgba(65, 65, 65, 0.38);
+  //     cursor: default;
+  //     &:hover,
+  //     &:active {
+  //     } // Prevent hover/active styles when disabled
+  //   }
+
+  //   &.primary {
+  //     background-color: #8925c4;
+  //     color: #ffffff;
+  //     &:hover {
+  //       background-color: rgb(162, 42, 232);
+  //     }
+  //     &:active {
+  //       background-color: rgb(152, 32, 222);
+  //     }
+  //     &:disabled,
+  //     &[disabled="disabled"] {
+  //       /* Inherit base disabled styles */
+  //     }
+  //   }
+
+  //   &.secondary {
+  //     background-color: rgb(255, 255, 255);
+  //     color: #000000;
+  //     &:hover {
+  //       background-color: rgb(245, 245, 245);
+  //     }
+  //     &:active {
+  //       background-color: rgb(235, 235, 235);
+  //     }
+  //     &:disabled,
+  //     &[disabled="disabled"] {
+  //       /* Inherit base disabled styles */
+  //     }
+  //   }
+
+  //   &.tertiary {
+  //     background-color: rgb(255, 64, 129);
+  //     color: #ffffff;
+  //     &:hover {
+  //       background-color: rgb(245, 54, 119);
+  //     }
+  //     &:active {
+  //       background-color: rgb(235, 44, 109);
+  //     }
+  //     &:disabled,
+  //     &[disabled="disabled"] {
+  //       /* Inherit base disabled styles */
+  //     }
+  //   }
+
+  //   &.danger {
+  //     background-color: rgb(244, 67, 54);
+  //     color: #ffffff;
+  //     &:hover {
+  //       background-color: rgb(234, 57, 44);
+  //     }
+  //     &:active {
+  //       background-color: rgb(224, 47, 34);
+  //     }
+  //     &:disabled,
+  //     &[disabled="disabled"] {
+  //       /* Inherit base disabled styles */
+  //     }
+  //   }
+  // }
+
+  // &.icon {
+  //   background-color: transparent;
+  //   color: #000000; // Assuming default icon color is black
+
+  //   &:hover {
+  //     background-color: rgb(245, 245, 245);
+  //   }
+
+  //   &:active {
+  //     background-color: rgb(235, 235, 235);
+  //   }
+
+  //   &.red {
+  //     color: rgb(224, 47, 34);
+  //   }
+  // }
 }
 
 // Basic Toggle Switch Styling
@@ -613,8 +733,8 @@ select {
 
   .form-field input[type="text"]:focus,
   .form-field select:focus {
-     border-color: variables.$accent-color; // Keep focus color consistent
-     box-shadow: 0 0 0 2px rgba(137, 37, 196, 0.2);
+    border-color: variables.$accent-color; // Keep focus color consistent
+    box-shadow: 0 0 0 2px rgba(137, 37, 196, 0.2);
   }
 }
 

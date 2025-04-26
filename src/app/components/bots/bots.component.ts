@@ -24,6 +24,7 @@ export class BotsComponent extends BotPageComponent implements OnInit {
       description:
         'A Discord Bot for easily converting times in a Discord server. It can also remind you about birthdays!',
       isConfigurable: true,
+      requiresLogin: false,
       controlPanelLink: '/bots/timezonebot',
       gitHubLink: 'https://github.com/rarDevelopment/timezone-bot-dotnet',
     } as BotDefinition,
@@ -35,6 +36,7 @@ export class BotsComponent extends BotPageComponent implements OnInit {
       description:
         'A Discord Bot with a personality, including built-in replies, custom replies, and useful features.',
       isConfigurable: true,
+      requiresLogin: true,
       controlPanelLink: '/bots/replybot',
       gitHubLink: 'https://github.com/rarDevelopment/replybot-dotnet',
     } as BotDefinition,
@@ -119,8 +121,8 @@ export class BotsComponent extends BotPageComponent implements OnInit {
         },
       });
   }
-  showMessageIfNotLoggedIn() {
-    if (!this.isLoggedIn()) {
+  showMessageIfNotLoggedIn(requiresLogin: boolean) {
+    if (requiresLogin && !this.isLoggedIn()) {
       this.showSnackBar('You must be logged in with Discord to access the bot settings.', true);
     }
   }

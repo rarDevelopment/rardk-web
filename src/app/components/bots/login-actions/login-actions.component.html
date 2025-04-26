@@ -1,10 +1,7 @@
 @if (!isLoggedIn()) {
-  <button class="log-in-button button" (click)="logInWithDiscord()">
-    Log in with Discord
-  </button>
-}
-@if (isLoggedIn()) {
-  <button class="log-out-button button" (click)="confirmLogOut()">
-    Log Out
-  </button>
+<button class="button green on-black log-in-button" (click)="logInWithDiscord()">
+  Log in with Discord
+</button>
+} @if (isLoggedIn()) {
+<button class="button red on-black log-in-button" (click)="confirmLogOut()">Log Out</button>
 }

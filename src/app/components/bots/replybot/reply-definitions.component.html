@@ -5,7 +5,7 @@
     <app-page-title>Custom Reply Definitions for {{ guildName }}</app-page-title>
     <div class="navigation-button-section">
       <a [routerLink]="['/bots/replybot']">
-        <div class="back-button secondary action button">
+        <div class="on-black button blue on-black">
           <i class="fa-solid fa-arrow-left"></i>
           Back to Server List
         </div>
@@ -14,7 +14,7 @@
     @if (replyDefinitions.length > 0) {
     <div class="guild-reply-definition-add-action-section">
       <button
-        class="add-guild-reply-definition-button primary action button"
+        class="button dark-purple on-black new-reply-definition-button"
         (click)="addNewReplyDefinition()">
         Create New Reply Definition
       </button>
@@ -24,23 +24,23 @@
       <div>
         <div class="filter-description">Filter By:</div>
         <div class="filter-buttons-container">
-           @for (filterType of getFilters(); track filterType) {
-           <button
-             class="filter-button"
-             [ngClass]="{ 'active': isFilterActive(filterType) }"
-             (click)="toggleFilter(filterType)">
-             {{ filterType.displayName }}
-             @if (isFilterActive(filterType)) {
-               <i class="fa-solid fa-check filter-check-icon"></i>
-             }
-           </button>
-           }
+          @for (filterType of getFilters(); track filterType) {
+          <button
+            class="filter-button"
+            [ngClass]="{ active: isFilterActive(filterType) }"
+            (click)="toggleFilter(filterType)">
+            {{ filterType.displayName }}
+            @if (isFilterActive(filterType)) {
+            <i class="fa-solid fa-check filter-check-icon"></i>
+            }
+          </button>
+          }
         </div>
       </div>
       @if (hasFilters()) {
       <div class="active-filter-display-text">
         <span>Showing only: {{ getActiveFilterDisplayNames().join(" & ") }}</span>
-        <button class="clear-filters-button tertiary action button" (click)="clearFilters()">
+        <button class="clear-filters-button button pink on-white" (click)="clearFilters()">
           Clear Filters
         </button>
       </div>
@@ -97,7 +97,7 @@
           @if (!hasFilters()) {
           <div class="priority-buttons">
             <button
-              class="priority-button primary action button"
+              class="priority-button button purple"
               tooltip="Move up in priority"
               [disabled]="indexOfReplies == 0"
               (click)="movePriority('up', replyDefinition); $event.stopPropagation()">
@@ -105,7 +105,7 @@
               <span>Move Up</span>
             </button>
             <button
-              class="priority-button primary action button"
+              class="priority-button button purple"
               tooltip="Move down in priority"
               [disabled]="indexOfReplies == filteredReplyDefinitions.length - 1"
               (click)="movePriority('down', replyDefinition); $event.stopPropagation()">
@@ -216,12 +216,12 @@
             <div class="delete-warning">Are you sure you want to delete? You cannot undo this!</div>
             <div class="delete-warning-actions">
               <button
-                class="delete-warning-button danger action button"
+                class="delete-warning-button button red on-white"
                 (click)="doDelete(); $event.stopPropagation()">
                 Delete Forever!
               </button>
               <button
-                class="delete-warning-button secondary action button"
+                class="delete-warning-button button blue on-white"
                 (click)="cancelDelete(); $event.stopPropagation()">
                 No! Cancel!
               </button>
@@ -229,24 +229,24 @@
             } @if (replyDefinitionToDelete?.id !== replyDefinition.id) {
             <div class="guild-reply-definition-actions">
               <button
-                class="guild-reply-definition-action-button secondary action button"
+                class="guild-reply-definition-action-button button purple on-white"
                 (click)="addFromCopy(replyDefinition); $event.stopPropagation()">
                 Create Duplicate
               </button>
               <button
-                class="guild-reply-definition-action-button secondary action button"
+                class="guild-reply-definition-action-button button purple on-white"
                 (click)="copyJsonToClipboard(replyDefinition); $event.stopPropagation()">
                 Copy to Clipboard
               </button>
             </div>
             <div class="guild-reply-definition-actions">
               <button
-                class="guild-reply-definition-action-button tertiary action button"
+                class="guild-reply-definition-action-button button pink on-white"
                 (click)="startEdit(replyDefinition); $event.stopPropagation()">
                 Edit
               </button>
               <button
-                class="guild-reply-definition-action-button danger action button"
+                class="guild-reply-definition-action-button button red on-white"
                 (click)="showDeleteConfirm(replyDefinition); $event.stopPropagation()">
                 Delete
               </button>
@@ -260,8 +260,7 @@
     }
     <div class="guild-reply-definition-add-action-section">
       <button
-        class="add-guild-reply-definition-button primary action button"
-        color="primary"
+        class="button dark-purple on-black new-reply-definition-button"
         (click)="addNewReplyDefinition()">
         Create New Reply Definition
       </button>

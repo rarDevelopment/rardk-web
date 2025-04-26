@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
 import { ReplyDefinition } from 'src/app/components/bots/models/replybot/reply-definition';
 import { ReplyDefinitionEditorData as ReplyDefinitionEditorData } from 'src/app/components/bots/models/replybot/reply-definition-editor-data';
 import { HelpDialogComponent } from './help-dialog/help-dialog/help-dialog.component';
@@ -19,15 +19,15 @@ import { ModalComponent } from '../../../shared/modal/modal.component'; // Impor
   selector: 'app-reply-definition-editor-dialog',
   templateUrl: './reply-definition-editor-dialog.component.html',
   styleUrls: ['./reply-definition-editor-dialog.component.scss'],
-  standalone: true, // Make standalone
+  standalone: true,
   imports: [
-    CommonModule, // Add CommonModule
+    CommonModule,
     TooltipDirective,
     FormsModule,
     LoadingIndicatorComponent,
     PageTitleComponent,
-    ModalComponent, // Import ModalComponent
-    HelpDialogComponent, // Import HelpDialogComponent
+    ModalComponent,
+    HelpDialogComponent,
   ],
 })
 export class ReplyDefinitionEditorComponent extends BotPageComponent implements OnInit {

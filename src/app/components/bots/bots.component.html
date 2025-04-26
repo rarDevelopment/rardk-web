@@ -13,32 +13,30 @@
 </div>
 
 @for (bot of bots; track bot) {
-  <div class="content-container bot">
-    <div class="content-container-card white bot-card">
-      <img class="icon-img" [src]="bot.imageUrl" [alt]="bot.name" />
-      <div class="bot-description">
-        <h3 class="bot-name">{{ bot.name }}</h3>
-        <div class="bot-text">{{ bot.description }}</div>
-        <div class="bot-actions">
-          @if (bot.inviteLink) {
-            <a [href]="bot.inviteLink" target="_blank">
-              <div class="button bot-button-link invite">Invite Bot</div>
-            </a>
-          }
-          @if (bot.isConfigurable) {
-            <a
-              (click)="showMessageIfNotLoggedIn()"
-              [routerLink]="bot.controlPanelLink">
-              <div class="button bot-button-link settings">Settings</div>
-            </a>
-          }
-          @if (bot.gitHubLink) {
-            <a [href]="bot.gitHubLink" target="_blank">
-              <div class="button bot-button-link github">GitHub</div>
-            </a>
-          }
-        </div>
+<div class="content-container bot">
+  <div class="content-container-card white bot-card">
+    <img class="icon-img" [src]="bot.imageUrl" [alt]="bot.name" />
+    <div class="bot-description">
+      <h3 class="bot-name">{{ bot.name }}</h3>
+      <div class="bot-text">{{ bot.description }}</div>
+      <div class="bot-actions">
+        @if (bot.inviteLink) {
+        <a [href]="bot.inviteLink" target="_blank">
+          <div class="button bot-button-link dark-purple">Invite Bot</div>
+        </a>
+        } @if (bot.isConfigurable) {
+        <a
+          (click)="showMessageIfNotLoggedIn(bot.requiresLogin)"
+          [routerLink]="bot.controlPanelLink">
+          <div class="button bot-button-link hot-pink">Settings</div>
+        </a>
+        } @if (bot.gitHubLink) {
+        <a [href]="bot.gitHubLink" target="_blank">
+          <div class="button bot-button-link light-blue">GitHub</div>
+        </a>
+        }
       </div>
     </div>
   </div>
+</div>
 }

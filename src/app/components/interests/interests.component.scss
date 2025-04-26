@@ -7,8 +7,8 @@
 
 .collection-button {
   width: 240px;
-  box-shadow: variables.$button-box-shadow;
-  color: white;
+  // box-shadow: variables.$button-box-shadow;
+  // color: white;
 }
 
 $hover-lighten-percentage: 3.92%;
@@ -19,26 +19,26 @@ $hover-lighten-percentage: 3.92%;
   }
 }
 
-.video-games-button {
-  $video-games-color: #526ff1;
-  background-color: $video-games-color;
-  @include lighten-hover($video-games-color);
-}
+// .video-games-button {
+//   $video-games-color: #526ff1;
+//   background-color: $video-games-color;
+//   @include lighten-hover($video-games-color);
+// }
 
-.lego-button {
-  $lego-color: #824b9e;
-  background-color: $lego-color;
-  @include lighten-hover($lego-color);
-}
+// .lego-button {
+//   $lego-color: #824b9e;
+//   background-color: $lego-color;
+//   @include lighten-hover($lego-color);
+// }
 
-.board-games-button {
-  $board-games-color: #03bb56;
-  background-color: $board-games-color;
-  @include lighten-hover($board-games-color);
-}
+// .board-games-button {
+//   $board-games-color: #03bb56;
+//   background-color: $board-games-color;
+//   @include lighten-hover($board-games-color);
+// }
 
-.books-button {
-  $books-color: #f0137a;
-  background-color: $books-color;
-  @include lighten-hover($books-color);
-}
+// .books-button {
+//   $books-color: #f0137a;
+//   background-color: $books-color;
+//   @include lighten-hover($books-color);
+// }

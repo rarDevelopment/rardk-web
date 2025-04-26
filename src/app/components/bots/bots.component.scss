@@ -5,22 +5,22 @@
   margin-right: 20px;
 }
 
-.discord-button {
-  width: 30px;
+// .discord-button {
+//   width: 30px;
 
-  display: inline-block;
-  transition: all 0.5s ease-in-out;
-}
+//   display: inline-block;
+//   transition: all 0.5s ease-in-out;
+// }
 
-.discord-button:hover {
-  transform: rotate(360deg);
-}
+// .discord-button:hover {
+//   transform: rotate(360deg);
+// }
 
-.discord-button:active {
-  opacity: 0;
-  transition: 0.1s linear;
-  transform: scale(3) rotate(10deg);
-}
+// .discord-button:active {
+//   opacity: 0;
+//   transition: 0.1s linear;
+//   transform: scale(3) rotate(10deg);
+// }
 
 .bot-description {
   font-size: 14px;
@@ -65,35 +65,35 @@
   margin-right: 10px;
 }
 
-.settings {
-  background-color: rgb(255, 64, 129);
-  color: #ffffff;
-}
-.settings:hover,
-.settings:active {
-  background-color: rgb(245, 54, 119);
-  color: #ffffff;
-}
+// .settings {
+//   background-color: #ff4081;
+//   color: #ffffff;
+// }
+// .settings:hover,
+// .settings:active {
+//   background-color: #f53677;
+//   color: #ffffff;
+// }
 
-.invite {
-  background-color: rgb(130, 75, 158);
-  color: #ffffff;
-}
-.invite:hover,
-.invite:active {
-  background-color: rgb(120, 65, 148);
-  color: #ffffff;
-}
+// .invite {
+//   background-color: #824b9e;
+//   color: #ffffff;
+// }
+// .invite:hover,
+// .invite:active {
+//   background-color: #784194;
+//   color: #ffffff;
+// }
 
-.github {
-  background-color: rgb(0, 178, 214);
-  color: #ffffff;
-}
-.github:hover,
-.github:active {
-  background-color: rgb(-10, 168, 204);
-  color: #ffffff;
-}
+// .github {
+//   background-color: #00b2d6;
+//   color: #ffffff;
+// }
+// .github:hover,
+// .github:active {
+//   background-color: rgb(-10, 168, 204);
+//   color: #ffffff;
+// }
 
 @media screen and (min-width: 0px) and (max-width: 940px) {
   .bot-description {

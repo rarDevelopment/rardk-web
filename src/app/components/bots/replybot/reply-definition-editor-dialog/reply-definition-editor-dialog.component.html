@@ -4,7 +4,6 @@
 
 <app-modal
   [isVisible]="showHelpDialog"
-  
   modalId="helpDialogModal"
   (closeModalEvent)="closeHelpDialog()">
   <!-- Project the help dialog component inside the modal -->
@@ -23,12 +22,12 @@
 <div class="content-container">
   <div class="content-container-card editor-box">
     <div class="navigation-button-section">
-      <button class="back-button secondary action button" (click)="cancelEdit()">
+      <button class="button pink on-white left-button-margin" (click)="cancelEdit()">
         <i class="fa-solid fa-arrow-left"></i>
-        Back to Reply Definitions
+        Back
       </button>
       <button
-        class="icon action button"
+        class="button purple on-white"
         tooltip="Click here for a detailed outline of this editor"
         (click)="openHelpDialog()">
         <i class="fa-solid fa-circle-question"></i>
@@ -36,11 +35,11 @@
       </button>
       @if(!editorData || !editorData.id){
       <button
-        class="add-guild-reply-definition-button secondary action button"
+        class="add-guild-reply-definition-button button blue on-white right-button-margin"
         (click)="addFromClipboard()"
         tooltip="Paste a reply definition from your clipboard">
         <i class="fa-solid fa-paste"></i>
-        Paste From Clipboard
+        Paste
       </button>
       }
     </div>
@@ -74,7 +73,7 @@
           {{ forbiddenTermErrorMessage }}
         </span>
         }
-        <label [for]="'trigger-' + i">Trigger Text</label>
+        <!-- <label [for]="'trigger-' + i">Trigger Text</label> -->
         <div class="input-with-button">
           <input
             type="text"
@@ -83,8 +82,8 @@
             placeholder="Trigger Text"
             [(ngModel)]="editorData.triggers[i]" />
           <button
-            class="icon red action button no-shadow suffix-button"
-            tooltip="Remove this trigger"
+            class="button red suffix-button"
+            tooltip="Remove this Trigger"
             (click)="removeTrigger(i)">
             <i class="fa-solid fa-xmark"></i>
           </button>
@@ -92,7 +91,7 @@
       </div>
       }
       <div class="action-buttons">
-        <button class="action-button secondary action button" (click)="addTrigger()">
+        <button class="action-button button blue on-white" (click)="addTrigger()">
           <i class="fa-solid fa-plus"></i>
           Add Trigger
         </button>
@@ -120,7 +119,7 @@
         @if (!isValidId(editorData.channelIds[i])) {
         <span class="form-error">{{ invalidIdErrorMessage }}</span>
         }
-        <label [for]="'channel-' + i">Channel ID</label>
+        <!-- <label [for]="'channel-' + i">Channel ID</label> -->
         <div class="input-with-button">
           <input
             type="text"
@@ -129,7 +128,7 @@
             placeholder="Channel ID"
             [(ngModel)]="editorData.channelIds[i]" />
           <button
-            class="icon red action button no-shadow suffix-button"
+            class="button red suffix-button"
             tooltip="Remove this Channel ID"
             (click)="removeChannelId(i)">
             <i class="fa-solid fa-xmark"></i>
@@ -138,7 +137,7 @@
       </div>
       }
       <div class="action-buttons">
-        <button class="action-button secondary action button" (click)="addChannelId()">
+        <button class="action-button button blue on-white" (click)="addChannelId()">
           <i class="fa-solid fa-plus"></i>
           Add Channel ID
         </button>
@@ -160,7 +159,7 @@
         @if (!isValidId(editorData.userIds[i])) {
         <span class="form-error">{{ invalidIdErrorMessage }}</span>
         }
-        <label [for]="'user-' + i">User ID</label>
+        <!-- <label [for]="'user-' + i">User ID</label> -->
         <div class="input-with-button">
           <input
             type="text"
@@ -169,7 +168,7 @@
             placeholder="User ID"
             [(ngModel)]="editorData.userIds[i]" />
           <button
-            class="icon red action button no-shadow suffix-button"
+            class="button red suffix-button"
             tooltip="Remove this User ID"
             (click)="removeUserId(i)">
             <i class="fa-solid fa-xmark"></i>
@@ -178,7 +177,7 @@
       </div>
       }
       <div class="action-buttons">
-        <button class="action-button secondary action button" (click)="addUserId()">
+        <button class="action-button button blue on-white" (click)="addUserId()">
           <i class="fa-solid fa-plus"></i>
           Add User ID
         </button>
@@ -194,7 +193,7 @@
           {{ forbiddenTermErrorMessage }}
         </span>
         }
-        <label [for]="'reply-' + i">Reply Text</label>
+        <!-- <label [for]="'reply-' + i">Reply Text</label> -->
         <div class="input-with-button">
           <textarea
             [id]="'reply-' + i"
@@ -202,16 +201,17 @@
             placeholder="Reply Text"
             [(ngModel)]="editorData.replies[i]"
             [maxlength]="maxReplyLength"></textarea>
-          <button class="icon red action button no-shadow suffix-button" (click)="removeReply(i)">
+          <button
+            class="button red suffix-button"
+            (click)="removeReply(i)"
+            tooltip="Remove this Reply">
             <i class="fa-solid fa-xmark"></i>
           </button>
         </div>
       </div>
       }
       <div class="action-buttons">
-        <button class="action-button secondary action button" (click)="addReply()">
-          + Add Reply
-        </button>
+        <button class="action-button button blue on-white" (click)="addReply()">+ Add Reply</button>
       </div>
       <div class="input-section">
         <div class="checkbox-group">
@@ -238,7 +238,7 @@
             placeholder="Reaction Emoji"
             [(ngModel)]="editorData.reactions[i]" />
           <button
-            class="icon red action button no-shadow suffix-button"
+            class="button red suffix-button"
             tooltip="Remove this Reaction"
             (click)="removeReaction(i)">
             <i class="fa-solid fa-xmark"></i>
@@ -247,7 +247,7 @@
       </div>
       }
       <div class="action-buttons">
-        <button class="action-button secondary action button" (click)="addReaction()">
+        <button class="action-button button blue on-white" (click)="addReaction()">
           <i class="fa-solid fa-plus"></i>
           Add Reaction
         </button>
@@ -255,9 +255,9 @@
     </div>
 
     <div class="action-buttons">
-      <button class="action-button secondary action button" (click)="cancelEdit()">Cancel</button>
+      <button class="action-button button blue on-white" (click)="cancelEdit()">Cancel</button>
       <button
-        class="action-button primary action button"
+        class="action-button button purple on-white"
         [disabled]="!isSaveEnabled()"
         (click)="saveEdit()">
         Save

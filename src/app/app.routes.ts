@@ -60,7 +60,7 @@ export const routes: Routes = [
   {
     path: 'bots/timezonebot',
     component: TimezonesComponent,
-    canActivate: [AuthenticationGuard],
+    //canActivate: [AuthenticationGuard],
   },
   {
     path: 'bots/replybot',
