@@ -29,7 +29,7 @@ import { TooltipDirective } from 'src/app/directives/tooltip.directive';
     RouterLink,
     LoadingIndicatorComponent,
   ],
-  standalone: true, // Ensure standalone is true if using Angular 17+ structure
+  standalone: true,
 })
 export class ReplyDefinitionsComponent extends BotPageComponent implements OnInit {
   isLoading: boolean;
@@ -336,7 +336,7 @@ export class ReplyDefinitionsComponent extends BotPageComponent implements OnIni
     if (this.filterOptions.length === 0) {
       this.filteredReplyDefinitions = this.replyDefinitions;
     } else {
-        this.filteredReplyDefinitions = this.replyDefinitions.filter((gr) => {
+      this.filteredReplyDefinitions = this.replyDefinitions.filter((gr) => {
         // Ensure all active filters match
         return this.filterOptions.every((filter) => filter.filter(gr));
       });
@@ -359,22 +359,17 @@ export class ReplyDefinitionsComponent extends BotPageComponent implements OnIni
       });
   }
 
-  // NEW Method to handle filter button clicks
   toggleFilter(filterType: ReplyDefinitionAttributeType) {
-    const index = this.filterOptions.findIndex(f => f.key === filterType.key);
+    const index = this.filterOptions.findIndex((f) => f.key === filterType.key);
     if (index > -1) {
-      // Filter exists, remove it
       this.filterOptions.splice(index, 1);
     } else {
-      // Filter doesn't exist, add it
       this.filterOptions.push(filterType);
     }
-    // Apply filters after modification
     this.applyFilters();
   }
 
-  // Helper method to check if a filter is active for styling
   isFilterActive(filterType: ReplyDefinitionAttributeType): boolean {
-    return this.filterOptions.some(f => f.key === filterType.key);
+    return this.filterOptions.some((f) => f.key === filterType.key);
   }
 }

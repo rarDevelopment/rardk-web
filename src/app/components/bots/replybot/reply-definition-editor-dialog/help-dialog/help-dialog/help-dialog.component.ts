@@ -6,13 +6,11 @@ import { CopyableTextComponent } from '../../../../../shared/copyable-text/copya
   selector: 'app-help-dialog',
   templateUrl: './help-dialog.component.html',
   styleUrls: ['./help-dialog.component.scss'],
-  standalone: true, // Make standalone
-  imports: [CopyableTextComponent], // Add CommonModule and make standalone
+  standalone: true,
+  imports: [CopyableTextComponent],
 })
 export class HelpDialogComponent {
-  @Output() close = new EventEmitter<void>(); // Add close event emitter
-
-  // Removed dialogData property and constructor injection
+  @Output() close = new EventEmitter<void>();
 
   public keywords: HelpKeywordDetail[] = [
     {
@@ -49,9 +47,7 @@ export class HelpDialogComponent {
     },
   ];
 
-  // Removed constructor
-
   closeHelp() {
-    this.close.emit(); // Emit close event
+    this.close.emit();
   }
 }

@@ -3,7 +3,6 @@
 @use "variables" as variables;
 @use "sass:color";
 
-// Move the mixin definitions here
 @mixin button-hover-effect($base-color, $lighten-percentage: 5%) {
   background-color: color.adjust($base-color, $lightness: $lighten-percentage);
 }
@@ -58,7 +57,6 @@ h3 {
 
 .page-description {
   margin-block-start: 5px;
-  // margin-block-end: 5px;
 }
 
 .page-description-container {
@@ -88,7 +86,6 @@ h3 {
 
 a {
   color: variables.$link-color;
-  // text-decoration: none;
 }
 a:visited {
   color: variables.$link-color;
@@ -450,8 +447,6 @@ a:visited {
     }
   }
 
-  // Apply the same pattern to all other color variants (.green, .pink, etc.)
-  // Example for green:
   &.green {
     background-color: variables.$button-green;
     border-color: variables.$button-green;
@@ -469,7 +464,7 @@ a:visited {
 
   &.pink {
     background-color: variables.$button-pink;
-    border-color: variables.$button-pink; // Added border-color
+    border-color: variables.$button-pink;
 
     &:hover:not(:disabled):not([disabled="disabled"]):not(.selected) {
       @include button-hover-effect(variables.$button-pink);
@@ -478,14 +473,13 @@ a:visited {
       @include button-active-effect(variables.$button-pink);
     }
     &.selected {
-      // Added .selected block
       @include button-selected-effect(variables.$button-pink);
     }
   }
 
   &.magenta {
-    background-color: variables.$button-magenta; // Use the base magenta color here
-    border-color: variables.$button-magenta; // Added border-color
+    background-color: variables.$button-magenta;
+    border-color: variables.$button-magenta;
 
     &:hover:not(:disabled):not([disabled="disabled"]):not(.selected) {
       @include button-hover-effect(
@@ -496,14 +490,13 @@ a:visited {
       @include button-active-effect(variables.$button-magenta);
     }
     &.selected {
-      // Added .selected block
       @include button-selected-effect(variables.$button-magenta);
     }
   }
 
   &.red {
     background-color: variables.$button-red;
-    border-color: variables.$button-red; // Added border-color
+    border-color: variables.$button-red;
 
     &:hover:not(:disabled):not([disabled="disabled"]):not(.selected) {
       @include button-hover-effect(variables.$button-red);
@@ -512,14 +505,13 @@ a:visited {
       @include button-active-effect(variables.$button-red);
     }
     &.selected {
-      // Added .selected block
       @include button-selected-effect(variables.$button-red);
     }
   }
 
   &.hot-pink {
-    background-color: variables.$button-hot-pink; // Use the base hot-pink color
-    border-color: variables.$button-hot-pink; // Added border-color
+    background-color: variables.$button-hot-pink;
+    border-color: variables.$button-hot-pink;
 
     &:hover:not(:disabled):not([disabled="disabled"]):not(.selected) {
       @include button-hover-effect(
@@ -530,14 +522,13 @@ a:visited {
       @include button-active-effect(variables.$button-hot-pink);
     }
     &.selected {
-      // Added .selected block
       @include button-selected-effect(variables.$button-hot-pink);
     }
   }
 
   &.dark-purple {
-    background-color: variables.$button-dark-purple; // Use the base dark-purple color
-    border-color: variables.$button-dark-purple; // Added border-color
+    background-color: variables.$button-dark-purple;
+    border-color: variables.$button-dark-purple;
 
     &:hover:not(:disabled):not([disabled="disabled"]):not(.selected) {
       @include button-hover-effect(
@@ -548,32 +539,28 @@ a:visited {
       @include button-active-effect(variables.$button-dark-purple);
     }
     &.selected {
-      // Added .selected block
       @include button-selected-effect(variables.$button-dark-purple);
     }
   }
 
   &.light-blue {
     background-color: variables.$button-light-blue;
-    border-color: variables.$button-light-blue; // Added border-color
+    border-color: variables.$button-light-blue;
 
     &:hover:not(:disabled):not([disabled="disabled"]):not(.selected) {
-      @include button-hover-effect(
-        variables.$button-light-blue
-      ); // Adjust hover if needed or use the mixin
+      @include button-hover-effect(variables.$button-light-blue);
     }
     &:active:not(:disabled):not([disabled="disabled"]):not(.selected) {
       @include button-active-effect(variables.$button-light-blue);
     }
     &.selected {
-      // Added .selected block
       @include button-selected-effect(variables.$button-light-blue);
     }
   }
 
   &.caribbean-green {
     background-color: variables.$button-caribbean-green;
-    border-color: variables.$button-caribbean-green; // Added border-color
+    border-color: variables.$button-caribbean-green;
 
     &:hover:not(:disabled):not([disabled="disabled"]):not(.selected) {
       @include button-hover-effect(variables.$button-caribbean-green);
@@ -582,14 +569,13 @@ a:visited {
       @include button-active-effect(variables.$button-caribbean-green);
     }
     &.selected {
-      // Added .selected block
       @include button-selected-effect(variables.$button-caribbean-green);
     }
   }
 
   &.jade {
     background-color: variables.$button-jade;
-    border-color: variables.$button-jade; // Added border-color
+    border-color: variables.$button-jade;
 
     &:hover:not(:disabled):not([disabled="disabled"]):not(.selected) {
       @include button-hover-effect(variables.$button-jade);
@@ -598,14 +584,13 @@ a:visited {
       @include button-active-effect(variables.$button-jade);
     }
     &.selected {
-      // Added .selected block
       @include button-selected-effect(variables.$button-jade);
     }
   }
 
   &.pastel-scarlet {
     background-color: variables.$button-pastel-scarlet;
-    border-color: variables.$button-pastel-scarlet; // Added border-color
+    border-color: variables.$button-pastel-scarlet;
 
     &:hover:not(:disabled):not([disabled="disabled"]):not(.selected) {
       @include button-hover-effect(variables.$button-pastel-scarlet);
@@ -614,14 +599,13 @@ a:visited {
       @include button-active-effect(variables.$button-pastel-scarlet);
     }
     &.selected {
-      // Added .selected block
       @include button-selected-effect(variables.$button-pastel-scarlet);
     }
   }
 
   &.login-green {
     background-color: variables.$button-login-green;
-    border-color: variables.$button-login-green; // Added border-color
+    border-color: variables.$button-login-green;
 
     &:hover:not(:disabled):not([disabled="disabled"]):not(.selected) {
       @include button-hover-effect(variables.$button-login-green);
@@ -630,7 +614,6 @@ a:visited {
       @include button-active-effect(variables.$button-login-green);
     }
     &.selected {
-      // Added .selected block
       @include button-selected-effect(variables.$button-login-green);
     }
   }
@@ -735,7 +718,6 @@ a:visited {
     color: #333; // Darker label color for contrast on white background
     display: inline-block; // Allow labels next to radios
     margin-bottom: 0; // Reset margin for inline labels
-    vertical-align: middle; // Align with radio button
   }
 
   input[type="text"],
