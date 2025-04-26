@@ -101,25 +101,27 @@ export class BotsComponent extends BotPageComponent implements OnInit {
   ngOnInit(): void {
     this.isLoading = true;
     const accessToken = this.getLoginToken();
-    this.discordService
-      .getDiscordUser(accessToken!)
-      .pipe(
-        take(1),
-        finalize(() => {
-          this.isLoading = false;
-        })
-      )
-      .subscribe({
-        next: (discordUser: any) => {
-          if (!discordUser) {
+    if (accessToken) {
+      this.discordService
+        .getDiscordUser(accessToken!)
+        .pipe(
+          take(1),
+          finalize(() => {
+            this.isLoading = false;
+          })
+        )
+        .subscribe({
+          next: (discordUser: any) => {
+            if (!discordUser) {
+              this.logOut();
+            }
+          },
+          error: (error: any) => {
+            console.error(error);
             this.logOut();
-          }
-        },
-        error: (error: any) => {
-          console.error(error);
-          this.logOut();
-        },
-      });
+          },
+        });
+    }
   }
   showMessageIfNotLoggedIn(requiresLogin: boolean) {
     if (requiresLogin && !this.isLoggedIn()) {
