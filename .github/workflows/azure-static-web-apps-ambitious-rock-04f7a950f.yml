@@ -35,14 +35,33 @@ jobs:
     needs: build_and_deploy
     steps:
       - uses: actions/checkout@v4
-      - name: Create Release
+        with:
+          fetch-depth: 0 # Fetch all history for all tags
+      - name: Calculate Next Version
+        id: version
         run: |
           DATE=$(date +'%Y-%m-%d')
-          HOUR=$(date +'%H')
-          MINUTE=$(date +'%M')
-          SECOND=$(date +'%S')
-          BUILD_NUMBER=$((10#$HOUR + 10#$MINUTE + 10#$SECOND))
+          # Get the latest tag for today, sorted numerically by the build number part
+          # Uses version:refname sorting which handles numbers correctly (e.g., .10 > .9)
+          LATEST_TODAY_TAG=$(git tag --list "${DATE}.*" --sort='-version:refname' | head -n 1)
+
+          if [[ -z "$LATEST_TODAY_TAG" ]]; then
+            # No tags for today yet, start at 1
+            BUILD_NUMBER=1
+          else
+            # Extract the build number from the latest tag and increment
+            # Assumes format YYYY-MM-DD.BUILD_NUMBER
+            CURRENT_BUILD=$(echo "$LATEST_TODAY_TAG" | cut -d '.' -f 2)
+            BUILD_NUMBER=$((CURRENT_BUILD + 1))
+          fi
+
           VERSION="${DATE}.${BUILD_NUMBER}"
-          gh release create "${VERSION}" --generate-notes
+          echo "Calculated version: ${VERSION}"
+          # Set output for the next step
+          echo "version=${VERSION}" >> $GITHUB_OUTPUT
+      - name: Create Release
+        run: |
+          echo "Creating release tag: ${{ steps.version.outputs.version }}"
+          gh release create "${{ steps.version.outputs.version }}" --generate-notes
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
