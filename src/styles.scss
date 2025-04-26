@@ -1,6 +1,16 @@
 /* You can add global styles to this file, and also import other style files */
 
 @use "variables" as variables;
+@use "sass:color";
+
+// Move the mixin definitions here
+@mixin button-hover-effect($base-color, $lighten-percentage: 5%) {
+  background-color: color.adjust($base-color, $lightness: $lighten-percentage);
+}
+
+@mixin button-active-effect($base-color, $darken-percentage: 5%) {
+  background-color: color.adjust($base-color, $lightness: -$darken-percentage);
+}
 
 @import url(https://fonts.bunny.net/css?family=atkinson-hyperlegible:400,400i,700,700i);
 
@@ -315,27 +325,57 @@ a:visited {
 }
 
 .button {
-  display: inline-block;
-  color: black;
-  background-color: transparent;
+  // display: inline-block;
+  // color: black;
+  // background-color: transparent;
   width: 160px;
-  border-radius: 30px;
-  padding: 10px;
-  text-align: center;
-  cursor: pointer;
-  font-weight: 500;
-  font-size: 17px;
+  // border-radius: 30px;
+  // padding: 10px;
+  // text-align: center;
+  // cursor: pointer;
+  // font-weight: 500;
+  // font-size: 17px;
+  // border-style: solid;
+  // border-width: 3px;
+
+  display: inline-block;
+  background-color: transparent;
   border-style: solid;
-  border-width: 3px;
+  border-width: 1px;
+  border-radius: 3px;
+  font-weight: 500;
+  padding: 10px;
+  margin: 4px;
+  font-size: 17px;
+  text-align: center;
+  border-color: #000 !important;
+  color: #ffffff;
+  cursor: pointer;
+
+  box-shadow: variables.$button-box-shadow;
 
   &:disabled,
   &[disabled="disabled"] {
-    background-color: rgba(56, 56, 56, 0.12);
+    background-color: rgba(56, 56, 56, 0.12) !important; // Add !important
     color: rgba(65, 65, 65, 0.38);
     cursor: not-allowed;
     border-color: rgba(65, 65, 65, 0.2);
     opacity: 0.7;
 
+    // Add these lines to override all color classes
+    &.blue,
+    &.purple,
+    &.green,
+    &.pink,
+    &.magenta,
+    &.red,
+    &.hot-pink,
+    &.dark-purple,
+    &.light-blue {
+      background-color: rgba(56, 56, 56, 0.12) !important;
+    }
+
+    // Keep your existing hover overrides
     &:hover,
     &:active {
       border-color: rgba(65, 65, 65, 0.2);
@@ -357,125 +397,162 @@ a:visited {
   }
 
   &.on-black {
-    border-color: white;
-    color: white;
+    // border-color: white;
+    // color: white;
 
     &:disabled,
     &[disabled="disabled"] {
-      border-color: rgba(255, 255, 255, 0.3);
-      color: rgba(255, 255, 255, 0.5);
+      // border-color: rgba(255, 255, 255, 0.3);
+      // color: rgba(255, 255, 255, 0.5);
     }
   }
 
   &.on-white {
-    border-color: black;
-    color: black;
-  }
-
-  &.navbar-button {
-    &:hover,
-    &.selected {
-      border-color: variables.$accent-color;
-    }
+    // border-color: black;
+    // color: black;
   }
 
   &.orange {
-  }
-  &.orange:hover {
-    border-color: variables.$accent-color;
-  }
-  &.orange:active {
-    // Add styles for active state if needed later
+    background-color: variables.$accent-color;
+    &:hover:not(:disabled):not([disabled="disabled"]) {
+      @include button-hover-effect(variables.$accent-color); // Now this will work
+    }
+    &:active:not(:disabled):not([disabled="disabled"]) {
+      @include button-active-effect(variables.$accent-color); // And this
+    }
   }
 
   &.blue {
-    // Add styles for non-hover state if needed later
-  }
-  &.blue:hover {
-    border-color: variables.$button-blue;
-  }
-  &.blue:active {
-    // Add styles for active state if needed later
+    background-color: variables.$button-blue;
+    &:hover:not(:disabled):not([disabled="disabled"]) {
+      @include button-hover-effect(variables.$button-blue);
+    }
+    &:active:not(:disabled):not([disabled="disabled"]) {
+      @include button-active-effect(variables.$button-blue);
+    }
+    &.selected {
+      border-color: variables.$button-blue; // Keep specific selected styles if needed
+    }
   }
 
   &.purple {
-    // Add styles for non-hover state if needed later
-  }
-  &.purple:hover {
-    border-color: variables.$button-purple;
-  }
-  &.purple:active {
-    // Add styles for active state if needed later
+    background-color: variables.$button-purple;
+    &:hover:not(:disabled):not([disabled="disabled"]) {
+      @include button-hover-effect(variables.$button-purple);
+    }
+    &:active:not(:disabled):not([disabled="disabled"]) {
+      @include button-active-effect(variables.$button-purple);
+    }
   }
 
   &.green {
-    // Add styles for non-hover state if needed later
-  }
-  &.green:hover {
-    border-color: variables.$button-green;
-  }
-  &.green:active {
-    // Add styles for active state if needed later
+    background-color: variables.$button-green; // Assuming you have this variable, otherwise use the rgb value
+    &:hover:not(:disabled):not([disabled="disabled"]) {
+      @include button-hover-effect(variables.$button-green); // Use the variable here too
+    }
+    &:active:not(:disabled):not([disabled="disabled"]) {
+      @include button-active-effect(variables.$button-green); // Use the variable here too
+    }
   }
 
   &.pink {
-    // Add styles for non-hover state if needed later
-  }
-  &.pink:hover {
-    border-color: variables.$button-pink;
-  }
-  &.pink:active {
-    // Add styles for active state if needed later
+    background-color: variables.$button-pink;
+    &:hover:not(:disabled):not([disabled="disabled"]) {
+      @include button-hover-effect(variables.$button-pink);
+    }
+    &:active:not(:disabled):not([disabled="disabled"]) {
+      @include button-active-effect(variables.$button-pink);
+    }
   }
 
   &.magenta {
-    // Add styles for non-hover state if needed later
-  }
-  &.magenta:hover {
-    border-color: variables.$button-magenta-hover;
-  }
-  &.magenta:active {
-    // Add styles for active state if needed later
+    background-color: variables.$button-magenta; // Use the base magenta color here
+    &:hover:not(:disabled):not([disabled="disabled"]) {
+      @include button-hover-effect(variables.$button-magenta); // Adjust hover if needed or use the mixin
+    }
+    &:active:not(:disabled):not([disabled="disabled"]) {
+      @include button-active-effect(variables.$button-magenta);
+    }
   }
 
   &.red {
-    // Add styles for non-hover state if needed later
-  }
-  &.red:hover {
-    border-color: variables.$button-red;
-  }
-  &.red:active {
-    // Add styles for active state if needed later
+    background-color: variables.$button-red;
+    &:hover:not(:disabled):not([disabled="disabled"]) {
+      @include button-hover-effect(variables.$button-red);
+    }
+    &:active:not(:disabled):not([disabled="disabled"]) {
+      @include button-active-effect(variables.$button-red);
+    }
   }
 
   &.hot-pink {
-    // Add styles for non-hover state if needed later
-  }
-  &.hot-pink:hover {
-    border-color: variables.$button-hot-pink-hover;
-  }
-  &.hot-pink:active {
-    // Add styles for active state if needed later
+    background-color: variables.$button-hot-pink; // Use the base hot-pink color
+    &:hover:not(:disabled):not([disabled="disabled"]) {
+      @include button-hover-effect(variables.$button-hot-pink); // Adjust hover if needed or use the mixin
+    }
+    &:active:not(:disabled):not([disabled="disabled"]) {
+      @include button-active-effect(variables.$button-hot-pink);
+    }
   }
 
   &.dark-purple {
-    // Add styles for non-hover state if needed later
-  }
-  &.dark-purple:hover {
-    border-color: variables.$button-dark-purple-hover;
-  }
-  &.dark-purple:active {
-    // Add styles for active state if needed later
+    background-color: variables.$button-dark-purple; // Use the base dark-purple color
+    &:hover:not(:disabled):not([disabled="disabled"]) {
+      @include button-hover-effect(variables.$button-dark-purple); // Adjust hover if needed or use the mixin
+    }
+    &:active:not(:disabled):not([disabled="disabled"]) {
+      @include button-active-effect(variables.$button-dark-purple);
+    }
   }
 
   &.light-blue {
-    // Add styles for non-hover state if needed later
+    background-color: variables.$button-light-blue; // Use the base light-blue color
+    &:hover:not(:disabled):not([disabled="disabled"]) {
+      @include button-hover-effect(variables.$button-light-blue); // Adjust hover if needed or use the mixin
+    }
+    &:active:not(:disabled):not([disabled="disabled"]) {
+      @include button-active-effect(variables.$button-light-blue);
+    }
   }
-  &.light-blue:hover {
-    border-color: variables.$button-light-blue-hover;
+
+  &.yellow { // Assuming this should use caribbean-green based on your code
+    background-color: variables.$button-caribbean-green;
+    &:hover:not(:disabled):not([disabled="disabled"]) {
+      @include button-hover-effect(variables.$button-caribbean-green);
+    }
+    &:active:not(:disabled):not([disabled="disabled"]) {
+      @include button-active-effect(variables.$button-caribbean-green);
+    }
   }
-  &.light-blue:active {
-    // Add styles for active state if needed later
+
+  &.jade {
+    background-color: variables.$button-jade;
+    &:hover:not(:disabled):not([disabled="disabled"]) {
+      @include button-hover-effect(variables.$button-jade);
+    }
+    &:active:not(:disabled):not([disabled="disabled"]) {
+      @include button-active-effect(variables.$button-jade);
+    }
+  }
+
+  &.pastel-scarlet {
+    background-color: variables.$button-pastel-scarlet;
+    &:hover:not(:disabled):not([disabled="disabled"]) {
+      @include button-hover-effect(variables.$button-pastel-scarlet);
+    }
+    &:active:not(:disabled):not([disabled="disabled"]) {
+      @include button-active-effect(variables.$button-pastel-scarlet);
+    }
+  }
+
+  &.login-green {
+    background-color: variables.$button-login-green;
+    &:hover:not(:disabled):not([disabled="disabled"]) {
+      @include button-hover-effect(variables.$button-login-green);
+    }
+    &:active:not(:disabled):not([disabled="disabled"]) {
+      @include button-active-effect(variables.$button-login-green);
+    }
   }
 
   &.no-shadow {
@@ -493,95 +570,6 @@ a:visited {
       color: #6d6d6d;
     }
   }
-
-  // &.action {
-  //   &:disabled,
-  //   &[disabled="disabled"] {
-  //     background-color: rgba(56, 56, 56, 0.12);
-  //     color: rgba(65, 65, 65, 0.38);
-  //     cursor: default;
-  //     &:hover,
-  //     &:active {
-  //     } // Prevent hover/active styles when disabled
-  //   }
-
-  //   &.primary {
-  //     background-color: #8925c4;
-  //     color: #ffffff;
-  //     &:hover {
-  //       background-color: rgb(162, 42, 232);
-  //     }
-  //     &:active {
-  //       background-color: rgb(152, 32, 222);
-  //     }
-  //     &:disabled,
-  //     &[disabled="disabled"] {
-  //       /* Inherit base disabled styles */
-  //     }
-  //   }
-
-  //   &.secondary {
-  //     background-color: rgb(255, 255, 255);
-  //     color: #000000;
-  //     &:hover {
-  //       background-color: rgb(245, 245, 245);
-  //     }
-  //     &:active {
-  //       background-color: rgb(235, 235, 235);
-  //     }
-  //     &:disabled,
-  //     &[disabled="disabled"] {
-  //       /* Inherit base disabled styles */
-  //     }
-  //   }
-
-  //   &.tertiary {
-  //     background-color: rgb(255, 64, 129);
-  //     color: #ffffff;
-  //     &:hover {
-  //       background-color: rgb(245, 54, 119);
-  //     }
-  //     &:active {
-  //       background-color: rgb(235, 44, 109);
-  //     }
-  //     &:disabled,
-  //     &[disabled="disabled"] {
-  //       /* Inherit base disabled styles */
-  //     }
-  //   }
-
-  //   &.danger {
-  //     background-color: rgb(244, 67, 54);
-  //     color: #ffffff;
-  //     &:hover {
-  //       background-color: rgb(234, 57, 44);
-  //     }
-  //     &:active {
-  //       background-color: rgb(224, 47, 34);
-  //     }
-  //     &:disabled,
-  //     &[disabled="disabled"] {
-  //       /* Inherit base disabled styles */
-  //     }
-  //   }
-  // }
-
-  // &.icon {
-  //   background-color: transparent;
-  //   color: #000000; // Assuming default icon color is black
-
-  //   &:hover {
-  //     background-color: rgb(245, 245, 245);
-  //   }
-
-  //   &:active {
-  //     background-color: rgb(235, 235, 235);
-  //   }
-
-  //   &.red {
-  //     color: rgb(224, 47, 34);
-  //   }
-  // }
 }
 
 // Basic Toggle Switch Styling
@@ -810,8 +798,4 @@ select {
 
 circle {
   stroke: variables.$accent-color;
-}
-
-.mdc-linear-progress__bar-inner {
-  border-color: variables.$accent-color !important;
 }

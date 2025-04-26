@@ -16,10 +16,10 @@
   <div class="content-container-card white">
     <div class="description">
       <div class="button-container">
-        <button class="button action secondary" (click)="scrollToWantedSets()">
+        <button class="button on-white blue" (click)="scrollToWantedSets()">
           Skip to Sets I Want
         </button>
-        <button class="button action secondary" (click)="scrollToOwnedSets()">
+        <button class="button on-white blue" (click)="scrollToOwnedSets()">
           Skip to Sets I Own
         </button>
       </div>
@@ -55,7 +55,10 @@
       <h2>Sets I Own</h2>
       <div class="series-filter-container form-field">
         <label for="series-filter-select">Filter by Series</label>
-        <select id="series-filter-select" [(ngModel)]="seriesOptionSelected" (change)="applyFilters()">
+        <select
+          id="series-filter-select"
+          [(ngModel)]="seriesOptionSelected"
+          (change)="applyFilters()">
           <option [value]="filterOptionNoSeries">All Series</option>
           @for (series of ownedSeriesOptions; track series) {
           <option [value]="series">{{ series }}</option>
@@ -112,7 +115,8 @@
             <app-modal
               [post]="set.modalImage"
               [isVisible]="set.isModalVisible"
-              (closeModalEvent)="toggleModal(set, false)"></app-modal> <!-- Changed from (onClose) -->
+              (closeModalEvent)="toggleModal(set, false)"></app-modal>
+            <!-- Changed from (onClose) -->
           </td>
           <td>
             <a [href]="set.url" target="_blank" title="Open on LEGO.com">{{ set.name }}</a>
