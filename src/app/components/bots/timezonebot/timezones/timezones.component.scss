@@ -6,8 +6,11 @@
 
 .set-table {
   border-collapse: collapse;
-  width: 100%;
+  width: 90%;
   margin-top: 20px; // Add some space above the table
+
+  margin-left: auto; // Center the table horizontally
+  margin-right: auto; // Center the table horizontally
 }
 
 .set-table td,
@@ -34,7 +37,7 @@
 }
 
 .set-table td {
-  font-size: 14px;
+  font-size: 16px;
   text-align: left; // Ensure text aligns left
 }
 
@@ -70,7 +73,7 @@
 }
 
 .set-button {
-  width: 130px;
+  width: 80px;
 }
 
 .clear-filter-section {
@@ -86,8 +89,7 @@
 
 @media screen and (min-width: 0px) and (max-width: 767px) {
   .set-button {
-    width: 100%; // Make set button full width in its cell
-    min-width: 47px; // Keep minimum width
+    width: 60px;
   }
 
   .filter-field {
@@ -117,6 +119,6 @@
   }
 
   .set-table td {
-    font-size: 13px; // Slightly smaller font
+    font-size: 16px; // Slightly smaller font
   }
 }

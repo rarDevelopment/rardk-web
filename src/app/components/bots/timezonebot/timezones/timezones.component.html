@@ -18,7 +18,7 @@
 <div class="content-container">
   <div class="content-container-card white time-zones-container">
     <div class="filter-options">
-      <div class="filter-explanation">Select a filter below to narrow down the list.</div>
+      <div class="filter-explanation">Use the filters below to narrow down the list.</div>
       <div class="form-field filter-field filter-select-field">
         <label for="filter-select">Select a Filter</label>
         <select id="filter-select" [(ngModel)]="selectedFilter" (change)="filterTimeZones()">
@@ -74,7 +74,7 @@
         </td>
         <td>
           <button
-            class="button magenta on-white"
+            class="button magenta on-white set-button"
             (click)="setTimeZone(timeZone.id)"
             [disabled]="!isLoggedIn()">
             Set

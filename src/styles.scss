@@ -13,9 +13,7 @@
 }
 
 @mixin button-selected-effect($base-color) {
-  // background-color: transparent;
-  // color: $base-color;
-  box-shadow: 0 0 0 2px color.adjust($base-color, $lightness: -20%);
+  box-shadow: 0 0 0 3px color.adjust($base-color, $lightness: -20%);
 }
 
 @import url(https://fonts.bunny.net/css?family=atkinson-hyperlegible:400,400i,700,700i);
