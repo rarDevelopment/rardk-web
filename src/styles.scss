@@ -468,7 +468,9 @@ a:visited {
   &.magenta {
     background-color: variables.$button-magenta; // Use the base magenta color here
     &:hover:not(:disabled):not([disabled="disabled"]) {
-      @include button-hover-effect(variables.$button-magenta); // Adjust hover if needed or use the mixin
+      @include button-hover-effect(
+        variables.$button-magenta
+      ); // Adjust hover if needed or use the mixin
     }
     &:active:not(:disabled):not([disabled="disabled"]) {
       @include button-active-effect(variables.$button-magenta);
@@ -488,7 +490,9 @@ a:visited {
   &.hot-pink {
     background-color: variables.$button-hot-pink; // Use the base hot-pink color
     &:hover:not(:disabled):not([disabled="disabled"]) {
-      @include button-hover-effect(variables.$button-hot-pink); // Adjust hover if needed or use the mixin
+      @include button-hover-effect(
+        variables.$button-hot-pink
+      ); // Adjust hover if needed or use the mixin
     }
     &:active:not(:disabled):not([disabled="disabled"]) {
       @include button-active-effect(variables.$button-hot-pink);
@@ -498,7 +502,9 @@ a:visited {
   &.dark-purple {
     background-color: variables.$button-dark-purple; // Use the base dark-purple color
     &:hover:not(:disabled):not([disabled="disabled"]) {
-      @include button-hover-effect(variables.$button-dark-purple); // Adjust hover if needed or use the mixin
+      @include button-hover-effect(
+        variables.$button-dark-purple
+      ); // Adjust hover if needed or use the mixin
     }
     &:active:not(:disabled):not([disabled="disabled"]) {
       @include button-active-effect(variables.$button-dark-purple);
@@ -506,16 +512,18 @@ a:visited {
   }
 
   &.light-blue {
-    background-color: variables.$button-light-blue; // Use the base light-blue color
+    background-color: variables.$button-light-blue;
     &:hover:not(:disabled):not([disabled="disabled"]) {
-      @include button-hover-effect(variables.$button-light-blue); // Adjust hover if needed or use the mixin
+      @include button-hover-effect(
+        variables.$button-light-blue
+      ); // Adjust hover if needed or use the mixin
     }
     &:active:not(:disabled):not([disabled="disabled"]) {
       @include button-active-effect(variables.$button-light-blue);
     }
   }
 
-  &.yellow { // Assuming this should use caribbean-green based on your code
+  &.caribbean-green {
     background-color: variables.$button-caribbean-green;
     &:hover:not(:disabled):not([disabled="disabled"]) {
       @include button-hover-effect(variables.$button-caribbean-green);
