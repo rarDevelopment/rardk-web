@@ -97,7 +97,7 @@
           @if (!hasFilters()) {
           <div class="priority-buttons">
             <button
-              class="priority-button button purple"
+              class="priority-button button on-white purple"
               tooltip="Move up in priority"
               [disabled]="indexOfReplies == 0"
               (click)="movePriority('up', replyDefinition); $event.stopPropagation()">
@@ -105,7 +105,7 @@
               <span>Move Up</span>
             </button>
             <button
-              class="priority-button button purple"
+              class="priority-button button on-white purple"
               tooltip="Move down in priority"
               [disabled]="indexOfReplies == filteredReplyDefinitions.length - 1"
               (click)="movePriority('down', replyDefinition); $event.stopPropagation()">
