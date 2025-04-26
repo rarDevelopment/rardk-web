@@ -5,33 +5,27 @@ import { SetTimeZoneRequest } from 'src/app/components/bots/models/timezonebot/s
 import { TimeZoneDataSource } from 'src/app/components/bots/models/timezonebot/time-zone-data-source';
 import { TimeZoneItem } from 'src/app/components/bots/models/timezonebot/time-zone-item';
 import { ClipboardModule } from '@angular/cdk/clipboard';
-import { MatButtonModule } from '@angular/material/button';
-import { MatInputModule } from '@angular/material/input';
-import { MatOptionModule } from '@angular/material/core';
 import { FormsModule } from '@angular/forms';
-import { MatSelectModule } from '@angular/material/select';
-import { MatFormFieldModule } from '@angular/material/form-field';
-
-import { MatIconModule } from '@angular/material/icon';
 import { PageTitleComponent } from '../../../shared/page-title/page-title.component';
 import { LoadingIndicatorComponent } from 'src/app/components/shared/loading-indicator/loading-indicator.component';
+import { CommonModule } from '@angular/common';
+import { CopyableTextComponent } from '../../../shared/copyable-text/copyable-text.component';
+import { LoginActionsComponent } from '../../login-actions/login-actions.component';
 
 @Component({
-    selector: 'app-timezones',
-    templateUrl: './timezones.component.html',
-    styleUrls: ['./timezones.component.scss'],
-    imports: [
-        PageTitleComponent,
-        MatIconModule,
-        MatFormFieldModule,
-        MatSelectModule,
-        FormsModule,
-        MatOptionModule,
-        MatInputModule,
-        MatButtonModule,
-        ClipboardModule,
-        LoadingIndicatorComponent
-    ]
+  selector: 'app-timezones',
+  templateUrl: './timezones.component.html',
+  styleUrls: ['./timezones.component.scss'],
+  standalone: true,
+  imports: [
+    CommonModule,
+    PageTitleComponent,
+    FormsModule,
+    ClipboardModule,
+    LoadingIndicatorComponent,
+    CopyableTextComponent,
+    LoginActionsComponent,
+  ],
 })
 export class TimezonesComponent extends BotPageComponent implements OnInit {
   public isLoading: boolean;
@@ -44,7 +38,7 @@ export class TimezonesComponent extends BotPageComponent implements OnInit {
   public timeZoneDataSource: TimeZoneDataSource;
   public discordUser: any;
 
-  public displayedColumns: string[] = ['set-button', 'copy-button', 'timezone-id'];
+  public displayedColumns: string[] = ['set-button', 'timezone-id'];
   public dataSource: TimeZoneItem[];
   public currentTimeZone: string;
   public currentTime: string;
@@ -86,6 +80,22 @@ export class TimezonesComponent extends BotPageComponent implements OnInit {
               true
             );
             window.setTimeout(() => this.logOutAndRedirect(), 3000);
+          },
+        });
+    } else {
+      this.timeZoneBotService
+        .getTimeZones()
+        .pipe(take(1))
+        .subscribe({
+          next: (timeZones: TimeZoneItem[]) => {
+            this.timeZones = timeZones;
+            this.timeZonesFiltered = timeZones;
+            this.populateFilterOptions();
+            this.dataSource = this.timeZonesFiltered;
+          },
+          error: (error) => {
+            console.error(error);
+            this.showSnackBar('Error retrieving page data.', true);
           },
         });
     }

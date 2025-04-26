@@ -1,5 +1,4 @@
-import { NgModule } from '@angular/core';
-import { RouterModule, Routes } from '@angular/router';
+import { Routes } from '@angular/router';
 import { InterestsComponent } from './components/interests/interests.component';
 import { NowComponent } from './components/now/now.component';
 import { LegoSetsCollectionComponent } from './components/interests/lego-sets/lego-sets.component';
@@ -23,9 +22,9 @@ import { PostsComponent } from './components/posts/posts.component';
 import { BooksCollectionComponent } from './components/interests/books/books.component';
 import { FavouriteGamesComponent } from './components/interests/video-games/favourite-games/favourite-games.component';
 import { GalleryPostComponent } from './components/gallery/gallery-post/gallery-post.component';
-import { ReplyDefinitionEditorDialogComponent } from './components/bots/replybot/reply-definition-editor-dialog/reply-definition-editor-dialog.component';
+import { ReplyDefinitionEditorComponent } from './components/bots/replybot/reply-definition-editor-dialog/reply-definition-editor-dialog.component';
 
-const routes: Routes = [
+export const routes: Routes = [
   { path: 'blog/:slug', pathMatch: 'full', component: BlogPostComponent },
   { path: 'blog', pathMatch: 'full', component: BlogComponent },
   { path: 'links/:slug', component: LinkPostComponent },
@@ -61,7 +60,7 @@ const routes: Routes = [
   {
     path: 'bots/timezonebot',
     component: TimezonesComponent,
-    canActivate: [AuthenticationGuard],
+    //canActivate: [AuthenticationGuard],
   },
   {
     path: 'bots/replybot',
@@ -75,16 +74,10 @@ const routes: Routes = [
   },
   {
     path: 'bots/replybot/reply-definitions/definition',
-    component: ReplyDefinitionEditorDialogComponent,
+    component: ReplyDefinitionEditorComponent,
     canActivate: [AuthenticationGuard],
   },
   { path: 'bots', component: BotsComponent },
   { path: 'callback', component: CallbackComponent },
   { path: '**', component: HomeComponent },
 ];
-
-@NgModule({
-  imports: [RouterModule.forRoot(routes)],
-  exports: [RouterModule],
-})
-export class AppRoutingModule {}

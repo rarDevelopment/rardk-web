@@ -1,15 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
 import { ReplyDefinition } from 'src/app/components/bots/models/replybot/reply-definition';
 import { ReplyDefinitionEditorData as ReplyDefinitionEditorData } from 'src/app/components/bots/models/replybot/reply-definition-editor-data';
 import { HelpDialogComponent } from './help-dialog/help-dialog/help-dialog.component';
 import emojiRegex from 'emoji-regex';
-import { MatCheckboxModule } from '@angular/material/checkbox';
-import { MatInputModule } from '@angular/material/input';
-import { MatFormFieldModule } from '@angular/material/form-field';
 import { FormsModule } from '@angular/forms';
-import { MatSlideToggleModule } from '@angular/material/slide-toggle';
-import { MatIconModule } from '@angular/material/icon';
-import { MatButtonModule } from '@angular/material/button';
 import { TooltipDirective } from 'src/app/directives/tooltip.directive';
 import { BotPageComponent } from '../../bot-page/bot-page.component';
 import { forkJoin, map, switchMap, take, throwError, timeout } from 'rxjs';
@@ -18,25 +12,25 @@ import { GuildConfiguration } from '../../models/replybot/guild-configuration';
 import { DiscordUser } from '../../models/discord-user';
 import { LoadingIndicatorComponent } from '../../../shared/loading-indicator/loading-indicator.component';
 import { PageTitleComponent } from 'src/app/components/shared/page-title/page-title.component';
+import { CommonModule } from '@angular/common'; // Import CommonModule
+import { ModalComponent } from '../../../shared/modal/modal.component'; // Import ModalComponent
 
 @Component({
   selector: 'app-reply-definition-editor-dialog',
   templateUrl: './reply-definition-editor-dialog.component.html',
   styleUrls: ['./reply-definition-editor-dialog.component.scss'],
+  standalone: true,
   imports: [
-    MatButtonModule,
+    CommonModule,
     TooltipDirective,
-    MatIconModule,
-    MatSlideToggleModule,
     FormsModule,
-    MatFormFieldModule,
-    MatInputModule,
-    MatCheckboxModule,
     LoadingIndicatorComponent,
     PageTitleComponent,
+    ModalComponent,
+    HelpDialogComponent,
   ],
 })
-export class ReplyDefinitionEditorDialogComponent extends BotPageComponent implements OnInit {
+export class ReplyDefinitionEditorComponent extends BotPageComponent implements OnInit {
   public editorData: ReplyDefinitionEditorData;
   public maxReplyLength: number = 1800;
   public isLoading: boolean = false;
@@ -55,6 +49,7 @@ export class ReplyDefinitionEditorDialogComponent extends BotPageComponent imple
   public guildName: string;
 
   public forbiddenTerms: string[] = ['HowLongToBeat', 'DefineWord', 'FortniteShopInfo', 'Poll'];
+  public showHelpDialog: boolean = false; // Flag to control help dialog visibility
 
   ngOnInit(): void {
     this.initializePageContents();
@@ -373,11 +368,10 @@ export class ReplyDefinitionEditorDialogComponent extends BotPageComponent imple
   }
 
   openHelpDialog() {
-    this.dialog.open(HelpDialogComponent, {
-      height: '600px',
-      width: '600px',
-      disableClose: false,
-      hasBackdrop: true,
-    });
+    this.showHelpDialog = true; // Set flag to true to show the modal
+  }
+
+  closeHelpDialog() {
+    this.showHelpDialog = false; // Set flag to false to hide the modal
   }
 }

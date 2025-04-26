@@ -41,7 +41,7 @@
             <app-modal
               [post]="set.modalImage"
               [isVisible]="set.isModalVisible"
-              (onClose)="toggleModal(set, false)"></app-modal>
+              (closeModalEvent)="toggleModal(set, false)"></app-modal>
           </td>
           <td>
             <a [href]="set.url" target="_blank" title="Open on LEGO.com">{{ set.name }}</a>
@@ -53,26 +53,48 @@
     </section>
     <section class="owned-section" #ownedSetsSection>
       <h2>Sets I Own</h2>
-      <div class="series-filter-container">
-        <mat-form-field>
-          <mat-label>Filter by Series</mat-label>
-          <mat-select [(ngModel)]="seriesOptionSelected" (ngModelChange)="applyFilters()">
-            <mat-option [value]="filterOptionNoSeries">All Series</mat-option>
-            @for (series of ownedSeriesOptions; track series) {
-            <mat-option [value]="series">{{ series }}</mat-option>
-            }
-          </mat-select>
-        </mat-form-field>
+      <div class="series-filter-container form-field">
+        <label for="series-filter-select">Filter by Series</label>
+        <select id="series-filter-select" [(ngModel)]="seriesOptionSelected" (change)="applyFilters()">
+          <option [value]="filterOptionNoSeries">All Series</option>
+          @for (series of ownedSeriesOptions; track series) {
+          <option [value]="series">{{ series }}</option>
+          }
+        </select>
       </div>
       <div class="filters-container">
-        <mat-radio-group
-          class="filters-group"
-          [(ngModel)]="filterOptionSelected"
-          (ngModelChange)="applyFilters()">
-          <mat-radio-button [value]="filterOptionAll">All</mat-radio-button>
-          <mat-radio-button [value]="filterOptionBuilt">Only Built</mat-radio-button>
-          <mat-radio-button [value]="filterOptionUnbuilt">Only Unbuilt</mat-radio-button>
-        </mat-radio-group>
+        <div class="radio-group">
+          <div class="radio-option">
+            <input
+              type="radio"
+              id="filterAll"
+              name="builtFilter"
+              [value]="filterOptionAll"
+              [(ngModel)]="filterOptionSelected"
+              (change)="applyFilters()" />
+            <label for="filterAll">All</label>
+          </div>
+          <div class="radio-option">
+            <input
+              type="radio"
+              id="filterBuilt"
+              name="builtFilter"
+              [value]="filterOptionBuilt"
+              [(ngModel)]="filterOptionSelected"
+              (change)="applyFilters()" />
+            <label for="filterBuilt">Only Built</label>
+          </div>
+          <div class="radio-option">
+            <input
+              type="radio"
+              id="filterUnbuilt"
+              name="builtFilter"
+              [value]="filterOptionUnbuilt"
+              [(ngModel)]="filterOptionSelected"
+              (change)="applyFilters()" />
+            <label for="filterUnbuilt">Only Unbuilt</label>
+          </div>
+        </div>
       </div>
       <table class="set-table">
         <th>Preview</th>
@@ -90,7 +112,7 @@
             <app-modal
               [post]="set.modalImage"
               [isVisible]="set.isModalVisible"
-              (onClose)="toggleModal(set, false)"></app-modal>
+              (closeModalEvent)="toggleModal(set, false)"></app-modal> <!-- Changed from (onClose) -->
           </td>
           <td>
             <a [href]="set.url" target="_blank" title="Open on LEGO.com">{{ set.name }}</a>

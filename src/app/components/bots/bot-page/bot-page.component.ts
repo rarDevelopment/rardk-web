@@ -1,8 +1,7 @@
-import { Component, Injector } from '@angular/core';
+import { Component } from '@angular/core';
 import { AuthenticationService } from 'src/app/services/authentication.service';
 import { Router, ActivatedRoute } from '@angular/router';
 import { HttpClient } from '@angular/common/http';
-import { MatDialog } from '@angular/material/dialog';
 import { DiscordService } from 'src/app/services/discord.service';
 import { ReplybotService } from 'src/app/components/bots/replybot/replybot.service';
 import { MatSnackBar, MatSnackBarConfig } from '@angular/material/snack-bar';
@@ -24,7 +23,6 @@ export class BotPageComponent {
     public route: ActivatedRoute,
     public router: Router,
     public http: HttpClient,
-    public dialog: MatDialog,
     public snackbar: MatSnackBar,
     public clipboard: Clipboard
   ) {}

@@ -9,37 +9,20 @@
   margin: 0 auto;
 }
 
-.dialog-card {
-  height: 100%;
-}
-
 .input-full-width {
   width: 100%;
 }
 
 .input-section {
-  padding-top: 10px;
-  padding-bottom: 10px;
-}
-
-.user-reply-group {
-  border-style: solid;
-  border-width: 1px;
-  border-color: #424242;
-  border-radius: 10px;
-  box-shadow: 2 2;
-  margin-bottom: 10px;
-  padding-left: 5px;
-}
-
-.user-reply-group-actions {
-  padding-top: 10px;
+  padding-top: 15px; // Slightly increased padding
+  padding-bottom: 15px;
 }
 
 .action-buttons {
   display: flex;
   align-items: center;
   justify-content: center;
+  margin-top: 15px; // Add some top margin
 }
 
 .action-button {
@@ -49,6 +32,8 @@
 
 .form-error {
   color: red;
+  display: block; // Make sure it takes its own line if needed
+  margin-bottom: 5px; // Space below error message
 }
 
 .channel-ids-description,
@@ -62,4 +47,79 @@
   display: flex;
   align-items: center;
   justify-content: center;
+
+  .left-button-margin {
+    margin-right: 8px;
+  }
+  .right-button-margin {
+    margin-left: 8px;
+  }
+}
+
+// Styles for standard form elements
+.form-group {
+  margin-bottom: 15px; // Spacing between form groups
+
+  label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: 500; // Make labels slightly bolder
+  }
+
+  input[type="text"],
+  textarea {
+    padding: 8px 12px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 1rem;
+    line-height: 1.5;
+    background-color: #fff; // Ensure background is white
+    color: #000; // Ensure text is black
+    box-sizing: border-box; // Include padding and border in the element's total width and height
+  }
+
+  textarea {
+    min-height: 80px; // Give textarea a decent default height
+    resize: vertical; // Allow vertical resizing
+  }
+
+  // Style for input/textarea with a button next to it
+  .input-with-button {
+    display: flex;
+    align-items: center; // Align items vertically
+
+    input[type="text"],
+    textarea {
+      flex-grow: 1; // Input takes available space
+      margin-right: 5px; // Space between input and button
+    }
+
+    .suffix-button {
+      flex-shrink: 0; // Prevent button from shrinking
+      box-shadow: none !important; // Override potential global button shadows if needed
+      padding: 6px 10px; // Adjust padding if necessary
+      line-height: 1; // Ensure icon aligns well
+    }
+  }
+}
+
+// Basic Checkbox Styling
+.checkbox-group {
+  display: flex;
+  align-items: center;
+  margin-top: 10px;
+  margin-bottom: 10px;
+
+  input[type="checkbox"] {
+    margin-right: 8px;
+    width: 16px; // Standard checkbox size
+    height: 16px;
+    cursor: pointer;
+  }
+
+  label {
+    margin-bottom: 0; // Reset margin from .form-group label
+    font-weight: normal; // Standard label weight
+    cursor: pointer;
+  }
 }

@@ -316,152 +316,426 @@ a:visited {
 
 .button {
   display: inline-block;
-  border-style: solid;
-  border-width: 1px;
-  border-radius: 3px;
-  border-color: #000000;
-  font-weight: 500;
+  color: black;
+  background-color: transparent;
+  width: 160px;
+  border-radius: 30px;
   padding: 10px;
-  margin: 4px;
-  font-size: 17px;
   text-align: center;
-  color: #000000;
   cursor: pointer;
-  background-color: #ffffff;
-  box-shadow: variables.$button-box-shadow;
+  font-weight: 500;
+  font-size: 17px;
+  border-style: solid;
+  border-width: 3px;
+
+  &:disabled,
+  &[disabled="disabled"] {
+    background-color: rgba(56, 56, 56, 0.12);
+    color: rgba(65, 65, 65, 0.38);
+    cursor: not-allowed;
+    border-color: rgba(65, 65, 65, 0.2);
+    opacity: 0.7;
+
+    &:hover,
+    &:active {
+      border-color: rgba(65, 65, 65, 0.2);
+      background-color: rgba(56, 56, 56, 0.12);
+    }
+
+    // Override all color-specific hover effects
+    &.blue:hover,
+    &.purple:hover,
+    &.green:hover,
+    &.pink:hover,
+    &.magenta:hover,
+    &.red:hover,
+    &.hot-pink:hover,
+    &.dark-purple:hover,
+    &.light-blue:hover {
+      border-color: rgba(65, 65, 65, 0.2);
+    }
+  }
+
+  &.on-black {
+    border-color: white;
+    color: white;
+
+    &:disabled,
+    &[disabled="disabled"] {
+      border-color: rgba(255, 255, 255, 0.3);
+      color: rgba(255, 255, 255, 0.5);
+    }
+  }
+
+  &.on-white {
+    border-color: black;
+    color: black;
+  }
+
+  &.navbar-button {
+    &:hover,
+    &.selected {
+      border-color: variables.$accent-color;
+    }
+  }
+
+  &.orange {
+  }
+  &.orange:hover {
+    border-color: variables.$accent-color;
+  }
+  &.orange:active {
+    // Add styles for active state if needed later
+  }
+
+  &.blue {
+    // Add styles for non-hover state if needed later
+  }
+  &.blue:hover {
+    border-color: variables.$button-blue;
+  }
+  &.blue:active {
+    // Add styles for active state if needed later
+  }
+
+  &.purple {
+    // Add styles for non-hover state if needed later
+  }
+  &.purple:hover {
+    border-color: variables.$button-purple;
+  }
+  &.purple:active {
+    // Add styles for active state if needed later
+  }
+
+  &.green {
+    // Add styles for non-hover state if needed later
+  }
+  &.green:hover {
+    border-color: variables.$button-green;
+  }
+  &.green:active {
+    // Add styles for active state if needed later
+  }
+
+  &.pink {
+    // Add styles for non-hover state if needed later
+  }
+  &.pink:hover {
+    border-color: variables.$button-pink;
+  }
+  &.pink:active {
+    // Add styles for active state if needed later
+  }
+
+  &.magenta {
+    // Add styles for non-hover state if needed later
+  }
+  &.magenta:hover {
+    border-color: variables.$button-magenta-hover;
+  }
+  &.magenta:active {
+    // Add styles for active state if needed later
+  }
+
+  &.red {
+    // Add styles for non-hover state if needed later
+  }
+  &.red:hover {
+    border-color: variables.$button-red;
+  }
+  &.red:active {
+    // Add styles for active state if needed later
+  }
+
+  &.hot-pink {
+    // Add styles for non-hover state if needed later
+  }
+  &.hot-pink:hover {
+    border-color: variables.$button-hot-pink-hover;
+  }
+  &.hot-pink:active {
+    // Add styles for active state if needed later
+  }
+
+  &.dark-purple {
+    // Add styles for non-hover state if needed later
+  }
+  &.dark-purple:hover {
+    border-color: variables.$button-dark-purple-hover;
+  }
+  &.dark-purple:active {
+    // Add styles for active state if needed later
+  }
+
+  &.light-blue {
+    // Add styles for non-hover state if needed later
+  }
+  &.light-blue:hover {
+    border-color: variables.$button-light-blue-hover;
+  }
+  &.light-blue:active {
+    // Add styles for active state if needed later
+  }
+
+  &.no-shadow {
+    box-shadow: none;
+    border: none;
+  }
+
+  &.transparent {
+    background-color: transparent;
+    color: #ffffff;
+    border: none;
+    padding: 0px;
+
+    &:active {
+      color: #6d6d6d;
+    }
+  }
+
+  // &.action {
+  //   &:disabled,
+  //   &[disabled="disabled"] {
+  //     background-color: rgba(56, 56, 56, 0.12);
+  //     color: rgba(65, 65, 65, 0.38);
+  //     cursor: default;
+  //     &:hover,
+  //     &:active {
+  //     } // Prevent hover/active styles when disabled
+  //   }
+
+  //   &.primary {
+  //     background-color: #8925c4;
+  //     color: #ffffff;
+  //     &:hover {
+  //       background-color: rgb(162, 42, 232);
+  //     }
+  //     &:active {
+  //       background-color: rgb(152, 32, 222);
+  //     }
+  //     &:disabled,
+  //     &[disabled="disabled"] {
+  //       /* Inherit base disabled styles */
+  //     }
+  //   }
+
+  //   &.secondary {
+  //     background-color: rgb(255, 255, 255);
+  //     color: #000000;
+  //     &:hover {
+  //       background-color: rgb(245, 245, 245);
+  //     }
+  //     &:active {
+  //       background-color: rgb(235, 235, 235);
+  //     }
+  //     &:disabled,
+  //     &[disabled="disabled"] {
+  //       /* Inherit base disabled styles */
+  //     }
+  //   }
+
+  //   &.tertiary {
+  //     background-color: rgb(255, 64, 129);
+  //     color: #ffffff;
+  //     &:hover {
+  //       background-color: rgb(245, 54, 119);
+  //     }
+  //     &:active {
+  //       background-color: rgb(235, 44, 109);
+  //     }
+  //     &:disabled,
+  //     &[disabled="disabled"] {
+  //       /* Inherit base disabled styles */
+  //     }
+  //   }
+
+  //   &.danger {
+  //     background-color: rgb(244, 67, 54);
+  //     color: #ffffff;
+  //     &:hover {
+  //       background-color: rgb(234, 57, 44);
+  //     }
+  //     &:active {
+  //       background-color: rgb(224, 47, 34);
+  //     }
+  //     &:disabled,
+  //     &[disabled="disabled"] {
+  //       /* Inherit base disabled styles */
+  //     }
+  //   }
+  // }
+
+  // &.icon {
+  //   background-color: transparent;
+  //   color: #000000; // Assuming default icon color is black
+
+  //   &:hover {
+  //     background-color: rgb(245, 245, 245);
+  //   }
+
+  //   &:active {
+  //     background-color: rgb(235, 235, 235);
+  //   }
+
+  //   &.red {
+  //     color: rgb(224, 47, 34);
+  //   }
+  // }
 }
 
-.button.no-shadow {
-  box-shadow: none;
-  border: none;
+// Basic Toggle Switch Styling
+.toggle-switch {
+  position: relative;
+  width: 60px; // Width of the toggle
+  height: 34px; // Height of the toggle
+  vertical-align: middle; // Align with adjacent text
+
+  &-checkbox {
+    opacity: 0;
+    width: 0;
+    height: 0;
+
+    &:checked + .toggle-switch-label .toggle-switch-inner {
+      background-color: #4caf50; // Green when checked
+    }
+
+    &:focus + .toggle-switch-label .toggle-switch-inner {
+      box-shadow: 0 0 1px #4caf50;
+    }
+
+    &:checked + .toggle-switch-label .toggle-switch-switch {
+      transform: translateX(26px); // Move the switch handle
+    }
+  }
+
+  &-label {
+    display: flex; // Use flexbox for alignment
+    align-items: center; // Vertically center items
+    position: absolute;
+    cursor: pointer;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+  }
+
+  &-inner {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: #ccc;
+    transition: 0.4s;
+    border-radius: 34px;
+    // z-index: 1; // Ensure inner is behind switch and text
+  }
+
+  &-switch {
+    position: absolute;
+    content: "";
+    height: 26px;
+    width: 26px;
+    left: 4px;
+    bottom: 4px;
+    background-color: white;
+    transition: 0.4s;
+    border-radius: 50%;
+    // z-index: 2; // Ensure switch is above inner
+  }
+
+  &-text {
+    position: relative;
+    // z-index: 2; // Ensure text is above inner
+    margin-left: 70px; // Position text to the right of the switch (adjust as needed)
+    font-weight: bold;
+    color: #000; // Ensure text color is visible
+    white-space: nowrap; // Prevent text wrapping
+  }
 }
 
-.button:hover,
-.button.selected {
-  background-color: variables.$accent-color;
+// Basic Form Field Styling
+.form-field {
+  margin-bottom: 1rem; // Add some space below form fields
+
+  label {
+    display: block; // Make labels block elements
+    margin-bottom: 0.3rem; // Space between label and input/select
+    font-weight: 500; // Slightly bolder labels
+    font-size: 14px;
+    color: #333; // Darker label color for contrast on white background
+    display: inline-block; // Allow labels next to radios
+    margin-bottom: 0; // Reset margin for inline labels
+    vertical-align: middle; // Align with radio button
+  }
+
+  input[type="text"],
+  input[type="radio"], // Add radio type
+  select {
+    width: calc(100% - 22px); // Default width, accounting for padding and border
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 16px;
+    box-sizing: border-box; // Include padding and border in the element's total width and height
+    background-color: #fff; // Ensure background is white
+    color: #000; // Ensure text is black
+    // Adjustments might be needed based on visual preference for radio buttons
+  }
+
+  input[type="radio"] {
+    // Specific styles for radio if needed, e.g., size
+    width: auto; // Ensure radio buttons don't stretch full width by default
+    vertical-align: middle; // Align nicely with text
+  }
+
+  input[type="text"]:focus,
+  input[type="radio"]:focus, // Add radio type
+  select:focus {
+    border-color: variables.$accent-color; // Highlight focus
+    outline: none; // Remove default outline
+    box-shadow: 0 0 0 2px rgba(137, 37, 196, 0.2); // Optional: add a subtle glow on focus
+  }
+
+  // Style for disabled state if needed
+  input[type="text"]:disabled,
+  input[type="radio"]:disabled, // Add radio type
+  select:disabled {
+    background-color: #eee;
+    cursor: not-allowed;
+  }
 }
 
-.button.transparent {
-  background-color: transparent;
-  color: #ffffff;
-  border: none;
-  padding: 0px;
+// Specific adjustments for selects
+select {
+  appearance: none; // Remove default system appearance
+  background-image: url('data:image/svg+xml;charset=US-ASCII,<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="%23333" viewBox="0 0 16 16"><path fill-rule="evenodd" d="M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z"/></svg>'); // Custom dropdown arrow
+  background-repeat: no-repeat;
+  background-position: right 10px center;
+  background-size: 16px 12px;
+  padding-right: 30px; // Make space for the custom arrow
 }
 
-.button.transparent:active {
-  color: #6d6d6d;
-}
+// Adjustments for white card context
+.content-container-card.white {
+  // ... existing styles ...
+  .form-field label {
+    color: #333; // Ensure label color is readable on white
+  }
 
-.button.action:disabled,
-.button.action[disabled="disabled"],
-.button.action:disabled:hover,
-.button.action[disabled="disabled"]:hover,
-.button.action:disabled:active,
-.button.action[disabled="disabled"]:active,
-.button.action.primary:disabled,
-.button.action.primary[disabled="disabled"],
-.button.action.primary:disabled:hover,
-.button.action.primary[disabled="disabled"]:hover,
-.button.action.primary:disabled:active,
-.button.action.primary[disabled="disabled"]:active,
-.button.action.secondary:disabled,
-.button.action.secondary[disabled="disabled"],
-.button.action.secondary:disabled:hover,
-.button.action.secondary[disabled="disabled"]:hover,
-.button.action.secondary:disabled:active,
-.button.action.secondary[disabled="disabled"]:active,
-.button.action.tertiary:disabled,
-.button.action.tertiary[disabled="disabled"],
-.button.action.tertiary:disabled:hover,
-.button.action.tertiary[disabled="disabled"]:hover,
-.button.action.tertiary:disabled:active,
-.button.action.tertiary[disabled="disabled"]:active,
-.button.action.danger:disabled,
-.button.action.danger[disabled="disabled"],
-.button.action.danger:disabled:hover,
-.button.action.danger[disabled="disabled"]:hover,
-.button.action.danger:disabled:active,
-.button.action.danger[disabled="disabled"]:active {
-  background-color: rgba(56, 56, 56, 0.12);
-  color: rgba(65, 65, 65, 0.38);
-  cursor: default;
-}
+  .form-field input[type="text"],
+  .form-field select {
+    background-color: #fff;
+    color: #000;
+    border-color: #ccc;
+  }
 
-.button.action.primary {
-  background-color: rgb(137, 37, 196);
-  color: #ffffff;
-}
-
-.button.action.primary:hover {
-  background-color: rgb(162, 42, 232);
-  color: #ffffff;
-}
-
-.button.action.primary:active {
-  background-color: rgb(152, 32, 222);
-  color: #ffffff;
-}
-
-.button.action.secondary {
-  background-color: rgb(255, 255, 255);
-  color: #000000;
-}
-
-.button.action.secondary:hover {
-  background-color: rgb(245, 245, 245);
-  color: #000000;
-}
-
-.button.action.secondary:active {
-  background-color: rgb(235, 235, 235);
-  color: #000000;
-}
-
-.button.action.tertiary {
-  background-color: rgb(255, 64, 129);
-  color: #ffffff;
-}
-
-.button.action.tertiary:hover {
-  background-color: rgb(245, 54, 119);
-  color: #ffffff;
-}
-
-.button.action.tertiary:active {
-  background-color: rgb(235, 44, 109);
-  color: #ffffff;
-}
-
-.button.action.danger {
-  background-color: rgb(244, 67, 54);
-  color: #ffffff;
-}
-
-.button.action.danger:hover {
-  background-color: rgb(234, 57, 44);
-  color: #ffffff;
-}
-
-.button.action.danger:active {
-  background-color: rgb(224, 47, 34);
-  color: #ffffff;
-}
-
-.button.icon {
-  background-color: transparent;
-  color: #000000;
-}
-
-.button.icon:hover {
-  background-color: rgb(245, 245, 245);
-}
-
-.button.icon:active {
-  background-color: rgb(235, 235, 235);
-}
-
-.button.icon.red {
-  color: rgb(224, 47, 34);
+  .form-field input[type="text"]:focus,
+  .form-field select:focus {
+    border-color: variables.$accent-color; // Keep focus color consistent
+    box-shadow: 0 0 0 2px rgba(137, 37, 196, 0.2);
+  }
 }
 
 .search-container {
@@ -534,20 +808,10 @@ a:visited {
   }
 }
 
-/* center the material spinner */
-.mat-mdc-progress-spinner {
-  margin: 0 auto;
-}
-
 circle {
   stroke: variables.$accent-color;
 }
 
 .mdc-linear-progress__bar-inner {
   border-color: variables.$accent-color !important;
-}
-
-// used for dropdown on lego filters
-.mat-mdc-form-field {
-  width: 340px;
 }

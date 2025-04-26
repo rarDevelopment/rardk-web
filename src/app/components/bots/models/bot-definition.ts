@@ -4,6 +4,7 @@ export class BotDefinition {
   public inviteLink: string;
   public description: string;
   public isConfigurable: boolean;
+  public requiresLogin: boolean;
   public controlPanelLink?: string;
   public gitHubLink?: string;
 }

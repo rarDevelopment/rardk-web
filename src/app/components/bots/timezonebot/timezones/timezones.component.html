@@ -2,13 +2,13 @@
   <div class="page-description-content">
     <app-page-title [titleSize]="1">Time Zone Selector for TimeZoneBot</app-page-title>
     <p>
-      Find your time zone below and click "Set" to set it as your time zone. Alternatively, click
-      the copy
-      <i class="fa-regular fa-copy"></i>
-      button to copy the time zone ID and use it with TimeZoneBot's
+      You can find and click on a time zone ID in the table to copy it to your clipboard and use it
+      with TimeZoneBot's
       <code>/set-time-zone</code>
-      command.
+      command. Alternatively, if you log in with Discord below, you can find your time zone and
+      click the "Set" button to set it as your time zone.
     </p>
+    <app-login-actions></app-login-actions>
   </div>
 </div>
 
@@ -19,24 +19,26 @@
   <div class="content-container-card white time-zones-container">
     <div class="filter-options">
       <div class="filter-explanation">Select a filter below to narrow down the list.</div>
-      <mat-form-field class="filter-field">
-        <mat-label>Select a Filter</mat-label>
-        <mat-select [(ngModel)]="selectedFilter" (selectionChange)="filterTimeZones()">
+      <div class="form-field filter-field filter-select-field">
+        <label for="filter-select">Select a Filter</label>
+        <select id="filter-select" [(ngModel)]="selectedFilter" (change)="filterTimeZones()">
+          <option [value]="undefined" disabled selected>Select a Filter</option>
           @for (filter of timeZoneFilterOptions; track filter) {
-          <mat-option [value]="filter">
+          <option [value]="filter">
             {{ filter }}
-          </mat-option>
+          </option>
           }
-        </mat-select>
-      </mat-form-field>
-      <mat-form-field class="filter-field">
-        <mat-label>Search Text</mat-label>
+        </select>
+      </div>
+      <div class="form-field filter-field">
+        <label for="search-text">Search Text</label>
         <input
+          id="search-text"
+          type="text"
           [(ngModel)]="filterText"
           (input)="filterTimeZones()"
-          matInput
           placeholder="Ex. Toronto" />
-      </mat-form-field>
+      </div>
       @if (selectedFilter || filterText) {
       <div class="clear-filter-section">
         <button class="tertiary action button" (click)="clearFilter()">Clear Filter</button>
@@ -44,9 +46,11 @@
       }
     </div>
     <h3>
-      Your Current Time Zone: @if (isTimeZoneLoading) {
+      Your Current Time Zone: @if (!isLoggedIn()) {
+      <span class="current-time-zone-highlight">Not Logged In</span>
+      } @else if (isTimeZoneLoading) {
       <span>Loading...</span>
-      } @if (!isTimeZoneLoading) {
+      } @else if (!isTimeZoneLoading) {
       <span class="current-time-zone-highlight">
         {{ formatCurrentTimeZone() }}
       </span>
@@ -60,18 +64,28 @@
     </h3>
     <table class="set-table">
       <th>Time Zone ID (IANA)</th>
-      <th></th>
+      <!-- <th></th> -->
       <th></th>
       @for (timeZone of dataSource; track timeZone) {
       <tr>
-        <td>{{ timeZone.id }} (UTC {{ formatUtcOffset(timeZone.utcOffsetHours) }})</td>
         <td>
-          <button class="icon action button" (click)="copyTimeZone(timeZone.id)">
+          <app-copyable-text [textToCopy]="timeZone.id">
+            {{ timeZone.id }} (UTC {{ formatUtcOffset(timeZone.utcOffsetHours) }})
+          </app-copyable-text>
+        </td>
+        <!-- <td>
+          <button
+            class="icon action button"
+            (click)="copyTimeZone(timeZone.id)"
+            title="Copy Time Zone ID">
             <i class="fa-regular fa-copy"></i>
           </button>
-        </td>
+        </td> -->
         <td>
-          <button class="primary action button set-button" (click)="setTimeZone(timeZone.id)">
+          <button
+            class="button magenta on-white"
+            (click)="setTimeZone(timeZone.id)"
+            [disabled]="!isLoggedIn()">
             Set
           </button>
         </td>

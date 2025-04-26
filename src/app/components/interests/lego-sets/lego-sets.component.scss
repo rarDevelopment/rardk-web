@@ -1,3 +1,5 @@
+@use "../../../../variables" as variables;
+
 .wanted-section,
 .owned-section {
   margin-top: 20px;
@@ -40,6 +42,10 @@
   display: flex;
   align-items: center;
   justify-content: center;
+  margin-bottom: 15px; // Add space below the series filter
+  max-width: 300px; // Limit width of the series dropdown
+  margin-left: auto; // Center align if needed, or remove for left align
+  margin-right: auto;
 }
 
 img {
@@ -55,4 +61,45 @@ img {
   display: flex;
   justify-content: center;
   align-items: center;
+}
+
+.filters-container {
+  display: flex;
+  justify-content: center; // Center the radio button group
+  margin-bottom: 20px; // Add space below filters
+}
+
+.radio-group {
+  display: flex;
+  gap: 20px; // Space between radio options
+}
+
+.radio-option {
+  display: flex;
+  align-items: center; // Align radio button and label vertically
+  gap: 5px; // Space between radio button and its label
+
+  label {
+    cursor: pointer; // Make label clickable
+    font-weight: normal; // Override potential bolding from form-field label
+    margin-bottom: 0; // Remove default margin from label
+  }
+
+  input[type="radio"] {
+     width: auto; // Override default form-field input width
+     margin: 0; // Remove default margins
+     cursor: pointer;
+  }
+}
+
+@media screen and (min-width: 0px) and (max-width: 767px) {
+  .series-filter-container {
+    max-width: 100%; // Allow full width on small screens
+  }
+
+  .radio-group {
+    flex-direction: column; // Stack radio buttons vertically
+    align-items: flex-start; // Align items to the start
+    gap: 10px; // Adjust gap for vertical layout
+  }
 }

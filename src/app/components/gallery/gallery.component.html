@@ -24,13 +24,13 @@
       [post]="post"
       [postUrl]="post.url"
       [isVisible]="modalVisibilities[i]"
-      (onClose)="toggleModal(i, false)"></app-modal>
+      (closeModalEvent)="toggleModal(i, false)"></app-modal>
   </div>
   }
 </div>
 @if(allGalleryPosts.length > itemCount && !showPageLink){
 <div class="gallery-show-more">
-  <button class="button gallery-show-more-button" (click)="showMoreImages()">
+  <button class="button orange on-black gallery-show-more-button" (click)="showMoreImages()">
     Show More Posts
   </button>
 </div>
