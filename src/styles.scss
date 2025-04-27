@@ -403,17 +403,17 @@ a:visited {
   }
 
   &.orange {
-    background-color: variables.$accent-color;
-    border-color: variables.$accent-color;
+    background-color: variables.$button-orange;
+    border-color: variables.$button-orange;
 
     &:hover:not(:disabled):not([disabled="disabled"]):not(.selected) {
-      @include button-hover-effect(variables.$accent-color);
+      @include button-hover-effect(variables.$button-orange);
     }
     &:active:not(:disabled):not([disabled="disabled"]):not(.selected) {
-      @include button-active-effect(variables.$accent-color);
+      @include button-active-effect(variables.$button-orange);
     }
     &.selected {
-      @include button-selected-effect(variables.$accent-color);
+      @include button-selected-effect(variables.$button-orange);
     }
   }
 
@@ -588,18 +588,18 @@ a:visited {
     }
   }
 
-  &.brown {
-    background-color: variables.$button-brown;
-    border-color: variables.$button-brown;
+  &.pastel-red {
+    background-color: variables.$button-pastel-red;
+    border-color: variables.$button-pastel-red;
 
     &:hover:not(:disabled):not([disabled="disabled"]):not(.selected) {
-      @include button-hover-effect(variables.$button-brown);
+      @include button-hover-effect(variables.$button-pastel-red);
     }
     &:active:not(:disabled):not([disabled="disabled"]):not(.selected) {
-      @include button-active-effect(variables.$button-brown);
+      @include button-active-effect(variables.$button-pastel-red);
     }
     &.selected {
-      @include button-selected-effect(variables.$button-brown);
+      @include button-selected-effect(variables.$button-pastel-red);
     }
   }
 
