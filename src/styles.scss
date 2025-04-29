@@ -314,11 +314,6 @@ a:visited {
     margin-block-end: 4px;
   }
 
-  .publish-date {
-    font-size: 12px;
-    text-align: center;
-  }
-
   p {
     margin-block-start: 8px;
     margin-block-end: 8px;
@@ -616,11 +611,6 @@ a:visited {
     &.selected {
       @include button-selected-effect(variables.$button-login-green);
     }
-  }
-
-  &.no-shadow {
-    box-shadow: none;
-    border: none;
   }
 
   &.transparent {
