@@ -25,7 +25,7 @@
   margin-top: 15px; // Add some top margin
 }
 
-.action-button {
+.wide-button {
   flex-grow: 0.8;
   margin-right: 10px;
 }
@@ -99,6 +99,7 @@
       box-shadow: none !important; // Override potential global button shadows if needed
       padding: 6px 10px; // Adjust padding if necessary
       line-height: 1; // Ensure icon aligns well
+      max-width: 40px;
     }
   }
 }
