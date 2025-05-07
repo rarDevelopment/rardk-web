@@ -29,7 +29,6 @@ import { TooltipDirective } from 'src/app/directives/tooltip.directive';
     RouterLink,
     LoadingIndicatorComponent,
   ],
-  standalone: true,
 })
 export class ReplyDefinitionsComponent extends BotPageComponent implements OnInit {
   isLoading: boolean;

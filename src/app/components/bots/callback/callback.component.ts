@@ -11,7 +11,6 @@ import { DiscordService } from 'src/app/services/discord.service';
     selector: 'app-callback',
     templateUrl: './callback.component.html',
     styleUrls: ['./callback.component.scss'],
-    standalone: true,
 })
 export class CallbackComponent implements OnInit {
   constructor(

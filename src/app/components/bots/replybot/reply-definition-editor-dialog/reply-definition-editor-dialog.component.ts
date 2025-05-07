@@ -19,7 +19,6 @@ import { ModalComponent } from '../../../shared/modal/modal.component'; // Impor
   selector: 'app-reply-definition-editor-dialog',
   templateUrl: './reply-definition-editor-dialog.component.html',
   styleUrls: ['./reply-definition-editor-dialog.component.scss'],
-  standalone: true,
   imports: [
     CommonModule,
     TooltipDirective,
