@@ -6,6 +6,7 @@ import { DiscordService } from 'src/app/services/discord.service';
 import { ReplybotService } from 'src/app/components/bots/replybot/replybot.service';
 import { TimezonebotService } from 'src/app/components/bots/timezonebot/timezonebot.service';
 import { Clipboard } from '@angular/cdk/clipboard';
+import { SnackbarService } from 'src/app/services/snackbar.service';
 
 @Component({
   selector: 'app-page',
@@ -21,7 +22,8 @@ export class BotPageComponent {
     public route: ActivatedRoute,
     public router: Router,
     public http: HttpClient,
-    public clipboard: Clipboard
+    public clipboard: Clipboard,
+    public snackbarService: SnackbarService,
   ) {}
 
   isLoggedIn() {

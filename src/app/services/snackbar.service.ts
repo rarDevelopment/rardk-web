@@ -8,10 +8,12 @@ export class SnackbarService {
   constructor(private snackbar: MatSnackBar) {}
 
   showSnackBar(messageToDisplay: string, isError: boolean, action?: string) {
+    const classes = ['snackbar'];
+    classes.push(isError ? 'snackbar-error' : 'snackbar-success');
     this.snackbar.open(messageToDisplay, action, {
       duration: 5000,
       horizontalPosition: 'center',
-      panelClass: isError ? 'snackbar-error' : 'snackbar-success',
+      panelClass: classes,
     } as MatSnackBarConfig<any>);
   }
 }
