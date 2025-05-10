@@ -1,19 +1,29 @@
 import { Injectable } from '@angular/core';
-import { MatSnackBar, MatSnackBarConfig } from '@angular/material/snack-bar';
+import { Subject } from 'rxjs';
+
+// Define an interface for the snackbar message payload
+export interface SnackbarMessage {
+  message: string;
+  isError: boolean;
+  action?: string;
+  duration?: number;
+}
 
 @Injectable({
   providedIn: 'root',
 })
 export class SnackbarService {
-  constructor(private snackbar: MatSnackBar) {}
+  private snackbarSubject = new Subject<SnackbarMessage>();
+  public snackbarState = this.snackbarSubject.asObservable();
+
+  constructor() {} // MatSnackBar removed
 
   showSnackBar(messageToDisplay: string, isError: boolean, action?: string) {
-    const classes = ['snackbar'];
-    classes.push(isError ? 'snackbar-error' : 'snackbar-success');
-    this.snackbar.open(messageToDisplay, action, {
-      duration: 5000,
-      horizontalPosition: 'center',
-      panelClass: classes,
-    } as MatSnackBarConfig<any>);
+    this.snackbarSubject.next({
+      message: messageToDisplay,
+      isError: isError,
+      action: action,
+      duration: 5000, // Default duration
+    });
   }
 }

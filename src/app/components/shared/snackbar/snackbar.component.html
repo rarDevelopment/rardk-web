@@ -1,0 +1,6 @@
+@if(isVisible){
+<div [class]="'snackbar ' + typeClassMap[type]" (click)="dismiss()">
+  <span class="snackbar-message">{{ message }}</span>
+  <button (click)="dismiss()" class="snackbar-close">&times;</button>
+</div>
+}

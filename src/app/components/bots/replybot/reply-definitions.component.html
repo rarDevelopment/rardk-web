@@ -40,9 +40,7 @@
       @if (hasFilters()) {
       <div class="active-filter-display-text">
         <span>Showing only: {{ getActiveFilterDisplayNames().join(" & ") }}</span>
-        <button class="clear-filters-button button pink on-white" (click)="clearFilters()">
-          Clear Filters
-        </button>
+        <button class="button pink on-white" (click)="clearFilters()">Clear Filters</button>
       </div>
       }
     </div>
