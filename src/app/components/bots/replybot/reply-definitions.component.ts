@@ -227,7 +227,7 @@ export class ReplyDefinitionsComponent extends BotPageComponent implements OnIni
         },
         error: (error) => {
           console.error('Error retrieving server replies', error);
-          this.snackbarService.showSnackBar('Error Retrieiving Reply Definitions', true);
+          this.snackbarService.showSnackBar('Error Retrieving Reply Definitions', true);
         },
       });
   }
