@@ -125,7 +125,7 @@ export class BotsComponent extends BotPageComponent implements OnInit {
   }
   showMessageIfNotLoggedIn(requiresLogin: boolean) {
     if (requiresLogin && !this.isLoggedIn()) {
-      this.showSnackBar('You must be logged in with Discord to access the bot settings.', true);
+      this.snackbarService.showSnackBar('You must be logged in with Discord to access the bot settings.', true);
     }
   }
 }

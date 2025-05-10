@@ -19,7 +19,6 @@ import { ModalComponent } from '../../../shared/modal/modal.component'; // Impor
   selector: 'app-reply-definition-editor-dialog',
   templateUrl: './reply-definition-editor-dialog.component.html',
   styleUrls: ['./reply-definition-editor-dialog.component.scss'],
-  standalone: true,
   imports: [
     CommonModule,
     TooltipDirective,
@@ -144,7 +143,7 @@ export class ReplyDefinitionEditorComponent extends BotPageComponent implements 
         },
         error: (error) => {
           console.error(error);
-          this.showSnackBar(
+          this.snackbarService.showSnackBar(
             'Error retrieving page data. Login may have expired, please log in and try again.',
             true
           );
@@ -199,7 +198,7 @@ export class ReplyDefinitionEditorComponent extends BotPageComponent implements 
         this.editorData.guildId = this.guildId;
       } catch (err) {
         console.error(err);
-        this.showSnackBar('Your clipboard data is not a valid reply definition!', true);
+        this.snackbarService.showSnackBar('Your clipboard data is not a valid reply definition!', true);
       }
     }
   }
@@ -352,7 +351,7 @@ export class ReplyDefinitionEditorComponent extends BotPageComponent implements 
 
     observableToUse.pipe(take(1)).subscribe({
       next: (_) => {
-        this.showSnackBar('Reply Definition Saved', false);
+        this.snackbarService.showSnackBar('Reply Definition Saved', false);
         setTimeout(() => {
           this.router.navigate(['bots/replybot/reply-definitions'], {
             queryParams: { guildId: this.guildId },
@@ -361,7 +360,7 @@ export class ReplyDefinitionEditorComponent extends BotPageComponent implements 
       },
       error: (error) => {
         this.isSaving = false;
-        this.showSnackBar('Error saving reply definition', true);
+        this.snackbarService.showSnackBar('Error saving reply definition', true);
         console.error('error saving', error);
       },
     });

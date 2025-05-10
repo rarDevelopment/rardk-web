@@ -825,6 +825,18 @@ select {
   opacity: 1;
 }
 
+.snackbar {
+  text-align: center;
+}
+
+.snackbar-error {
+  color: red;
+}
+
+.snackbar-success {
+  color: green;
+}
+
 @media screen and (min-width: 0px) and (max-width: 767px) {
   .below-avatar-text {
     display: block;

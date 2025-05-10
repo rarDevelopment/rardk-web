@@ -50,7 +50,7 @@ export class ReplybotServerSelectorComponent extends BotPageComponent implements
           },
           error: (error) => {
             console.error(error);
-            this.showSnackBar(
+            this.snackbarService.showSnackBar(
               'Error retrieving page data. Login may have expired, please log in and try again.',
               true
             );

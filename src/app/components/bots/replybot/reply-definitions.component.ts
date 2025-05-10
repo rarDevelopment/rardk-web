@@ -29,7 +29,6 @@ import { TooltipDirective } from 'src/app/directives/tooltip.directive';
     RouterLink,
     LoadingIndicatorComponent,
   ],
-  standalone: true,
 })
 export class ReplyDefinitionsComponent extends BotPageComponent implements OnInit {
   isLoading: boolean;
@@ -204,7 +203,7 @@ export class ReplyDefinitionsComponent extends BotPageComponent implements OnIni
         },
         error: (error) => {
           console.error(error);
-          this.showSnackBar(
+          this.snackbarService.showSnackBar(
             'Error retrieving page data. Login may have expired, please log in and try again.',
             true
           );
@@ -228,7 +227,7 @@ export class ReplyDefinitionsComponent extends BotPageComponent implements OnIni
         },
         error: (error) => {
           console.error('Error retrieving server replies', error);
-          this.showSnackBar('Error Retrieiving Reply Definitions', true);
+          this.snackbarService.showSnackBar('Error Retrieiving Reply Definitions', true);
         },
       });
   }
@@ -279,9 +278,9 @@ export class ReplyDefinitionsComponent extends BotPageComponent implements OnIni
     } as ReplyDefinitionEditorData;
 
     if (this.clipboard.copy(JSON.stringify(dialogData))) {
-      this.showSnackBar('Copied reply definition to clipboard!', false);
+      this.snackbarService.showSnackBar('Copied reply definition to clipboard!', false);
     } else {
-      this.showSnackBar('There was a problem copying. Please try again.', true);
+      this.snackbarService.showSnackBar('There was a problem copying. Please try again.', true);
     }
   }
 
@@ -302,10 +301,10 @@ export class ReplyDefinitionsComponent extends BotPageComponent implements OnIni
         .subscribe({
           next: (_) => {
             this.retrieveAndPopulateReplyDefinitions();
-            this.showSnackBar('Reply Definition Deleted', false);
+            this.snackbarService.showSnackBar('Reply Definition Deleted', false);
           },
           error: (error) => {
-            this.showSnackBar('Error deleting reply definition', true);
+            this.snackbarService.showSnackBar('Error deleting reply definition', true);
             console.error('error deleting', error);
           },
         });

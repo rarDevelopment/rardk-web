@@ -75,7 +75,7 @@ export class TimezonesComponent extends BotPageComponent implements OnInit {
           },
           error: (error) => {
             console.error(error);
-            this.showSnackBar(
+            this.snackbarService.showSnackBar(
               'Error retrieving page data. Login may have expired, please log in and try again.',
               true
             );
@@ -95,7 +95,7 @@ export class TimezonesComponent extends BotPageComponent implements OnInit {
           },
           error: (error) => {
             console.error(error);
-            this.showSnackBar('Error retrieving page data.', true);
+            this.snackbarService.showSnackBar('Error retrieving page data.', true);
           },
         });
     }
@@ -181,22 +181,22 @@ export class TimezonesComponent extends BotPageComponent implements OnInit {
         this.timeZoneBotService.setTimeZone(bodyToUse).subscribe({
           next: (success) => {
             if (success) {
-              this.showSnackBar(`Successfully changed your time zone to ${timeZoneId}`, false);
+              this.snackbarService.showSnackBar(`Successfully changed your time zone to ${timeZoneId}`, false);
               this.updateCurrentTimeZone(discordUser.id);
             } else {
               console.error('Error setting TimeZone: API returned false');
-              this.showSnackBar('There was an error setting your time zone.', true);
+              this.snackbarService.showSnackBar('There was an error setting your time zone.', true);
             }
           },
           error: (error) => {
             console.error('Error setting TimeZone:', error);
-            this.showSnackBar('There was an error setting your time zone.', true);
+            this.snackbarService.showSnackBar('There was an error setting your time zone.', true);
           },
         });
       },
       error: (error) => {
         console.error('Error retrieving Discord user:', error);
-        this.showSnackBar('There was an error setting your time zone.', true);
+        this.snackbarService.showSnackBar('There was an error setting your time zone.', true);
       },
     });
   }
@@ -210,9 +210,9 @@ export class TimezonesComponent extends BotPageComponent implements OnInit {
 
   public copyTimeZone(timeZone: string) {
     if (this.clipboard.copy(timeZone)) {
-      this.showSnackBar('Copied Time Zone ID to clipboard!', false);
+      this.snackbarService.showSnackBar('Copied Time Zone ID to clipboard!', false);
     } else {
-      this.showSnackBar('There was a problem copying. Please try again.', true);
+      this.snackbarService.showSnackBar('There was a problem copying. Please try again.', true);
     }
   }
 }
