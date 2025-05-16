@@ -1,66 +1,59 @@
 <div class="page-container">
   <header class="page-header">
-    <div class="avatar-container shrinkable">
-      <a routerLink="/"><img class="avatar" src="/assets/rarvatar.webp" /></a>
-    </div>
     <div class="bio">
+      <div class="avatar-container shrinkable">
+        <a routerLink="/"><img class="avatar" src="/assets/rarvatar.webp" /></a>
+      </div>
       <h1 class="name">rardk64</h1>
-      <p class="nav-icons">
-        <span class="nav-icon">
-          <a
-            href="https://github.com/rarDevelopment"
-            target="_blank"
-            rel="me"
-            tooltip="rarDevelopment on GitHub">
-            <i class="fa-brands fa-github social-icon"></i>
-          </a>
-        </span>
-        <span class="nav-icon">
-          <a href="https://twitch.tv/rardk64" target="_blank" tooltip="rardk64 on Twitch">
-            <i class="fa-brands fa-twitch social-icon"></i>
-          </a>
-        </span>
-        @if (isSocialEnabled){
-        <span class="nav-icon">
-          <a
-            href="https://bsky.app/profile/rardk64.com"
-            target="_blank"
-            tooltip="@rardk64.com on Bluesky">
-            <i class="fa-brands fa-bluesky social-icon"></i>
-          </a>
-        </span>
-        <span class="nav-icon">
-          <a
-            href="https://mastodon.social/@rardk64"
-            target="_blank"
-            rel="me"
-            tooltip="@rardk64@mastodon.social on Mastodon">
-            <i class="fa-brands fa-mastodon social-icon"></i>
-          </a>
-        </span>
-        }
-        <span class="nav-icon">
-          <a
-            href="https://discord.gg/Za4NAtJJ9v"
-            target="_blank"
-            tooltip="Bot Support Discord Server">
-            <i class="fa-brands fa-discord social-icon"></i>
-          </a>
-        </span>
-        <span class="nav-icon">
-          <a [routerLink]="['feeds']" tooltip="rardk64 RSS Feeds">
-            <i class="fa-solid fa-rss social-icon"></i>
-          </a>
-        </span>
-      </p>
-      <p class="below-avatar">
-        <span class="below-avatar-text">💻 Writing Code</span>
-        <span class="divider">|</span>
-        <span class="below-avatar-text">🎮 Playing Games</span>
-        <span class="divider">|</span>
-        <span class="below-avatar-text">🤖 Building Bots</span>
-      </p>
     </div>
+    <p class="nav-icons">
+      <span class="nav-icon">
+        <a
+          href="https://github.com/rarDevelopment"
+          target="_blank"
+          rel="me"
+          tooltip="rarDevelopment on GitHub">
+          <i class="fa-brands fa-github social-icon"></i>
+        </a>
+      </span>
+      <span class="nav-icon">
+        <a href="https://twitch.tv/rardk64" target="_blank" tooltip="rardk64 on Twitch">
+          <i class="fa-brands fa-twitch social-icon"></i>
+        </a>
+      </span>
+      @if (isSocialEnabled){
+      <span class="nav-icon">
+        <a
+          href="https://bsky.app/profile/rardk64.com"
+          target="_blank"
+          tooltip="@rardk64.com on Bluesky">
+          <i class="fa-brands fa-bluesky social-icon"></i>
+        </a>
+      </span>
+      <span class="nav-icon">
+        <a
+          href="https://mastodon.social/@rardk64"
+          target="_blank"
+          rel="me"
+          tooltip="@rardk64@mastodon.social on Mastodon">
+          <i class="fa-brands fa-mastodon social-icon"></i>
+        </a>
+      </span>
+      }
+      <span class="nav-icon">
+        <a
+          href="https://discord.gg/Za4NAtJJ9v"
+          target="_blank"
+          tooltip="Bot Support Discord Server">
+          <i class="fa-brands fa-discord social-icon"></i>
+        </a>
+      </span>
+      <span class="nav-icon">
+        <a [routerLink]="['feeds']" tooltip="rardk64 RSS Feeds">
+          <i class="fa-solid fa-rss social-icon"></i>
+        </a>
+      </span>
+    </p>
   </header>
 
   <app-navbar></app-navbar>
