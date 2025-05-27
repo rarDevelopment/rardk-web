@@ -9,18 +9,18 @@
 <div class="repeating-post">
   <div class="post-summary">
     @if(isBlog()){
-    <a [routerLink]="['/blog', post.canonical_url]" class="">
-      <h1 class="repeating-post-title">{{ post.post_title }}</h1>
-    </a>
-    <p>
-      {{ post.post_description }}
-    </p>
+      <a [routerLink]="['/blog', post.canonical_url]">
+        <h1 class="repeating-post-title">{{ post.post_title }}</h1>
+      </a>
+      <p>{{ post.post_description }}</p>
     } @else{
-    <app-post-content
-      [post]="post"
-      [postType]="getPostType(post.post_type)"
-      [contentPosition]="contentPosition"></app-post-content>
+      <app-post-content
+        [post]="post"
+        [postType]="getPostType(post.post_type)"
+        [contentPosition]="contentPosition"></app-post-content>
     }
+  </div>
+  <div class="repeating-post-datebar">
     <app-date-display
       [routerLink]="['/' + getPageForLink(), getPostIdentifier(post)]"
       [dateToDisplay]="post.posted_at"

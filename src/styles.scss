@@ -179,41 +179,70 @@ a:visited {
 
 .post {
   max-width: 700px;
+  margin: 0 auto 18px auto;
+  background: #232129;
+  border-radius: 14px;
+  box-shadow: 0 2px 12px 0 rgba(0,0,0,0.13);
   display: flex;
-  justify-content: center;
-  align-items: center;
-  margin: 0 auto;
+  flex-direction: column;
+  overflow: hidden;
+  border: none;
+  padding: 0;
 }
 
-/* repeating posts (blog, links) */
 .repeating-post {
   max-width: 700px;
+  margin: 0 auto 18px auto;
+  background: #232129;
+  border-radius: 14px;
+  box-shadow: 0 2px 12px 0 rgba(0,0,0,0.13);
   display: flex;
-  justify-content: center;
-  align-items: center;
-  margin: 0 auto;
-  border-top: variables.$small-divider-color;
+  flex-direction: column;
+  overflow: hidden;
+  border: none;
+  padding: 0;
 }
 
-.repeating-post:last-child {
-  border-bottom: variables.$small-divider-color;
+.repeating-post .post-summary {
+  padding: 22px 28px 12px 28px;
+  text-align: left;
 }
 
 .repeating-post-title {
-  margin-top: 10px;
+  margin-top: 0;
   font-weight: bold;
-  font-size: 28px;
-  padding-top: 10px;
+  font-size: 26px;
+  padding-top: 0;
+  margin-bottom: 8px;
 }
 
-.post-summary {
-  max-width: 700px;
-  text-align: center;
+.repeating-post-datebar {
+  background: transparent;
+  border-top: 1px solid #28262c;
+  padding: 8px 28px 6px 28px;
+  font-size: 14px;
+  color: #888ba0;
+  text-align: right;
+  opacity: 0.85;
 }
 
-@media screen and (min-width: 0px) and (max-width: 767px) {
+/* Responsive for mobile */
+@media screen and (max-width: 767px) {
+  .post {
+    max-width: 98vw;
+  }
+  .post-summary {
+    padding-left: 10px;
+    padding-right: 10px;
+  }
+
   .repeating-post {
-    max-width: 360px;
+    max-width: 98vw;
+  }
+  .repeating-post .post-summary,
+  .repeating-post-datebar {
+    padding-left: 10px;
+    padding-right: 10px;
   }
 }
 
@@ -862,4 +891,19 @@ select {
 
 circle {
   stroke: variables.$accent-color;
+}
+
+.post-summary {
+  padding: 32px 36px 20px 36px; // Increased padding for individual posts
+  text-align: left;
+}
+
+// Responsive for mobile
+@media screen and (max-width: 767px) {
+  .post-summary {
+    padding-left: 14px;
+    padding-right: 14px;
+    padding-top: 22px;
+    padding-bottom: 14px;
+  }
 }
