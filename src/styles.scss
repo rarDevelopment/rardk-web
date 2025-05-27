@@ -182,12 +182,14 @@ a:visited {
   margin: 0 auto 18px auto;
   background: #232129;
   border-radius: 14px;
-  box-shadow: 0 2px 12px 0 rgba(0,0,0,0.13);
+  box-shadow: 0 2px 12px 0 rgba(0, 0, 0, 0.13);
   display: flex;
   flex-direction: column;
   overflow: hidden;
   border: none;
   padding: 0;
+  padding-left: 28px;
+  padding-right: 28px;
 }
 
 .repeating-post {
@@ -195,7 +197,7 @@ a:visited {
   margin: 0 auto 18px auto;
   background: #232129;
   border-radius: 14px;
-  box-shadow: 0 2px 12px 0 rgba(0,0,0,0.13);
+  box-shadow: 0 2px 12px 0 rgba(0, 0, 0, 0.13);
   display: flex;
   flex-direction: column;
   overflow: hidden;
@@ -230,19 +232,20 @@ a:visited {
 @media screen and (max-width: 767px) {
   .post {
     max-width: 98vw;
+    margin-left: 10px;
+    margin-right: 10px;
   }
   .post-summary {
-    padding-left: 10px;
-    padding-right: 10px;
+    padding-left: 24px;
+    padding-right: 24px;
+    padding-top: 22px;
+    padding-bottom: 14px;
   }
 
   .repeating-post {
     max-width: 98vw;
-  }
-  .repeating-post .post-summary,
-  .repeating-post-datebar {
-    padding-left: 10px;
-    padding-right: 10px;
+    margin-left: 8px;
+    margin-right: 8px;
   }
 }
 
