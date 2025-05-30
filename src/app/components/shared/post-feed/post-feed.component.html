@@ -6,8 +6,8 @@
   [pageNumbers]="pageNumbers"
   (pageChange)="goToPage($event)"></app-paginator>
 } @for (post of posts; track post; let i = $index) {
-<div class="repeating-post">
-  <div class="post-summary">
+<div class="unified-post-card">
+  <div class="unified-post-summary-content">
     @if(isBlog()){
       <a [routerLink]="['/blog', post.canonical_url]">
         <h1 class="repeating-post-title">{{ post.post_title }}</h1>

@@ -177,6 +177,8 @@ a:visited {
   font-weight: bold;
 }
 
+/* Remove or comment out the existing .post styles */
+/*
 .post {
   max-width: 700px;
   margin: 0 auto 18px auto;
@@ -191,7 +193,10 @@ a:visited {
   padding-left: 28px;
   padding-right: 28px;
 }
+*/
 
+/* Remove or comment out the existing .repeating-post styles */
+/*
 .repeating-post {
   max-width: 700px;
   margin: 0 auto 18px auto;
@@ -204,12 +209,36 @@ a:visited {
   border: none;
   padding: 0;
 }
+*/
 
+/* Remove or comment out the existing .repeating-post .post-summary styles */
+/*
 .repeating-post .post-summary {
   padding: 22px 28px 12px 28px;
   text-align: left;
 }
+*/
 
+// Add new Unified Post Card Styles
+.unified-post-card {
+  max-width: 700px;
+  margin: 0 auto 18px auto;
+  background-color: #232129;
+  border-radius: 14px;
+  box-shadow: 0 2px 12px 0 rgba(0, 0, 0, 0.13);
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  border: none;
+  padding: 0; // Outer card has no direct padding
+
+  .unified-post-summary-content {
+    padding: 22px 28px 12px 28px; // Consistent padding, taken from repeating-post summary
+    text-align: left;
+  }
+}
+
+// Keep .repeating-post-title and .repeating-post-datebar as they are global
 .repeating-post-title {
   margin-top: 0;
   font-weight: bold;
@@ -230,24 +259,58 @@ a:visited {
 
 /* Responsive for mobile */
 @media screen and (max-width: 767px) {
+  /* Remove or comment out old mobile styles for .post and .repeating-post */
+  /*
   .post {
-    max-width: 98vw;
-    margin-left: 10px;
-    margin-right: 10px;
+    max-width: 375px;
+    margin-left: auto;
+    margin-right: auto;
   }
+  .repeating-post {
+    max-width: 375px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+  */
+
+  /* Remove or comment out old mobile styles for global .post-summary if they were only for these cards */
+  /*
   .post-summary {
-    padding-left: 24px;
+    padding-left: 24px; // This was for .post > .post-summary
     padding-right: 24px;
     padding-top: 22px;
     padding-bottom: 14px;
   }
+  */
+  /* The global .post-summary mobile styles (lines 800-805) might also need adjustment
+     if they conflict or are no longer desired for other uses.
+     For now, the new specific rule below will take precedence for unified cards.
+  */
 
-  .repeating-post {
-    max-width: 98vw;
-    margin-left: 8px;
-    margin-right: 8px;
+  .unified-post-card {
+    max-width: 390px; // Consistent mobile max-width
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .unified-post-card .unified-post-summary-content {
+    padding-left: 18px;
+    padding-right: 18px;
+    padding-top: 22px;
+    padding-bottom: 14px;
   }
 }
+
+/* The global .post-summary style (around line 789) might still affect other areas.
+   If it was exclusively for the single post page's .post > .post-summary,
+   and now that .post-summary class is being replaced by .unified-post-summary-content
+   within .unified-post-card, that global rule might become unused or you might want to remove/adjust it.
+   For now, we are making the new rules specific.
+.post-summary {
+  padding: 32px 36px 20px 36px;
+  text-align: left;
+}
+*/
 
 .post-end {
   display: flex;
