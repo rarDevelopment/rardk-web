@@ -50,5 +50,13 @@
     "karma-jasmine": "~5.1.0",
     "karma-jasmine-html-reporter": "~2.0.0",
     "typescript": "~5.8.3"
+  },
+  "overrides": {
+    "ngx-markdown": {
+      "@angular/animations": "^19.0.0 || ^20.0.0",
+      "@angular/common": "^19.0.0 || ^20.0.0",
+      "@angular/core": "^19.0.0 || ^20.0.0",
+      "@angular/platform-browser": "^19.0.0 || ^20.0.0"
+    }
   }
 }
