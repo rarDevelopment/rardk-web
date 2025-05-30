@@ -34,11 +34,6 @@ h3 {
   color: variables.$opposite-font-color;
 }
 
-.cdk-overlay-pane ::selection {
-  background-color: variables.$opposite-font-color;
-  color: variables.$font-color;
-}
-
 .page-container {
   padding-bottom: 30px;
 }
@@ -114,17 +109,17 @@ a:visited {
   min-width: variables.$min-width;
 }
 
+.content-container-card ::selection {
+  background-color: variables.$opposite-font-color;
+  color: variables.$font-color;
+}
+
 .content-container-card.white {
   border: 1px solid #000000;
   background-color: #ffffff;
   color: variables.$opposite-font-color;
   border-radius: 5px;
   box-shadow: variables.$box-shadow;
-}
-
-.content-container-card.white ::selection {
-  background-color: variables.$opposite-font-color;
-  color: variables.$font-color;
 }
 
 .content-container-card.white a {
