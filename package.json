@@ -31,7 +31,7 @@
     "luxon": "^3.4.4",
     "marked": "^15.0.4",
     "micromark": "^4.0.0",
-    "ngx-markdown": "^19.0.0",
+    "ngx-markdown": "^20.0.0",
     "rxjs": "~7.8.0",
     "tslib": "^2.3.0",
     "zone.js": "^0.15.0"
@@ -50,13 +50,5 @@
     "karma-jasmine": "~5.1.0",
     "karma-jasmine-html-reporter": "~2.0.0",
     "typescript": "~5.8.3"
-  },
-  "overrides": {
-    "ngx-markdown": {
-      "@angular/animations": "^19.0.0 || ^20.0.0",
-      "@angular/common": "^19.0.0 || ^20.0.0",
-      "@angular/core": "^19.0.0 || ^20.0.0",
-      "@angular/platform-browser": "^19.0.0 || ^20.0.0"
-    }
   }
 }
