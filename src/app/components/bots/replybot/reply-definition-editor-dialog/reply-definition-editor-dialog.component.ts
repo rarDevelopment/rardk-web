@@ -12,7 +12,7 @@ import { GuildConfiguration } from '../../models/replybot/guild-configuration';
 import { DiscordUser } from '../../models/discord-user';
 import { LoadingIndicatorComponent } from '../../../shared/loading-indicator/loading-indicator.component';
 import { PageTitleComponent } from 'src/app/components/shared/page-title/page-title.component';
-import { CommonModule } from '@angular/common'; // Import CommonModule
+ // Import CommonModule
 import { ModalComponent } from '../../../shared/modal/modal.component'; // Import ModalComponent
 
 @Component({
@@ -20,14 +20,13 @@ import { ModalComponent } from '../../../shared/modal/modal.component'; // Impor
   templateUrl: './reply-definition-editor-dialog.component.html',
   styleUrls: ['./reply-definition-editor-dialog.component.scss'],
   imports: [
-    CommonModule,
     TooltipDirective,
     FormsModule,
     LoadingIndicatorComponent,
     PageTitleComponent,
     ModalComponent,
-    HelpDialogComponent,
-  ],
+    HelpDialogComponent
+],
 })
 export class ReplyDefinitionEditorComponent extends BotPageComponent implements OnInit {
   public editorData: ReplyDefinitionEditorData;

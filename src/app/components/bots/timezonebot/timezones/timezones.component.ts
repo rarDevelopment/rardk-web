@@ -8,7 +8,7 @@ import { ClipboardModule } from '@angular/cdk/clipboard';
 import { FormsModule } from '@angular/forms';
 import { PageTitleComponent } from '../../../shared/page-title/page-title.component';
 import { LoadingIndicatorComponent } from 'src/app/components/shared/loading-indicator/loading-indicator.component';
-import { CommonModule } from '@angular/common';
+
 import { CopyableTextComponent } from '../../../shared/copyable-text/copyable-text.component';
 import { LoginActionsComponent } from '../../login-actions/login-actions.component';
 
@@ -18,14 +18,13 @@ import { LoginActionsComponent } from '../../login-actions/login-actions.compone
   styleUrls: ['./timezones.component.scss'],
   standalone: true,
   imports: [
-    CommonModule,
     PageTitleComponent,
     FormsModule,
     ClipboardModule,
     LoadingIndicatorComponent,
     CopyableTextComponent,
-    LoginActionsComponent,
-  ],
+    LoginActionsComponent
+],
 })
 export class TimezonesComponent extends BotPageComponent implements OnInit {
   public isLoading: boolean;

@@ -4,7 +4,7 @@ import { LegoSet } from 'src/app/components/interests/lego-sets/models/lego-set'
 import { LegoSetsService } from './lego-sets.service';
 import { CheckOrXComponent } from '../../shared/check-or-x/check-or-x.component';
 import { FormsModule } from '@angular/forms';
-import { CommonModule } from '@angular/common';
+
 
 import { PageTitleComponent } from '../../shared/page-title/page-title.component';
 import { LoadingIndicatorComponent } from '../../shared/loading-indicator/loading-indicator.component';
@@ -18,13 +18,12 @@ import { ModalComponent } from '../../shared/modal/modal.component';
     styleUrls: ['./lego-sets.component.scss'],
     standalone: true,
     imports: [
-        CommonModule,
-        FormsModule,
-        CheckOrXComponent,
-        LoadingIndicatorComponent,
-        ModalComponent,
-        PageTitleComponent,
-    ]
+    FormsModule,
+    CheckOrXComponent,
+    LoadingIndicatorComponent,
+    ModalComponent,
+    PageTitleComponent
+]
 })
 export class LegoSetsCollectionComponent implements OnInit {
   public ownedSets: LegoSetDisplay[];

@@ -1,53 +1,63 @@
 @if(pageNumbers.length > 1) {
-<div class="page-numbers">
-  <div class="pagination-buttons">
-    @if(currentPage > 1){
-    <span class="page-number-link" (click)="goToPage(0)">
-      <i class="fa-solid fa-backward-step first-last-button"></i>
-    </span>
-    } @else{
-    <span class="active-page-number">
-      <i class="fa-solid fa-backward-step first-last-button"></i>
-    </span>
-    } @if(currentPage > 1){
-    <span class="page-number-link" (click)="goToPage(currentPage - 1)">
-      <i class="fa-solid fa-caret-left next-prev-button"></i>
-    </span>
-    } @else {
-    <span class="active-page-number">
-      <i class="fa-solid fa-caret-left next-prev-button"></i>
-    </span>
+  <div class="page-numbers">
+    <div class="pagination-buttons">
+      @if(currentPage > 1){
+        <span class="page-number-link" (click)="goToPage(0)">
+          <i class="fa-solid fa-backward-step first-last-button"></i>
+        </span>
+      } @else{
+        <span class="active-page-number">
+          <i class="fa-solid fa-backward-step first-last-button"></i>
+        </span>
+        } @if(currentPage > 1){
+        <span class="page-number-link" (click)="goToPage(currentPage - 1)">
+          <i class="fa-solid fa-caret-left next-prev-button"></i>
+        </span>
+      } @else {
+        <span class="active-page-number">
+          <i class="fa-solid fa-caret-left next-prev-button"></i>
+        </span>
+      }
+    </div>
+    @if(pageNumbers.length > 1) {
+      @if (displayedPageNumbers.showStartEllipsis) {
+        <span class="page-number-separator">...</span>
+      }
+      @for (i of displayedPageNumbers.pages; track trackByFn($index, i)) {
+        <span>
+          @if (i !== 1) {
+            <span class="page-number-separator">|</span>
+          }
+          @if (i === currentPage) {
+            <span class="active-page-number">{{ i }}</span>
+          }
+          @if(i !== currentPage){
+            <span class="page-number-link" (click)="goToPage(i)">{{ i }}</span>
+          }
+        </span>
+      }
+      @if (displayedPageNumbers.showEndEllipsis) {
+        <span class="page-number-separator">...</span>
+      }
     }
+    <div class="pagination-buttons">
+      @if(currentPage < numberOfPages){
+        <span class="page-number-link" (click)="goToPage(currentPage + 1)">
+          <i class="fa-solid fa-caret-right next-prev-button"></i>
+        </span>
+      } @else {
+        <span class="active-page-number">
+          <i class="fa-solid fa-caret-right next-prev-button"></i>
+        </span>
+        } @if(currentPage < numberOfPages){
+        <span class="page-number-link" (click)="goToPage(numberOfPages)">
+          <i class="fa-solid fa-forward-step first-last-button"></i>
+        </span>
+      } @else {
+        <span class="active-page-number">
+          <i class="fa-solid fa-forward-step first-last-button"></i>
+        </span>
+      }
+    </div>
   </div>
-  @if(pageNumbers.length > 1) {
-  <span *ngIf="displayedPageNumbers.showStartEllipsis" class="page-number-separator">...</span>
-  <span *ngFor="let i of displayedPageNumbers.pages; trackBy: trackByFn">
-    <span *ngIf="i !== 1" class="page-number-separator">|</span>
-    <span *ngIf="i === currentPage" class="active-page-number">{{ i }}</span>
-    @if(i !== currentPage){
-    <span class="page-number-link" (click)="goToPage(i)">{{ i }}</span>
-    }
-  </span>
-  <span *ngIf="displayedPageNumbers.showEndEllipsis" class="page-number-separator">...</span>
-  }
-  <div class="pagination-buttons">
-    @if(currentPage < numberOfPages){
-    <span class="page-number-link" (click)="goToPage(currentPage + 1)">
-      <i class="fa-solid fa-caret-right next-prev-button"></i>
-    </span>
-    } @else {
-    <span class="active-page-number">
-      <i class="fa-solid fa-caret-right next-prev-button"></i>
-    </span>
-    } @if(currentPage < numberOfPages){
-    <span class="page-number-link" (click)="goToPage(numberOfPages)">
-      <i class="fa-solid fa-forward-step first-last-button"></i>
-    </span>
-    } @else {
-    <span class="active-page-number">
-      <i class="fa-solid fa-forward-step first-last-button"></i>
-    </span>
-    }
-  </div>
-</div>
 }

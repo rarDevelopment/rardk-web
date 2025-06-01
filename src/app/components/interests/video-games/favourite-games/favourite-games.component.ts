@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FeedPostersComponent } from '../../../shared/feed-posters/feed-posters.component';
-import { CommonModule } from '@angular/common';
+
 import { FeedItem } from '../../../shared/feed-posters/models/feed-item';
 import { finalize, take } from 'rxjs';
 import { FavouriteGame } from '../../../interests/video-games/models/favourite-game';
@@ -9,7 +9,7 @@ import { VideoGamesService } from '../video-games.service';
 
 @Component({
     selector: 'app-interests',
-    imports: [CommonModule, FeedPostersComponent, PageTitleComponent],
+    imports: [FeedPostersComponent, PageTitleComponent],
     templateUrl: './favourite-games.component.html',
     styleUrl: './favourite-games.component.scss'
 })

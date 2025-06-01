@@ -1,5 +1,5 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
-import { CommonModule } from '@angular/common';
+
 import { ModalImage } from 'src/app/components/shared/modal/models/modal-image'; // Re-import ModalImage
 import { LoadingIndicatorComponent } from '../loading-indicator/loading-indicator.component'; // Re-import LoadingIndicatorComponent
 import { DateDisplayComponent } from '../date-display/date-display.component'; // Re-import DateDisplayComponent
@@ -8,7 +8,7 @@ import { RouterLink } from '@angular/router'; // Import RouterLink
 @Component({
   selector: 'app-modal',
   standalone: true,
-  imports: [CommonModule, LoadingIndicatorComponent, DateDisplayComponent, RouterLink], // Add necessary imports back
+  imports: [LoadingIndicatorComponent, DateDisplayComponent, RouterLink], // Add necessary imports back
   templateUrl: './modal.component.html',
   styleUrl: './modal.component.scss',
 })

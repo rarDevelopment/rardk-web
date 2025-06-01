@@ -8,21 +8,20 @@ import { finalize, take } from 'rxjs';
 import { LoadingIndicatorComponent } from '../loading-indicator/loading-indicator.component';
 import { DateDisplayComponent } from '../date-display/date-display.component';
 import { PaginatorComponent } from '../paginator/paginator.component';
-import { CommonModule } from '@angular/common';
+
 import { ContentPosition } from '../../posts/models/content-positions';
 import { PostContentComponent } from '../../posts/post/post-content/post-content.component';
 
 @Component({
   selector: 'app-post-feed',
   imports: [
-    CommonModule,
     LoadingIndicatorComponent,
     DateDisplayComponent,
     RouterLink,
     PaginatorComponent,
     LoadingIndicatorComponent,
-    PostContentComponent,
-  ],
+    PostContentComponent
+],
   templateUrl: './post-feed.component.html',
   styleUrl: './post-feed.component.scss',
 })
