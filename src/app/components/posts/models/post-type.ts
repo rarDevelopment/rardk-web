@@ -3,4 +3,5 @@ export enum PostType {
   Post = 'post',
   Blog = 'blog',
   Gallery = 'gallery',
+  All = 'all',
 }

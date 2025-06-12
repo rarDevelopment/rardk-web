@@ -82,6 +82,8 @@ export class PostComponent implements OnInit {
         return '/links';
       case PostType.Gallery:
         return '/gallery';
+      default:
+        return '/';
     }
   }
 
@@ -95,6 +97,8 @@ export class PostComponent implements OnInit {
         return 'Links';
       case PostType.Gallery:
         return 'Gallery';
+      default:
+        return 'Posts';
     }
   }
 }

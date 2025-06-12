@@ -8,28 +8,28 @@
 } @for (post of posts; track post; let i = $index) {
 <div class="unified-post-card">
   <div class="unified-post-summary-content">
-    @if(isBlog()){
-      <a [routerLink]="['/blog', post.canonical_url]">
-        <h1 class="repeating-post-title">{{ post.post_title }}</h1>
-      </a>
-      <p>{{ post.post_description }}</p>
+    @if(isBlog(post.post_type)){
+    <a [routerLink]="['/blog', post.canonical_url]">
+      <h1 class="repeating-post-title">{{ post.post_title }}</h1>
+    </a>
+    <p>{{ post.post_description }}</p>
     } @else{
-      <app-post-content
-        [post]="post"
-        [postType]="getPostType(post.post_type)"
-        [contentPosition]="contentPosition"></app-post-content>
+    <app-post-content
+      [post]="post"
+      [postType]="getPostType(post.post_type)"
+      [contentPosition]="contentPosition"></app-post-content>
     }
   </div>
   <div class="repeating-post-datebar">
     <app-date-display
-      [routerLink]="['/' + getPageForLink(), getPostIdentifier(post)]"
+      [routerLink]="['/' + getPageForLink(post.post_type), getPostIdentifier(post)]"
       [dateToDisplay]="post.posted_at"
       labelText=""></app-date-display>
   </div>
 </div>
 } @if (showPageLink) {
 <div class="section-footer">
-  <a [routerLink]="['/' + getPageForLink()]">See more {{ getSeeMoreName() }}</a>
+  <a [routerLink]="['/' + getPageForLink(postType)]">See more {{ getSeeMoreName() }}</a>
 </div>
 } @else if (showPaginator) {
 <app-paginator

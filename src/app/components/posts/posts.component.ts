@@ -1,8 +1,8 @@
 import { Component, Input } from '@angular/core';
 import { PageTitleComponent } from '../shared/page-title/page-title.component';
 import { PostType } from './models/post-type';
-import { PostFeedComponent } from '../shared/post-feed/post-feed.component';
 import { ContentPosition } from './models/content-positions';
+import { PostFeedComponent } from '../shared/post-feed/post-feed.component';
 
 @Component({
   selector: 'app-posts',

@@ -1,0 +1,15 @@
+<div class="page-description-container">
+  <div class="page-description-content">
+    <app-page-title [titleSize]="1">
+      <i class="fa-solid fa-comment"></i>
+      {{ pageTitle }}
+    </app-page-title>
+  </div>
+</div>
+<app-post-feed
+  [postType]="postType"
+  [itemCount]="itemCount"
+  [pageTitle]="pageTitle"
+  [showPageLink]="showPageLink"
+  [showPaginator]="showPaginator"
+  [contentPosition]="contentPosition"></app-post-feed>

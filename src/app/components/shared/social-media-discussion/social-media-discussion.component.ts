@@ -1,6 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { Observable, take } from 'rxjs';
+import { Observable, of, take } from 'rxjs';
 import { HtmlDirective } from 'src/app/directives/html.directive';
 import { BlueskyPostFull } from 'src/app/components/shared/social-media-discussion/models/bluesky-post-full';
 import { DiscussionPostsResponse } from 'src/app/components/shared/social-media-discussion/models/discussion-posts-response';
@@ -11,10 +11,10 @@ import { PostType } from '../../posts/models/post-type';
 import { DiscussionPostsService } from 'src/app/services/discussion-posts.service';
 
 @Component({
-    selector: 'app-social-media-discussion',
-    imports: [HtmlDirective],
-    templateUrl: './social-media-discussion.component.html',
-    styleUrl: './social-media-discussion.component.scss'
+  selector: 'app-social-media-discussion',
+  imports: [HtmlDirective],
+  templateUrl: './social-media-discussion.component.html',
+  styleUrl: './social-media-discussion.component.scss',
 })
 export class SocialMediaDiscussionComponent implements OnInit {
   public mastodonPosts: PostToDisplay[] = [];
@@ -106,6 +106,8 @@ export class SocialMediaDiscussionComponent implements OnInit {
         return this.discussionPostsService.getDiscussionPostsForPosts();
       case PostType.Gallery:
         return this.discussionPostsService.getDiscussionPostsForGallery();
+      case PostType.All:
+        return of();
     }
   }
 }

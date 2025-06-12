@@ -8,33 +8,41 @@
   </div>
 </div>
 
-<div class="page-section-container">
+<!-- <div class="page-section-container">
   <app-posts
     pageTitle="Latest Posts"
     [itemCount]="3"
     [showPageLink]="true"
     [showPaginator]="false"></app-posts>
+</div> -->
+
+<div class="page-section-container">
+  <app-all-posts
+    pageTitle="Latest Posts By Me"
+    [itemCount]="4"
+    [showPageLink]="true"
+    [showPaginator]="false"></app-all-posts>
 </div>
 
 <div class="page-section-container">
   <app-media-feed></app-media-feed>
 </div>
 
-<div class="page-section-container">
+<!-- <div class="page-section-container">
   <app-blog
     pageTitle="Latest Blog Posts"
     [itemCount]="2"
     [showPageLink]="true"
     [showPaginator]="false"></app-blog>
-</div>
+</div> -->
 
-<div class="page-section-container">
+<!-- <div class="page-section-container">
   <app-links
     pageTitle="Latest Shared Links"
     [itemCount]="2"
     [showPageLink]="true"
     [showPaginator]="false"></app-links>
-</div>
+</div> -->
 
 <div class="page-section-container">
   <app-gallery pageTitle="Latest Gallery Posts" [itemCount]="4" [showPageLink]="true"></app-gallery>

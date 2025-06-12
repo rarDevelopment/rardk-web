@@ -20,8 +20,8 @@ import { PostContentComponent } from '../../posts/post/post-content/post-content
     RouterLink,
     PaginatorComponent,
     LoadingIndicatorComponent,
-    PostContentComponent
-],
+    PostContentComponent,
+  ],
   templateUrl: './post-feed.component.html',
   styleUrl: './post-feed.component.scss',
 })
@@ -87,7 +87,9 @@ export class PostFeedComponent implements OnInit {
             paginatedPosts = this.allPosts;
           }
 
-          this.posts = paginatedPosts.map((p) => new PostDisplay(p, this.getPageForLink()));
+          this.posts = paginatedPosts.map(
+            (p) => new PostDisplay(p, this.getPageForLink(p.post_type))
+          );
           this.setPostsForCurrentPage();
         },
         error: (error) => {
@@ -104,21 +106,23 @@ export class PostFeedComponent implements OnInit {
     const start = (this.currentPage - 1) * this.itemsPerPage;
     this.posts = this.allPosts
       .slice(start, start + this.itemsPerPage)
-      .map((p) => new PostDisplay(p, this.getPageForLink()));
+      .map((p) => new PostDisplay(p, this.getPageForLink(p.post_type)));
   }
 
   public goToPage(pageNumber: number) {
     this.currentPage = pageNumber;
-    this.router.navigate([this.getPageForLink()], { queryParams: { page: pageNumber } });
+    this.router.navigate([this.getPageForLink(this.postType)], {
+      queryParams: { page: pageNumber },
+    });
     this.scrollToTop();
   }
 
-  public isBlog(): boolean {
-    return this.postType === PostType.Blog;
+  public isBlog(postType: string): boolean {
+    return postType === PostType.Blog;
   }
 
-  public getPageForLink(): string {
-    switch (this.postType) {
+  public getPageForLink(postType: string): string {
+    switch (postType) {
       case PostType.Blog:
         return 'blog';
       case PostType.Post:
@@ -127,16 +131,19 @@ export class PostFeedComponent implements OnInit {
         return 'links';
       case PostType.Gallery:
         return 'gallery';
+      default:
+        return 'posts';
     }
   }
 
   public getPostIdentifier(post: PostDisplay): string {
-    switch (this.postType) {
+    switch (post.post_type) {
       case PostType.Blog:
         return post.canonical_url;
       case PostType.Post:
       case PostType.Link:
       case PostType.Gallery:
+      default:
         return post.time_stamp;
     }
   }
@@ -165,6 +172,8 @@ export class PostFeedComponent implements OnInit {
         return 'Links';
       case PostType.Gallery:
         return 'Gallery Posts';
+      default:
+        return 'Posts';
     }
   }
 }
