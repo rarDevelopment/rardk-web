@@ -21,6 +21,16 @@
     }
   </div>
   <div class="repeating-post-datebar">
+    @if(showPostType) {
+    <div class="post-type-tag">
+      <a [routerLink]="['/' + getPageForLink(post.post_type)]">
+        <span class="post-type-icon">
+          <i class="{{ getPostTypeIcon(post.post_type) }}"></i>
+        </span>
+        <span class="post-type-label">{{ getPostType(post.post_type) }}</span>
+      </a>
+    </div>
+    }
     <app-date-display
       [routerLink]="['/' + getPageForLink(post.post_type), getPostIdentifier(post)]"
       [dateToDisplay]="post.posted_at"

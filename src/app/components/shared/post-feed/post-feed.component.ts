@@ -41,6 +41,7 @@ export class PostFeedComponent implements OnInit {
   @Input() showPaginator = true;
   @Input() postType: PostType;
   @Input() contentPosition: ContentPosition = ContentPosition.Below;
+  @Input() showPostType = false;
   public pageQueryParam = 1;
   public currentPage = 1;
   public itemsPerPage = 10;
@@ -159,6 +160,21 @@ export class PostFeedComponent implements OnInit {
       case 'post':
       default:
         return PostType.Post;
+    }
+  }
+
+  public getPostTypeIcon(type: string): string {
+    switch (type) {
+      case PostType.Blog:
+        return 'fa-solid fa-newspaper';
+      case PostType.Post:
+        return 'fa-solid fa-comment';
+      case PostType.Link:
+        return 'fa-solid fa-link';
+      case PostType.Gallery:
+        return 'fa-solid fa-gallery';
+      default:
+        return 'fa-solid fa-comment';
     }
   }
 
