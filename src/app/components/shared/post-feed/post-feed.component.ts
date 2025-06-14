@@ -38,6 +38,7 @@ export class PostFeedComponent implements OnInit {
   @Input() itemCount: number = 0;
   @Input() pageTitle = 'Posts';
   @Input() showPageLink = false;
+  @Input() showAllPageLinks = false;
   @Input() showPaginator = true;
   @Input() postType: PostType;
   @Input() contentPosition: ContentPosition = ContentPosition.Below;

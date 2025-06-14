@@ -41,6 +41,16 @@
 <div class="section-footer">
   <a [routerLink]="['/' + getPageForLink(postType)]">See more {{ getSeeMoreName() }}</a>
 </div>
+} @else if(showAllPageLinks){
+<div class="section-footer">
+  See more:
+  <a [routerLink]="['/posts']">Posts</a>
+  |
+  <a [routerLink]="['/blog']">Blog</a>
+  |
+  <a [routerLink]="['/links']">Links</a>
+</div>
+
 } @else if (showPaginator) {
 <app-paginator
   [currentPage]="currentPage"

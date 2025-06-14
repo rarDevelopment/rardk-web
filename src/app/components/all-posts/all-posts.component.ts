@@ -14,6 +14,7 @@ export class AllPostsComponent {
   @Input() itemCount: number = 0;
   @Input() pageTitle = 'Posts';
   @Input() showPageLink = false;
+  @Input() showAllPageLinks = false;
   @Input() showPaginator = true;
   public postType = PostType.All;
   public contentPosition = ContentPosition.Above;
