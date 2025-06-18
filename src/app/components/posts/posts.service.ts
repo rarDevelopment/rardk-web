@@ -15,23 +15,18 @@ export class PostsService {
   private postTypeFilters: { [key: string]: PostTypeFilter } = {
     [PostType.Link]: {
       filter: (p: Post) => p.post_type === PostType.Link,
-      hashtagPrefix: '#rardklink',
     },
     [PostType.Post]: {
       filter: (p: Post) => p.post_type === PostType.Post,
-      hashtagPrefix: '#rardkpost',
     },
     [PostType.Blog]: {
       filter: (p: Post) => p.post_type === PostType.Blog,
-      hashtagPrefix: '#rardkblogpost',
     },
     [PostType.Gallery]: {
       filter: (p: Post) => p.post_type === PostType.Gallery,
-      hashtagPrefix: '#rardkgallery',
     },
     [PostType.All]: {
-      filter: (p: Post) => true,
-      hashtagPrefix: '#rardk',
+      filter: (p: Post) => p.post_type !== PostType.Gallery,
     },
   };
 
