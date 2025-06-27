@@ -1,0 +1,160 @@
+// filepath: c:\Users\rrodd\Code\rardk-web\src\app\components\bots\replybot\guild-configuration-modal\guild-configuration-modal.component.scss
+@use "../../../../../variables" as variables;
+
+// Styles for the content when hosted inside app-modal
+.guild-configuration-section-host {
+  // Styles for the new host wrapper
+  // Add any specific padding or margins if the app-modal doesn't provide enough
+  // or if you need to adjust the layout of the content within the app-modal.
+  // For example, if app-modal has its own padding, you might not need much here.
+  // padding: 10px; // Example: if you need a bit of inner padding
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.guild-config-modal-container {
+  max-width: 800px; // was 600px
+  width: 90vw; // allow to grow on wide screens
+  min-width: 320px;
+  margin: 40px auto;
+  background: #23272a;
+  border-radius: 12px;
+  box-shadow: 0 4px 32px #000a;
+  padding: 32px 24px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.guild-configuration-title {
+  font-size: 22px; // Slightly smaller if app-modal has a title area
+  font-weight: bold;
+  margin-bottom: 10px;
+  text-align: center;
+  color: variables.$font-color;
+}
+
+.guild-configuration-description {
+  font-size: 15px;
+  margin-bottom: 20px;
+  text-align: center;
+  color: #bdbdbd;
+}
+
+.guild-configuration-actions {
+  display: block; // or use flex-direction: column;
+  margin-bottom: 20px;
+}
+
+.toggle-category {
+  margin-bottom: 32px;
+  padding-bottom: 12px;
+  border-bottom: 1px solid #333;
+  width: 100%;
+  display: flex;
+  flex-direction: column !important; // Force vertical stacking
+  align-items: stretch;
+}
+
+.toggle-category-title {
+  color: #fff;
+  font-weight: bold;
+  margin-bottom: 18px;
+  font-size: 1.15em;
+  text-align: center;
+  width: 100%;
+  display: block;
+}
+
+.toggle-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0 16px;
+  width: 100%;
+  justify-content: center; // Center toggles under the title
+  margin-bottom: 12px;
+}
+
+.toggle-item {
+  flex: 0 1 30%; // 3 per row, but flexible
+  min-width: 140px;
+  max-width: 33.33%;
+  display: flex;
+  align-items: center; // Vertically align label and toggle
+  justify-content: flex-start;
+  margin-bottom: 16px;
+  box-sizing: border-box;
+  padding-right: 4px;
+  gap: 0 8px; // Add a little space between toggle and label
+}
+
+.toggle-switch-text {
+  margin-left: 0; // Remove extra margin if present
+  font-size: 15px;
+  font-weight: 500;
+  white-space: normal;
+  flex: 1 1 auto;
+  min-width: 0;
+  overflow-wrap: anywhere;
+  display: flex;
+  align-items: center; // Vertically align text with toggle
+}
+
+.modal-buttons {
+  display: flex;
+  justify-content: flex-end;
+  gap: 10px;
+  margin-top: 20px;
+  // Removed border-top, assuming app-modal might have its own footer styling or separator
+}
+
+// .modal-button styling will be inherited from global .button styles
+
+.form-array-columns {
+  display: flex;
+  gap: 32px;
+  margin-top: 24px;
+  margin-bottom: 12px;
+  flex-wrap: wrap;
+}
+.form-array-section {
+  flex: 1 1 0;
+  min-width: 260px;
+}
+
+.form-array-title {
+  color: #fff;
+  font-weight: bold;
+  margin-bottom: 6px;
+  display: block;
+  font-size: 1.1em;
+}
+.subtitle {
+  color: #ccc;
+  font-weight: normal;
+  font-size: 0.95em;
+}
+.question-icon {
+  margin-left: 4px;
+}
+
+label {
+  color: #fff;
+  font-weight: 500;
+  font-size: 14px;
+}
+
+@media (max-width: 900px) {
+  .toggle-item {
+    flex: 0 1 48%; // 2 per row
+    max-width: 48%;
+  }
+}
+@media (max-width: 600px) {
+  .toggle-item {
+    flex: 0 1 100%; // 1 per row
+    max-width: 100%;
+  }
+}

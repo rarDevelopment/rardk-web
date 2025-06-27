@@ -659,71 +659,55 @@ a:visited {
 // Basic Toggle Switch Styling
 .toggle-switch {
   position: relative;
-  width: 60px; // Width of the toggle
-  height: 34px; // Height of the toggle
-  vertical-align: middle; // Align with adjacent text
+  width: 60px;
+  height: 34px;
+  display: flex;           // <-- Change from inline-block to flex
+  align-items: center;     // <-- Vertically center the toggle contents
 
-  &-checkbox {
+  .toggle-switch-checkbox {
     opacity: 0;
     width: 0;
     height: 0;
-
-    &:checked + .toggle-switch-label .toggle-switch-inner {
-      background-color: #4caf50; // Green when checked
-    }
-
-    &:focus + .toggle-switch-label .toggle-switch-inner {
-      box-shadow: 0 0 1px #4caf50;
-    }
-
-    &:checked + .toggle-switch-label .toggle-switch-switch {
-      transform: translateX(26px); // Move the switch handle
-    }
   }
 
-  &-label {
-    display: flex; // Use flexbox for alignment
-    align-items: center; // Vertically center items
-    position: absolute;
-    cursor: pointer;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-  }
-
-  &-inner {
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background-color: #ccc;
-    transition: 0.4s;
-    border-radius: 34px;
-    // z-index: 1; // Ensure inner is behind switch and text
-  }
-
-  &-switch {
-    position: absolute;
-    content: "";
-    height: 26px;
-    width: 26px;
-    left: 4px;
-    bottom: 4px;
-    background-color: white;
-    transition: 0.4s;
-    border-radius: 50%;
-    // z-index: 2; // Ensure switch is above inner
-  }
-
-  &-text {
+  .toggle-switch-label {
+    display: block;
     position: relative;
-    // z-index: 2; // Ensure text is above inner
-    margin-left: 70px; // Position text to the right of the switch (adjust as needed)
-    font-weight: bold;
-    color: #000; // Ensure text color is visible
-    white-space: nowrap; // Prevent text wrapping
+    width: 60px;
+    height: 34px;
+    cursor: pointer;
+    user-select: none;
+  }
+
+  .toggle-switch-inner {
+    position: absolute;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background-color: #ccc;
+    border-radius: 34px;
+    transition: background 0.4s;
+  }
+
+  .toggle-switch-switch {
+    position: absolute;
+    left: 4px;
+    top: 4px; // <-- Change from bottom: 4px; to top: 4px;
+    width: 26px;
+    height: 26px;
+    background: #fff;
+    border-radius: 50%;
+    transition: transform 0.4s;
+  }
+
+  .toggle-switch-checkbox:checked + .toggle-switch-label .toggle-switch-inner {
+    background-color: #4caf50;
+  }
+
+  .toggle-switch-checkbox:checked + .toggle-switch-label .toggle-switch-switch {
+    transform: translateX(24px); // Try 24px instead of 26px
+  }
+
+  .toggle-switch-checkbox:focus + .toggle-switch-label .toggle-switch-inner {
+    box-shadow: 0 0 1px #4caf50;
   }
 }
 
@@ -908,4 +892,30 @@ circle {
     padding-top: 22px;
     padding-bottom: 14px;
   }
+}
+
+.guild-configuration-actions > div {
+  display: flex;
+  align-items: center; // Vertically align items
+  margin-bottom: 10px; // Add some space between toggles
+}
+
+.toggle-item {
+  display: flex;         // <-- Add this line!
+  align-items: center;
+}
+
+.toggle-switch-text {
+  display: flex;
+  align-items: center;
+  line-height: 34px; // Match the toggle height
+  font-weight: bold;
+  color: variables.$font-color;
+  white-space: nowrap;
+  margin-left: 10px;
+  // Remove any vertical margin/padding that could offset it
+  margin-top: 0;
+  margin-bottom: 0;
+  padding-top: 0;
+  padding-bottom: 0;
 }

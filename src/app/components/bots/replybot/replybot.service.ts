@@ -77,4 +77,13 @@ export class ReplybotService extends ApiService {
       `${this.domainUrl}replybot/config/?accessToken=${discordAccessToken}&guildId=${guildId}`
     );
   }
+
+  public updateReplybotGuildConfiguration(
+    updatedConfiguration: any
+  ): Observable<GuildConfiguration> {
+    return this.http.put<GuildConfiguration>(
+      `${this.domainUrl}replybot/config`,
+      updatedConfiguration
+    );
+  }
 }
