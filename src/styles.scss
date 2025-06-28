@@ -351,6 +351,12 @@ a:visited {
   box-shadow: 0 0 0 3px color.adjust($base-color, $lightness: -15%);
 }
 
+@mixin button-disabled-effect($base-color) {
+  background-color: color.adjust($base-color, $lightness: -15%);
+  border-color: color.adjust($base-color, $lightness: -15%);
+  border-color: color.adjust($base-color, $lightness: -15%);
+}
+
 .button {
   width: 160px;
 
@@ -372,43 +378,13 @@ a:visited {
 
   &:disabled,
   &[disabled="disabled"] {
-    background-color: rgba(56, 56, 56, 0.12) !important;
-    color: rgba(65, 65, 65, 0.38);
+    color: rgba(255, 255, 255, 0.5);
     cursor: not-allowed;
-    border-color: rgba(65, 65, 65, 0.2);
-    opacity: 0.7;
+    opacity: 0.6;
 
-    // Add these lines to override all color classes
-    &.blue,
-    &.purple,
-    &.green,
-    &.pink,
-    &.magenta,
-    &.red,
-    &.hot-pink,
-    &.dark-purple,
-    &.light-blue {
-      background-color: rgba(56, 56, 56, 0.12) !important;
-    }
-
-    // Keep your existing hover overrides
-    &:hover,
-    &:active {
-      border-color: rgba(65, 65, 65, 0.2);
-      background-color: rgba(56, 56, 56, 0.12);
-    }
-
-    // Override all color-specific hover effects
-    &.blue:hover,
-    &.purple:hover,
-    &.green:hover,
-    &.pink:hover,
-    &.magenta:hover,
-    &.red:hover,
-    &.hot-pink:hover,
-    &.dark-purple:hover,
-    &.light-blue:hover {
-      border-color: rgba(65, 65, 65, 0.2);
+    &:hover {
+      // Prevent hover effects on disabled buttons
+      background-color: currentColor;
     }
   }
 
@@ -441,6 +417,10 @@ a:visited {
     &.selected {
       @include button-selected-effect(variables.$button-orange);
     }
+    &:disabled,
+    &[disabled="disabled"] {
+      @include button-disabled-effect(variables.$button-orange);
+    }
   }
 
   &.blue {
@@ -455,6 +435,10 @@ a:visited {
     }
     &.selected {
       @include button-selected-effect(variables.$button-blue);
+    }
+    &:disabled,
+    &[disabled="disabled"] {
+      @include button-disabled-effect(variables.$button-blue);
     }
   }
 
@@ -471,6 +455,10 @@ a:visited {
     &.selected {
       @include button-selected-effect(variables.$button-purple);
     }
+    &:disabled,
+    &[disabled="disabled"] {
+      @include button-disabled-effect(variables.$button-purple);
+    }
   }
 
   &.green {
@@ -486,6 +474,10 @@ a:visited {
     &.selected {
       @include button-selected-effect(variables.$button-green);
     }
+    &:disabled,
+    &[disabled="disabled"] {
+      @include button-disabled-effect(variables.$button-green);
+    }
   }
 
   &.pink {
@@ -500,6 +492,10 @@ a:visited {
     }
     &.selected {
       @include button-selected-effect(variables.$button-pink);
+    }
+    &:disabled,
+    &[disabled="disabled"] {
+      @include button-disabled-effect(variables.$button-pink);
     }
   }
 
@@ -518,6 +514,10 @@ a:visited {
     &.selected {
       @include button-selected-effect(variables.$button-magenta);
     }
+    &:disabled,
+    &[disabled="disabled"] {
+      @include button-disabled-effect(variables.$button-magenta);
+    }
   }
 
   &.red {
@@ -532,6 +532,10 @@ a:visited {
     }
     &.selected {
       @include button-selected-effect(variables.$button-red);
+    }
+    &:disabled,
+    &[disabled="disabled"] {
+      @include button-disabled-effect(variables.$button-red);
     }
   }
 
@@ -550,6 +554,10 @@ a:visited {
     &.selected {
       @include button-selected-effect(variables.$button-hot-pink);
     }
+    &:disabled,
+    &[disabled="disabled"] {
+      @include button-disabled-effect(variables.$button-hot-pink);
+    }
   }
 
   &.dark-purple {
@@ -567,6 +575,10 @@ a:visited {
     &.selected {
       @include button-selected-effect(variables.$button-dark-purple);
     }
+    &:disabled,
+    &[disabled="disabled"] {
+      @include button-disabled-effect(variables.$button-dark-purple);
+    }
   }
 
   &.light-blue {
@@ -581,6 +593,10 @@ a:visited {
     }
     &.selected {
       @include button-selected-effect(variables.$button-light-blue);
+    }
+    &:disabled,
+    &[disabled="disabled"] {
+      @include button-disabled-effect(variables.$button-light-blue);
     }
   }
 
@@ -597,6 +613,10 @@ a:visited {
     &.selected {
       @include button-selected-effect(variables.$button-caribbean-green);
     }
+    &:disabled,
+    &[disabled="disabled"] {
+      @include button-disabled-effect(variables.$button-caribbean-green);
+    }
   }
 
   &.jade {
@@ -611,6 +631,10 @@ a:visited {
     }
     &.selected {
       @include button-selected-effect(variables.$button-jade);
+    }
+    &:disabled,
+    &[disabled="disabled"] {
+      @include button-disabled-effect(variables.$button-jade);
     }
   }
 
@@ -627,6 +651,10 @@ a:visited {
     &.selected {
       @include button-selected-effect(variables.$button-pastel-red);
     }
+    &:disabled,
+    &[disabled="disabled"] {
+      @include button-disabled-effect(variables.$button-pastel-red);
+    }
   }
 
   &.login-green {
@@ -641,6 +669,10 @@ a:visited {
     }
     &.selected {
       @include button-selected-effect(variables.$button-login-green);
+    }
+    &:disabled,
+    &[disabled="disabled"] {
+      @include button-disabled-effect(variables.$button-login-green);
     }
   }
 
@@ -661,8 +693,8 @@ a:visited {
   position: relative;
   width: 60px;
   height: 34px;
-  display: flex;           // <-- Change from inline-block to flex
-  align-items: center;     // <-- Vertically center the toggle contents
+  display: flex; // <-- Change from inline-block to flex
+  align-items: center; // <-- Vertically center the toggle contents
 
   .toggle-switch-checkbox {
     opacity: 0;
@@ -681,7 +713,10 @@ a:visited {
 
   .toggle-switch-inner {
     position: absolute;
-    top: 0; left: 0; right: 0; bottom: 0;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
     background-color: #ccc;
     border-radius: 34px;
     transition: background 0.4s;
@@ -901,7 +936,7 @@ circle {
 }
 
 .toggle-item {
-  display: flex;         // <-- Add this line!
+  display: flex; // <-- Add this line!
   align-items: center;
 }
 

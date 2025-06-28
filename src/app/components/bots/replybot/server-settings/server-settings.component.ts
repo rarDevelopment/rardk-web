@@ -1,20 +1,22 @@
-import { Component, OnChanges, SimpleChanges, OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { GuildConfiguration } from 'src/app/components/bots/models/replybot/guild-configuration';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { TooltipDirective } from 'src/app/directives/tooltip.directive';
 import { switchMap, take } from 'rxjs';
 import { BotPageComponent } from '../../bot-page/bot-page.component';
+import { LoadingIndicatorComponent } from 'src/app/components/shared/loading-indicator/loading-indicator.component';
 
 @Component({
-  selector: 'app-guild-configuration',
-  templateUrl: './guild-configuration.component.html',
-  styleUrls: ['./guild-configuration.component.scss'],
+  selector: 'app-server-settings',
+  templateUrl: './server-settings.component.html',
+  styleUrls: ['./server-settings.component.scss'],
   standalone: true,
-  imports: [CommonModule, FormsModule, TooltipDirective],
+  imports: [CommonModule, FormsModule, TooltipDirective, LoadingIndicatorComponent],
 })
-export class GuildConfigurationComponent extends BotPageComponent implements OnInit {
+export class ServerSettingsComponent extends BotPageComponent implements OnInit {
   public guildConfiguration: GuildConfiguration;
+  public editableGuildConfiguration: GuildConfiguration;
   public isLoading = false;
 
   ngOnInit(): void {
@@ -22,11 +24,9 @@ export class GuildConfigurationComponent extends BotPageComponent implements OnI
       .pipe(
         take(1),
         switchMap((params) => {
-          // Extract guildId from query params
           const guildId = params['guildId'];
           const accessToken = this.getLoginToken();
           if (guildId) {
-            // If guildId is present, fetch the guild configuration
             return this.replybotService.getReplybotGuildConfiguration(accessToken!, guildId);
           }
           return [];
@@ -36,19 +36,14 @@ export class GuildConfigurationComponent extends BotPageComponent implements OnI
         next: (result: GuildConfiguration) => {
           // Initialize the guild configuration with the fetched data
           this.guildConfiguration = result;
+          // Create a deep copy for editing
+          this.editableGuildConfiguration = JSON.parse(JSON.stringify(this.guildConfiguration));
         },
         error: (error) => {
           console.error('Error fetching guild configuration:', error);
         },
       });
   }
-
-  // ngOnChanges(changes: SimpleChanges): void {
-  //   if (changes['guildConfiguration'] && this.guildConfiguration) {
-  //     // Create a deep copy for editing
-  //     this._guildConfiguration = JSON.parse(JSON.stringify(this.guildConfiguration));
-  //   }
-  // }
 
   saveConfiguration(): void {
     const accessToken = this.getLoginToken();
@@ -60,7 +55,7 @@ export class GuildConfigurationComponent extends BotPageComponent implements OnI
     this.isLoading = true;
 
     const guildConfigurationWithAccessToken = {
-      ...this.guildConfiguration,
+      ...this.editableGuildConfiguration,
       accessToken: accessToken,
     };
 
@@ -69,18 +64,10 @@ export class GuildConfigurationComponent extends BotPageComponent implements OnI
       .pipe(take(1))
       .subscribe({
         next: (savedConfig) => {
-          if (savedConfig) {
-            console.log('Guild configuration saved successfully', savedConfig);
-            this.snackbarService.showSnackBar('Server configuration saved successfully!', false);
-            this.isLoading = false;
-          } else {
-            console.error('Failed to save guild configuration');
-            this.snackbarService.showSnackBar(
-              'Failed to save server configuration. Please try again.',
-              true
-            );
-            this.isLoading = false;
-          }
+          console.log('Guild configuration saved successfully', savedConfig);
+          this.snackbarService.showSnackBar('Server configuration saved successfully!', false);
+          this.guildConfiguration = JSON.parse(JSON.stringify(this.editableGuildConfiguration));
+          this.isLoading = false;
         },
         error: (err) => {
           console.error('Error saving guild configuration', err);
@@ -98,6 +85,18 @@ export class GuildConfigurationComponent extends BotPageComponent implements OnI
     this.router.navigate(['bots/replybot/reply-definitions'], {
       queryParams: { guildId: this.guildConfiguration.guildId },
     });
+  }
+
+  areConfigurationsEqual(): boolean {
+    if (!this.guildConfiguration && !this.editableGuildConfiguration) {
+      return true;
+    }
+    if (!this.guildConfiguration || !this.editableGuildConfiguration) {
+      return false;
+    }
+    return (
+      JSON.stringify(this.guildConfiguration) === JSON.stringify(this.editableGuildConfiguration)
+    );
   }
 
   isNumericString(value: string): boolean {
