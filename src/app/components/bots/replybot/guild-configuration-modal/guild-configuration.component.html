@@ -1,14 +1,16 @@
-<div class="modal-overlay" (click)="closeModal()">
-  <div class="modal-container guild-config-modal-container" (click)="$event.stopPropagation()">
-    @if (_guildConfiguration) {
+<div>
+  <div class="guild-config-container" (click)="$event.stopPropagation()">
+    @if (guildConfiguration) {
     <div class="guild-configuration-section-host">
       <div class="guild-configuration-title">Server Configuration</div>
       <div class="guild-configuration-description">
         Configure how the Reply Bot behaves in this server.
       </div>
-
+      <div class="configuration-buttons">
+        <button class="button blue on-black" (click)="backToDefinitions()">Back</button>
+        <button class="button green on-black" (click)="saveConfiguration()">Save Changes</button>
+      </div>
       <div class="guild-configuration-actions">
-        <!-- General -->
         <div class="toggle-category">
           <div class="toggle-category-title">General</div>
           <div class="toggle-row">
@@ -17,9 +19,9 @@
                 <input
                   type="checkbox"
                   class="toggle-switch-checkbox"
-                  id="modal-enableDefaultReplies"
-                  [(ngModel)]="_guildConfiguration.enableDefaultReplies" />
-                <label class="toggle-switch-label" for="modal-enableDefaultReplies">
+                  id="toggle-enableDefaultReplies"
+                  [(ngModel)]="guildConfiguration.enableDefaultReplies" />
+                <label class="toggle-switch-label" for="toggle-enableDefaultReplies">
                   <span class="toggle-switch-inner"></span>
                   <span class="toggle-switch-switch"></span>
                 </label>
@@ -36,82 +38,40 @@
                 <input
                   type="checkbox"
                   class="toggle-switch-checkbox"
-                  id="modal-enableChannelUpdateAnnouncements"
-                  name="modal-enableChannelUpdateAnnouncements"
-                  [(ngModel)]="_guildConfiguration.enableChannelUpdateAnnouncements" />
-                <label class="toggle-switch-label" for="modal-enableChannelUpdateAnnouncements">
-                  <span class="toggle-switch-inner"></span>
-                  <span class="toggle-switch-switch"></span>
-                </label>
-              </div>
-              <span class="toggle-switch-text">Channel Update Announcements</span>
-            </div>
-            <div class="toggle-item">
-              <div class="toggle-switch">
-                <input
-                  type="checkbox"
-                  class="toggle-switch-checkbox"
                   id="modal-enableRepeatLinkNotifications"
                   name="modal-enableRepeatLinkNotifications"
-                  [(ngModel)]="_guildConfiguration.enableRepeatLinkNotifications" />
+                  [(ngModel)]="guildConfiguration.enableRepeatLinkNotifications" />
                 <label class="toggle-switch-label" for="modal-enableRepeatLinkNotifications">
                   <span class="toggle-switch-inner"></span>
                   <span class="toggle-switch-switch"></span>
                 </label>
               </div>
-              <span class="toggle-switch-text">Repeat Link Notifications</span>
+              <span class="toggle-switch-text">
+                Repeat Link Notifications
+                <i
+                  class="question-icon fa-solid fa-circle-question"
+                  tooltip="Notifies users if a link they posted has already been shared in the channel recently."></i>
+              </span>
             </div>
             <div class="toggle-item">
               <div class="toggle-switch">
                 <input
                   type="checkbox"
                   class="toggle-switch-checkbox"
-                  id="modal-fortniteMapOnlyNamedLocations"
-                  name="modal-fortniteMapOnlyNamedLocations"
-                  [(ngModel)]="_guildConfiguration.fortniteMapOnlyNamedLocations" />
-                <label class="toggle-switch-label" for="modal-fortniteMapOnlyNamedLocations">
+                  id="modal-enableChannelUpdateAnnouncements"
+                  name="modal-enableChannelUpdateAnnouncements"
+                  [(ngModel)]="guildConfiguration.enableChannelUpdateAnnouncements" />
+                <label class="toggle-switch-label" for="modal-enableChannelUpdateAnnouncements">
                   <span class="toggle-switch-inner"></span>
                   <span class="toggle-switch-switch"></span>
                 </label>
               </div>
-              <span class="toggle-switch-text">Fortnite Map Only Named Locations</span>
-            </div>
-          </div>
-        </div>
-
-        <!-- Avatar -->
-        <div class="toggle-category">
-          <div class="toggle-category-title">Avatar</div>
-          <div class="toggle-row">
-            <div class="toggle-item">
-              <div class="toggle-switch">
-                <input
-                  type="checkbox"
-                  class="toggle-switch-checkbox"
-                  id="modal-enableAvatarAnnouncements"
-                  name="modal-enableAvatarAnnouncements"
-                  [(ngModel)]="_guildConfiguration.enableAvatarAnnouncements" />
-                <label class="toggle-switch-label" for="modal-enableAvatarAnnouncements">
-                  <span class="toggle-switch-inner"></span>
-                  <span class="toggle-switch-switch"></span>
-                </label>
-              </div>
-              <span class="toggle-switch-text">Avatar Announcements</span>
-            </div>
-            <div class="toggle-item">
-              <div class="toggle-switch">
-                <input
-                  type="checkbox"
-                  class="toggle-switch-checkbox"
-                  id="modal-enableAvatarMentions"
-                  name="modal-enableAvatarMentions"
-                  [(ngModel)]="_guildConfiguration.enableAvatarMentions" />
-                <label class="toggle-switch-label" for="modal-enableAvatarMentions">
-                  <span class="toggle-switch-inner"></span>
-                  <span class="toggle-switch-switch"></span>
-                </label>
-              </div>
-              <span class="toggle-switch-text">Avatar Mentions</span>
+              <span class="toggle-switch-text">
+                Channel Update Announcements
+                <i
+                  class="question-icon fa-solid fa-circle-question"
+                  tooltip="Announces when a channel's topic or name is updated."></i>
+              </span>
             </div>
             <div class="toggle-item">
               <div class="toggle-switch">
@@ -120,13 +80,18 @@
                   class="toggle-switch-checkbox"
                   id="modal-enableWelcomeMessage"
                   name="modal-enableWelcomeMessage"
-                  [(ngModel)]="_guildConfiguration.enableWelcomeMessage" />
+                  [(ngModel)]="guildConfiguration.enableWelcomeMessage" />
                 <label class="toggle-switch-label" for="modal-enableWelcomeMessage">
                   <span class="toggle-switch-inner"></span>
                   <span class="toggle-switch-switch"></span>
                 </label>
               </div>
-              <span class="toggle-switch-text">Welcome Message</span>
+              <span class="toggle-switch-text">
+                Welcome Message
+                <i
+                  class="question-icon fa-solid fa-circle-question"
+                  tooltip="Welcomes new users when they join the server."></i>
+              </span>
             </div>
             <div class="toggle-item">
               <div class="toggle-switch">
@@ -135,13 +100,64 @@
                   class="toggle-switch-checkbox"
                   id="modal-enableDepartureMessage"
                   name="modal-enableDepartureMessage"
-                  [(ngModel)]="_guildConfiguration.enableDepartureMessage" />
+                  [(ngModel)]="guildConfiguration.enableDepartureMessage" />
                 <label class="toggle-switch-label" for="modal-enableDepartureMessage">
                   <span class="toggle-switch-inner"></span>
                   <span class="toggle-switch-switch"></span>
                 </label>
               </div>
-              <span class="toggle-switch-text">Departure Message</span>
+              <span class="toggle-switch-text">
+                Departure Message
+                <i
+                  class="question-icon fa-solid fa-circle-question"
+                  tooltip="Says goodbye to users when they leave the server."></i>
+              </span>
+            </div>
+          </div>
+        </div>
+
+        <div class="toggle-category">
+          <div class="toggle-category-title">User Updates</div>
+          <div class="toggle-row">
+            <div class="toggle-item">
+              <div class="toggle-switch">
+                <input
+                  type="checkbox"
+                  class="toggle-switch-checkbox"
+                  id="modal-enableAvatarAnnouncements"
+                  name="modal-enableAvatarAnnouncements"
+                  [(ngModel)]="guildConfiguration.enableAvatarAnnouncements" />
+                <label class="toggle-switch-label" for="modal-enableAvatarAnnouncements">
+                  <span class="toggle-switch-inner"></span>
+                  <span class="toggle-switch-switch"></span>
+                </label>
+              </div>
+              <span class="toggle-switch-text">
+                Avatar Announcements
+                <i
+                  class="question-icon fa-solid fa-circle-question"
+                  tooltip="Announces when a user changes their avatar."></i>
+              </span>
+            </div>
+            <div class="toggle-item">
+              <div class="toggle-switch">
+                <input
+                  type="checkbox"
+                  class="toggle-switch-checkbox"
+                  id="modal-enableAvatarMentions"
+                  name="modal-enableAvatarMentions"
+                  [(ngModel)]="guildConfiguration.enableAvatarMentions" />
+                <label class="toggle-switch-label" for="modal-enableAvatarMentions">
+                  <span class="toggle-switch-inner"></span>
+                  <span class="toggle-switch-switch"></span>
+                </label>
+              </div>
+              <span class="toggle-switch-text">
+                Avatar Mentions
+                <i
+                  class="question-icon fa-solid fa-circle-question"
+                  tooltip="When a user's avatar is changed, the notification will mention them. This only applies if the Avatar Change Announcements is enabled."></i>
+              </span>
             </div>
           </div>
         </div>
@@ -157,13 +173,18 @@
                   class="toggle-switch-checkbox"
                   id="modal-enableFixTweetReactions"
                   name="modal-enableFixTweetReactions"
-                  [(ngModel)]="_guildConfiguration.enableFixTweetReactions" />
+                  [(ngModel)]="guildConfiguration.enableFixTweetReactions" />
                 <label class="toggle-switch-label" for="modal-enableFixTweetReactions">
                   <span class="toggle-switch-inner"></span>
                   <span class="toggle-switch-switch"></span>
                 </label>
               </div>
-              <span class="toggle-switch-text">Fix Tweet Reactions</span>
+              <span class="toggle-switch-text">
+                Fix Tweet Reactions
+                <i
+                  class="question-icon fa-solid fa-circle-question"
+                  tooltip="Automatically fixes Twitter/X links to show embeds properly when a user reacts with a specific emoji."></i>
+              </span>
             </div>
             <div class="toggle-item">
               <div class="toggle-switch">
@@ -172,13 +193,18 @@
                   class="toggle-switch-checkbox"
                   id="modal-enableFixInstagramReactions"
                   name="modal-enableFixInstagramReactions"
-                  [(ngModel)]="_guildConfiguration.enableFixInstagramReactions" />
+                  [(ngModel)]="guildConfiguration.enableFixInstagramReactions" />
                 <label class="toggle-switch-label" for="modal-enableFixInstagramReactions">
                   <span class="toggle-switch-inner"></span>
                   <span class="toggle-switch-switch"></span>
                 </label>
               </div>
-              <span class="toggle-switch-text">Fix Instagram Reactions</span>
+              <span class="toggle-switch-text">
+                Fix Instagram Reactions
+                <i
+                  class="question-icon fa-solid fa-circle-question"
+                  tooltip="Automatically fixes Instagram links to show embeds properly when a user reacts with a specific emoji."></i>
+              </span>
             </div>
             <div class="toggle-item">
               <div class="toggle-switch">
@@ -187,13 +213,18 @@
                   class="toggle-switch-checkbox"
                   id="modal-enableFixRedditReactions"
                   name="modal-enableFixRedditReactions"
-                  [(ngModel)]="_guildConfiguration.enableFixRedditReactions" />
+                  [(ngModel)]="guildConfiguration.enableFixRedditReactions" />
                 <label class="toggle-switch-label" for="modal-enableFixRedditReactions">
                   <span class="toggle-switch-inner"></span>
                   <span class="toggle-switch-switch"></span>
                 </label>
               </div>
-              <span class="toggle-switch-text">Fix Reddit Reactions</span>
+              <span class="toggle-switch-text">
+                Fix Reddit Reactions
+                <i
+                  class="question-icon fa-solid fa-circle-question"
+                  tooltip="Automatically fixes Reddit links to show embeds properly when a user reacts with a specific emoji."></i>
+              </span>
             </div>
             <div class="toggle-item">
               <div class="toggle-switch">
@@ -202,13 +233,18 @@
                   class="toggle-switch-checkbox"
                   id="modal-enableFixThreadsReactions"
                   name="modal-enableFixThreadsReactions"
-                  [(ngModel)]="_guildConfiguration.enableFixThreadsReactions" />
+                  [(ngModel)]="guildConfiguration.enableFixThreadsReactions" />
                 <label class="toggle-switch-label" for="modal-enableFixThreadsReactions">
                   <span class="toggle-switch-inner"></span>
                   <span class="toggle-switch-switch"></span>
                 </label>
               </div>
-              <span class="toggle-switch-text">Fix Threads Reactions</span>
+              <span class="toggle-switch-text">
+                Fix Threads Reactions
+                <i
+                  class="question-icon fa-solid fa-circle-question"
+                  tooltip="Automatically fixes Threads links to show embeds properly when a user reacts with a specific emoji."></i>
+              </span>
             </div>
             <div class="toggle-item">
               <div class="toggle-switch">
@@ -217,13 +253,18 @@
                   class="toggle-switch-checkbox"
                   id="modal-enableFixBlueskyReactions"
                   name="modal-enableFixBlueskyReactions"
-                  [(ngModel)]="_guildConfiguration.enableFixBlueskyReactions" />
+                  [(ngModel)]="guildConfiguration.enableFixBlueskyReactions" />
                 <label class="toggle-switch-label" for="modal-enableFixBlueskyReactions">
                   <span class="toggle-switch-inner"></span>
                   <span class="toggle-switch-switch"></span>
                 </label>
               </div>
-              <span class="toggle-switch-text">Fix Bluesky Reactions</span>
+              <span class="toggle-switch-text">
+                Fix Bluesky Reactions
+                <i
+                  class="question-icon fa-solid fa-circle-question"
+                  tooltip="Automatically fixes Bluesky links to show embeds properly when a user reacts with a specific emoji."></i>
+              </span>
             </div>
             <div class="toggle-item">
               <div class="toggle-switch">
@@ -232,13 +273,18 @@
                   class="toggle-switch-checkbox"
                   id="modal-enableFixTikTokReactions"
                   name="modal-enableFixTikTokReactions"
-                  [(ngModel)]="_guildConfiguration.enableFixTikTokReactions" />
+                  [(ngModel)]="guildConfiguration.enableFixTikTokReactions" />
                 <label class="toggle-switch-label" for="modal-enableFixTikTokReactions">
                   <span class="toggle-switch-inner"></span>
                   <span class="toggle-switch-switch"></span>
                 </label>
               </div>
-              <span class="toggle-switch-text">Fix TikTok Reactions</span>
+              <span class="toggle-switch-text">
+                Fix TikTok Reactions
+                <i
+                  class="question-icon fa-solid fa-circle-question"
+                  tooltip="Automatically fixes TikTok links to show embeds properly when a user reacts with a specific emoji."></i>
+              </span>
             </div>
           </div>
         </div>
@@ -252,7 +298,7 @@
             <input
               type="text"
               id="modal-logChannelId"
-              [(ngModel)]="_guildConfiguration.logChannelId"
+              [(ngModel)]="guildConfiguration.logChannelId"
               placeholder="Enter log channel ID"
               class="form-array-input" />
           </div>
@@ -264,13 +310,18 @@
                   class="toggle-switch-checkbox"
                   id="modal-enableLoggingUserJoins"
                   name="modal-enableLoggingUserJoins"
-                  [(ngModel)]="_guildConfiguration.enableLoggingUserJoins" />
+                  [(ngModel)]="guildConfiguration.enableLoggingUserJoins" />
                 <label class="toggle-switch-label" for="modal-enableLoggingUserJoins">
                   <span class="toggle-switch-inner"></span>
                   <span class="toggle-switch-switch"></span>
                 </label>
               </div>
-              <span class="toggle-switch-text">Logging User Joins</span>
+              <span class="toggle-switch-text">
+                Logging User Joins
+                <i
+                  class="question-icon fa-solid fa-circle-question"
+                  tooltip="Logs when a user joins the server to the designated log channel."></i>
+              </span>
             </div>
             <div class="toggle-item">
               <div class="toggle-switch">
@@ -279,13 +330,18 @@
                   class="toggle-switch-checkbox"
                   id="modal-enableLoggingUserDepartures"
                   name="modal-enableLoggingUserDepartures"
-                  [(ngModel)]="_guildConfiguration.enableLoggingUserDepartures" />
+                  [(ngModel)]="guildConfiguration.enableLoggingUserDepartures" />
                 <label class="toggle-switch-label" for="modal-enableLoggingUserDepartures">
                   <span class="toggle-switch-inner"></span>
                   <span class="toggle-switch-switch"></span>
                 </label>
               </div>
-              <span class="toggle-switch-text">Logging User Departures</span>
+              <span class="toggle-switch-text">
+                Logging User Departures
+                <i
+                  class="question-icon fa-solid fa-circle-question"
+                  tooltip="Logs when a user leaves the server to the designated log channel."></i>
+              </span>
             </div>
             <div class="toggle-item">
               <div class="toggle-switch">
@@ -294,13 +350,18 @@
                   class="toggle-switch-checkbox"
                   id="modal-enableLoggingMessageEdits"
                   name="modal-enableLoggingMessageEdits"
-                  [(ngModel)]="_guildConfiguration.enableLoggingMessageEdits" />
+                  [(ngModel)]="guildConfiguration.enableLoggingMessageEdits" />
                 <label class="toggle-switch-label" for="modal-enableLoggingMessageEdits">
                   <span class="toggle-switch-inner"></span>
                   <span class="toggle-switch-switch"></span>
                 </label>
               </div>
-              <span class="toggle-switch-text">Logging Message Edits</span>
+              <span class="toggle-switch-text">
+                Logging Message Edits
+                <i
+                  class="question-icon fa-solid fa-circle-question"
+                  tooltip="Logs when a message is edited to the designated log channel."></i>
+              </span>
             </div>
             <div class="toggle-item">
               <div class="toggle-switch">
@@ -309,13 +370,18 @@
                   class="toggle-switch-checkbox"
                   id="modal-enableLoggingMessageDeletes"
                   name="modal-enableLoggingMessageDeletes"
-                  [(ngModel)]="_guildConfiguration.enableLoggingMessageDeletes" />
+                  [(ngModel)]="guildConfiguration.enableLoggingMessageDeletes" />
                 <label class="toggle-switch-label" for="modal-enableLoggingMessageDeletes">
                   <span class="toggle-switch-inner"></span>
                   <span class="toggle-switch-switch"></span>
                 </label>
               </div>
-              <span class="toggle-switch-text">Logging Message Deletes</span>
+              <span class="toggle-switch-text">
+                Logging Message Deletes
+                <i
+                  class="question-icon fa-solid fa-circle-question"
+                  tooltip="Logs when a message is deleted to the designated log channel."></i>
+              </span>
             </div>
             <div class="toggle-item">
               <div class="toggle-switch">
@@ -324,13 +390,18 @@
                   class="toggle-switch-checkbox"
                   id="modal-enableLoggingUserBans"
                   name="modal-enableLoggingUserBans"
-                  [(ngModel)]="_guildConfiguration.enableLoggingUserBans" />
+                  [(ngModel)]="guildConfiguration.enableLoggingUserBans" />
                 <label class="toggle-switch-label" for="modal-enableLoggingUserBans">
                   <span class="toggle-switch-inner"></span>
                   <span class="toggle-switch-switch"></span>
                 </label>
               </div>
-              <span class="toggle-switch-text">Logging User Bans</span>
+              <span class="toggle-switch-text">
+                Logging User Bans
+                <i
+                  class="question-icon fa-solid fa-circle-question"
+                  tooltip="Logs when a user is banned from the server to the designated log channel."></i>
+              </span>
             </div>
             <div class="toggle-item">
               <div class="toggle-switch">
@@ -339,13 +410,44 @@
                   class="toggle-switch-checkbox"
                   id="modal-enableLoggingUserUnBans"
                   name="modal-enableLoggingUserUnBans"
-                  [(ngModel)]="_guildConfiguration.enableLoggingUserUnBans" />
+                  [(ngModel)]="guildConfiguration.enableLoggingUserUnBans" />
                 <label class="toggle-switch-label" for="modal-enableLoggingUserUnBans">
                   <span class="toggle-switch-inner"></span>
                   <span class="toggle-switch-switch"></span>
                 </label>
               </div>
-              <span class="toggle-switch-text">Logging User UnBans</span>
+              <span class="toggle-switch-text">
+                Logging User UnBans
+                <i
+                  class="question-icon fa-solid fa-circle-question"
+                  tooltip="Logs when a user is unbanned from the server to the designated log channel."></i>
+              </span>
+            </div>
+          </div>
+        </div>
+
+        <div class="toggle-category">
+          <div class="toggle-category-title">Fortnite Stuff</div>
+          <div class="toggle-row">
+            <div class="toggle-item">
+              <div class="toggle-switch">
+                <input
+                  type="checkbox"
+                  class="toggle-switch-checkbox"
+                  id="modal-fortniteMapOnlyNamedLocations"
+                  name="modal-fortniteMapOnlyNamedLocations"
+                  [(ngModel)]="guildConfiguration.fortniteMapOnlyNamedLocations" />
+                <label class="toggle-switch-label" for="modal-fortniteMapOnlyNamedLocations">
+                  <span class="toggle-switch-inner"></span>
+                  <span class="toggle-switch-switch"></span>
+                </label>
+              </div>
+              <span class="toggle-switch-text">
+                Only Pick Named Map Locations
+                <i
+                  class="question-icon fa-solid fa-circle-question"
+                  tooltip="When using the Fortnite drop decider, only choose from named locations on the map."></i>
+              </span>
             </div>
           </div>
         </div>
@@ -359,22 +461,22 @@
             Admin User IDs
             <span class="subtitle">(numeric Discord IDs):</span>
           </div>
-          @for (id of _guildConfiguration.adminUserIds; track $index; let i = $index) {
+          @for (id of guildConfiguration.adminUserIds; track $index; let i = $index) {
           <div class="form-array-row">
             <input
               type="text"
-              [(ngModel)]="_guildConfiguration.adminUserIds[i]"
+              [(ngModel)]="guildConfiguration.adminUserIds[i]"
               class="form-array-input"
               placeholder="Enter numeric user ID"
               [ngClass]="{
                 invalid:
-                  _guildConfiguration.adminUserIds[i] &&
-                  !isNumericString(_guildConfiguration.adminUserIds[i])
+                  guildConfiguration.adminUserIds[i] &&
+                  !isNumericString(guildConfiguration.adminUserIds[i])
               }" />
             <button
               type="button"
               class="button red on-white form-array-remove"
-              (click)="_guildConfiguration.adminUserIds.splice(i, 1)">
+              (click)="guildConfiguration.adminUserIds.splice(i, 1)">
               Remove
             </button>
           </div>
@@ -382,7 +484,7 @@
           <button
             type="button"
             class="button blue on-black form-array-add"
-            (click)="_guildConfiguration.adminUserIds.push('')">
+            (click)="guildConfiguration.adminUserIds.push('')">
             Add Admin User ID
           </button>
         </div>
@@ -393,23 +495,22 @@
             Ignore Avatar Changes User IDs
             <span class="subtitle">(numeric Discord IDs):</span>
           </div>
-          @for (id of _guildConfiguration.ignoreAvatarChangesUserIds; track $index; let i = $index)
-          {
+          @for (id of guildConfiguration.ignoreAvatarChangesUserIds; track $index; let i = $index) {
           <div class="form-array-row">
             <input
               type="text"
-              [(ngModel)]="_guildConfiguration.ignoreAvatarChangesUserIds[i]"
+              [(ngModel)]="guildConfiguration.ignoreAvatarChangesUserIds[i]"
               class="form-array-input"
               placeholder="Enter numeric user ID"
               [ngClass]="{
                 invalid:
-                  _guildConfiguration.ignoreAvatarChangesUserIds[i] &&
-                  !isNumericString(_guildConfiguration.ignoreAvatarChangesUserIds[i])
+                  guildConfiguration.ignoreAvatarChangesUserIds[i] &&
+                  !isNumericString(guildConfiguration.ignoreAvatarChangesUserIds[i])
               }" />
             <button
               type="button"
               class="button red on-white form-array-remove"
-              (click)="_guildConfiguration.ignoreAvatarChangesUserIds.splice(i, 1)">
+              (click)="guildConfiguration.ignoreAvatarChangesUserIds.splice(i, 1)">
               Remove
             </button>
           </div>
@@ -417,17 +518,15 @@
           <button
             type="button"
             class="button blue on-black form-array-add"
-            (click)="_guildConfiguration.ignoreAvatarChangesUserIds.push('')">
+            (click)="guildConfiguration.ignoreAvatarChangesUserIds.push('')">
             Add Ignore User ID
           </button>
         </div>
       </div>
 
-      <div class="modal-buttons">
-        <button class="modal-button button green on-black" (click)="saveConfiguration()">
-          Save Changes
-        </button>
-        <button class="modal-button button blue on-black" (click)="closeModal()">Cancel</button>
+      <div class="configuration-buttons">
+        <button class="button blue on-black" (click)="backToDefinitions()">Back</button>
+        <button class="button green on-black" (click)="saveConfiguration()">Save Changes</button>
       </div>
     </div>
     } @else {

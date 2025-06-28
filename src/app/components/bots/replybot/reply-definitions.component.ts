@@ -15,8 +15,6 @@ import { RouterLink } from '@angular/router';
 import { CheckOrXComponent } from '../../shared/check-or-x/check-or-x.component';
 import { LoadingIndicatorComponent } from '../../shared/loading-indicator/loading-indicator.component';
 import { TooltipDirective } from 'src/app/directives/tooltip.directive';
-import { ModalComponent } from '../../shared/modal/modal.component';
-import { GuildConfigurationModalComponent } from './guild-configuration-modal/guild-configuration-modal.component';
 
 @Component({
   selector: 'app-reply-definitions',
@@ -30,8 +28,6 @@ import { GuildConfigurationModalComponent } from './guild-configuration-modal/gu
     CheckOrXComponent,
     RouterLink,
     LoadingIndicatorComponent,
-    GuildConfigurationModalComponent,
-    ModalComponent,
   ],
 })
 export class ReplyDefinitionsComponent extends BotPageComponent implements OnInit {
@@ -131,8 +127,6 @@ export class ReplyDefinitionsComponent extends BotPageComponent implements OnIni
     showAsFilter: true,
     showAsAttribute: true,
   };
-  guildConfiguration!: GuildConfiguration; // Ensure it's initialized, e.g. in constructor or ngOnInit
-  showGuildConfigurationModal: boolean = false; // For modal visibility
 
   ngOnInit() {
     this.filterTypes = [
@@ -143,9 +137,6 @@ export class ReplyDefinitionsComponent extends BotPageComponent implements OnIni
       this.attributeHasChannelIds,
       this.attributeHasUserIds,
     ];
-
-    // Initialize guildConfiguration if not already done, or ensure it's loaded before modal can be opened
-    this.guildConfiguration = new GuildConfiguration(); // Placeholder initialization
 
     if (this.isLoggedIn()) {
       this.domainUrl = window.location.host;
@@ -192,7 +183,7 @@ export class ReplyDefinitionsComponent extends BotPageComponent implements OnIni
         next: (result: {
           replyDefinitions: ReplyDefinition[];
           discordGuilds: DiscordGuild[];
-          guildConfiguration: GuildConfiguration; // Result includes guildConfiguration
+          guildConfiguration: GuildConfiguration;
           discordUser: DiscordUser;
         }) => {
           const currentGuild = result.discordGuilds.find((g) => g.id === this.guildId);
@@ -200,7 +191,6 @@ export class ReplyDefinitionsComponent extends BotPageComponent implements OnIni
             this.guildName = currentGuild.name;
             this.isAuthorizedToAdministrate = currentGuild.permissions.administrator;
           }
-          this.populateGuildConfiguration(result.guildConfiguration); // Populate the component's property
 
           // Check adminUserIds from the fetched guildConfiguration
           if (result.guildConfiguration && result.guildConfiguration.adminUserIds) {
@@ -224,9 +214,6 @@ export class ReplyDefinitionsComponent extends BotPageComponent implements OnIni
           window.setTimeout(() => this.logOutAndRedirect(), 3000);
         },
       });
-  }
-  populateGuildConfiguration(guildConfiguration: GuildConfiguration) {
-    this.guildConfiguration = guildConfiguration;
   }
 
   retrieveAndPopulateReplyDefinitions() {
@@ -387,57 +374,5 @@ export class ReplyDefinitionsComponent extends BotPageComponent implements OnIni
 
   isFilterActive(filterType: ReplyDefinitionAttributeType): boolean {
     return this.filterOptions.some((f) => f.key === filterType.key);
-  }
-
-  // --- Guild Configuration Modal Methods ---
-  openGuildConfigurationModal(): void {
-    if (this.guildConfiguration && this.guildConfiguration.guildId) {
-      // Check if config is loaded
-      this.showGuildConfigurationModal = true;
-    } else {
-      this.snackbarService.showSnackBar('Guild configuration is still loading. Please wait.', true);
-      // Optionally, trigger a reload if it seems missing
-      // this.initializePageContents();
-    }
-  }
-
-  closeGuildConfigurationModal(): void {
-    this.showGuildConfigurationModal = false;
-  }
-
-  saveGuildConfiguration(updatedConfiguration: GuildConfiguration): void {
-    const accessToken = this.getLoginToken();
-    if (!accessToken) {
-      this.snackbarService.showSnackBar('Authentication error. Please log in again.', true);
-      this.logOutAndRedirect();
-      return;
-    }
-    this.isLoading = true;
-
-    const guildConfigurationWithAccessToken = {
-      ...updatedConfiguration,
-      accessToken: accessToken,
-    };
-
-    this.replybotService
-      .updateReplybotGuildConfiguration(guildConfigurationWithAccessToken)
-      .pipe(take(1))
-      .subscribe({
-        next: (savedConfig) => {
-          console.log("Guild configuration saved successfully", savedConfig);
-          this.guildConfiguration = updatedConfiguration;//this._guildConfiguration = savedConfig; // Update local copy
-          this.snackbarService.showSnackBar('Server configuration saved successfully!', false);
-          this.showGuildConfigurationModal = false;
-          this.isLoading = false;
-        },
-        error: (err) => {
-          console.error('Error saving guild configuration', err);
-          this.snackbarService.showSnackBar(
-            'Failed to save server configuration. Please try again.',
-            true
-          );
-          this.isLoading = false;
-        },
-      });
   }
 }

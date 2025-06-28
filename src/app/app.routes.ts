@@ -23,6 +23,8 @@ import { BooksCollectionComponent } from './components/interests/books/books.com
 import { FavouriteGamesComponent } from './components/interests/video-games/favourite-games/favourite-games.component';
 import { GalleryPostComponent } from './components/gallery/gallery-post/gallery-post.component';
 import { ReplyDefinitionEditorComponent } from './components/bots/replybot/reply-definition-editor-dialog/reply-definition-editor-dialog.component';
+import { GuildConfiguration } from './components/bots/models/replybot/guild-configuration';
+import { GuildConfigurationComponent } from './components/bots/replybot/guild-configuration-modal/guild-configuration.component';
 
 export const routes: Routes = [
   { path: 'blog/:slug', pathMatch: 'full', component: BlogPostComponent },
@@ -70,6 +72,11 @@ export const routes: Routes = [
   {
     path: 'bots/replybot/reply-definitions',
     component: ReplyDefinitionsComponent,
+    canActivate: [AuthenticationGuard],
+  },
+  {
+    path: 'bots/replybot/server-settings',
+    component: GuildConfigurationComponent,
     canActivate: [AuthenticationGuard],
   },
   {

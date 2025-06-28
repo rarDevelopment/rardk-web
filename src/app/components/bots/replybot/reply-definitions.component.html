@@ -10,8 +10,11 @@
           Back to Server List
         </div>
       </a>
-      <!-- Button to open the Server Configuration Modal -->
-      <button class="button green on-black" (click)="openGuildConfigurationModal()">
+
+      <button
+        class="button green on-black"
+        [routerLink]="['/bots/replybot/server-settings']"
+        [queryParams]="{ guildId: guildId }">
         <i class="fa-solid fa-cog"></i>
         Server Settings
       </button>
@@ -276,16 +279,3 @@
   </div>
   }
 </div>
-
-<!-- Guild Configuration Modal -->
-<app-modal
-  [isVisible]="showGuildConfigurationModal"
-  modalId="guildConfigModal"
-  (closeModalEvent)="closeGuildConfigurationModal()">
-  @if (showGuildConfigurationModal && guildConfiguration) {
-  <app-guild-configuration-modal
-    [guildConfiguration]="guildConfiguration"
-    (close)="closeGuildConfigurationModal()"
-    (save)="saveGuildConfiguration($event)"></app-guild-configuration-modal>
-  }
-</app-modal>

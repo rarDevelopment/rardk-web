@@ -1,6 +1,6 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { ConfigurationEditorDialogComponent } from './guild-configuration-modal.component';
+import { ConfigurationEditorDialogComponent } from './guild-configuration.component';
 
 describe('ConfigurationEditorDialogComponent', () => {
   let component: ConfigurationEditorDialogComponent;
