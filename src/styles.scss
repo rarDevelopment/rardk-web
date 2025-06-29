@@ -693,8 +693,8 @@ a:visited {
   position: relative;
   width: 60px;
   height: 34px;
-  display: flex; // <-- Change from inline-block to flex
-  align-items: center; // <-- Vertically center the toggle contents
+  display: flex;
+  align-items: center;
 
   .toggle-switch-checkbox {
     opacity: 0;
@@ -725,10 +725,11 @@ a:visited {
   .toggle-switch-switch {
     position: absolute;
     left: 4px;
-    top: 4px; // <-- Change from bottom: 4px; to top: 4px;
+    top: 3px;
     width: 26px;
     height: 26px;
     background: #fff;
+    border: #ccc solid 1px;
     border-radius: 50%;
     transition: transform 0.4s;
   }
@@ -738,11 +739,24 @@ a:visited {
   }
 
   .toggle-switch-checkbox:checked + .toggle-switch-label .toggle-switch-switch {
-    transform: translateX(24px); // Try 24px instead of 26px
+    transform: translateX(19px);
   }
 
   .toggle-switch-checkbox:focus + .toggle-switch-label .toggle-switch-inner {
     box-shadow: 0 0 1px #4caf50;
+  }
+
+  .toggle-switch-text {
+    display: flex;
+    align-items: center;
+    line-height: 34px; // Match the toggle height
+    font-weight: bold;
+    white-space: nowrap;
+    // margin-left: 10px;
+    // margin-top: 0;
+    // margin-bottom: 0;
+    // padding-top: 0;
+    // padding-bottom: 0;
   }
 }
 
@@ -945,10 +959,9 @@ circle {
   align-items: center;
   line-height: 34px; // Match the toggle height
   font-weight: bold;
-  color: variables.$font-color;
+  // color: variables.$font-color;
   white-space: nowrap;
   margin-left: 10px;
-  // Remove any vertical margin/padding that could offset it
   margin-top: 0;
   margin-bottom: 0;
   padding-top: 0;

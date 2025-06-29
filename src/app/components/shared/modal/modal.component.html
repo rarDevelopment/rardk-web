@@ -2,16 +2,14 @@
 <div class="modal" [id]="modalId" (click)="close($event)">
   <div class="modal-content">
     <div class="modal-header">
-      <!-- Display title: Use post.title if available, otherwise use modalTitle -->
       @if(post?.title) {
       <h2>{{ post?.title ?? "" }}</h2>
       }
       <span class="close" (click)="close($event)"><i class="fa-solid fa-x closing-x"></i></span>
     </div>
 
-    <!-- Conditional Content Area -->
     @if (post && post.images && post.images.length > 0) {
-    <!-- Image Gallery Content -->
+
     <div class="modal-body image-modal-body">
       <div class="image-container">
         <app-loading-indicator [isLoading]="isLoading"></app-loading-indicator>
@@ -67,11 +65,9 @@
       }
     </div>
     } @else {
-    <!-- Generic Content Projection -->
     <div class="modal-body generic-modal-body">
       <ng-content></ng-content>
     </div>
-    <!-- Optional generic footer -->
     <div class="modal-footer generic-modal-footer">
       <ng-content select="[modal-footer]"></ng-content>
     </div>

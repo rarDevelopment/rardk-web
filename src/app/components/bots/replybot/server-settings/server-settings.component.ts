@@ -20,6 +20,7 @@ export class ServerSettingsComponent extends BotPageComponent implements OnInit 
   public isLoading = false;
 
   ngOnInit(): void {
+    this.isLoading = true;
     this.route.queryParams
       .pipe(
         take(1),
@@ -38,9 +39,15 @@ export class ServerSettingsComponent extends BotPageComponent implements OnInit 
           this.guildConfiguration = result;
           // Create a deep copy for editing
           this.editableGuildConfiguration = JSON.parse(JSON.stringify(this.guildConfiguration));
+          this.isLoading = false;
         },
         error: (error) => {
           console.error('Error fetching guild configuration:', error);
+          this.snackbarService.showSnackBar(
+            'Failed to load server configuration. Please try again.',
+            true
+          );
+          this.isLoading = false;
         },
       });
   }
@@ -81,7 +88,6 @@ export class ServerSettingsComponent extends BotPageComponent implements OnInit 
   }
 
   public backToDefinitions(): void {
-    // Navigate back to the definitions page
     this.router.navigate(['bots/replybot/reply-definitions'], {
       queryParams: { guildId: this.guildConfiguration.guildId },
     });

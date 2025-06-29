@@ -4,15 +4,14 @@
   <div class="guild-reply-definitions-container">
     <app-page-title>Custom Reply Definitions for {{ guildName }}</app-page-title>
     <div class="navigation-button-section">
-      <a [routerLink]="['/bots/replybot']">
-        <div class="on-black button blue on-black">
-          <i class="fa-solid fa-arrow-left"></i>
-          Back to Server List
-        </div>
-      </a>
-
+      <button [routerLink]="['/bots/replybot']" class="button blue on-black navigation-button">
+        <i class="fa-solid fa-arrow-left"></i>
+        Back to Server List
+      </button>
+    </div>
+    <div class="navigation-button-section">
       <button
-        class="button green on-black"
+        class="button green on-black navigation-button"
         [routerLink]="['/bots/replybot/server-settings']"
         [queryParams]="{ guildId: guildId }">
         <i class="fa-solid fa-cog"></i>

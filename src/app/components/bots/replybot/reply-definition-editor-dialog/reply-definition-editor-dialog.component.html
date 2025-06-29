@@ -1,12 +1,9 @@
 <app-loading-indicator [isLoading]="isLoading"></app-loading-indicator>
 
-<!-- Conditionally render the modal -->
-
 <app-modal
   [isVisible]="showHelpDialog"
   modalId="helpDialogModal"
   (closeModalEvent)="closeHelpDialog()">
-  <!-- Project the help dialog component inside the modal -->
   <app-help-dialog (close)="closeHelpDialog()"></app-help-dialog>
 </app-modal>
 @if(!isLoading){
@@ -45,21 +42,21 @@
     </div>
     <div class="input-section">
       <h2>Status</h2>
-      <div class="toggle-switch">
-        <input
-          type="checkbox"
-          id="statusToggle"
-          class="toggle-switch-checkbox"
-          [(ngModel)]="editorData.isActive" />
-        <label class="toggle-switch-label" for="statusToggle">
-          <span class="toggle-switch-inner"></span>
-          <span class="toggle-switch-switch"></span>
-          <!-- Move text inside the label -->
-          <span class="toggle-switch-text">
-            {{ editorData.isActive ? "ENABLED" : "DISABLED" }}
-          </span>
-        </label>
-        <!-- Text is now inside the label -->
+      <div style="display: flex; align-items: center;">
+        <div class="toggle-switch">
+          <input
+            type="checkbox"
+            id="statusToggle"
+            class="toggle-switch-checkbox"
+            [(ngModel)]="editorData.isActive" />
+          <label class="toggle-switch-label" for="statusToggle">
+            <span class="toggle-switch-inner"></span>
+            <span class="toggle-switch-switch"></span>
+          </label>
+        </div>
+        <span class="toggle-switch-text">
+          {{ editorData.isActive ? "ENABLED" : "DISABLED" }}
+        </span>
       </div>
       <span>(The bot will {{ editorData.isActive ? "use" : "ignore" }} this reply definition)</span>
     </div>
@@ -73,7 +70,7 @@
           {{ forbiddenTermErrorMessage }}
         </span>
         }
-        <!-- <label [for]="'trigger-' + i">Trigger Text</label> -->
+
         <div class="input-with-button">
           <input
             type="text"
@@ -119,7 +116,7 @@
         @if (!isValidId(editorData.channelIds[i])) {
         <span class="form-error">{{ invalidIdErrorMessage }}</span>
         }
-        <!-- <label [for]="'channel-' + i">Channel ID</label> -->
+
         <div class="input-with-button">
           <input
             type="text"
@@ -159,7 +156,7 @@
         @if (!isValidId(editorData.userIds[i])) {
         <span class="form-error">{{ invalidIdErrorMessage }}</span>
         }
-        <!-- <label [for]="'user-' + i">User ID</label> -->
+
         <div class="input-with-button">
           <input
             type="text"
@@ -193,7 +190,7 @@
           {{ forbiddenTermErrorMessage }}
         </span>
         }
-        <!-- <label [for]="'reply-' + i">Reply Text</label> -->
+
         <div class="input-with-button">
           <textarea
             [id]="'reply-' + i"

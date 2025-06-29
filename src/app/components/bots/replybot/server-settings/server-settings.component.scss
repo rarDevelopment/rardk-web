@@ -26,14 +26,12 @@
   font-weight: bold;
   margin-bottom: 10px;
   text-align: center;
-  color: variables.$font-color;
 }
 
 .guild-configuration-description {
   font-size: 15px;
   margin-bottom: 20px;
   text-align: center;
-  color: #bdbdbd;
 }
 
 .guild-configuration-actions {
@@ -52,7 +50,6 @@
 }
 
 .toggle-category-title {
-  color: #fff;
   font-weight: bold;
   margin-bottom: 18px;
   font-size: 1.15em;
@@ -68,31 +65,22 @@
   width: 100%;
   justify-content: center;
   margin-bottom: 12px;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 12px;
 }
 
 .toggle-item {
-  flex: 0 1 30%;
+  flex: 0 1 100%;
   min-width: 140px;
-  max-width: 33.33%;
+  max-width: 500px;
   display: flex;
   align-items: center;
   justify-content: flex-start;
-  margin-bottom: 16px;
+  margin-bottom: 0;
   box-sizing: border-box;
   padding-right: 4px;
   gap: 0 8px;
-}
-
-.toggle-switch-text {
-  margin-left: 0;
-  font-size: 15px;
-  font-weight: 500;
-  white-space: normal;
-  flex: 1 1 auto;
-  min-width: 0;
-  overflow-wrap: anywhere;
-  display: flex;
-  align-items: center;
 }
 
 .configuration-buttons {
@@ -116,14 +104,12 @@
 }
 
 .form-array-title {
-  color: #fff;
   font-weight: bold;
   margin-bottom: 6px;
   display: block;
   font-size: 1.1em;
 }
 .subtitle {
-  color: #ccc;
   font-weight: normal;
   font-size: 0.95em;
 }
@@ -132,20 +118,6 @@
 }
 
 label {
-  color: #fff;
   font-weight: 500;
   font-size: 14px;
-}
-
-@media (max-width: 900px) {
-  .toggle-item {
-    flex: 0 1 48%; // 2 per row
-    max-width: 48%;
-  }
-}
-@media (max-width: 600px) {
-  .toggle-item {
-    flex: 0 1 100%; // 1 per row
-    max-width: 100%;
-  }
 }
