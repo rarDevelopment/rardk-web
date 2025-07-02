@@ -11,12 +11,12 @@ import { LoadingIndicatorComponent } from 'src/app/components/shared/loading-ind
 import { BoardGamesService } from '../board-games.service';
 
 @Component({
-  selector: 'app-board-games',
-  templateUrl: './board-games.component.html',
-  styleUrls: ['./board-games.component.scss'],
+  selector: 'app-board-game-collection',
+  templateUrl: './board-game-collection.component.html',
+  styleUrls: ['./board-game-collection.component.scss'],
   imports: [PageTitleComponent, LoadingIndicatorComponent, FormsModule],
 })
-export class BoardGamesCollectionComponent implements OnInit {
+export class BoardGameCollectionComponent implements OnInit {
   constructor(private boardGamesService: BoardGamesService, private router: Router) {}
 
   @ViewChild('wantSection') wantSection: ElementRef;

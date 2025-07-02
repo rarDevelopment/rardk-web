@@ -2,7 +2,7 @@ import { Routes } from '@angular/router';
 import { InterestsComponent } from './components/interests/interests.component';
 import { NowComponent } from './components/now/now.component';
 import { LegoSetsCollectionComponent } from './components/interests/lego-sets/lego-sets.component';
-import { BoardGamesCollectionComponent } from './components/interests/board-games/board-game-collection/board-games.component';
+import { BoardGameCollectionComponent } from './components/interests/board-games/board-game-collection/board-game-collection.component';
 import { HomeComponent } from './components/home/home.component';
 import { TimezonesComponent } from './components/bots/timezonebot/timezones/timezones.component';
 import { AuthenticationGuard } from './guards/authentication-guard.guard';
@@ -51,7 +51,7 @@ export const routes: Routes = [
     pathMatch: 'full',
   },
   { path: 'lego', redirectTo: 'interests/collections/lego', pathMatch: 'full' },
-  { path: 'interests/collections/board-games', component: BoardGamesCollectionComponent },
+  { path: 'interests/collections/board-games', component: BoardGameCollectionComponent },
   { path: 'interests/board-game-sessions', component: BoardGamePlaysComponent },
   { path: 'interests/favourite-games', component: FavouriteGamesComponent },
   { path: 'interests/collections/video-games', component: VideoGamesCollectionComponent },
