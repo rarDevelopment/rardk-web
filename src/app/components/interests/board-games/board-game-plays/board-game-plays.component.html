@@ -1,0 +1,35 @@
+<div class="page-description-container">
+  <div class="page-description-content">
+    <app-page-title [titleSize]="1">
+      <i class="fa-solid fa-dice"></i>
+      Board Game Plays
+    </app-page-title>
+    <p>
+      Here's a simple list of board game sessions I've tracked, including which game, when, who
+      played, and who won.
+    </p>
+  </div>
+</div>
+<app-loading-indicator [isLoading]="isLoading"></app-loading-indicator>
+@if (!isLoading) {
+<div class="content-container">
+  <div class="content-container-card white">
+    <div class="description">
+      @for(playDate of boardGamePlays; track playDate) {
+      <div class="play-date">
+        <h3>{{ playDate.date | date : "mediumDate" }}:</h3>
+        <ul>
+          @for(play of playDate.plays; track play) {
+          <li>
+            <span class="game-name">{{ play.gameName }}</span>
+            <br />
+            <span class="game-players">Players: {{ formatPlayers(play.players) }}</span>
+          </li>
+          }
+        </ul>
+      </div>
+      }
+    </div>
+  </div>
+</div>
+}

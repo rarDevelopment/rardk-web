@@ -1,20 +1,20 @@
 import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
-import { BoardGamesService } from './board-games.service';
 import { BoardGame } from 'src/app/components/interests/board-games/models/board-game';
 import { finalize, take } from 'rxjs';
 import { micromark } from 'micromark';
 
-import { PageTitleComponent } from '../../shared/page-title/page-title.component';
 import { Router } from '@angular/router';
-import { LoadingIndicatorComponent } from '../../shared/loading-indicator/loading-indicator.component';
 import { FormsModule } from '@angular/forms';
 import { settings } from 'src/settings';
+import { PageTitleComponent } from 'src/app/components/shared/page-title/page-title.component';
+import { LoadingIndicatorComponent } from 'src/app/components/shared/loading-indicator/loading-indicator.component';
+import { BoardGamesService } from '../board-games.service';
 
 @Component({
-    selector: 'app-board-games',
-    templateUrl: './board-games.component.html',
-    styleUrls: ['./board-games.component.scss'],
-    imports: [PageTitleComponent, LoadingIndicatorComponent, FormsModule]
+  selector: 'app-board-games',
+  templateUrl: './board-games.component.html',
+  styleUrls: ['./board-games.component.scss'],
+  imports: [PageTitleComponent, LoadingIndicatorComponent, FormsModule],
 })
 export class BoardGamesCollectionComponent implements OnInit {
   constructor(private boardGamesService: BoardGamesService, private router: Router) {}

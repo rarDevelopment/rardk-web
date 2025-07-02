@@ -2,7 +2,7 @@ import { Routes } from '@angular/router';
 import { InterestsComponent } from './components/interests/interests.component';
 import { NowComponent } from './components/now/now.component';
 import { LegoSetsCollectionComponent } from './components/interests/lego-sets/lego-sets.component';
-import { BoardGamesCollectionComponent } from './components/interests/board-games/board-games.component';
+import { BoardGamesCollectionComponent } from './components/interests/board-games/board-game-collection/board-games.component';
 import { HomeComponent } from './components/home/home.component';
 import { TimezonesComponent } from './components/bots/timezonebot/timezones/timezones.component';
 import { AuthenticationGuard } from './guards/authentication-guard.guard';
@@ -24,6 +24,7 @@ import { FavouriteGamesComponent } from './components/interests/video-games/favo
 import { GalleryPostComponent } from './components/gallery/gallery-post/gallery-post.component';
 import { ReplyDefinitionEditorComponent } from './components/bots/replybot/reply-definition-editor-dialog/reply-definition-editor-dialog.component';
 import { ServerSettingsComponent } from './components/bots/replybot/server-settings/server-settings.component';
+import { BoardGamePlaysComponent } from './components/interests/board-games/board-game-plays/board-game-plays.component';
 
 export const routes: Routes = [
   { path: 'blog/:slug', pathMatch: 'full', component: BlogPostComponent },
@@ -51,6 +52,7 @@ export const routes: Routes = [
   },
   { path: 'lego', redirectTo: 'interests/collections/lego', pathMatch: 'full' },
   { path: 'interests/collections/board-games', component: BoardGamesCollectionComponent },
+  { path: 'interests/board-game-sessions', component: BoardGamePlaysComponent },
   { path: 'interests/favourite-games', component: FavouriteGamesComponent },
   { path: 'interests/collections/video-games', component: VideoGamesCollectionComponent },
   { path: 'interests/collections/books', component: BooksCollectionComponent },
