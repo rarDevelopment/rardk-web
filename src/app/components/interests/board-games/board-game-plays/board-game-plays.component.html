@@ -21,7 +21,9 @@
         <ul>
           @for(play of playDate.plays; track play) {
           <li>
-            <span class="game-name">{{ play.gameName }}</span>
+            <span class="game-name">
+              <a [href]="play.gameUrl" target="_blank">{{ play.gameName }}</a>
+            </span>
             <br />
             <span class="game-players">Players: {{ formatPlayers(play.players) }}</span>
           </li>

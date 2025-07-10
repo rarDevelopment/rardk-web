@@ -4,7 +4,7 @@ export interface BoardGamePlayer {
   name: string;
   startPosition: string;
   color: string;
-  score: string;
+  score: number | undefined;
   new: boolean;
   rating: number;
   win: boolean;

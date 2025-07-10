@@ -59,15 +59,19 @@ export class BoardGamePlaysComponent implements OnInit {
   }
 
   public formatPlayers(players: BoardGamePlayer[]): string {
-    return players
+    if (players.some((p) => p.score === undefined)) {
+      players = players.sort((a, b) => {
+        return (a.score ?? 0) - (b.score ?? 0);
+      });
+    }
+    const formattedPlayerText = players
       .map((p) => {
-        let nameToUse = p.username ?? p.name;
-        let playerName = nameToUse;
-        if (p.win) {
-          playerName = `${nameToUse} 🏆`;
-        }
-        return playerName;
+        const nameToUse = p.username ?? p.name;
+        console.log(nameToUse, p.win, p.score);
+        let playerText = nameToUse + (p.win ? '🏆' : '') + (p.score ? ` (${p.score})` : '');
+        return playerText;
       })
       .join(', ');
+    return formattedPlayerText;
   }
 }

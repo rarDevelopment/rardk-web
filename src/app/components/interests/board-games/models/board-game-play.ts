@@ -14,4 +14,5 @@ export interface BoardGamePlay {
   subtypes: string[];
   players: BoardGamePlayer[];
   comments: string;
+  gameUrl: string;
 }
