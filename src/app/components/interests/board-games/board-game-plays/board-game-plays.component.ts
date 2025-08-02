@@ -66,12 +66,12 @@ export class BoardGamePlaysComponent implements OnInit {
     }
     const formattedPlayerText = players
       .map((p) => {
-        const nameToUse = p.username ?? p.name;
-        console.log(nameToUse, p.win, p.score);
-        let playerText = nameToUse + (p.win ? '🏆' : '') + (p.score ? ` (${p.score})` : '');
+        const nameToUse = p.username || p.name || 'Unknown Player';
+        const playerText = nameToUse + (p.win ? '🏆' : '') + (p.score ? ` (${p.score})` : '');
         return playerText;
       })
       .join(', ');
+    console.log('formattedPlayerText', formattedPlayerText);
     return formattedPlayerText;
   }
 }
