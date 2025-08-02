@@ -71,7 +71,6 @@ export class ServerSettingsComponent extends BotPageComponent implements OnInit 
       .pipe(take(1))
       .subscribe({
         next: (savedConfig) => {
-          console.log('Guild configuration saved successfully', savedConfig);
           this.snackbarService.showSnackBar('Server configuration saved successfully!', false);
           this.guildConfiguration = JSON.parse(JSON.stringify(this.editableGuildConfiguration));
           this.isLoading = false;

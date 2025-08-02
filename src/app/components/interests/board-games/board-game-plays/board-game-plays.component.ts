@@ -71,7 +71,6 @@ export class BoardGamePlaysComponent implements OnInit {
         return playerText;
       })
       .join(', ');
-    console.log('formattedPlayerText', formattedPlayerText);
     return formattedPlayerText;
   }
 }
