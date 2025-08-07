@@ -24,12 +24,12 @@ jobs:
       - name: Node
         uses: actions/setup-node@v4
         with:
-          node-version: 18.13.x
+          node-version: 22.12.x
 
       - name: npm ci and npm run build
         run: |
           npm ci
-          npm run build:ssr
+          npm run build
       - name: upload artifact
         uses: actions/upload-artifact@v4
         with:
