@@ -1,0 +1,93 @@
+name: build-and-deploy
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  build:
+    name: "🛠️ Build and Deploy Website"
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Cache node modules
+        uses: actions/cache@v4
+        with:
+          path: ~/.npm
+          key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
+          restore-keys: |
+            ${{ runner.os }}-node-
+
+      - name: Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 18.13.x
+
+      - name: npm ci and npm run build
+        run: |
+          npm ci
+          npm run build:ssr
+      - name: upload artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: angular-build
+          path: "./dist/rardk-web/browser"
+  deploy:
+    name: 🚀 Deploy via FTP
+    needs: [build]
+    runs-on: ubuntu-latest
+    steps:
+      - name: download artifact
+        uses: actions/download-artifact@v4
+        with:
+          name: angular-build
+          path: "./dist/rardk-web/browser"
+      - name: ⬆️ Upload Files
+        uses: maverage/FTP-Deploy-Action@v4.3.5
+        with:
+          server: ${{ secrets.ftp_host }}
+          username: ${{ secrets.ftp_user }}
+          password: ${{ secrets.ftp_password }}
+          local-dir: "./dist/rardk-web/browser/"
+          server-dir: "public_html/"
+
+  create_tag_and_release:
+    runs-on: ubuntu-latest
+    name: "🏷️ Create Tag and Release"
+    if: github.event_name == 'push'
+    needs: deploy
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0 # Fetch all history for all tags
+      - name: Calculate Next Version
+        id: version
+        run: |
+          DATE=$(date +'%Y-%m-%d')
+          # Get the latest tag for today, sorted numerically by the build number part
+          # Uses version:refname sorting which handles numbers correctly (e.g., .10 > .9)
+          LATEST_TODAY_TAG=$(git tag --list "${DATE}.*" --sort='-version:refname' | head -n 1)
+
+          if [[ -z "$LATEST_TODAY_TAG" ]]; then
+            # No tags for today yet, start at 1
+            BUILD_NUMBER=1
+          else
+            # Extract the build number from the latest tag and increment
+            # Assumes format YYYY-MM-DD.BUILD_NUMBER
+            CURRENT_BUILD=$(echo "$LATEST_TODAY_TAG" | cut -d '.' -f 2)
+            BUILD_NUMBER=$((CURRENT_BUILD + 1))
+          fi
+
+          VERSION="${DATE}.${BUILD_NUMBER}"
+          echo "Calculated version: ${VERSION}"
+          # Set output for the next step
+          echo "version=${VERSION}" >> $GITHUB_OUTPUT
+      - name: Create Release
+        run: |
+          echo "Creating release tag: ${{ steps.version.outputs.version }}"
+          gh release create "${{ steps.version.outputs.version }}" --generate-notes
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
