@@ -4,6 +4,7 @@ import { Observable } from 'rxjs';
 import { settings } from 'src/settings';
 import { LastfmAlbum } from './models/lastfm-album';
 import { LastfmArtist } from './models/lastfm-artist';
+import { LastfmRecentTracksResponse } from './models';
 
 @Injectable({
   providedIn: 'root',
@@ -17,5 +18,11 @@ export class LastfmService {
 
   getTopArtists(): Observable<LastfmArtist[]> {
     return this.http.get<LastfmArtist[]>(`${settings.apiUrl}now/json/now-top-artists`);
+  }
+
+  getRecentTracks(): Observable<LastfmRecentTracksResponse> {
+    return this.http.get<LastfmRecentTracksResponse>(
+      `${settings.apiUrl}now/json/now-recent-tracks`
+    );
   }
 }

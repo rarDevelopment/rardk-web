@@ -14,3 +14,12 @@
   profileUrl="https://www.last.fm/user/rardk64"
   profileName="Last.fm"
   [isError]="isTopArtistsError"></app-feed-posters>
+
+<app-feed-posters
+  sectionTitle="Recent Tracks"
+  [isLoading]="isRecentTracksLoading"
+  [feedItems]="recentTrackFeedItems"
+  displayType="list"
+  profileUrl="https://www.last.fm/user/rardk64"
+  profileName="Last.fm"
+  [isError]="isRecentTracksError"></app-feed-posters>
