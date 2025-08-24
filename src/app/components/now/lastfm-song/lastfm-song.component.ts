@@ -1,10 +1,11 @@
 import { Component } from '@angular/core';
 import { LastfmService } from '../lastfm-card/lastfm.service';
 import { SimplifiedTrack } from '../lastfm-card/models/simplified-track';
+import { PageTitleComponent } from '../../shared/page-title/page-title.component';
 
 @Component({
   selector: 'app-lastfm-song',
-  imports: [],
+  imports: [PageTitleComponent],
   templateUrl: './lastfm-song.component.html',
   styleUrl: './lastfm-song.component.scss',
 })
