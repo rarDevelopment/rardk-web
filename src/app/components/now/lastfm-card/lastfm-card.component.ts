@@ -108,22 +108,12 @@ export class LastfmCardComponent {
       )
       .subscribe({
         next: (result: LastfmRecentTracks) => {
-          let items = result.track
-            .sort((a, b) => {
-              if (!a.date) {
-                return 1;
-              }
-              if (!b.date) {
-                return -1;
-              }
-              return b.date > a.date ? 1 : -1;
-            })
-            .map((track) => {
-              return {
-                title: `🎵 ${track.artist['#text']} - ${track.name}`,
-                url: track.url,
-              } as FeedItem;
-            });
+          let items = result.track.map((track) => {
+            return {
+              title: `🎵 ${track.artist['#text']} - ${track.name}`,
+              url: track.url,
+            } as FeedItem;
+          });
           if (this.numberOfRecentTracksToShow > 0) {
             items = items.slice(0, this.numberOfRecentTracksToShow);
           }

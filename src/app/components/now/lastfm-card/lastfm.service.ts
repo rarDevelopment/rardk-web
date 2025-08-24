@@ -25,4 +25,10 @@ export class LastfmService {
       `${settings.apiUrl}now/json/now-recent-tracks`
     );
   }
+
+    getRecentTracksRealTime(): Observable<LastfmRecentTracksResponse> {
+    return this.http.get<LastfmRecentTracksResponse>(
+      `${settings.apiUrl}now/lastfm/recenttracks`
+    );
+  }
 }
