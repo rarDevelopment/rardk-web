@@ -1,8 +1,52 @@
 @use "sass:color";
 @use "../../../variables.scss" as variables;
 
+.interests-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 40px 30px;
+  padding: 20px;
+  
+  @media screen and (max-width: 767px) {
+    grid-template-columns: 1fr;
+    gap: 30px;
+    padding: 10px;
+  }
+}
+
 .collection-section {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
   text-align: center;
+  padding: 20px;
+  border-radius: 8px;
+  background-color: #f8f9fa;
+  border: 1px solid #e9ecef;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  
+  // &:hover {
+  //   transform: translateY(-2px);
+  //   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  // }
+  
+  h2 {
+    margin-bottom: 20px;
+    color: #333;
+    font-size: 24px;
+  }
+}
+
+.section-buttons {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  width: 100%;
+  align-items: center;
+  
+  p {
+    margin: 0;
+  }
 }
 
 .collection-button {
