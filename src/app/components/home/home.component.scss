@@ -1,5 +1,24 @@
 @use "../../../variables.scss" as variables;
 
+.home-columns-container {
+  display: flex;
+  gap: 40px;
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 0 20px;
+
+  @media screen and (max-width: 1023px) {
+    flex-direction: column;
+    gap: 0;
+    padding: 0;
+  }
+}
+
+.home-column {
+  flex: 1;
+  min-width: 0; // Prevent flex items from overflowing
+}
+
 .page-section-container {
   padding-top: 20px;
   padding-bottom: 20px;
@@ -11,6 +30,18 @@
   margin: 0 auto;
 }
 
-.page-section-container:last-child {
+// On desktop, add bottom border to the last section in each column
+.home-column .page-section-container:last-child {
   border-bottom: variables.$divider-color;
+}
+
+// On mobile, only add bottom border to the very last section overall
+@media screen and (max-width: 1023px) {
+  .home-column .page-section-container:last-child {
+    border-bottom: none;
+  }
+  
+  .home-columns-container .home-column:last-child .page-section-container:last-child {
+    border-bottom: variables.$divider-color;
+  }
 }

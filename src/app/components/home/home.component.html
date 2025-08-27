@@ -8,22 +8,31 @@
   </div>
 </div>
 
-<div class="page-section-container">
-  <app-all-posts
-    pageTitle="Latest Posts By Me"
-    [itemCount]="4"
-    [showAllPageLinks]="true"
-    [showPaginator]="false"></app-all-posts>
-</div>
+<div class="home-columns-container">
+  <div class="home-column">
+    <div class="page-section-container">
+      <app-all-posts
+        pageTitle="Latest Posts By Me"
+        [itemCount]="4"
+        [showAllPageLinks]="true"
+        [showPaginator]="false"></app-all-posts>
+    </div>
+  </div>
 
-<div class="page-section-container">
-  <app-media-feed></app-media-feed>
-</div>
+  <div class="home-column">
+    <div class="page-section-container">
+      <app-media-feed></app-media-feed>
+    </div>
 
-<div class="page-section-container">
-  <app-lastfm-song></app-lastfm-song>
-</div>
+    <div class="page-section-container">
+      <app-lastfm-song></app-lastfm-song>
+    </div>
 
-<div class="page-section-container">
-  <app-gallery pageTitle="Latest Gallery Posts" [itemCount]="4" [showPageLink]="true"></app-gallery>
+    <div class="page-section-container">
+      <app-gallery
+        pageTitle="Latest Gallery Posts"
+        [itemCount]="4"
+        [showPageLink]="true"></app-gallery>
+    </div>
+  </div>
 </div>

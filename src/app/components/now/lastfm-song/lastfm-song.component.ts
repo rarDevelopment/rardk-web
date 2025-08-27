@@ -5,7 +5,7 @@ import { PageTitleComponent } from '../../shared/page-title/page-title.component
 
 @Component({
   selector: 'app-lastfm-song',
-  imports: [PageTitleComponent],
+  imports: [],
   templateUrl: './lastfm-song.component.html',
   styleUrl: './lastfm-song.component.scss',
 })

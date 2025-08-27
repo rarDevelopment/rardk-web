@@ -1,19 +1,16 @@
-<!-- <div class="page-description-container">
-  <div class="page-description-content"> -->
-<app-page-title [titleSize]="1">
+<!-- <app-page-title [titleSize]="1">
   <i class="fa-solid fa-music"></i>
   Just Listened
-</app-page-title>
-<!-- </div>
-</div> -->
+</app-page-title> -->
 @if(latestSong){
 <div class="latest-song">
-    <h3>
-      {{ latestSong.artist }} -
-      <a [href]="latestSong.url" target="_blank">{{ latestSong.name }}</a>
-      @if(latestSong.nowPlaying) {
-      <span class="now-playing">🟢</span>
-      }
-    </h3>
-  </div>
+  <h3>
+    <i class="fa-solid fa-music"></i>
+    {{ latestSong.artist }} -
+    <a [href]="latestSong.url" target="_blank">{{ latestSong.name }}</a>
+    @if(latestSong.nowPlaying) {
+    <span class="now-playing">🟢</span>
+    }
+  </h3>
+</div>
 }
