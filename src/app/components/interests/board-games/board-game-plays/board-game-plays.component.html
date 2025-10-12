@@ -24,6 +24,10 @@
             <span class="game-name">
               <a [href]="play.gameUrl" target="_blank">{{ play.gameName }}</a>
             </span>
+            @if(play.length){
+            <br />
+            <span class="game-duration">Length: {{ formatPlayDuration(play.length) }}</span>
+            }
             <br />
             <span class="game-players">Players: {{ formatPlayers(play.players) }}</span>
           </li>

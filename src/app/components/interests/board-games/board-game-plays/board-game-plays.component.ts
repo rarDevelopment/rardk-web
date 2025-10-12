@@ -73,4 +73,14 @@ export class BoardGamePlaysComponent implements OnInit {
       .join(', ');
     return formattedPlayerText;
   }
+
+  public formatPlayDuration(durationInMinutes: number): string {
+    if (durationInMinutes < 60) {
+      return `${durationInMinutes}m`;
+    } else {
+      const hours = Math.floor(durationInMinutes / 60);
+      const minutes = durationInMinutes % 60;
+      return `${hours}h${minutes > 0 ? ` ${minutes} m` : ''}`;
+    }
+  }
 }
