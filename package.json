@@ -8,7 +8,7 @@
     "build": "ng build",
     "watch": "ng build --watch --configuration development",
     "test": "ng test",
-    "update-angular": "ng update @angular/core @angular/cli @angular/cdk && rm package-lock.json && npm install"
+    "update-angular": "ng update @angular/core @angular/cli @angular/cdk && rm -rf node_modules package-lock.json && npm install"
   },
   "private": true,
   "engines": {
