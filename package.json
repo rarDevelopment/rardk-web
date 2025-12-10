@@ -19,7 +19,7 @@
   },
   "dependencies": {
     "@angular/animations": "^21.0.3",
-    "@angular/cdk": "^21.0.2",
+    "@angular/cdk": "^21.0.3",
     "@angular/common": "^21.0.3",
     "@angular/compiler": "^21.0.3",
     "@angular/core": "^21.0.3",
@@ -37,8 +37,8 @@
     "zone.js": "^0.15.0"
   },
   "devDependencies": {
-    "@angular/build": "^21.0.2",
-    "@angular/cli": "^21.0.2",
+    "@angular/build": "^21.0.3",
+    "@angular/cli": "^21.0.3",
     "@angular/compiler-cli": "^21.0.3",
     "@types/jasmine": "~4.3.0",
     "@types/luxon": "^3.3.7",
